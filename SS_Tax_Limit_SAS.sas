@@ -1,5 +1,5 @@
 /*Establish the Lib - CHANGE TO WHEREVER YOUR LIB IS STORED*/
-libname Shirt "C:\Users\student\OneDrive - Bryant University\College\Senior\Semester I\AA490\Final Project\FP_Libs\SSTaxLimit";
+libname Shirt "C:\Users\student\OneDrive - Bryant University\College\Senior\Semester I\AA490\Final Project\Git_Repository\AA490_Project\FP_Libs\SSTaxLimit";
 /*So you don't have to say lib.table*/
 options user = SSTaxLim;
 data SSTaxLimit;
