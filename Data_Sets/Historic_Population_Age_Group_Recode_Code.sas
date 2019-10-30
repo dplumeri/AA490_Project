@@ -1,5 +1,5 @@
 Libname DataSet "C:\Users\student\Desktop\AA Capstone\Project\GitRepository\aa490_project\Data_Sets";
-options user = DataSet;
+options user = Tmp2;
 
 data PopRecode10to19;
 set dataset.census_population;
@@ -142,7 +142,10 @@ set DataSet.PopRecode;
 		or missing (age_group) then
 		delete;
 		run;
-
+data PopAgeRecode_AllGender;
+	set PopAgeRecode;
+		if Gender = "both sexes" then output;
+run;
 
 
 	
