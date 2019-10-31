@@ -1,4 +1,4 @@
-Libname DataSet "C:\Users\student\Desktop\AA Capstone\Project\GitRepository\aa490_project\Data_Sets";
+Libname DataSet "C:\Users\student\Desktop\AA Capstone\Project\GitRepository\aa490_project\Data_Sets\labor_force_pop";
 options user = dataset;
 
 	/* Combining into one statement */
@@ -7,10 +7,10 @@ data PopRecode;
 set dataset.census_population;
 
 	if age_group = "14_to_17_years" then 
-	age_group = "14 to 17";
+	age_group = "14 to 24";
 
 	if age_group = "18_to_24_years" then 
-	age_group = "18 to 24";
+	age_group = "14 to 24";
 
 	if age_group = "25_to_44_years" then
 	age_group = "25 to 44";
@@ -31,7 +31,7 @@ set dataset.census_population;
 	run;
 	
 
-data PopAgeRecode;
+data LaborForceHistoricRecode;
 set DataSet.PopRecode;
 	if age_group in ("Population_all_ages", "16_years_and_over", "18_years_and_over",	
 					 "85_years_and_over", "5_to_13_years", "00_to_04_years",
@@ -44,13 +44,19 @@ set DataSet.PopRecode;
 		delete;
 		run;
 data PopAgeRecode_AllGender;
-	set PopAgeRecode;
+	set dataset.PopAgeRecode;
 		if Gender = "both sexes" then output;
 run;
 
 
-data ProjPopRecode;
+data LaborForceProjectedRecode;
 set DataSet.Projected_Population;
+	if age_group = "14 to 17 years" then
+	age_group = "14 to 24";
+	if age_group = "18 to 24 years" then
+	age_group = "14 to 24";
+	if age_group = "65 years and over" then
+	age_group = "65+";
 	if age_group in ("population all ages", "00 to 04 years", "05 to 13 years", "15 to 44 years", "16 years and over",
 					 "18 to 64 years", "18 years and over", "85 years and over", "Over 99 years", "Under 18 years") then 
 					 delete; 
