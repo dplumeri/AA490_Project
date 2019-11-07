@@ -1,4 +1,4 @@
-options user = Disease;
+options user = Data;
 
 data PopRecodeFINAL;
 	set Census_population;
@@ -9,16 +9,16 @@ data PopRecodeFINAL;
 
 	if age_group = "18_to_24_years" then age_group = "18-24";
 
-	if age_group = "25_to_44_years_" then age_group = "25-44";
+	if age_group = "25_to_44_years" then age_group = "25-44";
 
-	if age_group = "45_to_49_years" then age_group = "45-54";
-	if age_group = "50_to_54_years" then age_group = "45-54";
+	if age_group = "45_to_49_years" then age_group = "45-64";
+	if age_group = "50_to_54_years" then age_group = "45-64";
 
-	if age_group= "55_to_59_years" then age_group = "55-64";
-	if age_group = "60_to_64_years" then age_group = "55-64";
+	if age_group= "55_to_59_years" then age_group = "45-64";
+	if age_group = "60_to_64_years" then age_group = "45-64";
 
-	if age_group = "55_to_59_years" then age_group = "55-64";
-	if age_group = "60_to_64_years" then age_group = "55-64";
+	if age_group = "55_to_59_years" then age_group = "45-64";
+	if age_group = "60_to_64_years" then age_group = "45-64";
 
 	if age_group = "65_to_69_years" then age_group = "65-74";
 	if age_group = "70_to_74_years" then age_group = "65-74";
@@ -112,4 +112,7 @@ create table proj_disease_FINAL as
 select Date, gender, Age_Group, sum(population_in_thousands) as Population_in_thousands from proj_pop_final_no_dupe_2
 group by Date, Age_Group, Gender
 order by Date, Age_Group, Gender;
+proc freq data = poprecfinal;
+tables age_group /nocum nopercent;
+run;
 
