@@ -85,7 +85,7 @@ data ProjPropRecodeFINAL;
 		age_group = "25-44";
 
 	if age_group = "45	to	64	years" then
-		age_group = "45-54";
+		age_group = "45-64";
 
 	if age_group = "85 years and over" then
 		age_group = "85+";
