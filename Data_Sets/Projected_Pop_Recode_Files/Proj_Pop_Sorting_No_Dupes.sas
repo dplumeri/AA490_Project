@@ -1,4 +1,4 @@
-options user = ppoptest;
+options user = Disease;
 
 proc sql;
 create table Proj_Pop_Final_No_Dupe as
