@@ -1,4 +1,4 @@
-options user = Data;
+options user = disease;
 
 data PopRecodeFINAL;
 	set Census_population;
