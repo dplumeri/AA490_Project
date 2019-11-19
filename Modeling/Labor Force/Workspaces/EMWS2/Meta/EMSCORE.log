@@ -1,0 +1,106 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 14, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:46:56" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Score Log
+Date:                November 14, 2019
+Time:                16:46:56
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O245Y_TX "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force\Workspaces\EMWS2\Meta\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O245Y_TX new;
+MPRINT(EM_DIAGRAM):   run;
+18938      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+18939      * Meta: Scoring DATA data;
+MPRINT(EM_DIAGRAM):   * Meta: Scoring DATA data;
+18940      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+18941      data EMWS2.Meta_TRAIN
+18942      / view=EMWS2.Meta_TRAIN
+18943      ;
+MPRINT(EM_DIAGRAM):   data EMWS2.Meta_TRAIN / view=EMWS2.Meta_TRAIN ;
+18944      set EMWS2.Stat2_TRAIN
+18945      ;
+MPRINT(EM_DIAGRAM):   set EMWS2.Stat2_TRAIN ;
+18946      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: DATA STEP view saved on file EMWS2.META_TRAIN.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS2.STAT2_TRAIN.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.04 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.06 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+18947      quit;
+
+18948      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+18949      * Meta: Computing metadata for TRAIN data;
+MPRINT(EM_DIAGRAM):   * Meta: Computing metadata for TRAIN data;
+18950      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+
+18951      data _TEMP;
+MPRINT(EM_DIAGRAM):    data _TEMP;
+18952      set EMWS2.Stat2_CMeta_TRAIN;
+MPRINT(EM_DIAGRAM):   set EMWS2.Stat2_CMeta_TRAIN;
+18953      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 5 observations read from the data set EMWS2.STAT2_CMETA_TRAIN.
+NOTE: The data set WORK._TEMP has 5 observations and 20 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+18954      proc sort data=_TEMP;
+MPRINT(EM_DIAGRAM):    proc sort data=_TEMP;
+18955      by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+18956      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 5 observations read from the data set WORK._TEMP.
+NOTE: The data set WORK._TEMP has 5 observations and 20 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+18957      data EMWS2.Meta_CMeta_TRAIN;
+MPRINT(EM_DIAGRAM):    data EMWS2.Meta_CMeta_TRAIN;
+18958      set _TEMP;
+MPRINT(EM_DIAGRAM):   set _TEMP;
+18959      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 5 observations read from the data set WORK._TEMP.
+NOTE: The data set EMWS2.META_CMETA_TRAIN has 5 observations and 20 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+NOTE: View EMWS2.META_TRAIN.VIEW used (Total process time):
+      real time           0.08 seconds
+      cpu time            0.07 seconds
+      
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;

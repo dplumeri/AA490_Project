@@ -1,0 +1,3849 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 14, 
+2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:24:21" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Score Log
+Date:                November 14, 2019
+Time:                16:24:21
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O3UGSZ1O "C:\Users\student\Desktop\AA 490\Final 
+Project\AA490_Project\Base Model\Workspaces\EMWS1\Score3\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O3UGSZ1O new;
+MPRINT(EM_DIAGRAM):   run;
+110528     filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base
+110528   ! Model\Workspaces\EMWS1\Score3\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA 490\Final 
+Project\AA490_Project\Base Model\Workspaces\EMWS1\Score3\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Score3: Scoring DATA data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+110529     *------------------------------------------------------------*;
+110530     * Score3: Scoring DATA data;
+110531     *------------------------------------------------------------*;
+110532     data EMWS1.Score3_TRAIN
+110533     / view=EMWS1.Score3_TRAIN
+110534     ;
+MPRINT(EM_DIAGRAM):   data EMWS1.Score3_TRAIN / view=EMWS1.Score3_TRAIN ;
+110535     set EMWS1.Boost_TRAIN
+110536     ;
+MPRINT(EM_DIAGRAM):   set EMWS1.Boost_TRAIN ;
+110537     %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\Desktop\AA 490\Final 
+      Project\AA490_Project\Base Model\Workspaces\EMWS1\Score3\EMFLOWSCORE.sas.
+110538    +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+110539    +* Score3: Creating Fixed Names;
+MPRINT(EM_DIAGRAM):   * Score3: Creating Fixed Names;
+110540    +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+110541    +LENGTH EM_EVENTPROBABILITY 8;
+MPRINT(EM_DIAGRAM):   LENGTH EM_EVENTPROBABILITY 8;
+110542    +LABEL EM_EVENTPROBABILITY = 'Probability for level 85+ of Age_group';
+MPRINT(EM_DIAGRAM):   LABEL EM_EVENTPROBABILITY = 'Probability for level 85+ of Age_group';
+110543    +EM_EVENTPROBABILITY = P_Age_group85_;
+MPRINT(EM_DIAGRAM):   EM_EVENTPROBABILITY = P_Age_group85_;
+110544    +LENGTH EM_PROBABILITY 8;
+MPRINT(EM_DIAGRAM):   LENGTH EM_PROBABILITY 8;
+110545    +LABEL EM_PROBABILITY = 'Probability of Classification';
+MPRINT(EM_DIAGRAM):   LABEL EM_PROBABILITY = 'Probability of Classification';
+110546    +EM_PROBABILITY =
+110547    +max(
+110548    +P_Age_group85_
+110549    +,
+110550    +P_Age_group65_84
+110551    +,
+110552    +P_Age_group25_44
+110553    +,
+110554    +P_Age_group18_24
+110555    +,
+110556    +P_Age_group0_17
+110557    +);
+MPRINT(EM_DIAGRAM):   EM_PROBABILITY = max( P_Age_group85_ , P_Age_group65_84 , 
+P_Age_group25_44 , P_Age_group18_24 , P_Age_group0_17 );
+110558    +LENGTH
+MPRINT(EM_DIAGRAM):   LENGTH EM_CLASSIFICATION
+110558   !+       EM_CLASSIFICATION $%dmnorlen;
+MPRINT(DMNORLEN):   $32
+MPRINT(EM_DIAGRAM):  ;
+110559    +LABEL EM_CLASSIFICATION = "Prediction for Age_group";
+MPRINT(EM_DIAGRAM):   LABEL EM_CLASSIFICATION = "Prediction for Age_group";
+110560    +EM_CLASSIFICATION = I_Age_group;
+MPRINT(EM_DIAGRAM):   EM_CLASSIFICATION = I_Age_group;
+110561    +LABEL EM_CLASSTARGET = 'Target Variable: Age_group';
+MPRINT(EM_DIAGRAM):   LABEL EM_CLASSTARGET = 'Target Variable: Age_group';
+110562    +EM_CLASSTARGET = F_Age_group;
+MPRINT(EM_DIAGRAM):   EM_CLASSTARGET = F_Age_group;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+110563     run;
+
+NOTE: DATA STEP view saved on file EMWS1.SCORE3_TRAIN.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.BOOST_TRAIN.VIEW used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.03 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+110564     quit;
+110565     filename emflow;
+MPRINT(EM_DIAGRAM):   filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+110566     filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base
+110566   ! Model\Workspaces\EMWS1\Score3\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA 490\Final 
+Project\AA490_Project\Base Model\Workspaces\EMWS1\Score3\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Score3: Scoring VALIDATE data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+110567     *------------------------------------------------------------*;
+110568     * Score3: Scoring VALIDATE data;
+110569     *------------------------------------------------------------*;
+110570     data EMWS1.Score3_VALIDATE
+110571     / view=EMWS1.Score3_VALIDATE
+110572     ;
+MPRINT(EM_DIAGRAM):   data EMWS1.Score3_VALIDATE / view=EMWS1.Score3_VALIDATE ;
+110573     set EMWS1.Boost_VALIDATE
+110574     ;
+MPRINT(EM_DIAGRAM):   set EMWS1.Boost_VALIDATE ;
+110575     %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\Desktop\AA 490\Final 
+      Project\AA490_Project\Base Model\Workspaces\EMWS1\Score3\EMFLOWSCORE.sas.
+110576    +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+110577    +* Score3: Creating Fixed Names;
+MPRINT(EM_DIAGRAM):   * Score3: Creating Fixed Names;
+110578    +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+110579    +LENGTH EM_EVENTPROBABILITY 8;
+MPRINT(EM_DIAGRAM):   LENGTH EM_EVENTPROBABILITY 8;
+110580    +LABEL EM_EVENTPROBABILITY = 'Probability for level 85+ of Age_group';
+MPRINT(EM_DIAGRAM):   LABEL EM_EVENTPROBABILITY = 'Probability for level 85+ of Age_group';
+110581    +EM_EVENTPROBABILITY = P_Age_group85_;
+MPRINT(EM_DIAGRAM):   EM_EVENTPROBABILITY = P_Age_group85_;
+110582    +LENGTH EM_PROBABILITY 8;
+MPRINT(EM_DIAGRAM):   LENGTH EM_PROBABILITY 8;
+110583    +LABEL EM_PROBABILITY = 'Probability of Classification';
+MPRINT(EM_DIAGRAM):   LABEL EM_PROBABILITY = 'Probability of Classification';
+110584    +EM_PROBABILITY =
+110585    +max(
+110586    +P_Age_group85_
+110587    +,
+110588    +P_Age_group65_84
+110589    +,
+110590    +P_Age_group25_44
+110591    +,
+110592    +P_Age_group18_24
+110593    +,
+110594    +P_Age_group0_17
+110595    +);
+MPRINT(EM_DIAGRAM):   EM_PROBABILITY = max( P_Age_group85_ , P_Age_group65_84 , 
+P_Age_group25_44 , P_Age_group18_24 , P_Age_group0_17 );
+110596    +LENGTH
+MPRINT(EM_DIAGRAM):   LENGTH EM_CLASSIFICATION
+110596   !+       EM_CLASSIFICATION $%dmnorlen;
+MPRINT(DMNORLEN):   $32
+MPRINT(EM_DIAGRAM):  ;
+110597    +LABEL EM_CLASSIFICATION = "Prediction for Age_group";
+MPRINT(EM_DIAGRAM):   LABEL EM_CLASSIFICATION = "Prediction for Age_group";
+110598    +EM_CLASSIFICATION = I_Age_group;
+MPRINT(EM_DIAGRAM):   EM_CLASSIFICATION = I_Age_group;
+110599    +LABEL EM_CLASSTARGET = 'Target Variable: Age_group';
+MPRINT(EM_DIAGRAM):   LABEL EM_CLASSTARGET = 'Target Variable: Age_group';
+110600    +EM_CLASSTARGET = F_Age_group;
+MPRINT(EM_DIAGRAM):   EM_CLASSTARGET = F_Age_group;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+110601     run;
+
+NOTE: DATA STEP view saved on file EMWS1.SCORE3_VALIDATE.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.BOOST_VALIDATE.VIEW used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+110602     quit;
+110603     filename emflow;
+MPRINT(EM_DIAGRAM):   filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+110604     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+110605     * Score3: Creating Publish Score Variables Table;
+MPRINT(EM_DIAGRAM):   * Score3: Creating Publish Score Variables Table;
+110606     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+110607     proc sort data=EMWS1.Boost_CMeta_TRAIN(keep= NAME ROLE CREATOR COMMENT LABEL)
+110607   ! out=_temp;
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Boost_CMeta_TRAIN(keep= NAME ROLE CREATOR COMMENT 
+LABEL) out=_temp;
+110608     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+110609     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 23 observations read from the data set EMWS1.BOOST_CMETA_TRAIN.
+NOTE: The data set WORK._TEMP has 23 observations and 5 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+110610     proc sort data=EMWS1.Ids3_cmeta_data(keep= NAME ROLE CREATOR COMMENT LABEL)
+110610   ! out=_temp2;
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Ids3_cmeta_data(keep= NAME ROLE CREATOR COMMENT 
+LABEL) out=_temp2;
+110611     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+110612     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 6 observations read from the data set EMWS1.IDS3_CMETA_DATA.
+NOTE: The data set WORK._TEMP2 has 6 observations and 5 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+110613     data EMWS1.Score3_EMINPUTVARS;
+MPRINT(EM_DIAGRAM):   data EMWS1.Score3_EMINPUTVARS;
+110614     merge _temp2(in=_a) _temp(in=_b);
+MPRINT(EM_DIAGRAM):   merge _temp2(in=_a) _temp(in=_b);
+110615     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+110616     length HIDE $1 SCOREVAR $1;
+MPRINT(EM_DIAGRAM):   length HIDE $1 SCOREVAR $1;
+110617     label NAME = "%sysfunc(sasmsg(sashelp.dmine,  meta_name_vlabel ,    NOQUOTE))" ROLE
+110617   ! = "%sysfunc(sasmsg(sashelp.dmine,  meta_role_vlabel ,    NOQUOTE))" CREATOR =
+110617   ! "%sysfunc(sasmsg(sashelp.dmine,  meta_creator_vlabel , NOQUOTE))" COMMENT =
+110618        "%sysfunc(sasmsg(sashelp.dmine,  meta_comment_vlabel , NOQUOTE))" LABEL =
+110618   ! "%sysfunc(sasmsg(sashelp.dmine,  meta_label_vlabel ,   NOQUOTE))" HIDE =
+110618   ! "%sysfunc(sasmsg(sashelp.dmine, rpt_hiddenVariable_vlabel,  NOQUOTE))" SCOREVAR =
+110619        "%sysfunc(sasmsg(sashelp.dmine,  rpt_scoreVar_vlabel ,  NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label NAME = "Variable Name" ROLE = "Role" CREATOR = "Creator" COMMENT = 
+"Comment" LABEL = "Label" HIDE = "Variable Hidden" SCOREVAR = "Used in Score Code";
+110620     if _a and ^_b then HIDE = 'Y';
+MPRINT(EM_DIAGRAM):   if _a and ^_b then HIDE = 'Y';
+110621     if upcase(NAME) = "AGE_GROUP" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "AGE_GROUP" then HIDE = "N";
+110622     if upcase(NAME) = "F_AGE_GROUP" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "F_AGE_GROUP" then HIDE = "N";
+110623     if upcase(NAME) = "I_AGE_GROUP" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "I_AGE_GROUP" then HIDE = "N";
+110624     if upcase(NAME) = "OG_CASES_IN_THOUSANDS" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "OG_CASES_IN_THOUSANDS" then HIDE = "N";
+110625     if upcase(NAME) = "P_AGE_GROUP0_17" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "P_AGE_GROUP0_17" then HIDE = "N";
+110626     if upcase(NAME) = "P_AGE_GROUP18_24" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "P_AGE_GROUP18_24" then HIDE = "N";
+110627     if upcase(NAME) = "P_AGE_GROUP25_44" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "P_AGE_GROUP25_44" then HIDE = "N";
+110628     if upcase(NAME) = "P_AGE_GROUP65_84" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "P_AGE_GROUP65_84" then HIDE = "N";
+110629     if upcase(NAME) = "P_AGE_GROUP85_" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "P_AGE_GROUP85_" then HIDE = "N";
+110630     if upcase(NAME) = "PROJECTED_SUM_POP" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "PROJECTED_SUM_POP" then HIDE = "N";
+110631     if upcase(NAME) = "Q_AGE_GROUP0_17" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "Q_AGE_GROUP0_17" then HIDE = "N";
+110632     if upcase(NAME) = "Q_AGE_GROUP18_24" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "Q_AGE_GROUP18_24" then HIDE = "N";
+110633     if upcase(NAME) = "Q_AGE_GROUP25_44" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "Q_AGE_GROUP25_44" then HIDE = "N";
+110634     if upcase(NAME) = "Q_AGE_GROUP65_84" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "Q_AGE_GROUP65_84" then HIDE = "N";
+110635     if upcase(NAME) = "Q_AGE_GROUP85_" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "Q_AGE_GROUP85_" then HIDE = "N";
+110636     if upcase(NAME) = "R_AGE_GROUP0_17" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "R_AGE_GROUP0_17" then HIDE = "N";
+110637     if upcase(NAME) = "R_AGE_GROUP18_24" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "R_AGE_GROUP18_24" then HIDE = "N";
+110638     if upcase(NAME) = "R_AGE_GROUP25_44" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "R_AGE_GROUP25_44" then HIDE = "N";
+110639     if upcase(NAME) = "R_AGE_GROUP65_84" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "R_AGE_GROUP65_84" then HIDE = "N";
+110640     if upcase(NAME) = "R_AGE_GROUP85_" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "R_AGE_GROUP85_" then HIDE = "N";
+110641     if upcase(NAME) = "U_AGE_GROUP" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "U_AGE_GROUP" then HIDE = "N";
+110642     if upcase(NAME) = "_WARN_" then delete;
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "_WARN_" then delete;
+110643     if upcase(NAME) = "_DATAOBS_" then HIDE = "N";
+MPRINT(EM_DIAGRAM):   if upcase(NAME) = "_DATAOBS_" then HIDE = "N";
+110644     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: Variable SCOREVAR is uninitialized.
+NOTE: There were 6 observations read from the data set WORK._TEMP2.
+NOTE: There were 23 observations read from the data set WORK._TEMP.
+NOTE: The data set EMWS1.SCORE3_EMINPUTVARS has 25 observations and 7 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.00 seconds
+      
+
+110645     proc sort data=EMWS1.Score3_EMINPUTVARS nodupkey;
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Score3_EMINPUTVARS nodupkey;
+110646     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+110647     where CREATOR='' or (NAME="AGE_GROUP" and CREATOR='');
+MPRINT(EM_DIAGRAM):   where CREATOR='' or (NAME="AGE_GROUP" and CREATOR='');
+110648     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 6 observations read from the data set EMWS1.SCORE3_EMINPUTVARS.
+      WHERE (CREATOR=' ') or ((NAME='AGE_GROUP') and (CREATOR=' '));
+NOTE: 0 observations with duplicate key values were deleted.
+NOTE: The data set EMWS1.SCORE3_EMINPUTVARS has 6 observations and 7 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+110649     %let em_rootkey=;
+110650     %let em_keytype=;
+110651     %let em_keylen=;
+110652     data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+110653     set EMWS1.Ids3_cmeta_data;
+MPRINT(EM_DIAGRAM):   set EMWS1.Ids3_cmeta_data;
+110654     where role='KEY';
+MPRINT(EM_DIAGRAM):   where role='KEY';
+110655     call symput('em_rootkey', strip(NAME));
+MPRINT(EM_DIAGRAM):   call symput('em_rootkey', strip(NAME));
+110656     call symput('em_keytype', strip(TYPE));
+MPRINT(EM_DIAGRAM):   call symput('em_keytype', strip(TYPE));
+110657     call symput('em_rootlen', strip(put(length, best.)));
+MPRINT(EM_DIAGRAM):   call symput('em_rootlen', strip(put(length, best.)));
+110658     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 0 observations read from the data set EMWS1.IDS3_CMETA_DATA.
+      WHERE role='KEY';
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+110659     filename _pref "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base
+110659   ! Model\Workspaces\EMWS1\Score3\EMPUBLISHSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename _pref "C:\Users\student\Desktop\AA 490\Final 
+Project\AA490_Project\Base Model\Workspaces\EMWS1\Score3\EMPUBLISHSCORE.sas";
+110660     options validvarname=ANY;
+MPRINT(EM_DIAGRAM):   options validvarname=ANY;
+110661     proc FCMP NOEXECUTE IMPUTEDDEPS OUTDEPS=_temp;
+MPRINT(EM_DIAGRAM):   proc FCMP NOEXECUTE IMPUTEDDEPS OUTDEPS=_temp;
+110662     %INCLUDE _pref;
+NOTE: %INCLUDE (level 1) file _PREF is file C:\Users\student\Desktop\AA 490\Final 
+      Project\AA490_Project\Base Model\Workspaces\EMWS1\Score3\EMPUBLISHSCORE.sas.
+110663    +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+110664    +* Score3: Creating Fixed Names;
+MPRINT(EM_DIAGRAM):   * Score3: Creating Fixed Names;
+110665    +*------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+110666    +LENGTH EM_EVENTPROBABILITY 8;
+MPRINT(EM_DIAGRAM):   LENGTH EM_EVENTPROBABILITY 8;
+110667    +LABEL EM_EVENTPROBABILITY = 'Probability for level 85+ of Age_group';
+MPRINT(EM_DIAGRAM):   LABEL EM_EVENTPROBABILITY = 'Probability for level 85+ of Age_group';
+110668    +EM_EVENTPROBABILITY = P_Age_group85_;
+MPRINT(EM_DIAGRAM):   EM_EVENTPROBABILITY = P_Age_group85_;
+110669    +LENGTH EM_PROBABILITY 8;
+MPRINT(EM_DIAGRAM):   LENGTH EM_PROBABILITY 8;
+110670    +LABEL EM_PROBABILITY = 'Probability of Classification';
+MPRINT(EM_DIAGRAM):   LABEL EM_PROBABILITY = 'Probability of Classification';
+110671    +EM_PROBABILITY =
+110672    +max(
+110673    +P_Age_group85_
+110674    +,
+110675    +P_Age_group65_84
+110676    +,
+110677    +P_Age_group25_44
+110678    +,
+110679    +P_Age_group18_24
+110680    +,
+110681    +P_Age_group0_17
+110682    +);
+MPRINT(EM_DIAGRAM):   EM_PROBABILITY = max( P_Age_group85_ , P_Age_group65_84 , 
+P_Age_group25_44 , P_Age_group18_24 , P_Age_group0_17 );
+110683    +LENGTH
+MPRINT(EM_DIAGRAM):   LENGTH EM_CLASSIFICATION
+110683   !+       EM_CLASSIFICATION $%dmnorlen;
+MPRINT(DMNORLEN):   $32
+MPRINT(EM_DIAGRAM):  ;
+110684    +LABEL EM_CLASSIFICATION = "Prediction for Age_group";
+MPRINT(EM_DIAGRAM):   LABEL EM_CLASSIFICATION = "Prediction for Age_group";
+110685    +EM_CLASSIFICATION = I_Age_group;
+MPRINT(EM_DIAGRAM):   EM_CLASSIFICATION = I_Age_group;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+110686     run;
+
+NOTE: Dependency structure written to data set _TEMP.
+NOTE: PROCEDURE FCMP used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+110687     options validvarname=V7;
+MPRINT(EM_DIAGRAM):   options validvarname=V7;
+MPRINT(EM_DIAGRAM):   quit;
+110688     quit;
+110689     filename _pref;
+MPRINT(EM_DIAGRAM):   filename _pref;
+NOTE: Fileref _PREF has been deassigned.
+110690     data _temp(rename=(RHS=NAME));
+MPRINT(EM_DIAGRAM):   data _temp(rename=(RHS=NAME));
+110691     length Node $32;
+MPRINT(EM_DIAGRAM):   length Node $32;
+110692     retain ID 1 Node "Score3";
+MPRINT(EM_DIAGRAM):   retain ID 1 Node "Score3";
+110693     set _temp;
+MPRINT(EM_DIAGRAM):   set _temp;
+110694     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 7 observations read from the data set WORK._TEMP.
+NOTE: The data set WORK._TEMP has 7 observations and 14 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+110695     proc sort data=_temp;
+MPRINT(EM_DIAGRAM):   proc sort data=_temp;
+110696     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+110697     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 7 observations read from the data set WORK._TEMP.
+NOTE: The data set WORK._TEMP has 7 observations and 14 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+110698     proc sort data=EMWS1.Boost_CMeta_TRAIN out=_temp2(keep=NAME CREATOR);
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Boost_CMeta_TRAIN out=_temp2(keep=NAME CREATOR);
+110699     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+110700     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 23 observations read from the data set EMWS1.BOOST_CMETA_TRAIN.
+NOTE: The data set WORK._TEMP2 has 23 observations and 2 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+110701     data _temp2;
+MPRINT(EM_DIAGRAM):   data _temp2;
+110702     length CREATOR $32;
+MPRINT(EM_DIAGRAM):   length CREATOR $32;
+110703     set _temp2;
+MPRINT(EM_DIAGRAM):   set _temp2;
+110704     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 23 observations read from the data set WORK._TEMP2.
+NOTE: The data set WORK._TEMP2 has 23 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+110705     proc contents data=EMWS1.Score3_train out=_meta(keep=NAME) noprint;
+MPRINT(EM_DIAGRAM):   proc contents data=EMWS1.Score3_train out=_meta(keep=NAME) noprint;
+110706     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: The data set WORK._META has 30 observations and 1 variables.
+NOTE: PROCEDURE CONTENTS used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+      
+
+110707     proc sort data=_meta;
+MPRINT(EM_DIAGRAM):   proc sort data=_meta;
+110708     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+110709     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 30 observations read from the data set WORK._META.
+NOTE: The data set WORK._META has 30 observations and 1 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+110710     data _temp2;
+MPRINT(EM_DIAGRAM):   data _temp2;
+110711     merge _meta _temp2;
+MPRINT(EM_DIAGRAM):   merge _meta _temp2;
+110712     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+110713     run;
+MPRINT(EM_DIAGRAM):   run;
+
+WARNING: Multiple lengths were specified for the BY variable NAME by input data sets. This 
+         might cause unexpected results.
+NOTE: There were 30 observations read from the data set WORK._META.
+NOTE: There were 23 observations read from the data set WORK._TEMP2.
+NOTE: The data set WORK._TEMP2 has 30 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+110714     proc sql;
+MPRINT(EM_DIAGRAM):   proc sql;
+110715     create table _tempx as select p.node, p.lhs, p.id , p2.name, p2.CREATOR from
+110715   ! work._temp p, work._temp2 p2 where upcase(p.NAME)=upcase(p2.NAME);
+MPRINT(EM_DIAGRAM):   create table _tempx as select p.node, p.lhs, p.id , p2.name, p2.CREATOR 
+from work._temp p, work._temp2 p2 where upcase(p.NAME)=upcase(p2.NAME);
+NOTE: Table WORK._TEMPX created, with 7 rows and 5 columns.
+
+110716     quit;
+MPRINT(EM_DIAGRAM):   quit;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+110717     proc append base=EMWS1.Score3_FCMP data=_tempx;
+MPRINT(EM_DIAGRAM):   proc append base=EMWS1.Score3_FCMP data=_tempx;
+110718     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: Appending WORK._TEMPX to EMWS1.SCORE3_FCMP.
+NOTE: BASE data set does not exist. DATA file is being copied to BASE file.
+NOTE: There were 7 observations read from the data set WORK._TEMPX.
+NOTE: The data set EMWS1.SCORE3_FCMP has 7 observations and 5 variables.
+NOTE: PROCEDURE APPEND used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.01 seconds
+      
+
+110719     filename _pref "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base
+110719   ! Model\Workspaces\EMWS1\Boost\EMPUBLISHSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename _pref "C:\Users\student\Desktop\AA 490\Final 
+Project\AA490_Project\Base Model\Workspaces\EMWS1\Boost\EMPUBLISHSCORE.sas";
+110720     options validvarname=ANY;
+MPRINT(EM_DIAGRAM):   options validvarname=ANY;
+110721     proc FCMP NOEXECUTE IMPUTEDDEPS OUTDEPS=_temp;
+MPRINT(EM_DIAGRAM):   proc FCMP NOEXECUTE IMPUTEDDEPS OUTDEPS=_temp;
+110722     %INCLUDE _pref;
+NOTE: %INCLUDE (level 1) file _PREF is file C:\Users\student\Desktop\AA 490\Final 
+      Project\AA490_Project\Base Model\Workspaces\EMWS1\Boost\EMPUBLISHSCORE.sas.
+110723    +****************************************************************;
+MPRINT(EM_DIAGRAM):   ****************************************************************;
+110724    +******             DECISION TREE SCORING CODE             ******;
+MPRINT(EM_DIAGRAM):   ****** DECISION TREE SCORING CODE ******;
+110725    +****************************************************************;
+MPRINT(EM_DIAGRAM):   ****************************************************************;
+110726    +
+110727    +******         LENGTHS OF NEW CHARACTER VARIABLES         ******;
+MPRINT(EM_DIAGRAM):   ****** LENGTHS OF NEW CHARACTER VARIABLES ******;
+110728    +LENGTH I_Age_group  $   19;
+MPRINT(EM_DIAGRAM):   LENGTH I_Age_group $ 19;
+110729    +LENGTH U_Age_group  $   19;
+MPRINT(EM_DIAGRAM):   LENGTH U_Age_group $ 19;
+110730    +LENGTH _WARN_  $    4;
+MPRINT(EM_DIAGRAM):   LENGTH _WARN_ $ 4;
+110731    +
+110732    +******              LABELS FOR NEW VARIABLES              ******;
+MPRINT(EM_DIAGRAM):   ****** LABELS FOR NEW VARIABLES ******;
+110733    +label P_Age_group0_17 = 'Predicted: Age_group=0-17' ;
+MPRINT(EM_DIAGRAM):   label P_Age_group0_17 = 'Predicted: Age_group=0-17' ;
+110734    +      P_Age_group0_17  = 0;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = 0;
+110735    +label P_Age_group18_24 = 'Predicted: Age_group=18-24' ;
+MPRINT(EM_DIAGRAM):   label P_Age_group18_24 = 'Predicted: Age_group=18-24' ;
+110736    +      P_Age_group18_24  = 0;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = 0;
+110737    +label P_Age_group25_44 = 'Predicted: Age_group=25-44' ;
+MPRINT(EM_DIAGRAM):   label P_Age_group25_44 = 'Predicted: Age_group=25-44' ;
+110738    +      P_Age_group25_44  = 0;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = 0;
+110739    +label P_Age_group65_84 = 'Predicted: Age_group=65-84' ;
+MPRINT(EM_DIAGRAM):   label P_Age_group65_84 = 'Predicted: Age_group=65-84' ;
+110740    +      P_Age_group65_84  = 0;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = 0;
+110741    +label P_Age_group85_ = 'Predicted: Age_group=85+' ;
+MPRINT(EM_DIAGRAM):   label P_Age_group85_ = 'Predicted: Age_group=85+' ;
+110742    +      P_Age_group85_  = 0;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = 0;
+110743    +label Q_Age_group0_17 = 'Unadjusted P: Age_group=0-17' ;
+MPRINT(EM_DIAGRAM):   label Q_Age_group0_17 = 'Unadjusted P: Age_group=0-17' ;
+110744    +      Q_Age_group0_17  = 0;
+MPRINT(EM_DIAGRAM):   Q_Age_group0_17 = 0;
+110745    +label Q_Age_group18_24 = 'Unadjusted P: Age_group=18-24' ;
+MPRINT(EM_DIAGRAM):   label Q_Age_group18_24 = 'Unadjusted P: Age_group=18-24' ;
+110746    +      Q_Age_group18_24  = 0;
+MPRINT(EM_DIAGRAM):   Q_Age_group18_24 = 0;
+110747    +label Q_Age_group25_44 = 'Unadjusted P: Age_group=25-44' ;
+MPRINT(EM_DIAGRAM):   label Q_Age_group25_44 = 'Unadjusted P: Age_group=25-44' ;
+110748    +      Q_Age_group25_44  = 0;
+MPRINT(EM_DIAGRAM):   Q_Age_group25_44 = 0;
+110749    +label Q_Age_group65_84 = 'Unadjusted P: Age_group=65-84' ;
+MPRINT(EM_DIAGRAM):   label Q_Age_group65_84 = 'Unadjusted P: Age_group=65-84' ;
+110750    +      Q_Age_group65_84  = 0;
+MPRINT(EM_DIAGRAM):   Q_Age_group65_84 = 0;
+110751    +label Q_Age_group85_ = 'Unadjusted P: Age_group=85+' ;
+MPRINT(EM_DIAGRAM):   label Q_Age_group85_ = 'Unadjusted P: Age_group=85+' ;
+110752    +      Q_Age_group85_  = 0;
+MPRINT(EM_DIAGRAM):   Q_Age_group85_ = 0;
+110753    +label I_Age_group = 'Into: Age_group' ;
+MPRINT(EM_DIAGRAM):   label I_Age_group = 'Into: Age_group' ;
+110754    +label U_Age_group = 'Unnormalized Into: Age_group' ;
+MPRINT(EM_DIAGRAM):   label U_Age_group = 'Unnormalized Into: Age_group' ;
+110755    +label _WARN_ = 'Warnings' ;
+MPRINT(EM_DIAGRAM):   label _WARN_ = 'Warnings' ;
+110756    +
+110757    +
+110758    +******      TEMPORARY VARIABLES FOR FORMATTED VALUES      ******;
+MPRINT(EM_DIAGRAM):   ****** TEMPORARY VARIABLES FOR FORMATTED VALUES ******;
+110759    +LENGTH _ARBFMT_19 $     19; DROP _ARBFMT_19;
+MPRINT(EM_DIAGRAM):   LENGTH _ARBFMT_19 $ 19;
+MPRINT(EM_DIAGRAM):   DROP _ARBFMT_19;
+110760    +_ARBFMT_19 = ' '; /* Initialize to avoid warning. */
+MPRINT(EM_DIAGRAM):   _ARBFMT_19 = ' ';
+110761    +
+110762    +
+110763    +ARRAY BOOST_ARB_Y_VEC_[5] _TEMPORARY_ ;
+MPRINT(EM_DIAGRAM):   /* Initialize to avoid warning. */ ARRAY BOOST_ARB_Y_VEC_[5] _TEMPORARY_ 
+;
+110764    +   BOOST_ARB_Y_VEC_[1] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[1] = 0;
+110765    +   BOOST_ARB_Y_VEC_[2] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[2] = 0;
+110766    +   BOOST_ARB_Y_VEC_[3] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[3] = 0;
+110767    +   BOOST_ARB_Y_VEC_[4] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[4] = 0;
+110768    +   BOOST_ARB_Y_VEC_[5] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[5] = 0;
+110769    +ARRAY BOOST_ARB_BADF_VEC_[5] _TEMPORARY_ ;
+MPRINT(EM_DIAGRAM):   ARRAY BOOST_ARB_BADF_VEC_[5] _TEMPORARY_ ;
+110770    +   BOOST_ARB_BADF_VEC_[1] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_BADF_VEC_[1] = 0;
+110771    +   BOOST_ARB_BADF_VEC_[2] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_BADF_VEC_[2] = 0;
+110772    +   BOOST_ARB_BADF_VEC_[3] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_BADF_VEC_[3] = 0;
+110773    +   BOOST_ARB_BADF_VEC_[4] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_BADF_VEC_[4] = 0;
+110774    +   BOOST_ARB_BADF_VEC_[5] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_BADF_VEC_[5] = 0;
+110775    +
+110776    +******             ASSIGN OBSERVATION TO NODE             ******;
+MPRINT(EM_DIAGRAM):   ****** ASSIGN OBSERVATION TO NODE ******;
+110777    + DROP _ARB_P_;
+MPRINT(EM_DIAGRAM):   DROP _ARB_P_;
+110778    + _ARB_P_ = 0;
+MPRINT(EM_DIAGRAM):   _ARB_P_ = 0;
+110779    + DROP _ARB_PPATH_; _ARB_PPATH_ = 1;
+MPRINT(EM_DIAGRAM):   DROP _ARB_PPATH_;
+MPRINT(EM_DIAGRAM):   _ARB_PPATH_ = 1;
+110780    +
+110781    +********** LEAF     1  NODE  2182 ***************;
+MPRINT(EM_DIAGRAM):   ********** LEAF 1 NODE 2182 ***************;
+110782    +IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN DO;
+110783    +
+110784    +   DROP _BRANCH_;
+MPRINT(EM_DIAGRAM):   DROP _BRANCH_;
+110785    +  _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+110786    +    IF  NOT MISSING(Projected_Sum_Pop ) AND
+110787    +    Projected_Sum_Pop  <              1780976 THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND Projected_Sum_Pop < 1780976 THEN 
+DO;
+110788    +     _BRANCH_ =    1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+110789    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110790    +   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+110791    +    IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+110792    +        IF OG_Cases_in_Thousands  <                20145 THEN DO;
+MPRINT(EM_DIAGRAM):   IF OG_Cases_in_Thousands < 20145 THEN DO;
+110793    +         _BRANCH_ =    1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+110794    +        END;
+MPRINT(EM_DIAGRAM):   END;
+110795    +      ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+110796    +      END;
+MPRINT(EM_DIAGRAM):   END;
+110797    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110798    +  IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+110799    +     IF MISSING( Projected_Sum_Pop  ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   IF MISSING( Projected_Sum_Pop ) THEN _BRANCH_ = 1;
+110800    +  END;
+MPRINT(EM_DIAGRAM):   END;
+110801    +  IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+110802    +
+110803    +    _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+110804    +      IF  NOT MISSING(Projected_Sum_Pop ) AND
+110805    +      Projected_Sum_Pop  <            1144855.5 THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND Projected_Sum_Pop < 1144855.5 
+THEN DO;
+110806    +       _BRANCH_ =    1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+110807    +      END;
+MPRINT(EM_DIAGRAM):   END;
+110808    +    IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+110809    +       IF MISSING( Projected_Sum_Pop  ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   IF MISSING( Projected_Sum_Pop ) THEN _BRANCH_ = 1;
+110810    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110811    +    IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+110812    +      BOOST_ARB_Y_VEC_[1] + -0.1;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[1] + -0.1;
+110813    +      END;
+MPRINT(EM_DIAGRAM):   END;
+110814    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110815    +  END;
+MPRINT(EM_DIAGRAM):   END;
+110816    +
+110817    +********** LEAF     2  NODE  2183 ***************;
+MPRINT(EM_DIAGRAM):   ********** LEAF 2 NODE 2183 ***************;
+110818    +IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN DO;
+110819    +
+110820    +  _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+110821    +    IF  NOT MISSING(Projected_Sum_Pop ) AND
+110822    +    Projected_Sum_Pop  <              1780976 THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND Projected_Sum_Pop < 1780976 THEN 
+DO;
+110823    +     _BRANCH_ =    1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+110824    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110825    +   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+110826    +    IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+110827    +        IF OG_Cases_in_Thousands  <                20145 THEN DO;
+MPRINT(EM_DIAGRAM):   IF OG_Cases_in_Thousands < 20145 THEN DO;
+110828    +         _BRANCH_ =    1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+110829    +        END;
+MPRINT(EM_DIAGRAM):   END;
+110830    +      ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+110831    +      END;
+MPRINT(EM_DIAGRAM):   END;
+110832    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110833    +  IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+110834    +     IF MISSING( Projected_Sum_Pop  ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   IF MISSING( Projected_Sum_Pop ) THEN _BRANCH_ = 1;
+110835    +  END;
+MPRINT(EM_DIAGRAM):   END;
+110836    +  IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+110837    +
+110838    +    _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+110839    +      IF  NOT MISSING(Projected_Sum_Pop ) AND
+110840    +                 1144855.5 <= Projected_Sum_Pop  THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND 1144855.5 <= Projected_Sum_Pop 
+THEN DO;
+110841    +       _BRANCH_ =    2;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+110842    +      END;
+MPRINT(EM_DIAGRAM):   END;
+110843    +
+110844    +    IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+110845    +      BOOST_ARB_Y_VEC_[1] + 0.4;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[1] + 0.4;
+110846    +      END;
+MPRINT(EM_DIAGRAM):   END;
+110847    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110848    +  END;
+MPRINT(EM_DIAGRAM):   END;
+110849    +
+110850    +********** LEAF     3  NODE  2173 ***************;
+MPRINT(EM_DIAGRAM):   ********** LEAF 3 NODE 2173 ***************;
+110851    +IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN DO;
+110852    +
+110853    +  _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+110854    +    IF  NOT MISSING(Projected_Sum_Pop ) AND
+110855    +                 1780976 <= Projected_Sum_Pop  THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND 1780976 <= Projected_Sum_Pop THEN 
+DO;
+110856    +     _BRANCH_ =    2;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+110857    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110858    +   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+110859    +    IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+110860    +        IF                20145 <= OG_Cases_in_Thousands  THEN DO;
+MPRINT(EM_DIAGRAM):   IF 20145 <= OG_Cases_in_Thousands THEN DO;
+110861    +         _BRANCH_ =    2;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+110862    +        END;
+MPRINT(EM_DIAGRAM):   END;
+110863    +      ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+110864    +      END;
+MPRINT(EM_DIAGRAM):   END;
+110865    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110866    +
+110867    +  IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+110868    +    BOOST_ARB_Y_VEC_[1] + -0.1;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[1] + -0.1;
+110869    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110870    +  END;
+MPRINT(EM_DIAGRAM):   END;
+110871    +
+110872    +********** LEAF     4  NODE  2174 ***************;
+MPRINT(EM_DIAGRAM):   ********** LEAF 4 NODE 2174 ***************;
+110873    +IF BOOST_ARB_BADF_VEC_[2] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[2] EQ 0 THEN DO;
+110874    +
+110875    +  _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+110876    +    IF  NOT MISSING(OG_Cases_in_Thousands ) AND
+110877    +    OG_Cases_in_Thousands  <                 1245 THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND OG_Cases_in_Thousands < 1245 
+THEN DO;
+110878    +     _BRANCH_ =    1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+110879    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110880    +  IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+110881    +     IF MISSING( OG_Cases_in_Thousands  ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   IF MISSING( OG_Cases_in_Thousands ) THEN _BRANCH_ = 1;
+110882    +  END;
+MPRINT(EM_DIAGRAM):   END;
+110883    +  IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+110884    +    BOOST_ARB_Y_VEC_[2] + 0.3788135593;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[2] + 0.3788135593;
+110885    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110886    +  END;
+MPRINT(EM_DIAGRAM):   END;
+110887    +
+110888    +********** LEAF     5  NODE  2175 ***************;
+MPRINT(EM_DIAGRAM):   ********** LEAF 5 NODE 2175 ***************;
+110889    +IF BOOST_ARB_BADF_VEC_[2] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[2] EQ 0 THEN DO;
+110890    +
+110891    +  _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+110892    +    IF  NOT MISSING(OG_Cases_in_Thousands ) AND
+110893    +                    1245 <= OG_Cases_in_Thousands  THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND 1245 <= OG_Cases_in_Thousands 
+THEN DO;
+110894    +     _BRANCH_ =    2;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+110895    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110896    +
+110897    +  IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+110898    +    BOOST_ARB_Y_VEC_[2] + -0.1;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[2] + -0.1;
+110899    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110900    +  END;
+MPRINT(EM_DIAGRAM):   END;
+110901    +
+110902    +********** LEAF     6  NODE  2176 ***************;
+MPRINT(EM_DIAGRAM):   ********** LEAF 6 NODE 2176 ***************;
+110903    +IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN DO;
+110904    +
+110905    +  _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+110906    +    IF  NOT MISSING(Projected_Sum_Pop ) AND
+110907    +    Projected_Sum_Pop  <              1780976 THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND Projected_Sum_Pop < 1780976 THEN 
+DO;
+110908    +     _BRANCH_ =    1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+110909    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110910    +   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+110911    +    IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+110912    +        IF OG_Cases_in_Thousands  <                20145 THEN DO;
+MPRINT(EM_DIAGRAM):   IF OG_Cases_in_Thousands < 20145 THEN DO;
+110913    +         _BRANCH_ =    1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+110914    +        END;
+MPRINT(EM_DIAGRAM):   END;
+110915    +      ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+110916    +      END;
+MPRINT(EM_DIAGRAM):   END;
+110917    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110918    +  IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+110919    +     IF MISSING( Projected_Sum_Pop  ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   IF MISSING( Projected_Sum_Pop ) THEN _BRANCH_ = 1;
+110920    +  END;
+MPRINT(EM_DIAGRAM):   END;
+110921    +  IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+110922    +    BOOST_ARB_Y_VEC_[3] + -0.1;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[3] + -0.1;
+110923    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110924    +  END;
+MPRINT(EM_DIAGRAM):   END;
+110925    +
+110926    +********** LEAF     7  NODE  2184 ***************;
+MPRINT(EM_DIAGRAM):   ********** LEAF 7 NODE 2184 ***************;
+110927    +IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN DO;
+110928    +
+110929    +  _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+110930    +    IF  NOT MISSING(Projected_Sum_Pop ) AND
+110931    +                 1780976 <= Projected_Sum_Pop  THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND 1780976 <= Projected_Sum_Pop THEN 
+DO;
+110932    +     _BRANCH_ =    2;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+110933    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110934    +   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+110935    +    IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+110936    +        IF                20145 <= OG_Cases_in_Thousands  THEN DO;
+MPRINT(EM_DIAGRAM):   IF 20145 <= OG_Cases_in_Thousands THEN DO;
+110937    +         _BRANCH_ =    2;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+110938    +        END;
+MPRINT(EM_DIAGRAM):   END;
+110939    +      ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+110940    +      END;
+MPRINT(EM_DIAGRAM):   END;
+110941    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110942    +
+110943    +  IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+110944    +
+110945    +    _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+110946    +      IF  NOT MISSING(OG_Cases_in_Thousands ) AND
+110947    +      OG_Cases_in_Thousands  <                19365 THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND OG_Cases_in_Thousands < 19365 
+THEN DO;
+110948    +       _BRANCH_ =    1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+110949    +      END;
+MPRINT(EM_DIAGRAM):   END;
+110950    +     IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+110951    +      IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+110952    +          IF Projected_Sum_Pop  <            2194576.5 THEN DO;
+MPRINT(EM_DIAGRAM):   IF Projected_Sum_Pop < 2194576.5 THEN DO;
+110953    +           _BRANCH_ =    1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+110954    +          END;
+MPRINT(EM_DIAGRAM):   END;
+110955    +        ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+110956    +        END;
+MPRINT(EM_DIAGRAM):   END;
+110957    +      END;
+MPRINT(EM_DIAGRAM):   END;
+110958    +    IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+110959    +       IF MISSING( OG_Cases_in_Thousands  ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   IF MISSING( OG_Cases_in_Thousands ) THEN _BRANCH_ = 1;
+110960    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110961    +    IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+110962    +      BOOST_ARB_Y_VEC_[3] + 0.4;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[3] + 0.4;
+110963    +      END;
+MPRINT(EM_DIAGRAM):   END;
+110964    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110965    +  END;
+MPRINT(EM_DIAGRAM):   END;
+110966    +
+110967    +********** LEAF     8  NODE  2185 ***************;
+MPRINT(EM_DIAGRAM):   ********** LEAF 8 NODE 2185 ***************;
+110968    +IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN DO;
+110969    +
+110970    +  _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+110971    +    IF  NOT MISSING(Projected_Sum_Pop ) AND
+110972    +                 1780976 <= Projected_Sum_Pop  THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND 1780976 <= Projected_Sum_Pop THEN 
+DO;
+110973    +     _BRANCH_ =    2;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+110974    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110975    +   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+110976    +    IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+110977    +        IF                20145 <= OG_Cases_in_Thousands  THEN DO;
+MPRINT(EM_DIAGRAM):   IF 20145 <= OG_Cases_in_Thousands THEN DO;
+110978    +         _BRANCH_ =    2;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+110979    +        END;
+MPRINT(EM_DIAGRAM):   END;
+110980    +      ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+110981    +      END;
+MPRINT(EM_DIAGRAM):   END;
+110982    +    END;
+MPRINT(EM_DIAGRAM):   END;
+110983    +
+110984    +  IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+110985    +
+110986    +    _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+110987    +      IF  NOT MISSING(OG_Cases_in_Thousands ) AND
+110988    +                     19365 <= OG_Cases_in_Thousands  THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND 19365 <= 
+OG_Cases_in_Thousands THEN DO;
+110989    +       _BRANCH_ =    2;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+110990    +      END;
+MPRINT(EM_DIAGRAM):   END;
+110991    +     IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+110992    +      IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+110993    +          IF            2194576.5 <= Projected_Sum_Pop  THEN DO;
+MPRINT(EM_DIAGRAM):   IF 2194576.5 <= Projected_Sum_Pop THEN DO;
+110994    +           _BRANCH_ =    2;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+110995    +          END;
+MPRINT(EM_DIAGRAM):   END;
+110996    +        ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+110997    +        END;
+MPRINT(EM_DIAGRAM):   END;
+110998    +      END;
+MPRINT(EM_DIAGRAM):   END;
+110999    +
+111000    +    IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+111001    +      BOOST_ARB_Y_VEC_[3] + -0.1;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[3] + -0.1;
+111002    +      END;
+MPRINT(EM_DIAGRAM):   END;
+111003    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111004    +  END;
+MPRINT(EM_DIAGRAM):   END;
+111005    +
+111006    +********** LEAF     9  NODE  2178 ***************;
+MPRINT(EM_DIAGRAM):   ********** LEAF 9 NODE 2178 ***************;
+111007    +IF BOOST_ARB_BADF_VEC_[4] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[4] EQ 0 THEN DO;
+111008    +
+111009    +  _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+111010    +    IF  NOT MISSING(OG_Cases_in_Thousands ) AND
+111011    +    OG_Cases_in_Thousands  <                20145 THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND OG_Cases_in_Thousands < 20145 
+THEN DO;
+111012    +     _BRANCH_ =    1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+111013    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111014    +   IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+111015    +    IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+111016    +        IF Projected_Sum_Pop  <            2194576.5 THEN DO;
+MPRINT(EM_DIAGRAM):   IF Projected_Sum_Pop < 2194576.5 THEN DO;
+111017    +         _BRANCH_ =    1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+111018    +        END;
+MPRINT(EM_DIAGRAM):   END;
+111019    +      ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+111020    +      END;
+MPRINT(EM_DIAGRAM):   END;
+111021    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111022    +  IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+111023    +     IF MISSING( OG_Cases_in_Thousands  ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   IF MISSING( OG_Cases_in_Thousands ) THEN _BRANCH_ = 1;
+111024    +  END;
+MPRINT(EM_DIAGRAM):   END;
+111025    +  IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+111026    +    BOOST_ARB_Y_VEC_[4] + -0.1;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[4] + -0.1;
+111027    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111028    +  END;
+MPRINT(EM_DIAGRAM):   END;
+111029    +
+111030    +********** LEAF    10  NODE  2179 ***************;
+MPRINT(EM_DIAGRAM):   ********** LEAF 10 NODE 2179 ***************;
+111031    +IF BOOST_ARB_BADF_VEC_[4] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[4] EQ 0 THEN DO;
+111032    +
+111033    +  _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+111034    +    IF  NOT MISSING(OG_Cases_in_Thousands ) AND
+111035    +                   20145 <= OG_Cases_in_Thousands  THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND 20145 <= 
+OG_Cases_in_Thousands THEN DO;
+111036    +     _BRANCH_ =    2;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+111037    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111038    +   IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+111039    +    IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+111040    +        IF            2194576.5 <= Projected_Sum_Pop  THEN DO;
+MPRINT(EM_DIAGRAM):   IF 2194576.5 <= Projected_Sum_Pop THEN DO;
+111041    +         _BRANCH_ =    2;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+111042    +        END;
+MPRINT(EM_DIAGRAM):   END;
+111043    +      ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+111044    +      END;
+MPRINT(EM_DIAGRAM):   END;
+111045    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111046    +
+111047    +  IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+111048    +    BOOST_ARB_Y_VEC_[4] + 0.4;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[4] + 0.4;
+111049    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111050    +  END;
+MPRINT(EM_DIAGRAM):   END;
+111051    +
+111052    +********** LEAF    11  NODE  2180 ***************;
+MPRINT(EM_DIAGRAM):   ********** LEAF 11 NODE 2180 ***************;
+111053    +IF BOOST_ARB_BADF_VEC_[5] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[5] EQ 0 THEN DO;
+111054    +
+111055    +  _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+111056    +    IF  NOT MISSING(Projected_Sum_Pop ) AND
+111057    +    Projected_Sum_Pop  <             450380.5 THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND Projected_Sum_Pop < 450380.5 THEN 
+DO;
+111058    +     _BRANCH_ =    1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+111059    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111060    +
+111061    +  IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+111062    +    BOOST_ARB_Y_VEC_[5] + 0.4;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[5] + 0.4;
+111063    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111064    +  END;
+MPRINT(EM_DIAGRAM):   END;
+111065    +
+111066    +********** LEAF    12  NODE  2181 ***************;
+MPRINT(EM_DIAGRAM):   ********** LEAF 12 NODE 2181 ***************;
+111067    +IF BOOST_ARB_BADF_VEC_[5] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[5] EQ 0 THEN DO;
+111068    +
+111069    +  _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+111070    +    IF  NOT MISSING(Projected_Sum_Pop ) AND
+111071    +                450380.5 <= Projected_Sum_Pop  THEN DO;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND 450380.5 <= Projected_Sum_Pop 
+THEN DO;
+111072    +     _BRANCH_ =    2;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+111073    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111074    +  IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+111075    +     IF MISSING( Projected_Sum_Pop  ) THEN _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   IF MISSING( Projected_Sum_Pop ) THEN _BRANCH_ = 2;
+111076    +  END;
+MPRINT(EM_DIAGRAM):   END;
+111077    +  IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+111078    +    BOOST_ARB_Y_VEC_[5] + -0.1;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[5] + -0.1;
+111079    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111080    +  END;
+MPRINT(EM_DIAGRAM):   END;
+111081    + DROP _ARB_ONE_;
+MPRINT(EM_DIAGRAM):   DROP _ARB_ONE_;
+111082    + DROP _ARB_I_ _ARB_IP_;
+MPRINT(EM_DIAGRAM):   DROP _ARB_I_ _ARB_IP_;
+111083    + _ARB_P_   = 0;
+MPRINT(EM_DIAGRAM):   _ARB_P_ = 0;
+111084    + _ARB_ONE_ = 0;
+MPRINT(EM_DIAGRAM):   _ARB_ONE_ = 0;
+111085    +
+111086    +*****  CHECK FOR PERFECT PREDICTION ****;
+MPRINT(EM_DIAGRAM):   ***** CHECK FOR PERFECT PREDICTION ****;
+111087    +IF BOOST_ARB_BADF_VEC_[1] EQ 0 AND BOOST_ARB_Y_VEC_[1] > 45 THEN _ARB_ONE_ =
+111088    +        1;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[1] EQ 0 AND BOOST_ARB_Y_VEC_[1] > 45 THEN 
+_ARB_ONE_ = 1;
+111089    +IF BOOST_ARB_BADF_VEC_[2] EQ 0 AND BOOST_ARB_Y_VEC_[2] > 45 THEN _ARB_ONE_ =
+111090    +        2;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[2] EQ 0 AND BOOST_ARB_Y_VEC_[2] > 45 THEN 
+_ARB_ONE_ = 2;
+111091    +IF BOOST_ARB_BADF_VEC_[3] EQ 0 AND BOOST_ARB_Y_VEC_[3] > 45 THEN _ARB_ONE_ =
+111092    +        3;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[3] EQ 0 AND BOOST_ARB_Y_VEC_[3] > 45 THEN 
+_ARB_ONE_ = 3;
+111093    +IF BOOST_ARB_BADF_VEC_[4] EQ 0 AND BOOST_ARB_Y_VEC_[4] > 45 THEN _ARB_ONE_ =
+111094    +        4;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[4] EQ 0 AND BOOST_ARB_Y_VEC_[4] > 45 THEN 
+_ARB_ONE_ = 4;
+111095    +IF BOOST_ARB_BADF_VEC_[5] EQ 0 AND BOOST_ARB_Y_VEC_[5] > 45 THEN _ARB_ONE_ =
+111096    +        5;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[5] EQ 0 AND BOOST_ARB_Y_VEC_[5] > 45 THEN 
+_ARB_ONE_ = 5;
+111097    +
+111098    +*****  COMPUTE POSTERIOR PROBABILITY *************;
+MPRINT(EM_DIAGRAM):   ***** COMPUTE POSTERIOR PROBABILITY *************;
+111099    +IF _ARB_ONE_ NE 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ NE 0 THEN DO;
+111100    +  IF _ARB_ONE_ EQ 1 THEN P_Age_group0_17  = 1.0;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 1 THEN P_Age_group0_17 = 1.0;
+111101    +  ELSE  P_Age_group0_17  = 0.0;
+MPRINT(EM_DIAGRAM):   ELSE P_Age_group0_17 = 0.0;
+111102    +END;
+MPRINT(EM_DIAGRAM):   END;
+111103    +ELSE IF BOOST_ARB_BADF_VEC_[1] NE 0 OR BOOST_ARB_Y_VEC_[1] < -45 THEN DO;
+MPRINT(EM_DIAGRAM):   ELSE IF BOOST_ARB_BADF_VEC_[1] NE 0 OR BOOST_ARB_Y_VEC_[1] < -45 THEN DO;
+111104    +  P_Age_group0_17  = 0.0;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = 0.0;
+111105    +END;
+MPRINT(EM_DIAGRAM):   END;
+111106    +ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+111107    +  P_Age_group0_17  = EXP(BOOST_ARB_Y_VEC_[1]);
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = EXP(BOOST_ARB_Y_VEC_[1]);
+111108    +   _ARB_P_ + P_Age_group0_17 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group0_17 ;
+111109    +END;
+MPRINT(EM_DIAGRAM):   END;
+111110    +
+111111    +IF _ARB_ONE_ NE 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ NE 0 THEN DO;
+111112    +  IF _ARB_ONE_ EQ 2 THEN P_Age_group18_24  = 1.0;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 2 THEN P_Age_group18_24 = 1.0;
+111113    +  ELSE  P_Age_group18_24  = 0.0;
+MPRINT(EM_DIAGRAM):   ELSE P_Age_group18_24 = 0.0;
+111114    +END;
+MPRINT(EM_DIAGRAM):   END;
+111115    +ELSE IF BOOST_ARB_BADF_VEC_[2] NE 0 OR BOOST_ARB_Y_VEC_[2] < -45 THEN DO;
+MPRINT(EM_DIAGRAM):   ELSE IF BOOST_ARB_BADF_VEC_[2] NE 0 OR BOOST_ARB_Y_VEC_[2] < -45 THEN DO;
+111116    +  P_Age_group18_24  = 0.0;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = 0.0;
+111117    +END;
+MPRINT(EM_DIAGRAM):   END;
+111118    +ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+111119    +  P_Age_group18_24  = EXP(BOOST_ARB_Y_VEC_[2]);
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = EXP(BOOST_ARB_Y_VEC_[2]);
+111120    +   _ARB_P_ + P_Age_group18_24 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group18_24 ;
+111121    +END;
+MPRINT(EM_DIAGRAM):   END;
+111122    +
+111123    +IF _ARB_ONE_ NE 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ NE 0 THEN DO;
+111124    +  IF _ARB_ONE_ EQ 3 THEN P_Age_group25_44  = 1.0;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 3 THEN P_Age_group25_44 = 1.0;
+111125    +  ELSE  P_Age_group25_44  = 0.0;
+MPRINT(EM_DIAGRAM):   ELSE P_Age_group25_44 = 0.0;
+111126    +END;
+MPRINT(EM_DIAGRAM):   END;
+111127    +ELSE IF BOOST_ARB_BADF_VEC_[3] NE 0 OR BOOST_ARB_Y_VEC_[3] < -45 THEN DO;
+MPRINT(EM_DIAGRAM):   ELSE IF BOOST_ARB_BADF_VEC_[3] NE 0 OR BOOST_ARB_Y_VEC_[3] < -45 THEN DO;
+111128    +  P_Age_group25_44  = 0.0;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = 0.0;
+111129    +END;
+MPRINT(EM_DIAGRAM):   END;
+111130    +ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+111131    +  P_Age_group25_44  = EXP(BOOST_ARB_Y_VEC_[3]);
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = EXP(BOOST_ARB_Y_VEC_[3]);
+111132    +   _ARB_P_ + P_Age_group25_44 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group25_44 ;
+111133    +END;
+MPRINT(EM_DIAGRAM):   END;
+111134    +
+111135    +IF _ARB_ONE_ NE 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ NE 0 THEN DO;
+111136    +  IF _ARB_ONE_ EQ 4 THEN P_Age_group65_84  = 1.0;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 4 THEN P_Age_group65_84 = 1.0;
+111137    +  ELSE  P_Age_group65_84  = 0.0;
+MPRINT(EM_DIAGRAM):   ELSE P_Age_group65_84 = 0.0;
+111138    +END;
+MPRINT(EM_DIAGRAM):   END;
+111139    +ELSE IF BOOST_ARB_BADF_VEC_[4] NE 0 OR BOOST_ARB_Y_VEC_[4] < -45 THEN DO;
+MPRINT(EM_DIAGRAM):   ELSE IF BOOST_ARB_BADF_VEC_[4] NE 0 OR BOOST_ARB_Y_VEC_[4] < -45 THEN DO;
+111140    +  P_Age_group65_84  = 0.0;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = 0.0;
+111141    +END;
+MPRINT(EM_DIAGRAM):   END;
+111142    +ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+111143    +  P_Age_group65_84  = EXP(BOOST_ARB_Y_VEC_[4]);
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = EXP(BOOST_ARB_Y_VEC_[4]);
+111144    +   _ARB_P_ + P_Age_group65_84 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group65_84 ;
+111145    +END;
+MPRINT(EM_DIAGRAM):   END;
+111146    +
+111147    +IF _ARB_ONE_ NE 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ NE 0 THEN DO;
+111148    +  IF _ARB_ONE_ EQ 5 THEN P_Age_group85_  = 1.0;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 5 THEN P_Age_group85_ = 1.0;
+111149    +  ELSE  P_Age_group85_  = 0.0;
+MPRINT(EM_DIAGRAM):   ELSE P_Age_group85_ = 0.0;
+111150    +END;
+MPRINT(EM_DIAGRAM):   END;
+111151    +ELSE IF BOOST_ARB_BADF_VEC_[5] NE 0 OR BOOST_ARB_Y_VEC_[5] < -45 THEN DO;
+MPRINT(EM_DIAGRAM):   ELSE IF BOOST_ARB_BADF_VEC_[5] NE 0 OR BOOST_ARB_Y_VEC_[5] < -45 THEN DO;
+111152    +  P_Age_group85_  = 0.0;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = 0.0;
+111153    +END;
+MPRINT(EM_DIAGRAM):   END;
+111154    +ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+111155    +  P_Age_group85_  = EXP(BOOST_ARB_Y_VEC_[5]);
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = EXP(BOOST_ARB_Y_VEC_[5]);
+111156    +   _ARB_P_ + P_Age_group85_ ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group85_ ;
+111157    +END;
+MPRINT(EM_DIAGRAM):   END;
+111158    +
+111159    +IF _ARB_ONE_ EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 0 THEN DO;
+111160    +  IF _ARB_P_ > 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_P_ > 0 THEN DO;
+111161    +    _ARB_I_ = 0;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 0;
+111162    +    IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN P_Age_group0_17  = P_Age_group0_17  /
+111163    +        _ARB_P_;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN P_Age_group0_17 = P_Age_group0_17 / 
+_ARB_P_;
+111164    +    ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+111165    +      P_Age_group0_17  = 0.1993637328;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = 0.1993637328;
+111166    +      _ARB_I_ = _ARB_I_ + 1;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = _ARB_I_ + 1;
+111167    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111168    +    IF BOOST_ARB_BADF_VEC_[2] EQ 0 THEN P_Age_group18_24  = P_Age_group18_24
+111169    +        / _ARB_P_;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[2] EQ 0 THEN P_Age_group18_24 = P_Age_group18_24 
+/ _ARB_P_;
+111170    +    ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+111171    +      P_Age_group18_24  = 0.1993637328;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = 0.1993637328;
+111172    +      _ARB_I_ = _ARB_I_ + 1;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = _ARB_I_ + 1;
+111173    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111174    +    IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN P_Age_group25_44  = P_Age_group25_44
+111175    +        / _ARB_P_;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN P_Age_group25_44 = P_Age_group25_44 
+/ _ARB_P_;
+111176    +    ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+111177    +      P_Age_group25_44  = 0.2004241782;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = 0.2004241782;
+111178    +      _ARB_I_ = _ARB_I_ + 1;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = _ARB_I_ + 1;
+111179    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111180    +    IF BOOST_ARB_BADF_VEC_[4] EQ 0 THEN P_Age_group65_84  = P_Age_group65_84
+111181    +        / _ARB_P_;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[4] EQ 0 THEN P_Age_group65_84 = P_Age_group65_84 
+/ _ARB_P_;
+111182    +    ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+111183    +      P_Age_group65_84  = 0.2004241782;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = 0.2004241782;
+111184    +      _ARB_I_ = _ARB_I_ + 1;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = _ARB_I_ + 1;
+111185    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111186    +    IF BOOST_ARB_BADF_VEC_[5] EQ 0 THEN P_Age_group85_  = P_Age_group85_  /
+111187    +        _ARB_P_;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[5] EQ 0 THEN P_Age_group85_ = P_Age_group85_ / 
+_ARB_P_;
+111188    +    ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+111189    +      P_Age_group85_  = 0.2004241782;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = 0.2004241782;
+111190    +      _ARB_I_ = _ARB_I_ + 1;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = _ARB_I_ + 1;
+111191    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111192    +    IF _ARB_I_ > 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_I_ > 0 THEN DO;
+111193    +       _ARB_P_   = 0;
+MPRINT(EM_DIAGRAM):   _ARB_P_ = 0;
+111194    +       _ARB_P_ + P_Age_group0_17 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group0_17 ;
+111195    +       _ARB_P_ + P_Age_group18_24 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group18_24 ;
+111196    +       _ARB_P_ + P_Age_group25_44 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group25_44 ;
+111197    +       _ARB_P_ + P_Age_group65_84 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group65_84 ;
+111198    +       _ARB_P_ + P_Age_group85_ ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group85_ ;
+111199    +      P_Age_group0_17  = P_Age_group0_17  / _ARB_P_;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = P_Age_group0_17 / _ARB_P_;
+111200    +      P_Age_group18_24  = P_Age_group18_24  / _ARB_P_;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = P_Age_group18_24 / _ARB_P_;
+111201    +      P_Age_group25_44  = P_Age_group25_44  / _ARB_P_;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = P_Age_group25_44 / _ARB_P_;
+111202    +      P_Age_group65_84  = P_Age_group65_84  / _ARB_P_;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = P_Age_group65_84 / _ARB_P_;
+111203    +      P_Age_group85_  = P_Age_group85_  / _ARB_P_;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = P_Age_group85_ / _ARB_P_;
+111204    +    END;
+MPRINT(EM_DIAGRAM):   END;
+111205    +  END;
+MPRINT(EM_DIAGRAM):   END;
+111206    +  ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+111207    +    P_Age_group0_17  = 0.1993637328;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = 0.1993637328;
+111208    +    P_Age_group18_24  = 0.1993637328;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = 0.1993637328;
+111209    +    P_Age_group25_44  = 0.2004241782;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = 0.2004241782;
+111210    +    P_Age_group65_84  = 0.2004241782;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = 0.2004241782;
+111211    +    P_Age_group85_  = 0.2004241782;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = 0.2004241782;
+111212    +  END;
+MPRINT(EM_DIAGRAM):   END;
+111213    +END;
+MPRINT(EM_DIAGRAM):   END;
+111214    +*****  CREATE Q_: POSTERIORS WITHOUT PRIORS ****;
+MPRINT(EM_DIAGRAM):   ***** CREATE Q_: POSTERIORS WITHOUT PRIORS ****;
+111215    +Q_Age_group0_17  = P_Age_group0_17 ;
+MPRINT(EM_DIAGRAM):   Q_Age_group0_17 = P_Age_group0_17 ;
+111216    +Q_Age_group18_24  = P_Age_group18_24 ;
+MPRINT(EM_DIAGRAM):   Q_Age_group18_24 = P_Age_group18_24 ;
+111217    +Q_Age_group25_44  = P_Age_group25_44 ;
+MPRINT(EM_DIAGRAM):   Q_Age_group25_44 = P_Age_group25_44 ;
+111218    +Q_Age_group65_84  = P_Age_group65_84 ;
+MPRINT(EM_DIAGRAM):   Q_Age_group65_84 = P_Age_group65_84 ;
+111219    +Q_Age_group85_  = P_Age_group85_ ;
+MPRINT(EM_DIAGRAM):   Q_Age_group85_ = P_Age_group85_ ;
+111220    +
+111221    +*****  I_ AND U_ VARIABLES *******************;
+MPRINT(EM_DIAGRAM):   ***** I_ AND U_ VARIABLES *******************;
+111222    + _ARB_IP_ = -1.0;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = -1.0;
+111223    + IF _ARB_IP_ + 1.0/32768.0 < P_Age_group0_17 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_IP_ + 1.0/32768.0 < P_Age_group0_17 THEN DO;
+111224    +   _ARB_IP_ = P_Age_group0_17 ;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = P_Age_group0_17 ;
+111225    +   _ARB_I_  = 1;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 1;
+111226    +   END;
+MPRINT(EM_DIAGRAM):   END;
+111227    + IF _ARB_IP_ + 1.0/32768.0 < P_Age_group18_24 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_IP_ + 1.0/32768.0 < P_Age_group18_24 THEN DO;
+111228    +   _ARB_IP_ = P_Age_group18_24 ;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = P_Age_group18_24 ;
+111229    +   _ARB_I_  = 2;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 2;
+111230    +   END;
+MPRINT(EM_DIAGRAM):   END;
+111231    + IF _ARB_IP_ + 1.0/32768.0 < P_Age_group25_44 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_IP_ + 1.0/32768.0 < P_Age_group25_44 THEN DO;
+111232    +   _ARB_IP_ = P_Age_group25_44 ;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = P_Age_group25_44 ;
+111233    +   _ARB_I_  = 3;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 3;
+111234    +   END;
+MPRINT(EM_DIAGRAM):   END;
+111235    + IF _ARB_IP_ + 1.0/32768.0 < P_Age_group65_84 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_IP_ + 1.0/32768.0 < P_Age_group65_84 THEN DO;
+111236    +   _ARB_IP_ = P_Age_group65_84 ;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = P_Age_group65_84 ;
+111237    +   _ARB_I_  = 4;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 4;
+111238    +   END;
+MPRINT(EM_DIAGRAM):   END;
+111239    + IF _ARB_IP_ + 1.0/32768.0 < P_Age_group85_ THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_IP_ + 1.0/32768.0 < P_Age_group85_ THEN DO;
+111240    +   _ARB_IP_ = P_Age_group85_ ;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = P_Age_group85_ ;
+111241    +   _ARB_I_  = 5;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 5;
+111242    +   END;
+MPRINT(EM_DIAGRAM):   END;
+111243    + SELECT( _ARB_I_);
+MPRINT(EM_DIAGRAM):   SELECT( _ARB_I_);
+111244    +  WHEN( 1) DO;
+MPRINT(EM_DIAGRAM):   WHEN( 1) DO;
+111245    +    I_Age_group  = '0-17' ;
+MPRINT(EM_DIAGRAM):   I_Age_group = '0-17' ;
+111246    +    U_Age_group  = '0-17' ;
+MPRINT(EM_DIAGRAM):   U_Age_group = '0-17' ;
+111247    +     END;
+MPRINT(EM_DIAGRAM):   END;
+111248    +  WHEN( 2) DO;
+MPRINT(EM_DIAGRAM):   WHEN( 2) DO;
+111249    +    I_Age_group  = '18-24' ;
+MPRINT(EM_DIAGRAM):   I_Age_group = '18-24' ;
+111250    +    U_Age_group  = '18-24' ;
+MPRINT(EM_DIAGRAM):   U_Age_group = '18-24' ;
+111251    +     END;
+MPRINT(EM_DIAGRAM):   END;
+111252    +  WHEN( 3) DO;
+MPRINT(EM_DIAGRAM):   WHEN( 3) DO;
+111253    +    I_Age_group  = '25-44' ;
+MPRINT(EM_DIAGRAM):   I_Age_group = '25-44' ;
+111254    +    U_Age_group  = '25-44' ;
+MPRINT(EM_DIAGRAM):   U_Age_group = '25-44' ;
+111255    +     END;
+MPRINT(EM_DIAGRAM):   END;
+111256    +  WHEN( 4) DO;
+MPRINT(EM_DIAGRAM):   WHEN( 4) DO;
+111257    +    I_Age_group  = '65-84' ;
+MPRINT(EM_DIAGRAM):   I_Age_group = '65-84' ;
+111258    +    U_Age_group  = '65-84' ;
+MPRINT(EM_DIAGRAM):   U_Age_group = '65-84' ;
+111259    +     END;
+MPRINT(EM_DIAGRAM):   END;
+111260    +  WHEN( 5) DO;
+MPRINT(EM_DIAGRAM):   WHEN( 5) DO;
+111261    +    I_Age_group  = '85+' ;
+MPRINT(EM_DIAGRAM):   I_Age_group = '85+' ;
+111262    +    U_Age_group  = '85+' ;
+MPRINT(EM_DIAGRAM):   U_Age_group = '85+' ;
+111263    +     END;
+MPRINT(EM_DIAGRAM):   END;
+111264    +   END;
+MPRINT(EM_DIAGRAM):   END;
+111265    +
+111266    +****************************************************************;
+MPRINT(EM_DIAGRAM):   ****************************************************************;
+111267    +******          END OF DECISION TREE SCORING CODE         ******;
+MPRINT(EM_DIAGRAM):   ****** END OF DECISION TREE SCORING CODE ******;
+111268    +****************************************************************;
+MPRINT(EM_DIAGRAM):   ****************************************************************;
+111269    +
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+111270     run;
+
+NOTE: Dependency structure written to data set _TEMP.
+NOTE: PROCEDURE FCMP used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.01 seconds
+      
+
+111271     options validvarname=V7;
+MPRINT(EM_DIAGRAM):   options validvarname=V7;
+MPRINT(EM_DIAGRAM):   quit;
+111272     quit;
+111273     filename _pref;
+MPRINT(EM_DIAGRAM):   filename _pref;
+NOTE: Fileref _PREF has been deassigned.
+111274     data _temp(rename=(RHS=NAME));
+MPRINT(EM_DIAGRAM):   data _temp(rename=(RHS=NAME));
+111275     length Node $32;
+MPRINT(EM_DIAGRAM):   length Node $32;
+111276     retain ID 2 Node "Boost";
+MPRINT(EM_DIAGRAM):   retain ID 2 Node "Boost";
+111277     set _temp;
+MPRINT(EM_DIAGRAM):   set _temp;
+111278     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 474 observations read from the data set WORK._TEMP.
+NOTE: The data set WORK._TEMP has 474 observations and 14 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+111279     proc sort data=_temp;
+MPRINT(EM_DIAGRAM):   proc sort data=_temp;
+111280     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+111281     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 474 observations read from the data set WORK._TEMP.
+NOTE: The data set WORK._TEMP has 474 observations and 14 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+111282     proc sort data=EMWS1.Part3_CMeta_TRAIN out=_temp2(keep=NAME CREATOR);
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Part3_CMeta_TRAIN out=_temp2(keep=NAME CREATOR);
+111283     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+111284     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 4 observations read from the data set EMWS1.PART3_CMETA_TRAIN.
+NOTE: The data set WORK._TEMP2 has 4 observations and 2 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+111285     data _temp2;
+MPRINT(EM_DIAGRAM):   data _temp2;
+111286     length CREATOR $32;
+MPRINT(EM_DIAGRAM):   length CREATOR $32;
+111287     set _temp2;
+MPRINT(EM_DIAGRAM):   set _temp2;
+111288     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 4 observations read from the data set WORK._TEMP2.
+NOTE: The data set WORK._TEMP2 has 4 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+111289     proc contents data=EMWS1.Boost_train out=_meta(keep=NAME) noprint;
+MPRINT(EM_DIAGRAM):   proc contents data=EMWS1.Boost_train out=_meta(keep=NAME) noprint;
+111290     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: The data set WORK._META has 26 observations and 1 variables.
+NOTE: PROCEDURE CONTENTS used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+      
+
+111291     proc sort data=_meta;
+MPRINT(EM_DIAGRAM):   proc sort data=_meta;
+111292     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+111293     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 26 observations read from the data set WORK._META.
+NOTE: The data set WORK._META has 26 observations and 1 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+111294     data _temp2;
+MPRINT(EM_DIAGRAM):   data _temp2;
+111295     merge _meta _temp2;
+MPRINT(EM_DIAGRAM):   merge _meta _temp2;
+111296     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+111297     run;
+MPRINT(EM_DIAGRAM):   run;
+
+WARNING: Multiple lengths were specified for the BY variable NAME by input data sets. This 
+         might cause unexpected results.
+NOTE: There were 26 observations read from the data set WORK._META.
+NOTE: There were 4 observations read from the data set WORK._TEMP2.
+NOTE: The data set WORK._TEMP2 has 26 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+111298     proc sql;
+MPRINT(EM_DIAGRAM):   proc sql;
+111299     create table _tempx as select p.node, p.lhs, p.id , p2.name, p2.CREATOR from
+111299   ! work._temp p, work._temp2 p2 where upcase(p.NAME)=upcase(p2.NAME);
+MPRINT(EM_DIAGRAM):   create table _tempx as select p.node, p.lhs, p.id , p2.name, p2.CREATOR 
+from work._temp p, work._temp2 p2 where upcase(p.NAME)=upcase(p2.NAME);
+NOTE: Table WORK._TEMPX created, with 160 rows and 5 columns.
+
+111300     quit;
+MPRINT(EM_DIAGRAM):   quit;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+111301     proc append base=EMWS1.Score3_FCMP data=_tempx;
+MPRINT(EM_DIAGRAM):   proc append base=EMWS1.Score3_FCMP data=_tempx;
+111302     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: Appending WORK._TEMPX to EMWS1.SCORE3_FCMP.
+NOTE: There were 160 observations read from the data set WORK._TEMPX.
+NOTE: 160 observations added.
+NOTE: The data set EMWS1.SCORE3_FCMP has 167 observations and 5 variables.
+NOTE: PROCEDURE APPEND used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+111303     %macro varDept(fcmpdata=,id=);
+111304     %global nobs&id scoreFlag&id;
+111305     %let scoreFlag&id = 0;
+111306     %if &id=1 or ^&fcmpStart %then %do;
+111307     proc sort data=&fcmpdata out=_temp&id nodupkey;
+111308     by NAME;
+111309     %if EM_CLASSIFICATION EM_PROBABILITY EM_EVENTPROBABILITY ne %then %do;
+111310     where id=&id and (LHS in( %let j=1;
+111311     %do %while(%scan( EM_CLASSIFICATION EM_PROBABILITY EM_EVENTPROBABILITY, &j) ne );
+111312     %let var = %scan( EM_CLASSIFICATION EM_PROBABILITY EM_EVENTPROBABILITY, &j);
+111313     "&var" %let j = %eval(&j+1);
+111314     %end;
+111315     ) or substr(LHS, 1, 3)='EM_');
+111316     %end;
+111317     %else %do;
+111318     where id=&id and substr(LHS, 1, 3)='EM_';
+111319     %end;
+111320     run;
+111321     %let dsid = %sysfunc(open(_temp&id));
+111322     %let nobs&id = %sysfunc(attrn(&dsid, NLOBSF));
+111323     %let dsid = %sysfunc(close(&dsid));
+111324     %if &&nobs&id %then %do;
+111325     %let scoreFlag&id = 1;
+111326     %let fcmpStart = 1;
+111327     %end;
+111328     %else %let fcmpStart = 0;
+111329     %end;
+111330     %else %do;
+111331     proc sort data=&fcmpdata out=_tempid;
+111332     where id=&id;
+111333     by LHS;
+111334     run;
+111335     %let dsid = %sysfunc(open(_tempid));
+111336     %let nobs&id = %sysfunc(attrn(&dsid, NLOBSF));
+111337     %let dsid = %sysfunc(close(&dsid));
+111338     %if ^&&nobs&id %then %do;
+111339     proc datasets lib=work nolist;
+111340     delete _tempid;
+111341     run;
+111342     quit;
+111343     %end;
+111344     %else %do;
+111345     data _tempAll;
+111346     set %let j=%eval(&id-1);
+111347     %do x=1 %to &j;
+111348     %if &&nobs&x %then %do;
+111349     _temp&x %end;
+111350     %end;
+111351     ;
+111352     run;
+111353     proc sql;
+111354     create table _temp&id as select p2.lhs, p2.name, p2.Node from work._tempAll p,
+111354   ! work._tempid p2 where p.name=p2.lhs or substr(p2.LHS, 1, 3)='EM_';
+111355     quit;
+111356     data _temp&id;
+111357     set _temp&id;
+111358     where LHS ne '' and NAME ne '' and Node ne '';
+111359     run;
+111360     proc datasets lib=work nolist;
+111361     delete _tempAll;
+111362     run;
+111363     %let dsid = %sysfunc(open(_temp&id));
+111364     %let nobs&id = %sysfunc(attrn(&dsid, NLOBSF));
+111365     %let dsid = %sysfunc(close(&dsid));
+111366     %if ^&&nobs&id %then %do;
+111367     proc datasets lib=work nolist;
+111368     delete _temp&id;
+111369     run;
+111370     quit;
+111371     %end;
+111372     %else %do;
+111373     %let scoreFlag&id = 1;
+111374     data _temp&id;
+111375     set _temp&id;
+111376     where LHS ne NAME and node ne '';
+111377     run;
+111378     %let dsid = %sysfunc(open(_temp&id));
+111379     %let nobs&id = %sysfunc(attrn(&dsid, NLOBSF));
+111380     %let dsid = %sysfunc(close(&dsid));
+111381     %if ^&&nobs&id %then %do;
+111382     proc datasets lib=work nolist;
+111383     delete _temp&id;
+111384     run;
+111385     quit;
+111386     %end;
+111387     %else %do;
+111388     proc sort data=_temp&id nodupkey;
+111389     by LHS NAME;
+111390     run;
+111391     %end;
+111392     %end;
+111393     %end;
+111394     %end;
+111395     %mend varDept;
+111396     %macro optCode(outdata=);
+111397     %global fcmpStart;
+111398     %let fcmpStart = 0;
+111399     %let outputVars = EM_CLASSIFICATION EM_PROBABILITY EM_EVENTPROBABILITY;
+111400     %let NumNodes=5;
+111401     %do k=1 %to &NumNodes;
+111402     %vardept(fcmpdata=&outdata, id=&k);
+111403     %end;
+111404     %mend optCode;
+111405     %optcode(outData=EMWS1.Score3_FCMP);
+MPRINT(EM_DIAGRAM):   
+MPRINT(VARDEPT):   proc sort data=EMWS1.Score3_FCMP out=_temp1 nodupkey;
+MPRINT(VARDEPT):   by NAME;
+MPRINT(VARDEPT):   where id=1 and (LHS in( "EM_CLASSIFICATION" "EM_PROBABILITY" 
+"EM_EVENTPROBABILITY" ) or substr(LHS, 1, 3)='EM_');
+MPRINT(VARDEPT):   run;
+
+NOTE: There were 7 observations read from the data set EMWS1.SCORE3_FCMP.
+      WHERE (id=1) and (LHS in ('EM_CLASSIFICATION', 'EM_EVENTPROBABILITY', 'EM_PROBABILITY') 
+      or (SUBSTR(LHS, 1, 3)='EM_'));
+NOTE: 1 observations with duplicate key values were deleted.
+NOTE: The data set WORK._TEMP1 has 6 observations and 5 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(OPTCODE):  ;
+MPRINT(VARDEPT):   proc sort data=EMWS1.Score3_FCMP out=_tempid;
+MPRINT(VARDEPT):   where id=2;
+MPRINT(VARDEPT):   by LHS;
+MPRINT(VARDEPT):   run;
+
+NOTE: There were 160 observations read from the data set EMWS1.SCORE3_FCMP.
+      WHERE id=2;
+NOTE: The data set WORK._TEMPID has 160 observations and 5 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VARDEPT):   data _tempAll;
+MPRINT(VARDEPT):   set _temp1 ;
+MPRINT(VARDEPT):   run;
+
+NOTE: There were 6 observations read from the data set WORK._TEMP1.
+NOTE: The data set WORK._TEMPALL has 6 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VARDEPT):   proc sql;
+MPRINT(VARDEPT):   create table _temp2 as select p2.lhs, p2.name, p2.Node from work._tempAll 
+p, work._tempid p2 where p.name=p2.lhs or substr(p2.LHS, 1, 3)='EM_';
+NOTE: The execution of this query involves performing one or more Cartesian product joins that 
+      can not be optimized.
+NOTE: Table WORK._TEMP2 created, with 42 rows and 3 columns.
+
+MPRINT(VARDEPT):   quit;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(VARDEPT):   data _temp2;
+MPRINT(VARDEPT):   set _temp2;
+MPRINT(VARDEPT):   where LHS ne '' and NAME ne '' and Node ne '';
+MPRINT(VARDEPT):   run;
+
+NOTE: There were 42 observations read from the data set WORK._TEMP2.
+      WHERE (LHS not = ' ') and (NAME not = ' ') and (Node not = ' ');
+NOTE: The data set WORK._TEMP2 has 42 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(VARDEPT):   proc datasets lib=work nolist;
+MPRINT(VARDEPT):   delete _tempAll;
+MPRINT(VARDEPT):   run;
+
+NOTE: Deleting WORK._TEMPALL (memtype=DATA).
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VARDEPT):   data _temp2;
+MPRINT(VARDEPT):   set _temp2;
+MPRINT(VARDEPT):   where LHS ne NAME and node ne '';
+MPRINT(VARDEPT):   run;
+
+NOTE: There were 37 observations read from the data set WORK._TEMP2.
+      WHERE (LHS not = NAME) and (node not = ' ');
+NOTE: The data set WORK._TEMP2 has 37 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(VARDEPT):   proc sort data=_temp2 nodupkey;
+MPRINT(VARDEPT):   by LHS NAME;
+MPRINT(VARDEPT):   run;
+
+NOTE: There were 37 observations read from the data set WORK._TEMP2.
+NOTE: 0 observations with duplicate key values were deleted.
+NOTE: The data set WORK._TEMP2 has 37 observations and 3 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(OPTCODE):  ;
+MPRINT(VARDEPT):   proc sort data=EMWS1.Score3_FCMP out=_tempid;
+MPRINT(VARDEPT):   where id=3;
+MPRINT(VARDEPT):   by LHS;
+MPRINT(VARDEPT):   run;
+
+NOTE: Input data set is empty.
+NOTE: There were 0 observations read from the data set EMWS1.SCORE3_FCMP.
+      WHERE id=3;
+NOTE: The data set WORK._TEMPID has 0 observations and 5 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VARDEPT):   proc datasets lib=work nolist;
+MPRINT(VARDEPT):   delete _tempid;
+MPRINT(VARDEPT):   run;
+
+NOTE: Deleting WORK._TEMPID (memtype=DATA).
+MPRINT(VARDEPT):   quit;
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(OPTCODE):  ;
+MPRINT(VARDEPT):   proc sort data=EMWS1.Score3_FCMP out=_tempid;
+MPRINT(VARDEPT):   where id=4;
+MPRINT(VARDEPT):   by LHS;
+MPRINT(VARDEPT):   run;
+
+NOTE: Input data set is empty.
+NOTE: There were 0 observations read from the data set EMWS1.SCORE3_FCMP.
+      WHERE id=4;
+NOTE: The data set WORK._TEMPID has 0 observations and 5 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(VARDEPT):   proc datasets lib=work nolist;
+MPRINT(VARDEPT):   delete _tempid;
+MPRINT(VARDEPT):   run;
+
+NOTE: Deleting WORK._TEMPID (memtype=DATA).
+MPRINT(VARDEPT):   quit;
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(OPTCODE):  ;
+MPRINT(VARDEPT):   proc sort data=EMWS1.Score3_FCMP out=_tempid;
+MPRINT(VARDEPT):   where id=5;
+MPRINT(VARDEPT):   by LHS;
+MPRINT(VARDEPT):   run;
+
+NOTE: Input data set is empty.
+NOTE: There were 0 observations read from the data set EMWS1.SCORE3_FCMP.
+      WHERE id=5;
+NOTE: The data set WORK._TEMPID has 0 observations and 5 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VARDEPT):   proc datasets lib=work nolist;
+MPRINT(VARDEPT):   delete _tempid;
+MPRINT(VARDEPT):   run;
+
+NOTE: Deleting WORK._TEMPID (memtype=DATA).
+MPRINT(VARDEPT):   quit;
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(OPTCODE):  ;
+MPRINT(EM_DIAGRAM):  ;
+
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Score3: Determine Score Inputs;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   options validvarname=ANY;
+MPRINT(EM_DIAGRAM):   filename _pref "C:\Users\student\Desktop\AA 490\Final 
+Project\AA490_Project\Base Model\Workspaces\EMWS1\Score3\OPTIMIZEDCODE.sas";
+MPRINT(EM_DIAGRAM):   proc FCMP NOEXECUTE IMPUTEDDEPS OUTDEPS=_temp;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * EM SCORE CODE;
+MPRINT(EM_DIAGRAM):   * EM Version: 14.2;
+MPRINT(EM_DIAGRAM):   * SAS Release: 9.04.01M4P110916;
+MPRINT(EM_DIAGRAM):   * Host: 830-5CG9310VLM;
+MPRINT(EM_DIAGRAM):   * Encoding: wlatin1;
+MPRINT(EM_DIAGRAM):   * Locale: en_US;
+MPRINT(EM_DIAGRAM):   * Project Path: C:\Users\student\Desktop\AA 490\Final 
+Project\AA490_Project;
+MPRINT(EM_DIAGRAM):   * Project Name: Base Model;
+MPRINT(EM_DIAGRAM):   * Diagram Id: EMWS1;
+MPRINT(EM_DIAGRAM):   * Diagram Name: Base Model;
+MPRINT(EM_DIAGRAM):   * Generated by: student;
+MPRINT(EM_DIAGRAM):   * Date: 14NOV2019:16:24:21;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * TOOL: Input Data Source;
+MPRINT(EM_DIAGRAM):   * TYPE: SAMPLE;
+MPRINT(EM_DIAGRAM):   * NODE: Ids3;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * TOOL: Statistics Exploration;
+MPRINT(EM_DIAGRAM):   * TYPE: EXPLORE;
+MPRINT(EM_DIAGRAM):   * NODE: Stat4;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * TOOL: Partition Class;
+MPRINT(EM_DIAGRAM):   * TYPE: SAMPLE;
+MPRINT(EM_DIAGRAM):   * NODE: Part3;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * TOOL: Extension Class;
+MPRINT(EM_DIAGRAM):   * TYPE: MODEL;
+MPRINT(EM_DIAGRAM):   * NODE: Boost;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   ****************************************************************;
+MPRINT(EM_DIAGRAM):   ****** DECISION TREE SCORING CODE ******;
+MPRINT(EM_DIAGRAM):   ****************************************************************;
+MPRINT(EM_DIAGRAM):   ****** LENGTHS OF NEW CHARACTER VARIABLES ******;
+MPRINT(EM_DIAGRAM):   LENGTH I_Age_group $ 19;
+MPRINT(EM_DIAGRAM):   LENGTH U_Age_group $ 19;
+MPRINT(EM_DIAGRAM):   LENGTH _WARN_ $ 4;
+MPRINT(EM_DIAGRAM):   ****** LABELS FOR NEW VARIABLES ******;
+MPRINT(EM_DIAGRAM):   label P_Age_group0_17 = 'Predicted: Age_group=0-17' ;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = 0;
+MPRINT(EM_DIAGRAM):   label P_Age_group18_24 = 'Predicted: Age_group=18-24' ;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = 0;
+MPRINT(EM_DIAGRAM):   label P_Age_group25_44 = 'Predicted: Age_group=25-44' ;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = 0;
+MPRINT(EM_DIAGRAM):   label P_Age_group65_84 = 'Predicted: Age_group=65-84' ;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = 0;
+MPRINT(EM_DIAGRAM):   label P_Age_group85_ = 'Predicted: Age_group=85+' ;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = 0;
+MPRINT(EM_DIAGRAM):   label Q_Age_group0_17 = 'Unadjusted P: Age_group=0-17' ;
+MPRINT(EM_DIAGRAM):   Q_Age_group0_17 = 0;
+MPRINT(EM_DIAGRAM):   label Q_Age_group18_24 = 'Unadjusted P: Age_group=18-24' ;
+MPRINT(EM_DIAGRAM):   Q_Age_group18_24 = 0;
+MPRINT(EM_DIAGRAM):   label Q_Age_group25_44 = 'Unadjusted P: Age_group=25-44' ;
+MPRINT(EM_DIAGRAM):   Q_Age_group25_44 = 0;
+MPRINT(EM_DIAGRAM):   label Q_Age_group65_84 = 'Unadjusted P: Age_group=65-84' ;
+MPRINT(EM_DIAGRAM):   Q_Age_group65_84 = 0;
+MPRINT(EM_DIAGRAM):   label Q_Age_group85_ = 'Unadjusted P: Age_group=85+' ;
+MPRINT(EM_DIAGRAM):   Q_Age_group85_ = 0;
+MPRINT(EM_DIAGRAM):   label I_Age_group = 'Into: Age_group' ;
+MPRINT(EM_DIAGRAM):   label U_Age_group = 'Unnormalized Into: Age_group' ;
+MPRINT(EM_DIAGRAM):   label _WARN_ = 'Warnings' ;
+MPRINT(EM_DIAGRAM):   ****** TEMPORARY VARIABLES FOR FORMATTED VALUES ******;
+MPRINT(EM_DIAGRAM):   LENGTH _ARBFMT_19 $ 19;
+MPRINT(EM_DIAGRAM):   DROP _ARBFMT_19;
+MPRINT(EM_DIAGRAM):   _ARBFMT_19 = ' ';
+MPRINT(EM_DIAGRAM):   /* Initialize to avoid warning. */ ARRAY BOOST_ARB_Y_VEC_[5] _TEMPORARY_ 
+;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[1] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[2] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[3] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[4] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[5] = 0;
+MPRINT(EM_DIAGRAM):   ARRAY BOOST_ARB_BADF_VEC_[5] _TEMPORARY_ ;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_BADF_VEC_[1] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_BADF_VEC_[2] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_BADF_VEC_[3] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_BADF_VEC_[4] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_BADF_VEC_[5] = 0;
+MPRINT(EM_DIAGRAM):   ****** ASSIGN OBSERVATION TO NODE ******;
+MPRINT(EM_DIAGRAM):   DROP _ARB_P_;
+MPRINT(EM_DIAGRAM):   _ARB_P_ = 0;
+MPRINT(EM_DIAGRAM):   DROP _ARB_PPATH_;
+MPRINT(EM_DIAGRAM):   _ARB_PPATH_ = 1;
+MPRINT(EM_DIAGRAM):   ********** LEAF 1 NODE 2182 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   DROP _BRANCH_;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND Projected_Sum_Pop < 1780976 THEN 
+DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF OG_Cases_in_Thousands < 20145 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( Projected_Sum_Pop ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND Projected_Sum_Pop < 1144855.5 
+THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( Projected_Sum_Pop ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[1] + -0.1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 2 NODE 2183 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND Projected_Sum_Pop < 1780976 THEN 
+DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF OG_Cases_in_Thousands < 20145 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( Projected_Sum_Pop ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND 1144855.5 <= Projected_Sum_Pop 
+THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[1] + 0.4;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 3 NODE 2173 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND 1780976 <= Projected_Sum_Pop THEN 
+DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF 20145 <= OG_Cases_in_Thousands THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[1] + -0.1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 4 NODE 2174 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[2] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND OG_Cases_in_Thousands < 1245 
+THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( OG_Cases_in_Thousands ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[2] + 0.3788135593;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 5 NODE 2175 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[2] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND 1245 <= OG_Cases_in_Thousands 
+THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[2] + -0.1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 6 NODE 2176 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND Projected_Sum_Pop < 1780976 THEN 
+DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF OG_Cases_in_Thousands < 20145 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( Projected_Sum_Pop ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[3] + -0.1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 7 NODE 2184 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND 1780976 <= Projected_Sum_Pop THEN 
+DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF 20145 <= OG_Cases_in_Thousands THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND OG_Cases_in_Thousands < 19365 
+THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF Projected_Sum_Pop < 2194576.5 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( OG_Cases_in_Thousands ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[3] + 0.4;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 8 NODE 2185 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND 1780976 <= Projected_Sum_Pop THEN 
+DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF 20145 <= OG_Cases_in_Thousands THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND 19365 <= 
+OG_Cases_in_Thousands THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF 2194576.5 <= Projected_Sum_Pop THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[3] + -0.1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 9 NODE 2178 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[4] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND OG_Cases_in_Thousands < 20145 
+THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF Projected_Sum_Pop < 2194576.5 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( OG_Cases_in_Thousands ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[4] + -0.1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 10 NODE 2179 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[4] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND 20145 <= 
+OG_Cases_in_Thousands THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF 2194576.5 <= Projected_Sum_Pop THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[4] + 0.4;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 11 NODE 2180 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[5] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND Projected_Sum_Pop < 450380.5 THEN 
+DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[5] + 0.4;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 12 NODE 2181 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[5] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND 450380.5 <= Projected_Sum_Pop 
+THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( Projected_Sum_Pop ) THEN _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[5] + -0.1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   DROP _ARB_ONE_;
+MPRINT(EM_DIAGRAM):   DROP _ARB_I_ _ARB_IP_;
+MPRINT(EM_DIAGRAM):   _ARB_P_ = 0;
+MPRINT(EM_DIAGRAM):   _ARB_ONE_ = 0;
+MPRINT(EM_DIAGRAM):   ***** CHECK FOR PERFECT PREDICTION ****;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[1] EQ 0 AND BOOST_ARB_Y_VEC_[1] > 45 THEN 
+_ARB_ONE_ = 1;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[2] EQ 0 AND BOOST_ARB_Y_VEC_[2] > 45 THEN 
+_ARB_ONE_ = 2;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[3] EQ 0 AND BOOST_ARB_Y_VEC_[3] > 45 THEN 
+_ARB_ONE_ = 3;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[4] EQ 0 AND BOOST_ARB_Y_VEC_[4] > 45 THEN 
+_ARB_ONE_ = 4;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[5] EQ 0 AND BOOST_ARB_Y_VEC_[5] > 45 THEN 
+_ARB_ONE_ = 5;
+MPRINT(EM_DIAGRAM):   ***** COMPUTE POSTERIOR PROBABILITY *************;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ NE 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 1 THEN P_Age_group0_17 = 1.0;
+MPRINT(EM_DIAGRAM):   ELSE P_Age_group0_17 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE IF BOOST_ARB_BADF_VEC_[1] NE 0 OR BOOST_ARB_Y_VEC_[1] < -45 THEN DO;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = EXP(BOOST_ARB_Y_VEC_[1]);
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group0_17 ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ NE 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 2 THEN P_Age_group18_24 = 1.0;
+MPRINT(EM_DIAGRAM):   ELSE P_Age_group18_24 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE IF BOOST_ARB_BADF_VEC_[2] NE 0 OR BOOST_ARB_Y_VEC_[2] < -45 THEN DO;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = EXP(BOOST_ARB_Y_VEC_[2]);
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group18_24 ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ NE 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 3 THEN P_Age_group25_44 = 1.0;
+MPRINT(EM_DIAGRAM):   ELSE P_Age_group25_44 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE IF BOOST_ARB_BADF_VEC_[3] NE 0 OR BOOST_ARB_Y_VEC_[3] < -45 THEN DO;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = EXP(BOOST_ARB_Y_VEC_[3]);
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group25_44 ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ NE 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 4 THEN P_Age_group65_84 = 1.0;
+MPRINT(EM_DIAGRAM):   ELSE P_Age_group65_84 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE IF BOOST_ARB_BADF_VEC_[4] NE 0 OR BOOST_ARB_Y_VEC_[4] < -45 THEN DO;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = EXP(BOOST_ARB_Y_VEC_[4]);
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group65_84 ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ NE 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 5 THEN P_Age_group85_ = 1.0;
+MPRINT(EM_DIAGRAM):   ELSE P_Age_group85_ = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE IF BOOST_ARB_BADF_VEC_[5] NE 0 OR BOOST_ARB_Y_VEC_[5] < -45 THEN DO;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = EXP(BOOST_ARB_Y_VEC_[5]);
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group85_ ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_P_ > 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 0;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN P_Age_group0_17 = P_Age_group0_17 / 
+_ARB_P_;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = 0.1993637328;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = _ARB_I_ + 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[2] EQ 0 THEN P_Age_group18_24 = P_Age_group18_24 
+/ _ARB_P_;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = 0.1993637328;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = _ARB_I_ + 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN P_Age_group25_44 = P_Age_group25_44 
+/ _ARB_P_;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = 0.2004241782;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = _ARB_I_ + 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[4] EQ 0 THEN P_Age_group65_84 = P_Age_group65_84 
+/ _ARB_P_;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = 0.2004241782;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = _ARB_I_ + 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[5] EQ 0 THEN P_Age_group85_ = P_Age_group85_ / 
+_ARB_P_;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = 0.2004241782;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = _ARB_I_ + 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_I_ > 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _ARB_P_ = 0;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group0_17 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group18_24 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group25_44 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group65_84 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group85_ ;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = P_Age_group0_17 / _ARB_P_;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = P_Age_group18_24 / _ARB_P_;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = P_Age_group25_44 / _ARB_P_;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = P_Age_group65_84 / _ARB_P_;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = P_Age_group85_ / _ARB_P_;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = 0.1993637328;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = 0.1993637328;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = 0.2004241782;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = 0.2004241782;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = 0.2004241782;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ***** CREATE Q_: POSTERIORS WITHOUT PRIORS ****;
+MPRINT(EM_DIAGRAM):   Q_Age_group0_17 = P_Age_group0_17 ;
+MPRINT(EM_DIAGRAM):   Q_Age_group18_24 = P_Age_group18_24 ;
+MPRINT(EM_DIAGRAM):   Q_Age_group25_44 = P_Age_group25_44 ;
+MPRINT(EM_DIAGRAM):   Q_Age_group65_84 = P_Age_group65_84 ;
+MPRINT(EM_DIAGRAM):   Q_Age_group85_ = P_Age_group85_ ;
+MPRINT(EM_DIAGRAM):   ***** I_ AND U_ VARIABLES *******************;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = -1.0;
+MPRINT(EM_DIAGRAM):   IF _ARB_IP_ + 1.0/32768.0 < P_Age_group0_17 THEN DO;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = P_Age_group0_17 ;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_IP_ + 1.0/32768.0 < P_Age_group18_24 THEN DO;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = P_Age_group18_24 ;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_IP_ + 1.0/32768.0 < P_Age_group25_44 THEN DO;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = P_Age_group25_44 ;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 3;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_IP_ + 1.0/32768.0 < P_Age_group65_84 THEN DO;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = P_Age_group65_84 ;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 4;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_IP_ + 1.0/32768.0 < P_Age_group85_ THEN DO;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = P_Age_group85_ ;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 5;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   SELECT( _ARB_I_);
+MPRINT(EM_DIAGRAM):   WHEN( 1) DO;
+MPRINT(EM_DIAGRAM):   I_Age_group = '0-17' ;
+MPRINT(EM_DIAGRAM):   U_Age_group = '0-17' ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   WHEN( 2) DO;
+MPRINT(EM_DIAGRAM):   I_Age_group = '18-24' ;
+MPRINT(EM_DIAGRAM):   U_Age_group = '18-24' ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   WHEN( 3) DO;
+MPRINT(EM_DIAGRAM):   I_Age_group = '25-44' ;
+MPRINT(EM_DIAGRAM):   U_Age_group = '25-44' ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   WHEN( 4) DO;
+MPRINT(EM_DIAGRAM):   I_Age_group = '65-84' ;
+MPRINT(EM_DIAGRAM):   U_Age_group = '65-84' ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   WHEN( 5) DO;
+MPRINT(EM_DIAGRAM):   I_Age_group = '85+' ;
+MPRINT(EM_DIAGRAM):   U_Age_group = '85+' ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ****************************************************************;
+MPRINT(EM_DIAGRAM):   ****** END OF DECISION TREE SCORING CODE ******;
+MPRINT(EM_DIAGRAM):   ****************************************************************;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * TOOL: Score Node;
+MPRINT(EM_DIAGRAM):   * TYPE: ASSESS;
+MPRINT(EM_DIAGRAM):   * NODE: Score3;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Score3: Creating Fixed Names;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   LENGTH EM_EVENTPROBABILITY 8;
+MPRINT(EM_DIAGRAM):   LABEL EM_EVENTPROBABILITY = 'Probability for level 85+ of Age_group';
+MPRINT(EM_DIAGRAM):   EM_EVENTPROBABILITY = P_Age_group85_;
+MPRINT(EM_DIAGRAM):   LENGTH EM_PROBABILITY 8;
+MPRINT(EM_DIAGRAM):   LABEL EM_PROBABILITY = 'Probability of Classification';
+MPRINT(EM_DIAGRAM):   EM_PROBABILITY = max( P_Age_group85_ , P_Age_group65_84 , 
+P_Age_group25_44 , P_Age_group18_24 , P_Age_group0_17 );
+MPRINT(EM_DIAGRAM):   LENGTH EM_CLASSIFICATION
+MPRINT(DMNORLEN):   $32
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   LABEL EM_CLASSIFICATION = "Prediction for Age_group";
+MPRINT(EM_DIAGRAM):   EM_CLASSIFICATION = I_Age_group;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   quit;
+MPRINT(EM_DIAGRAM):   options validvarname=V7;
+MPRINT(EM_DIAGRAM):   filename _pref;
+MPRINT(EM_DIAGRAM):   data _temp;
+MPRINT(EM_DIAGRAM):   set _temp;
+MPRINT(EM_DIAGRAM):   length UNAME $32;
+MPRINT(EM_DIAGRAM):   UNAME = upcase(RHS);
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=_temp(keep=UNAME) NODUPKEY;
+MPRINT(EM_DIAGRAM):   by UNAME;
+MPRINT(EM_DIAGRAM):   run;
+112033     %let validvarany = 0;
+112034     data _temp2;
+MPRINT(EM_DIAGRAM):    data _temp2;
+112035     set EMWS1.Score3_EMINPUTVARS;
+MPRINT(EM_DIAGRAM):   set EMWS1.Score3_EMINPUTVARS;
+112036     length UNAME $32;
+MPRINT(EM_DIAGRAM):   length UNAME $32;
+112037     UNAME = upcase(NAME);
+MPRINT(EM_DIAGRAM):   UNAME = upcase(NAME);
+112038     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 6 observations read from the data set EMWS1.SCORE3_EMINPUTVARS.
+NOTE: The data set WORK._TEMP2 has 6 observations and 8 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+112039     proc sort data=_temp2;
+MPRINT(EM_DIAGRAM):   proc sort data=_temp2;
+112040     by UNAME;
+MPRINT(EM_DIAGRAM):   by UNAME;
+112041     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 6 observations read from the data set WORK._TEMP2.
+NOTE: The data set WORK._TEMP2 has 6 observations and 8 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+112042     data _temp2;
+MPRINT(EM_DIAGRAM):   data _temp2;
+112043     merge _temp2(in=_a) _temp(in=_b);
+MPRINT(EM_DIAGRAM):   merge _temp2(in=_a) _temp(in=_b);
+112044     by UNAME;
+MPRINT(EM_DIAGRAM):   by UNAME;
+112045     drop UNAME;
+MPRINT(EM_DIAGRAM):   drop UNAME;
+112046     length SCOREVAR $1;
+MPRINT(EM_DIAGRAM):   length SCOREVAR $1;
+112047     label SCOREVAR = "%sysfunc(sasmsg(sashelp.dmine, rpt_scoreVar_vlabel,  NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label SCOREVAR = "Used in Score Code";
+112048     SCOREVAR='Y';
+MPRINT(EM_DIAGRAM):   SCOREVAR='Y';
+112049     if ROLE='TARGET' then SCOREVAR='N';
+MPRINT(EM_DIAGRAM):   if ROLE='TARGET' then SCOREVAR='N';
+112050     else if UNAME=:"EM_" then SCOREVAR='N';
+MPRINT(EM_DIAGRAM):   else if UNAME=:"EM_" then SCOREVAR='N';
+112051     if (_a and _b) or ROLE='TARGET' then do;
+MPRINT(EM_DIAGRAM):   if (_a and _b) or ROLE='TARGET' then do;
+112052     if notname(trim(UNAME)) or kcount(UNAME) then do;
+MPRINT(EM_DIAGRAM):   if notname(trim(UNAME)) or kcount(UNAME) then do;
+112053     call symput('validvarany', '1');
+MPRINT(EM_DIAGRAM):   call symput('validvarany', '1');
+112054     end;
+MPRINT(EM_DIAGRAM):   end;
+112055     output;
+MPRINT(EM_DIAGRAM):   output;
+112056     end;
+MPRINT(EM_DIAGRAM):   end;
+112057     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 6 observations read from the data set WORK._TEMP2.
+NOTE: There were 22 observations read from the data set WORK._TEMP.
+NOTE: The data set WORK._TEMP2 has 3 observations and 7 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+112058     proc sort data=_temp2 out=EMWS1.Score3_EMINPUTVARS;
+MPRINT(EM_DIAGRAM):   proc sort data=_temp2 out=EMWS1.Score3_EMINPUTVARS;
+112059     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+112060     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 3 observations read from the data set WORK._TEMP2.
+NOTE: The data set EMWS1.SCORE3_EMINPUTVARS has 3 observations and 7 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Score3: Determine output variables meta;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   options validvarname=ANY;
+MPRINT(EM_DIAGRAM):   proc contents data=DISEASE.OG_DISEASE_AND_PROJECTED noprint 
+out=_originalvar;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename _drpvvn "C:\Users\student\AppData\Local\Temp\SAS Temporary 
+Files\_TD4812_830-5CG9310VLM_\Prc2\DROPVVN.sas";
+MPRINT(EM_DIAGRAM):   data _originalvar;
+MPRINT(EM_DIAGRAM):   file _drpvvn;
+MPRINT(EM_DIAGRAM):   set _originalvar end=eof;
+MPRINT(EM_DIAGRAM):   length string $200;
+MPRINT(EM_DIAGRAM):   if _N_=1 then put 'drop ';
+MPRINT(EM_DIAGRAM):   if notname(trim(NAME)) or kcount(NAME) or ktrim(substr(NAME, 1, 1)) 
+in('1','2','3','4','5','6','7','8','9','0') then do;
+MPRINT(EM_DIAGRAM):   string = "'"!!tranwrd(trim(NAME), "'", "''")!!"'n";
+MPRINT(EM_DIAGRAM):   put string;
+MPRINT(EM_DIAGRAM):   call symput('_vvnflag', '1');
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else output;
+MPRINT(EM_DIAGRAM):   if eof then put ';';
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename _drpfrf "C:\Users\student\AppData\Local\Temp\SAS Temporary 
+Files\_TD4812_830-5CG9310VLM_\Prc2\DROPINPUT.sas";
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   file _drpfrf;
+MPRINT(EM_DIAGRAM):   set _originalvar end=eof;
+MPRINT(EM_DIAGRAM):   length string $200;
+MPRINT(EM_DIAGRAM):   if _N_=1 then put 'drop ';
+MPRINT(EM_DIAGRAM):   string = "'"!!tranwrd(trim(NAME), "'", "''")!!"'n";
+MPRINT(EM_DIAGRAM):   put string;
+MPRINT(EM_DIAGRAM):   if eof then put ';';
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   dsid = open('DISEASE.OG_DISEASE_AND_PROJECTED');
+MPRINT(EM_DIAGRAM):   if dsid then do;
+MPRINT(EM_DIAGRAM):   call symput('_inputEngine', attrc(dsid, 'ENGINE'));
+MPRINT(EM_DIAGRAM):   dsid = close(dsid);
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data EMWS1.Score3_EMOUTPUTVARS;
+MPRINT(EM_DIAGRAM):   set DISEASE.OG_DISEASE_AND_PROJECTED;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * EM SCORE CODE;
+MPRINT(EM_DIAGRAM):   * EM Version: 14.2;
+MPRINT(EM_DIAGRAM):   * SAS Release: 9.04.01M4P110916;
+MPRINT(EM_DIAGRAM):   * Host: 830-5CG9310VLM;
+MPRINT(EM_DIAGRAM):   * Encoding: wlatin1;
+MPRINT(EM_DIAGRAM):   * Locale: en_US;
+MPRINT(EM_DIAGRAM):   * Project Path: C:\Users\student\Desktop\AA 490\Final 
+Project\AA490_Project;
+MPRINT(EM_DIAGRAM):   * Project Name: Base Model;
+MPRINT(EM_DIAGRAM):   * Diagram Id: EMWS1;
+MPRINT(EM_DIAGRAM):   * Diagram Name: Base Model;
+MPRINT(EM_DIAGRAM):   * Generated by: student;
+MPRINT(EM_DIAGRAM):   * Date: 14NOV2019:16:24:21;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * TOOL: Input Data Source;
+MPRINT(EM_DIAGRAM):   * TYPE: SAMPLE;
+MPRINT(EM_DIAGRAM):   * NODE: Ids3;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * TOOL: Statistics Exploration;
+MPRINT(EM_DIAGRAM):   * TYPE: EXPLORE;
+MPRINT(EM_DIAGRAM):   * NODE: Stat4;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * TOOL: Partition Class;
+MPRINT(EM_DIAGRAM):   * TYPE: SAMPLE;
+MPRINT(EM_DIAGRAM):   * NODE: Part3;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * TOOL: Extension Class;
+MPRINT(EM_DIAGRAM):   * TYPE: MODEL;
+MPRINT(EM_DIAGRAM):   * NODE: Boost;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   ****************************************************************;
+MPRINT(EM_DIAGRAM):   ****** DECISION TREE SCORING CODE ******;
+MPRINT(EM_DIAGRAM):   ****************************************************************;
+MPRINT(EM_DIAGRAM):   ****** LENGTHS OF NEW CHARACTER VARIABLES ******;
+MPRINT(EM_DIAGRAM):   LENGTH I_Age_group $ 19;
+MPRINT(EM_DIAGRAM):   LENGTH U_Age_group $ 19;
+MPRINT(EM_DIAGRAM):   LENGTH _WARN_ $ 4;
+MPRINT(EM_DIAGRAM):   ****** LABELS FOR NEW VARIABLES ******;
+MPRINT(EM_DIAGRAM):   label P_Age_group0_17 = 'Predicted: Age_group=0-17' ;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = 0;
+MPRINT(EM_DIAGRAM):   label P_Age_group18_24 = 'Predicted: Age_group=18-24' ;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = 0;
+MPRINT(EM_DIAGRAM):   label P_Age_group25_44 = 'Predicted: Age_group=25-44' ;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = 0;
+MPRINT(EM_DIAGRAM):   label P_Age_group65_84 = 'Predicted: Age_group=65-84' ;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = 0;
+MPRINT(EM_DIAGRAM):   label P_Age_group85_ = 'Predicted: Age_group=85+' ;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = 0;
+MPRINT(EM_DIAGRAM):   label Q_Age_group0_17 = 'Unadjusted P: Age_group=0-17' ;
+MPRINT(EM_DIAGRAM):   Q_Age_group0_17 = 0;
+MPRINT(EM_DIAGRAM):   label Q_Age_group18_24 = 'Unadjusted P: Age_group=18-24' ;
+MPRINT(EM_DIAGRAM):   Q_Age_group18_24 = 0;
+MPRINT(EM_DIAGRAM):   label Q_Age_group25_44 = 'Unadjusted P: Age_group=25-44' ;
+MPRINT(EM_DIAGRAM):   Q_Age_group25_44 = 0;
+MPRINT(EM_DIAGRAM):   label Q_Age_group65_84 = 'Unadjusted P: Age_group=65-84' ;
+MPRINT(EM_DIAGRAM):   Q_Age_group65_84 = 0;
+MPRINT(EM_DIAGRAM):   label Q_Age_group85_ = 'Unadjusted P: Age_group=85+' ;
+MPRINT(EM_DIAGRAM):   Q_Age_group85_ = 0;
+MPRINT(EM_DIAGRAM):   label I_Age_group = 'Into: Age_group' ;
+MPRINT(EM_DIAGRAM):   label U_Age_group = 'Unnormalized Into: Age_group' ;
+MPRINT(EM_DIAGRAM):   label _WARN_ = 'Warnings' ;
+MPRINT(EM_DIAGRAM):   ****** TEMPORARY VARIABLES FOR FORMATTED VALUES ******;
+MPRINT(EM_DIAGRAM):   LENGTH _ARBFMT_19 $ 19;
+MPRINT(EM_DIAGRAM):   DROP _ARBFMT_19;
+MPRINT(EM_DIAGRAM):   _ARBFMT_19 = ' ';
+MPRINT(EM_DIAGRAM):   ARRAY BOOST_ARB_Y_VEC_[5] _TEMPORARY_ ;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[1] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[2] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[3] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[4] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[5] = 0;
+MPRINT(EM_DIAGRAM):   ARRAY BOOST_ARB_BADF_VEC_[5] _TEMPORARY_ ;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_BADF_VEC_[1] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_BADF_VEC_[2] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_BADF_VEC_[3] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_BADF_VEC_[4] = 0;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_BADF_VEC_[5] = 0;
+MPRINT(EM_DIAGRAM):   ****** ASSIGN OBSERVATION TO NODE ******;
+MPRINT(EM_DIAGRAM):   DROP _ARB_P_;
+MPRINT(EM_DIAGRAM):   _ARB_P_ = 0;
+MPRINT(EM_DIAGRAM):   DROP _ARB_PPATH_;
+MPRINT(EM_DIAGRAM):   _ARB_PPATH_ = 1;
+MPRINT(EM_DIAGRAM):   ********** LEAF 1 NODE 2182 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   DROP _BRANCH_;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND Projected_Sum_Pop < 1780976 THEN 
+DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF OG_Cases_in_Thousands < 20145 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( Projected_Sum_Pop ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND Projected_Sum_Pop < 1144855.5 
+THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( Projected_Sum_Pop ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[1] + -0.1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 2 NODE 2183 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND Projected_Sum_Pop < 1780976 THEN 
+DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF OG_Cases_in_Thousands < 20145 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( Projected_Sum_Pop ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND 1144855.5 <= Projected_Sum_Pop 
+THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[1] + 0.4;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 3 NODE 2173 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND 1780976 <= Projected_Sum_Pop THEN 
+DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF 20145 <= OG_Cases_in_Thousands THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[1] + -0.1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 4 NODE 2174 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[2] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND OG_Cases_in_Thousands < 1245 
+THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( OG_Cases_in_Thousands ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[2] + 0.3788135593;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 5 NODE 2175 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[2] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND 1245 <= OG_Cases_in_Thousands 
+THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[2] + -0.1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 6 NODE 2176 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND Projected_Sum_Pop < 1780976 THEN 
+DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF OG_Cases_in_Thousands < 20145 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( Projected_Sum_Pop ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[3] + -0.1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 7 NODE 2184 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND 1780976 <= Projected_Sum_Pop THEN 
+DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF 20145 <= OG_Cases_in_Thousands THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND OG_Cases_in_Thousands < 19365 
+THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF Projected_Sum_Pop < 2194576.5 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( OG_Cases_in_Thousands ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[3] + 0.4;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 8 NODE 2185 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND 1780976 <= Projected_Sum_Pop THEN 
+DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF 20145 <= OG_Cases_in_Thousands THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND 19365 <= 
+OG_Cases_in_Thousands THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF 2194576.5 <= Projected_Sum_Pop THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[3] + -0.1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 9 NODE 2178 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[4] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND OG_Cases_in_Thousands < 20145 
+THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF Projected_Sum_Pop < 2194576.5 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( OG_Cases_in_Thousands ) THEN _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[4] + -0.1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 10 NODE 2179 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[4] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(OG_Cases_in_Thousands ) AND 20145 <= 
+OG_Cases_in_Thousands THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF MISSING(OG_Cases_in_Thousands ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 AND NOT MISSING(Projected_Sum_Pop ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF 2194576.5 <= Projected_Sum_Pop THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE _BRANCH_ = 0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[4] + 0.4;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 11 NODE 2180 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[5] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND Projected_Sum_Pop < 450380.5 THEN 
+DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[5] + 0.4;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ********** LEAF 12 NODE 2181 ***************;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[5] EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = -1;
+MPRINT(EM_DIAGRAM):   IF NOT MISSING(Projected_Sum_Pop ) AND 450380.5 <= Projected_Sum_Pop 
+THEN DO;
+MPRINT(EM_DIAGRAM):   _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ LT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( Projected_Sum_Pop ) THEN _BRANCH_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _BRANCH_ GT 0 THEN DO;
+MPRINT(EM_DIAGRAM):   BOOST_ARB_Y_VEC_[5] + -0.1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   DROP _ARB_ONE_;
+MPRINT(EM_DIAGRAM):   DROP _ARB_I_ _ARB_IP_;
+MPRINT(EM_DIAGRAM):   _ARB_P_ = 0;
+MPRINT(EM_DIAGRAM):   _ARB_ONE_ = 0;
+MPRINT(EM_DIAGRAM):   ***** CHECK FOR PERFECT PREDICTION ****;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[1] EQ 0 AND BOOST_ARB_Y_VEC_[1] > 45 THEN 
+_ARB_ONE_ = 1;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[2] EQ 0 AND BOOST_ARB_Y_VEC_[2] > 45 THEN 
+_ARB_ONE_ = 2;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[3] EQ 0 AND BOOST_ARB_Y_VEC_[3] > 45 THEN 
+_ARB_ONE_ = 3;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[4] EQ 0 AND BOOST_ARB_Y_VEC_[4] > 45 THEN 
+_ARB_ONE_ = 4;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[5] EQ 0 AND BOOST_ARB_Y_VEC_[5] > 45 THEN 
+_ARB_ONE_ = 5;
+MPRINT(EM_DIAGRAM):   ***** COMPUTE POSTERIOR PROBABILITY *************;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ NE 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 1 THEN P_Age_group0_17 = 1.0;
+MPRINT(EM_DIAGRAM):   ELSE P_Age_group0_17 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE IF BOOST_ARB_BADF_VEC_[1] NE 0 OR BOOST_ARB_Y_VEC_[1] < -45 THEN DO;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = EXP(BOOST_ARB_Y_VEC_[1]);
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group0_17 ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ NE 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 2 THEN P_Age_group18_24 = 1.0;
+MPRINT(EM_DIAGRAM):   ELSE P_Age_group18_24 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE IF BOOST_ARB_BADF_VEC_[2] NE 0 OR BOOST_ARB_Y_VEC_[2] < -45 THEN DO;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = EXP(BOOST_ARB_Y_VEC_[2]);
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group18_24 ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ NE 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 3 THEN P_Age_group25_44 = 1.0;
+MPRINT(EM_DIAGRAM):   ELSE P_Age_group25_44 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE IF BOOST_ARB_BADF_VEC_[3] NE 0 OR BOOST_ARB_Y_VEC_[3] < -45 THEN DO;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = EXP(BOOST_ARB_Y_VEC_[3]);
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group25_44 ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ NE 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 4 THEN P_Age_group65_84 = 1.0;
+MPRINT(EM_DIAGRAM):   ELSE P_Age_group65_84 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE IF BOOST_ARB_BADF_VEC_[4] NE 0 OR BOOST_ARB_Y_VEC_[4] < -45 THEN DO;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = EXP(BOOST_ARB_Y_VEC_[4]);
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group65_84 ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ NE 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 5 THEN P_Age_group85_ = 1.0;
+MPRINT(EM_DIAGRAM):   ELSE P_Age_group85_ = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE IF BOOST_ARB_BADF_VEC_[5] NE 0 OR BOOST_ARB_Y_VEC_[5] < -45 THEN DO;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = 0.0;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = EXP(BOOST_ARB_Y_VEC_[5]);
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group85_ ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_ONE_ EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _ARB_P_ > 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 0;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[1] EQ 0 THEN P_Age_group0_17 = P_Age_group0_17 / 
+_ARB_P_;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = 0.1993637328;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = _ARB_I_ + 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[2] EQ 0 THEN P_Age_group18_24 = P_Age_group18_24 
+/ _ARB_P_;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = 0.1993637328;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = _ARB_I_ + 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[3] EQ 0 THEN P_Age_group25_44 = P_Age_group25_44 
+/ _ARB_P_;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = 0.2004241782;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = _ARB_I_ + 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[4] EQ 0 THEN P_Age_group65_84 = P_Age_group65_84 
+/ _ARB_P_;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = 0.2004241782;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = _ARB_I_ + 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF BOOST_ARB_BADF_VEC_[5] EQ 0 THEN P_Age_group85_ = P_Age_group85_ / 
+_ARB_P_;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = 0.2004241782;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = _ARB_I_ + 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_I_ > 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _ARB_P_ = 0;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group0_17 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group18_24 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group25_44 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group65_84 ;
+MPRINT(EM_DIAGRAM):   _ARB_P_ + P_Age_group85_ ;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = P_Age_group0_17 / _ARB_P_;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = P_Age_group18_24 / _ARB_P_;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = P_Age_group25_44 / _ARB_P_;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = P_Age_group65_84 / _ARB_P_;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = P_Age_group85_ / _ARB_P_;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Age_group0_17 = 0.1993637328;
+MPRINT(EM_DIAGRAM):   P_Age_group18_24 = 0.1993637328;
+MPRINT(EM_DIAGRAM):   P_Age_group25_44 = 0.2004241782;
+MPRINT(EM_DIAGRAM):   P_Age_group65_84 = 0.2004241782;
+MPRINT(EM_DIAGRAM):   P_Age_group85_ = 0.2004241782;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ***** CREATE Q_: POSTERIORS WITHOUT PRIORS ****;
+MPRINT(EM_DIAGRAM):   Q_Age_group0_17 = P_Age_group0_17 ;
+MPRINT(EM_DIAGRAM):   Q_Age_group18_24 = P_Age_group18_24 ;
+MPRINT(EM_DIAGRAM):   Q_Age_group25_44 = P_Age_group25_44 ;
+MPRINT(EM_DIAGRAM):   Q_Age_group65_84 = P_Age_group65_84 ;
+MPRINT(EM_DIAGRAM):   Q_Age_group85_ = P_Age_group85_ ;
+MPRINT(EM_DIAGRAM):   ***** I_ AND U_ VARIABLES *******************;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = -1.0;
+MPRINT(EM_DIAGRAM):   IF _ARB_IP_ + 1.0/32768.0 < P_Age_group0_17 THEN DO;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = P_Age_group0_17 ;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 1;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_IP_ + 1.0/32768.0 < P_Age_group18_24 THEN DO;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = P_Age_group18_24 ;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 2;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_IP_ + 1.0/32768.0 < P_Age_group25_44 THEN DO;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = P_Age_group25_44 ;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 3;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_IP_ + 1.0/32768.0 < P_Age_group65_84 THEN DO;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = P_Age_group65_84 ;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 4;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   IF _ARB_IP_ + 1.0/32768.0 < P_Age_group85_ THEN DO;
+MPRINT(EM_DIAGRAM):   _ARB_IP_ = P_Age_group85_ ;
+MPRINT(EM_DIAGRAM):   _ARB_I_ = 5;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   SELECT( _ARB_I_);
+MPRINT(EM_DIAGRAM):   WHEN( 1) DO;
+MPRINT(EM_DIAGRAM):   I_Age_group = '0-17' ;
+MPRINT(EM_DIAGRAM):   U_Age_group = '0-17' ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   WHEN( 2) DO;
+MPRINT(EM_DIAGRAM):   I_Age_group = '18-24' ;
+MPRINT(EM_DIAGRAM):   U_Age_group = '18-24' ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   WHEN( 3) DO;
+MPRINT(EM_DIAGRAM):   I_Age_group = '25-44' ;
+MPRINT(EM_DIAGRAM):   U_Age_group = '25-44' ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   WHEN( 4) DO;
+MPRINT(EM_DIAGRAM):   I_Age_group = '65-84' ;
+MPRINT(EM_DIAGRAM):   U_Age_group = '65-84' ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   WHEN( 5) DO;
+MPRINT(EM_DIAGRAM):   I_Age_group = '85+' ;
+MPRINT(EM_DIAGRAM):   U_Age_group = '85+' ;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   END;
+MPRINT(EM_DIAGRAM):   ****************************************************************;
+MPRINT(EM_DIAGRAM):   ****** END OF DECISION TREE SCORING CODE ******;
+MPRINT(EM_DIAGRAM):   ****************************************************************;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * TOOL: Score Node;
+MPRINT(EM_DIAGRAM):   * TYPE: ASSESS;
+MPRINT(EM_DIAGRAM):   * NODE: Score3;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Score3: Creating Fixed Names;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   LENGTH EM_EVENTPROBABILITY 8;
+MPRINT(EM_DIAGRAM):   LABEL EM_EVENTPROBABILITY = 'Probability for level 85+ of Age_group';
+MPRINT(EM_DIAGRAM):   EM_EVENTPROBABILITY = P_Age_group85_;
+MPRINT(EM_DIAGRAM):   LENGTH EM_PROBABILITY 8;
+MPRINT(EM_DIAGRAM):   LABEL EM_PROBABILITY = 'Probability of Classification';
+MPRINT(EM_DIAGRAM):   EM_PROBABILITY = max( P_Age_group85_ , P_Age_group65_84 , 
+P_Age_group25_44 , P_Age_group18_24 , P_Age_group0_17 );
+MPRINT(EM_DIAGRAM):   LENGTH EM_CLASSIFICATION
+MPRINT(DMNORLEN):   $32
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   LABEL EM_CLASSIFICATION = "Prediction for Age_group";
+MPRINT(EM_DIAGRAM):   EM_CLASSIFICATION = I_Age_group;
+MPRINT(EM_DIAGRAM):   drop 'Age_group'n 'Disease'n 'Gender'n 'OG_Cases_in_Thousands'n 
+'Projected_Sum_Pop'n 'Year'n ;
+MPRINT(EM_DIAGRAM):   if _N_=1 then do;
+MPRINT(EM_DIAGRAM):   output;
+MPRINT(EM_DIAGRAM):   stop;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   options validvarname=V7;
+MPRINT(EM_DIAGRAM):   proc contents data =EMWS1.Score3_EMOUTPUTVARS noprint 
+out=EMWS1.Score3_EMOUTPUTVARS;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _drpvvn;
+MPRINT(EM_DIAGRAM):   filename _drpfrf;
+112730     data EMWS1.Score3_EMOUTPUTVARS;
+MPRINT(EM_DIAGRAM):    data EMWS1.Score3_EMOUTPUTVARS;
+112731     set EMWS1.Score3_EMOUTPUTVARS(keep=name type label rename=(type=itype));
+MPRINT(EM_DIAGRAM):   set EMWS1.Score3_EMOUTPUTVARS(keep=name type label rename=(type=itype));
+112732     length FUNCTION $32 name_prefix $8;
+MPRINT(EM_DIAGRAM):   length FUNCTION $32 name_prefix $8;
+112733     if itype = 1 then type = 'N';
+MPRINT(EM_DIAGRAM):   if itype = 1 then type = 'N';
+112734     else type = 'C';
+MPRINT(EM_DIAGRAM):   else type = 'C';
+112735     drop name_prefix itype;
+MPRINT(EM_DIAGRAM):   drop name_prefix itype;
+112736     if index(name, '_WARN_')=1 then FUNCTION = 'ASSESS';
+MPRINT(EM_DIAGRAM):   if index(name, '_WARN_')=1 then FUNCTION = 'ASSESS';
+112737     else if upcase(name) in('EM_PREDICTION', 'EM_EVENTPROBABILITY', 'EM_PROBABILITY')
+112737   ! then FUNCTION = 'PREDICT';
+MPRINT(EM_DIAGRAM):   else if upcase(name) in('EM_PREDICTION', 'EM_EVENTPROBABILITY', 
+'EM_PROBABILITY') then FUNCTION = 'PREDICT';
+112738     else if upcase(name) = 'EM_CLASSIFICATION' then FUNCTION = 'CLASSIFICATION';
+MPRINT(EM_DIAGRAM):   else if upcase(name) = 'EM_CLASSIFICATION' then FUNCTION = 
+'CLASSIFICATION';
+112739     else if upcase(name) = 'EM_DECISION' then FUNCTION = 'DECISION';
+MPRINT(EM_DIAGRAM):   else if upcase(name) = 'EM_DECISION' then FUNCTION = 'DECISION';
+112740     else if upcase(name) in('EM_PROFIT', 'EM_LOSS', 'EM_VALUETARGET', 'EM_CLASSTARGET')
+112740   ! then FUNCTION = 'ASSESS' /* removed EM_ROI */
+112741     ;
+MPRINT(EM_DIAGRAM):   else if upcase(name) in('EM_PROFIT', 'EM_LOSS', 'EM_VALUETARGET', 
+'EM_CLASSTARGET') then FUNCTION = 'ASSESS' ;
+112742     else do;
+MPRINT(EM_DIAGRAM):   else do;
+112743     name_prefix = scan(NAME, 1, '_');
+MPRINT(EM_DIAGRAM):   name_prefix = scan(NAME, 1, '_');
+112744     if name_prefix in('F', 'I', 'U') then FUNCTION = 'CLASSIFICATION';
+MPRINT(EM_DIAGRAM):   if name_prefix in('F', 'I', 'U') then FUNCTION = 'CLASSIFICATION';
+112745     else if name_prefix in('P', 'V') then FUNCTION = 'PREDICT';
+MPRINT(EM_DIAGRAM):   else if name_prefix in('P', 'V') then FUNCTION = 'PREDICT';
+112746     else if name_prefix in('R', 'RS', 'RT', 'RD', 'RDS', 'RDT', 'RA', 'RAS', 'RAT') then
+112746   !  FUNCTION = 'RESIDUAL';
+MPRINT(EM_DIAGRAM):   else if name_prefix in('R', 'RS', 'RT', 'RD', 'RDS', 'RDT', 'RA', 'RAS', 
+'RAT') then FUNCTION = 'RESIDUAL';
+112747     else if name_prefix ='D' then FUNCTION = 'DECISION';
+MPRINT(EM_DIAGRAM):   else if name_prefix ='D' then FUNCTION = 'DECISION';
+112748     else if name_prefix in('EP', 'BP', 'CP', 'EL', 'CL', 'BL', 'W', 'ROI', 'IC') then
+112748   ! FUNCTION = 'ASSESS';
+MPRINT(EM_DIAGRAM):   else if name_prefix in('EP', 'BP', 'CP', 'EL', 'CL', 'BL', 'W', 'ROI', 
+'IC') then FUNCTION = 'ASSESS';
+112749     else FUNCTION = 'TRANSFORM';
+MPRINT(EM_DIAGRAM):   else FUNCTION = 'TRANSFORM';
+112750     end;
+MPRINT(EM_DIAGRAM):   end;
+112751     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 16 observations read from the data set EMWS1.SCORE3_EMOUTPUTVARS.
+NOTE: The data set EMWS1.SCORE3_EMOUTPUTVARS has 16 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+112752     proc sort data=EMWS1.Boost_CMeta_TRAIN out=WORK.META(KEEP=NAME CREATOR);
+MPRINT(EM_DIAGRAM):    proc sort data=EMWS1.Boost_CMeta_TRAIN out=WORK.META(KEEP=NAME CREATOR);
+112753     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+112754     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 23 observations read from the data set EMWS1.BOOST_CMETA_TRAIN.
+NOTE: The data set WORK.META has 23 observations and 2 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+112755     proc sort data=EMWS1.Score3_EMOUTPUTVARS;
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Score3_EMOUTPUTVARS;
+112756     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+112757     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 16 observations read from the data set EMWS1.SCORE3_EMOUTPUTVARS.
+NOTE: The data set EMWS1.SCORE3_EMOUTPUTVARS has 16 observations and 4 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+112758     data EMWS1.Score3_EMOUTPUTVARS;
+MPRINT(EM_DIAGRAM):   data EMWS1.Score3_EMOUTPUTVARS;
+112759     merge WORK.META EMWS1.Score3_EMOUTPUTVARS(in=_a);
+MPRINT(EM_DIAGRAM):   merge WORK.META EMWS1.Score3_EMOUTPUTVARS(in=_a);
+112760     label CREATOR = "%sysfunc(sasmsg(sashelp.dmine,  meta_creator_vlabel ,  NOQUOTE))"
+112760   ! FUNCTION = "%sysfunc(sasmsg(sashelp.dmine,  meta_function_vlabel ,  NOQUOTE))" TYPE
+112760   ! = "%sysfunc(sasmsg(sashelp.dmine,  meta_type_vlabel ,  NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label CREATOR = "Creator" FUNCTION = "Function" TYPE = "Type";
+112761     by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+112762     if NAME =: 'EM_' and CREATOR = '' then CREATOR = "Score3";
+MPRINT(EM_DIAGRAM):   if NAME =: 'EM_' and CREATOR = '' then CREATOR = "Score3";
+112763     if _a then output;
+MPRINT(EM_DIAGRAM):   if _a then output;
+112764     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 23 observations read from the data set WORK.META.
+NOTE: There were 16 observations read from the data set EMWS1.SCORE3_EMOUTPUTVARS.
+NOTE: The data set EMWS1.SCORE3_EMOUTPUTVARS has 16 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+112765     %let _cn = %sysfunc(getoption(CENTER));
+112766     %let _nb = %sysfunc(getoption(NUMBER));
+112767     options nonumber nocenter;
+MPRINT(EM_DIAGRAM):    options nonumber nocenter;
+112768     title;
+MPRINT(EM_DIAGRAM):   title;
+112769     proc print data=EMWS1.Score3_EMINPUTVARS noobs label;
+MPRINT(EM_DIAGRAM):   proc print data=EMWS1.Score3_EMINPUTVARS noobs label;
+112770     label NAME = "%sysfunc(sasmsg(sashelp.dmine,  meta_name_vlabel ,  NOQUOTE))" CREATOR
+112770   !  = "%sysfunc(sasmsg(sashelp.dmine,  meta_creator_vlabel ,  NOQUOTE))" LABEL =
+112770   ! "%sysfunc(sasmsg(sashelp.dmine,  meta_label_vlabel ,  NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label NAME = "Variable Name" CREATOR = "Creator" LABEL = "Label";
+112771     title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+112772     title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_scoreInputVariables_title, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Score Input Variables";
+MPRINT(EM_DIAGRAM):   run;
+112773     run;
+
+NOTE: There were 3 observations read from the data set EMWS1.SCORE3_EMINPUTVARS.
+NOTE: The PROCEDURE PRINT printed page 57.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+112774     title10;
+MPRINT(EM_DIAGRAM):   title10;
+112775     options &_cn &_nb;
+MPRINT(EM_DIAGRAM):   options NOCENTER NONUMBER;
+112776     %let _cn = %sysfunc(getoption(CENTER));
+112777     %let _nb = %sysfunc(getoption(NUMBER));
+112778     options nonumber nocenter;
+MPRINT(EM_DIAGRAM):    options nonumber nocenter;
+112779     title;
+MPRINT(EM_DIAGRAM):   title;
+112780     proc print data=EMWS1.Score3_EMOUTPUTVARS noobs label;
+MPRINT(EM_DIAGRAM):   proc print data=EMWS1.Score3_EMOUTPUTVARS noobs label;
+112781     var NAME FUNCTION CREATOR LABEL;
+MPRINT(EM_DIAGRAM):   var NAME FUNCTION CREATOR LABEL;
+112782     label NAME = "%sysfunc(sasmsg(sashelp.dmine,  meta_name_vlabel ,    NOQUOTE))"
+112782   ! FUNCTION = "%sysfunc(sasmsg(sashelp.dmine,  meta_function_vlabel ,    NOQUOTE))"
+112782   ! CREATOR = "%sysfunc(sasmsg(sashelp.dmine,  meta_creator_vlabel , NOQUOTE))" LABEL =
+112783        "%sysfunc(sasmsg(sashelp.dmine,  meta_label_vlabel ,   NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label NAME = "Variable Name" FUNCTION = "Function" CREATOR = "Creator" 
+LABEL = "Label";
+112784     title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+112785     title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_scoreOutputVariables_title, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Score Output Variables";
+MPRINT(EM_DIAGRAM):   run;
+112786     run;
+
+NOTE: There were 16 observations read from the data set EMWS1.SCORE3_EMOUTPUTVARS.
+NOTE: The PROCEDURE PRINT printed page 58.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+112787     title10;
+MPRINT(EM_DIAGRAM):   title10;
+112788     options &_cn &_nb;
+MPRINT(EM_DIAGRAM):   options NOCENTER NONUMBER;
+112789     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+112790     * Score3: Computing metadata for TRAIN data;
+MPRINT(EM_DIAGRAM):   * Score3: Computing metadata for TRAIN data;
+112791     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+
+NOTE: View EMWS1.SCORE3_TRAIN.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.06 seconds
+      
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * &nodeid: Computing Metadata for TRAIN data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   filename _delta "C:\Users\student\Desktop\AA 490\Final 
+Project\AA490_Project\Base Model\Workspaces\EMWS1\Score3\CDELTA_TRAIN.sas";
+MPRINT(EMADVISECOLUMNS):   proc display c=sashelp.emmeta.advisecolumns.scl;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    options validvarname=any;
+MPRINT(EMADVISECOLUMNS):   proc contents data=EMWS1.Score3_TRAIN out=_tempAdvisor noprint;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):   options validvarname=V7;
+MPRINT(EMADVISECOLUMNS):    data _null_;
+MPRINT(EMADVISECOLUMNS):   dsid = open('EMWS1.Score3_TRAIN');
+MPRINT(EMADVISECOLUMNS):   call symput('_dsidTable', strip(put(dsid, best.)));
+MPRINT(EMADVISECOLUMNS):   if dsid then do;
+MPRINT(EMADVISECOLUMNS):   call symput('_engineTable', attrc(dsid, 'ENGINE'));
+MPRINT(EMADVISECOLUMNS):   dsid = close(dsid);
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    proc contents data=EMWS1.Score3_TRAIN out=WORK.M2CGNWCF noprint;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2CGNWCF;
+MPRINT(EMADVISECOLUMNS):   length NAME $ 64 TYPE $ 1 LABEL $ 200 FORMAT $ 36 INFORMAT $36 
+INDEX $ 1 INDEXTYPE $ 9;
+MPRINT(EMADVISECOLUMNS):   label NAME =;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2CGNWCF(keep=name type length label format formatl 
+formatd informat informl informd idxusage rename=(type=itype));
+MPRINT(EMADVISECOLUMNS):   if itype = 1 then type = 'N';
+MPRINT(EMADVISECOLUMNS):   else type = 'C';
+MPRINT(EMADVISECOLUMNS):   if formatl > 0 then do;
+MPRINT(EMADVISECOLUMNS):   if format ne '' then do;
+MPRINT(EMADVISECOLUMNS):   if type='N' then format = strip(format)!!strip(put(formatl, 
+best12.))!!'.'!!strip(put(formatd, best12.));
+MPRINT(EMADVISECOLUMNS):   else format = strip(format)!!strip(put(formatl, best12.))!!'.';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else format = strip(put(formatl, best12.))!!'.'!!strip(put(formatd, 
+best12.));
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if format ne '' then format = strip(format)!!'.';
+MPRINT(EMADVISECOLUMNS):   if informl > 0 then do;
+MPRINT(EMADVISECOLUMNS):   if informat ne ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if type='N' then informat = strip(informat)!!strip(put(informl, 
+best12.))!!'.'!!strip(put(informd, best12.));
+MPRINT(EMADVISECOLUMNS):   else informat = strip(informat)!!strip(put(informl, best12.))!!'.';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else informat = strip(put(informl, 
+best12.))!!'.'!!strip(put(informd, best12.));
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if informat ne '' then informat = strip(informat)!!'.';
+MPRINT(EMADVISECOLUMNS):   if idxusage = 'NONE' then index ="N";
+MPRINT(EMADVISECOLUMNS):   else index = "Y";
+MPRINT(EMADVISECOLUMNS):   indextype = idxusage;
+MPRINT(EMADVISECOLUMNS):   drop idxusage itype formatl formatd informl informd;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2CGNWCF;
+MPRINT(EMADVISECOLUMNS):   length UNAME $64;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2CGNWCF;
+MPRINT(EMADVISECOLUMNS):   UNAME = upcase(NAME);
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    proc sort data=WORK.M2Q7DMSB NOTHREADS;
+MPRINT(EMADVISECOLUMNS):   by UNAME;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2Q7DMSB;
+MPRINT(EMADVISECOLUMNS):   drop UNAME;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2Q7DMSB;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M1ZHIC0R(keep=NAME ATTR);
+MPRINT(EMADVISECOLUMNS):   length ATTR $ 20;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2Q7DMSB;
+MPRINT(EMADVISECOLUMNS):   if level ne "INTERVAL" then do;
+MPRINT(EMADVISECOLUMNS):   if order = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'ORDER';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if format ne ' ' and formattype = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'FORMATTYPE';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if role = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'ROLE';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if level = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'LEVEL';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if type = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'TYPE';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if index = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'INDEX';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if report = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'REPORT';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):   proc sort NOTHREADS;
+MPRINT(EMADVISECOLUMNS):   by attr;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2Q7DMSB;
+MPRINT(EMADVISECOLUMNS):   length NAME $64 ROLE $ 32 LEVEL $ 10 ORDER $ 8 CREATOR $32 
+FORMATTYPE $ 10 FAMILY $ 10 LOWERLIMIT 8 UPPERLIMIT 8 REPORT $1 DISTRIBUTION $ 20 COMMENT $64;
+MPRINT(EMADVISECOLUMNS):   length levelAssigned 8 roleAssigned 8 PRICE 8;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2Q7DMSB;
+MPRINT(EMADVISECOLUMNS):   if formattype = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if format ne ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if type = 'N' then do;
+MPRINT(EMADVISECOLUMNS):   pos = indexc(format,'.1234567890');
+MPRINT(EMADVISECOLUMNS):   if pos > 1 then tempfmt = substr(format,1, pos-1);
+MPRINT(EMADVISECOLUMNS):   else tempfmt = ' ';
+MPRINT(EMADVISECOLUMNS):   flen = length(tempfmt);
+MPRINT(EMADVISECOLUMNS):   select;
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("DATE" "DAY" "DDMMYY" "DOWNAME" "JULDAY" "JULIAN" 
+"MMDDYY" "MMDDYYD" "MMDDYYC" "MMDDYYN" "MMDDYYP" "MMDDYYS" "MONNAME" "MONTH" "MONYY" "NENGO" 
+"QTR" "QTRR" "WEEKDATE" "WEEKDATX" "WEEKDAY" "WORDDATE" "WORDDATX" "YEAR" "YYMMDD" "YYMON" 
+"YYMMDDC" "YYMMDDD" "YYMMDDN" "YYMMDDP" "YYMMDDS" "EURDFDE" "NJDATE" "NLDATE" "EURDFDD" 
+"EURDFDWN" "EURDFMN" "EURDFMY" "EURDFWK" "EURDFWKX" "EURDFWDX" "EURDFDN" "EURDFDE" )) 
+formattype = 'DATE';
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("DATETIME" "EURDFDT" "TOD" )) formattype = 
+"DATETIME";
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("HHMM" "HOUR" "MMSS" "TIME" "TIMEAMPM" )) 
+formattype = "TIME";
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("COMMA" "COMMAX" "DOLLAR" "DOLLARX" "E" "FRACT" 
+"NEGPAREN" "PERCENT")) formattype="QUANTITY";
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("BINARY" "HEX" "IB" "OCTAL" "PD" "PIB" "PK" "RB" 
+"SSN" "Z" "ZD")) formattype = "CODING";
+MPRINT(EMADVISECOLUMNS):   otherwise do;
+MPRINT(EMADVISECOLUMNS):   formattype = "USER";
+MPRINT(EMADVISECOLUMNS):   if compress(tempfmt, '0123456789.', '') = '' then formattype='NUM';
+MPRINT(EMADVISECOLUMNS):   else if substr(tempfmt, 1, 6)='NLDATE' then formattype = "DATE";
+MPRINT(EMADVISECOLUMNS):   else if substr(tempfmt, 1, 6)='NLDATM' then formattype = "DATETIME";
+MPRINT(EMADVISECOLUMNS):   else if substr(tempfmt, 1, 4)='NLTIM' then formattype = "TIME";
+MPRINT(EMADVISECOLUMNS):   else if flen >= 4 then do;
+MPRINT(EMADVISECOLUMNS):   str = substr(tempfmt,1,4);
+MPRINT(EMADVISECOLUMNS):   if str in ("MMYY" "YYMM" "YYQR") then formattype ="DATE";
+MPRINT(EMADVISECOLUMNS):   else if str = "S370" then formattype = "CODING";
+MPRINT(EMADVISECOLUMNS):   else if str = "BEST" then formattype = "NUM";
+MPRINT(EMADVISECOLUMNS):   drop str;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if flen >=3 and substr(tempfmt,1,3) = "YYQ" then formatType = 
+"DATE";
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   drop flen tempfmt pos;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else do;
+MPRINT(EMADVISECOLUMNS):   formatType = "CATEGORY";
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if formatType = "NUM" then do;
+MPRINT(EMADVISECOLUMNS):   if index = "Y" then formatType = "DISCRETE";
+MPRINT(EMADVISECOLUMNS):   else formatType = "QUANTITY";
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if level = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if formatType in ("CATEGORY", "CODING", "ID") or type = "C" then 
+level = "NOMINAL";
+MPRINT(EMADVISECOLUMNS):   else level = "INTERVAL";
+MPRINT(EMADVISECOLUMNS):   levelAssigned = 1;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else level = upcase(level);
+MPRINT(EMADVISECOLUMNS):   if role = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   length name_prefix $8 _uname $64;
+MPRINT(EMADVISECOLUMNS):   drop name_prefix _uname _freqflag;
+MPRINT(EMADVISECOLUMNS):   retain _freqflag;
+MPRINT(EMADVISECOLUMNS):   if LENGTH> 80 then ROLE = 'TEXT';
+MPRINT(EMADVISECOLUMNS):   _uname = upcase(NAME);
+MPRINT(EMADVISECOLUMNS):   select(_uname);
+MPRINT(EMADVISECOLUMNS):   when('_PARTIND_') do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'ID';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   when('_WARN_') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_SEGMENT') do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'SEGMENT';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   when('_NODE_') do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'SEGMENT';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   when('EM_CLASSTARGET') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_VALUETARGET') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_PREDICTION') ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   when('EM_PROBABILITY') ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   when('EM_EVENTPROBABILITY') ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   when('EM_CLASSIFICATION') ROLE = 'CLASSIFICATION';
+MPRINT(EMADVISECOLUMNS):   when('EM_DECISION') ROLE = 'DECISION';
+MPRINT(EMADVISECOLUMNS):   when('EM_PROFIT') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_LOSS') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_ROI') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('URI') ROLE = 'URL';
+MPRINT(EMADVISECOLUMNS):   when('FILTERED') ROLE = 'TEXTLOC';
+MPRINT(EMADVISECOLUMNS):   otherwise do;
+MPRINT(EMADVISECOLUMNS):   if upcase(NAME) =: 'ZIP' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'REJECTED';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   COMMENT = 'Rejected by: Exceed the maximum class level of %s';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if upcase(NAME) in('FREQ', 'FREQUENCY') then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'FREQ';
+MPRINT(EMADVISECOLUMNS):   if TYPE = 'C' then ROLE = 'INPUT';
+MPRINT(EMADVISECOLUMNS):   else if _freqflag =1 then ROLE='REJECTED';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else do;
+MPRINT(EMADVISECOLUMNS):   name_prefix = scan(_uname, 1, '_');
+MPRINT(EMADVISECOLUMNS):   if scan(_uname, 2, '_') = '' then name_prefix='';
+MPRINT(EMADVISECOLUMNS):   if name_prefix in('F', 'I', 'U') then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'CLASSIFICATION';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('Q') then ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('P', 'V') then ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('R', 'RS', 'RT', 'RD', 'RDS', 'RDT', 'RA', 
+'RAS', 'RAT') then ROLE = 'RESIDUAL';
+MPRINT(EMADVISECOLUMNS):   else if name_prefix ='D' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'DECISION';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if name_prefix ='B' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'SEGMENT';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('EP', 'BP', 'CP', 'EL', 'CL', 'BL', 'W', 
+'ROI', 'IC') then ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   else do;
+MPRINT(EMADVISECOLUMNS):   array _ROLE_ (19) $32 _TEMPORARY_ 
+('ASSESS','CLASSIFICATION','CENSOR', 'COST', 'CROSSID', 'DECISION', 'ID','INPUT', 'LABEL', 
+'MISSING','PREDICT','REFERRER','REJECTED', 'RESIDUAL','SEGMENT', 'SEQUENCE','TARGET', 'TEXT', 
+'TIMEID');
+MPRINT(EMADVISECOLUMNS):   drop _found_ i;
+MPRINT(EMADVISECOLUMNS):   _found_=0;
+MPRINT(EMADVISECOLUMNS):   do i=1 to 19 until(_found_=1);
+MPRINT(EMADVISECOLUMNS):   if index(_uname, trim(_ROLE_{i}))=1 then do;
+MPRINT(EMADVISECOLUMNS):   ROLE=_ROLE_{i};
+MPRINT(EMADVISECOLUMNS):   if ROLE = 'ID' then LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   else if ROLE = 'SEGMENT' then LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   else if ROLE = 'TIMEID' and TYPE='N' then LEVEL = 'INTERVAL';
+MPRINT(EMADVISECOLUMNS):   _found_=1;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if length(_uname)>2 then do;
+MPRINT(EMADVISECOLUMNS):   if substr(reverse(trim(_uname)), 1, 3) = 'DI_' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'ID';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if ROLE='FREQ' then _freqflag=1;
+MPRINT(EMADVISECOLUMNS):   else if ROLE = 'CLASSIFICATION' then LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   if symexist('RATEMKG_ROLE') then do;
+MPRINT(EMADVISECOLUMNS):   if upcase(symget('RATEMKG_ROLE')) in('Y', 'YES') then do;
+MPRINT(EMADVISECOLUMNS):   if _uname =: 'POLICY' then ROLE = 'POLICYID';
+MPRINT(EMADVISECOLUMNS):   else if _uname in ('PARTITION', '_PARTIND_') then ROLE = 
+'PARTITION';
+MPRINT(EMADVISECOLUMNS):   else if type = 'N' then do;
+MPRINT(EMADVISECOLUMNS):   if _uname = 'EXPOSURE' then ROLE = 'EXPOSURE';
+MPRINT(EMADVISECOLUMNS):   else if _uname = 'YEAR' then ROLE = 'YEAR';
+MPRINT(EMADVISECOLUMNS):   else if _uname = 'WEIGHT' then ROLE = 'WEIGHT';
+MPRINT(EMADVISECOLUMNS):   else if _uname = 'OFFSET' then ROLE = 'OFFSET';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if role = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if formattype in('DATE', 'DATETIME', 'TIME') then role = 'TIMEID';
+MPRINT(EMADVISECOLUMNS):   else role = 'INPUT';
+MPRINT(EMADVISECOLUMNS):   roleAssigned = 1;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else role = upcase(role);
+MPRINT(EMADVISECOLUMNS):   if REPORT = '' then REPORT = 'N';
+MPRINT(EMADVISECOLUMNS):   if symexist('dmwb_product') then do;
+MPRINT(EMADVISECOLUMNS):   if upcase(symget('dmwb_product')) = 'FACTORYMINER_DATASOURCE' then 
+do;
+MPRINT(EMADVISECOLUMNS):   if ROLE ^in('INPUT', 'TARGET', 'REJECTED', 'SEGMENT', 'FREQ', 'ID', 
+'KEY') then ROLE='REJECTED';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2Q7DMSB;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2Q7DMSB;
+MPRINT(EMADVISECOLUMNS):   label NAME = "Variable Name" TYPE = "Type" ROLE = "Role" LEVEL= 
+"Measurement Level" ORDER= "Order" CREATOR= "Creator" FORMATTYPE= "Format Type" FAMILY= 
+"Family" DISTRIBUTION= "Distribution" PRICE= "Price" LOWERLIMIT= "Lower limit" UPPERLIMIT= 
+"Upper Limit" REPORT= "Report" COMMENT= "Comment" INDEX= "Index" INDEXTYPE= "IndexType" LABEL= 
+"Label" LENGTH= "Length";
+MPRINT(EMADVISECOLUMNS):   drop levelAssigned roleAssigned;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):   
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.COLUMNMETA;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * &nodeid: Merge incoming metadata;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   proc contents data=EMWS1.Boost_TRAIN noprint out=_temp2(keep=NAME);
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=_temp2;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Boost_CMeta_TRAIN out=_temp;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data EMWS1.Score3_CMeta_TRAIN;
+MPRINT(EM_DIAGRAM):   merge WORK.COLUMNMETA(in=_a) _temp2(in=_b) _temp(drop=FORMAT INFORMAT 
+LENGTH INDEX INDEXTYPE in=_c) end=_eof_;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   if (^_a and _b) or (^_c and _a and _b) then delete;
+MPRINT(EM_DIAGRAM):   if ^_b then CREATOR = "Score3";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Score3: Apply Delta Code;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   if NAME = "I_Age_group" then ROLE = 'REJECTED';
+MPRINT(EM_DIAGRAM):   if NAME = "P_Age_group0_17" then ROLE = 'REJECTED';
+MPRINT(EM_DIAGRAM):   if NAME = "P_Age_group18_24" then ROLE = 'REJECTED';
+MPRINT(EM_DIAGRAM):   if NAME = "P_Age_group25_44" then ROLE = 'REJECTED';
+MPRINT(EM_DIAGRAM):   if NAME = "P_Age_group65_84" then ROLE = 'REJECTED';
+MPRINT(EM_DIAGRAM):   if NAME = "P_Age_group85_" then ROLE = 'REJECTED';
+MPRINT(EM_DIAGRAM):   if NAME = "EM_CLASSIFICATION" then LEVEL = 'NOMINAL';
+MPRINT(EM_DIAGRAM):   else if NAME = "EM_PREDICTION" then LEVEL = 'INTERVAL';
+MPRINT(EM_DIAGRAM):   else if NAME = "EM_PROBABILITY" then LEVEL = 'INTERVAL';
+MPRINT(EM_DIAGRAM):   else if NAME = "EM_EVENTPROBABILITY" then LEVEL = 'INTERVAL';
+MPRINT(EM_DIAGRAM):   else if NAME = "EM_DECISION" then LEVEL = 'NOMINAL';
+MPRINT(EM_DIAGRAM):   else if NAME = "EM_PROFIT" then LEVEL = 'INTERVAL';
+MPRINT(EM_DIAGRAM):   else if NAME = "EM_SEGMENT" then LEVEL = 'NOMINAL';
+MPRINT(EM_DIAGRAM):   else if NAME = "EM_VALUETARGET" then LEVEL = 'INTERVAL';
+MPRINT(EM_DIAGRAM):   else if NAME = "EM_CLASSTARGET" then LEVEL = 'NOMINAL';
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename _delta;
+NOTE: View EMWS1.SCORE3_TRAIN.VIEW used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.06 seconds
+      
+NOTE: View EMWS1.SCORE3_VALIDATE.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.04 seconds
+      
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;
