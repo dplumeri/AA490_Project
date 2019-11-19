@@ -1,0 +1,522 @@
+*------------------------------------------------------------*
+User:                student
+Date:                November 14, 2019
+Time:                16:46:56
+Site:                70082322
+Platform:            X64_10PRO
+Maintenance Release: 9.04.01M4P110916
+EM Version:          14.2
+* 
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 14, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:46:56" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Training Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Training Log
+Date:                November 14, 2019
+Time:                16:46:56
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O3RCAKB6 "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force\Workspaces\EMWS2\Meta\EMTRAIN.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O3RCAKB6 new;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOG "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force\Workspaces\EMWS2\Meta\EMLOG.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 14, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:46:56" );
+MPRINT(EM_DIAGRAM):   file _LOG;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "User:                student";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "Site:                70082322";
+MPRINT(EM_DIAGRAM):   put "Platform:            X64_10PRO";
+MPRINT(EM_DIAGRAM):   put "Maintenance Release: 9.04.01M4P110916";
+MPRINT(EM_DIAGRAM):   put "EM Version:          14.2";
+MPRINT(EM_DIAGRAM):   put "* ";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force\Workspaces\EMWS2\Meta\EMTRAIN.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _LOG MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_LOGIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename _LOGIN "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force\Workspaces\EMWS2\Meta\EMSCORE.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force\Workspaces\EMWS2\Meta\EMREPORT.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    filename _LOG;
+MPRINT(EM_DIAGRAM):    filename _OUT "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force\Workspaces\EMWS2\Meta\EMOUTPUT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 14, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:46:56" );
+MPRINT(EM_DIAGRAM):   file _OUT;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "User:                student";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Training Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force\Workspaces\EMWS2\Meta\EMTRAIN.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   ;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _OUT MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_OUTIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force\Workspaces\EMWS2\Meta\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Report Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force\Workspaces\EMWS2\Meta\EMREPORT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    filename _OUT;
+MPRINT(EM_DIAGRAM):    filename _emtool_ 'C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force\Workspaces\EMWS2\Meta\EMRUNSTATUS.xml' encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    filename _emtool_ 'C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force\Workspaces\EMWS2\Meta\EMRUNSTATUS.xml' encoding="UTF-8" NOBOM;
+18755      proc freq data=EMWS2.Meta_VariableSet noprint;
+MPRINT(EM_DIAGRAM):    proc freq data=EMWS2.Meta_VariableSet noprint;
+18756      table ROLE*LEVEL/out=WORK.MetaMETA;
+MPRINT(EM_DIAGRAM):   table ROLE*LEVEL/out=WORK.MetaMETA;
+18757      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 5 observations read from the data set EMWS2.META_VARIABLESET.
+NOTE: The data set WORK.METAMETA has 2 observations and 4 variables.
+NOTE: PROCEDURE FREQ used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+18758      proc print data=WORK.MetaMETA label noobs;
+MPRINT(EM_DIAGRAM):   proc print data=WORK.MetaMETA label noobs;
+18759      var ROLE LEVEL COUNT;
+MPRINT(EM_DIAGRAM):   var ROLE LEVEL COUNT;
+18760      label ROLE = "%sysfunc(sasmsg(sashelp.dmine, meta_role_vlabel, NOQUOTE))" LEVEL = "%sysfunc(sasmsg(sashelp.dmine, meta_level_vlabel, NOQUOTE))" COUNT = "%sysfunc(sasmsg(sashelp.dmine, rpt_count_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label ROLE = "Role" LEVEL = "Measurement Level" COUNT = "Frequency Count";
+18761      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+18762      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_varSummary_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Variable Summary";
+MPRINT(EM_DIAGRAM):   run;
+18763      run;
+ 
+NOTE: There were 2 observations read from the data set WORK.METAMETA.
+NOTE: The PROCEDURE PRINT printed page 1.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+18764      title10;
+MPRINT(EM_DIAGRAM):   title10;
+18765      data WORK.META_CHANGE;
+MPRINT(EM_DIAGRAM):    data WORK.META_CHANGE;
+18766      set EMWS2.Meta_VariableSet;
+MPRINT(EM_DIAGRAM):   set EMWS2.Meta_VariableSet;
+18767      where (NEWROLE ne "DEFAULT" and NEWROLE ne ROLE) or (NEWLEVEL ne "DEFAULT" and NEWLEVEL ne LEVEL) or (NEWREPORT ne "D" and NEWREPORT ne REPORT) or (NEWORDER ne "DEFAULT" and NEWORDER ne ORDER);
+MPRINT(EM_DIAGRAM):   where (NEWROLE ne "DEFAULT" and NEWROLE ne ROLE) or (NEWLEVEL ne "DEFAULT" and NEWLEVEL ne LEVEL) or (NEWREPORT ne "D" and NEWREPORT ne REPORT) or (NEWORDER ne "DEFAULT" and NEWORDER ne ORDER);
+18768      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 0 observations read from the data set EMWS2.META_VARIABLESET.
+      WHERE ((NEWROLE not = 'DEFAULT') and (NEWROLE not = ROLE)) or ((NEWLEVEL not = 'DEFAULT') and (NEWLEVEL not = LEVEL)) or ((NEWREPORT not = 'D') and (NEWREPORT not = REPORT)) or ((NEWORDER not = 'DEFAULT') and (NEWORDER not = ORDER));
+NOTE: The data set WORK.META_CHANGE has 0 observations and 26 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+18769      %let EM_LIB=EMWS2;
+18770      %em_path(NODEID=Meta, OUTDS=META_PREDECESSOR, NODES=PREDECESSOR);
+MPRINT(EM_DIAGRAM):
+MPRINT(EM_PATH):   proc display c=sashelp.emutil.path.scl;
+MPRINT(EM_PATH):   run;
+ 
+18771      data META_PREDECESSOR;
+MPRINT(EM_PATH):   data META_PREDECESSOR;
+18772      length nodelabel $32 component $32;
+MPRINT(EM_PATH):   length nodelabel $32 component $32;
+18773      nodelabel="Stat2";
+MPRINT(EM_PATH):   nodelabel="Stat2";
+18774      component="StatExplore";
+MPRINT(EM_PATH):   component="StatExplore";
+18775      output;
+MPRINT(EM_PATH):   output;
+18776      run;
+MPRINT(EM_PATH):   run;
+ 
+NOTE: The data set WORK.META_PREDECESSOR has 1 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+ 
+ 
+NOTE: PROCEDURE DISPLAY used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+ 
+ 
+MPRINT(EM_PATH):
+MPRINT(EM_DIAGRAM):  ;
+ 
+18777      data EMWS2.Meta_CHOICE(rename=(role=Key dataset=Choice));
+MPRINT(EM_DIAGRAM):    data EMWS2.Meta_CHOICE(rename=(role=Key dataset=Choice));
+18778      retain Variable 'DATASET';
+MPRINT(EM_DIAGRAM):   retain Variable 'DATASET';
+18779      set
+18780      EMWS2.Stat2_exportset
+18781      ;
+MPRINT(EM_DIAGRAM):   set EMWS2.Stat2_exportset ;
+18782      where ROLE in('RAW', 'TRAIN', 'VALIDATE', 'TEST', 'SCORE', 'TRANSACTION') and export='Y';
+MPRINT(EM_DIAGRAM):   where ROLE in('RAW', 'TRAIN', 'VALIDATE', 'TEST', 'SCORE', 'TRANSACTION') and export='Y';
+18783      if ROLE in('RAW','TRAIN') then ROLE='TRAIN';
+MPRINT(EM_DIAGRAM):   if ROLE in('RAW','TRAIN') then ROLE='TRAIN';
+18784      drop export needupdate importport applydelta applyscore deltacode;
+MPRINT(EM_DIAGRAM):   drop export needupdate importport applydelta applyscore deltacode;
+18785      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 1 observations read from the data set EMWS2.STAT2_EXPORTSET.
+      WHERE ROLE in ('RAW', 'SCORE', 'TEST', 'TRAIN', 'TRANSACTION', 'VALIDATE') and (export='Y');
+NOTE: The data set EMWS2.META_CHOICE has 1 observations and 13 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+18786      %let hiddenNum=0;
+18787      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+18788      length string $200;
+MPRINT(EM_DIAGRAM):   length string $200;
+18789      set EMWS2.Meta_VariableSet end = eof;
+MPRINT(EM_DIAGRAM):   set EMWS2.Meta_VariableSet end = eof;
+18790      file #LN00260;
+MPRINT(EM_DIAGRAM):   file #LN00260;
+18791      where HIDDEN = 'Y' and HIDE = 'N';
+MPRINT(EM_DIAGRAM):   where HIDDEN = 'Y' and HIDE = 'N';
+18792      if _N_=1 then do;
+MPRINT(EM_DIAGRAM):   if _N_=1 then do;
+18793      put "*------------------------------------------------------------*;";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*;";
+18794      put '* Unhide Variables;';
+MPRINT(EM_DIAGRAM):   put '* Unhide Variables;';
+18795      put "*------------------------------------------------------------*;";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*;";
+18796      put 'length NAME $32 ROLE $32 LEVEL $10 ORDER $8 CREATOR $32 REPORT $1 FORMATTYPE $10';
+MPRINT(EM_DIAGRAM):   put 'length NAME $32 ROLE $32 LEVEL $10 ORDER $8 CREATOR $32 REPORT $1 FORMATTYPE $10';
+18797      put '       LABEL $200 FORMAT INFORMAT $36 INDEX $1 INDEXTYPE $9;';
+MPRINT(EM_DIAGRAM):   put '       LABEL $200 FORMAT INFORMAT $36 INDEX $1 INDEXTYPE $9;';
+18798      end;
+MPRINT(EM_DIAGRAM):   end;
+18799      string = 'NAME="'!!strip(NAME)!!'";';
+MPRINT(EM_DIAGRAM):   string = 'NAME="'!!strip(NAME)!!'";';
+18800      put string;
+MPRINT(EM_DIAGRAM):   put string;
+18801      if NEWROLE ne 'DEFAULT' then ROLE = NEWROLE;
+MPRINT(EM_DIAGRAM):   if NEWROLE ne 'DEFAULT' then ROLE = NEWROLE;
+18802      string = 'ROLE="'!!strip(ROLE)!!'";';
+MPRINT(EM_DIAGRAM):   string = 'ROLE="'!!strip(ROLE)!!'";';
+18803      put string;
+MPRINT(EM_DIAGRAM):   put string;
+18804      if NEWLEVEL ne 'DEFAULT' then LEVEL = NEWLEVEL;
+MPRINT(EM_DIAGRAM):   if NEWLEVEL ne 'DEFAULT' then LEVEL = NEWLEVEL;
+18805      string = 'LEVEL="'!!strip(LEVEL)!!'";';
+MPRINT(EM_DIAGRAM):   string = 'LEVEL="'!!strip(LEVEL)!!'";';
+18806      put string;
+MPRINT(EM_DIAGRAM):   put string;
+18807      if NEWREPORT ne 'D' then REPORT = NEWREPORT;
+MPRINT(EM_DIAGRAM):   if NEWREPORT ne 'D' then REPORT = NEWREPORT;
+18808      string = 'REPORT="'!!strip(REPORT)!!'";';
+MPRINT(EM_DIAGRAM):   string = 'REPORT="'!!strip(REPORT)!!'";';
+18809      put string;
+MPRINT(EM_DIAGRAM):   put string;
+18810      if NEWORDER ne 'DEFAULT' then ORDER = NEWORDER;
+MPRINT(EM_DIAGRAM):   if NEWORDER ne 'DEFAULT' then ORDER = NEWORDER;
+18811      string = 'ORDER="'!!strip(ORDER)!!'";';
+MPRINT(EM_DIAGRAM):   string = 'ORDER="'!!strip(ORDER)!!'";';
+18812      put string;
+MPRINT(EM_DIAGRAM):   put string;
+18813      string = 'CREATOR="'!!strip(CREATOR)!!'";';
+MPRINT(EM_DIAGRAM):   string = 'CREATOR="'!!strip(CREATOR)!!'";';
+18814      put string;
+MPRINT(EM_DIAGRAM):   put string;
+18815      string = 'FORMATTYPE="'!!strip(FORMATTYPE)!!'";';
+MPRINT(EM_DIAGRAM):   string = 'FORMATTYPE="'!!strip(FORMATTYPE)!!'";';
+18816      put string;
+MPRINT(EM_DIAGRAM):   put string;
+18817      string = 'TYPE="'!!strip(TYPE)!!'";';
+MPRINT(EM_DIAGRAM):   string = 'TYPE="'!!strip(TYPE)!!'";';
+18818      put string;
+MPRINT(EM_DIAGRAM):   put string;
+18819      string = 'LABEL="'!!strip(LABEL)!!'";';
+MPRINT(EM_DIAGRAM):   string = 'LABEL="'!!strip(LABEL)!!'";';
+18820      put string;
+MPRINT(EM_DIAGRAM):   put string;
+18821      string = 'FORMAT="'!!strip(FORMAT)!!'";';
+MPRINT(EM_DIAGRAM):   string = 'FORMAT="'!!strip(FORMAT)!!'";';
+18822      put string;
+MPRINT(EM_DIAGRAM):   put string;
+18823      string = 'INFORMAT="'!!strip(INFORMAT)!!'";';
+MPRINT(EM_DIAGRAM):   string = 'INFORMAT="'!!strip(INFORMAT)!!'";';
+18824      put string;
+MPRINT(EM_DIAGRAM):   put string;
+18825      string = 'INDEX="'!!strip(INDEX)!!'";';
+MPRINT(EM_DIAGRAM):   string = 'INDEX="'!!strip(INDEX)!!'";';
+18826      put string;
+MPRINT(EM_DIAGRAM):   put string;
+18827      string = 'INDEXTYPE="'!!strip(INDEXTYPE)!!'";';
+MPRINT(EM_DIAGRAM):   string = 'INDEXTYPE="'!!strip(INDEXTYPE)!!'";';
+18828      put string;
+MPRINT(EM_DIAGRAM):   put string;
+18829      string = 'LENGTH='!!strip(put(length, best.))!!';';
+MPRINT(EM_DIAGRAM):   string = 'LENGTH='!!strip(put(length, best.))!!';';
+18830      put string;
+MPRINT(EM_DIAGRAM):   put string;
+18831      put 'output;';
+MPRINT(EM_DIAGRAM):   put 'output;';
+18832      if eof then call symput('hiddenNum', '1');
+MPRINT(EM_DIAGRAM):   if eof then call symput('hiddenNum', '1');
+18833      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: The file #LN00260 is:
+      Filename=C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force\Workspaces\EMWS2\Meta\UNHIDECODE_DATA.sas,
+      RECFM=V,LRECL=32767,File Size (bytes)=0,
+      Last Modified=14Nov2019:16:46:55,
+      Create Time=14Nov2019:16:46:55
+ 
+NOTE: 0 records were written to the file #LN00260.
+NOTE: There were 0 observations read from the data set EMWS2.META_VARIABLESET.
+      WHERE (HIDDEN='Y') and (HIDE='N');
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Meta: Exporting results data sets from predecessor;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   proc printto;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 14, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:46:56" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Score Log
+Date:                November 14, 2019
+Time:                16:46:56
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O245Y_TX "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force\Workspaces\EMWS2\Meta\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O245Y_TX new;
+MPRINT(EM_DIAGRAM):   run;
+18938      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+18939      * Meta: Scoring DATA data;
+MPRINT(EM_DIAGRAM):   * Meta: Scoring DATA data;
+18940      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+18941      data EMWS2.Meta_TRAIN
+18942      / view=EMWS2.Meta_TRAIN
+18943      ;
+MPRINT(EM_DIAGRAM):   data EMWS2.Meta_TRAIN / view=EMWS2.Meta_TRAIN ;
+18944      set EMWS2.Stat2_TRAIN
+18945      ;
+MPRINT(EM_DIAGRAM):   set EMWS2.Stat2_TRAIN ;
+18946      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: DATA STEP view saved on file EMWS2.META_TRAIN.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS2.STAT2_TRAIN.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.04 seconds
+ 
+NOTE: DATA statement used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.06 seconds
+ 
+ 
+MPRINT(EM_DIAGRAM):   quit;
+18947      quit;
+ 
+18948      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+18949      * Meta: Computing metadata for TRAIN data;
+MPRINT(EM_DIAGRAM):   * Meta: Computing metadata for TRAIN data;
+18950      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+ 
+18951      data _TEMP;
+MPRINT(EM_DIAGRAM):    data _TEMP;
+18952      set EMWS2.Stat2_CMeta_TRAIN;
+MPRINT(EM_DIAGRAM):   set EMWS2.Stat2_CMeta_TRAIN;
+18953      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 5 observations read from the data set EMWS2.STAT2_CMETA_TRAIN.
+NOTE: The data set WORK._TEMP has 5 observations and 20 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+18954      proc sort data=_TEMP;
+MPRINT(EM_DIAGRAM):    proc sort data=_TEMP;
+18955      by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+18956      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 5 observations read from the data set WORK._TEMP.
+NOTE: The data set WORK._TEMP has 5 observations and 20 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+ 
+ 
+18957      data EMWS2.Meta_CMeta_TRAIN;
+MPRINT(EM_DIAGRAM):    data EMWS2.Meta_CMeta_TRAIN;
+18958      set _TEMP;
+MPRINT(EM_DIAGRAM):   set _TEMP;
+18959      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 5 observations read from the data set WORK._TEMP.
+NOTE: The data set EMWS2.META_CMETA_TRAIN has 5 observations and 20 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+NOTE: View EMWS2.META_TRAIN.VIEW used (Total process time):
+      real time           0.08 seconds
+      cpu time            0.07 seconds
+ 
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 14, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:46:56" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Report Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Report Log
+Date:                November 14, 2019
+Time:                16:46:56
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O1Y3OJK7 "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force\Workspaces\EMWS2\Meta\EMREPORT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O1Y3OJK7 new;
+MPRINT(EM_DIAGRAM):   run;
+18983      proc print data = EMWS2.Meta_CMeta_TRAIN(obs=500) noobs label;
+MPRINT(EM_DIAGRAM):    proc print data = EMWS2.Meta_CMeta_TRAIN(obs=500) noobs label;
+18984      var name role level creator label;
+MPRINT(EM_DIAGRAM):   var name role level creator label;
+18985      label NAME = "%sysfunc(sasmsg(sashelp.dmine, meta_name_vlabel,      NOQUOTE))" LEVEL = "%sysfunc(sasmsg(sashelp.dmine, meta_level_vlabel,     NOQUOTE))" ROLE = "%sysfunc(sasmsg(sashelp.dmine, meta_role_vlabel,      NOQUOTE))" CREATOR =
+18986         "%sysfunc(sasmsg(sashelp.dmine, meta_creator_vlabel,   NOQUOTE))" LABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_label_vlabel,     NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label NAME = "Variable Name" LEVEL = "Measurement Level" ROLE = "Role" CREATOR = "Creator" LABEL = "Label";
+18987      format label $32.;
+MPRINT(EM_DIAGRAM):   format label $32.;
+18988      title9 "%sysfunc(sasmsg(sashelp.dmine, rpt_exptattributes_title, NOQUOTE, TRAIN))";
+MPRINT(EM_DIAGRAM):   title9 "Exported Attributes for TRAIN Port";
+18989      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_maxObsPrinted_title, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "(maximum 500 observations printed)";
+MPRINT(EM_DIAGRAM):   run;
+18990      run;
+ 
+NOTE: There were 5 observations read from the data set EMWS2.META_CMETA_TRAIN.
+NOTE: The PROCEDURE PRINT printed page 2.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.03 seconds
+ 
+ 
+18991      title9;
+MPRINT(EM_DIAGRAM):   title9;
+18992      title10;
+MPRINT(EM_DIAGRAM):   title10;
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;
