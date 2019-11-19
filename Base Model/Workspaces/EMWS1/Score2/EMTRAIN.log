@@ -1,0 +1,231 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 14, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "18:53:24" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Training Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Training Log
+Date:                November 14, 2019
+Time:                18:53:24
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O2CD6XAA "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS1\Score2\EMTRAIN.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O2CD6XAA new;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOG "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS1\Score2\EMLOG.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 14, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "18:53:24" );
+MPRINT(EM_DIAGRAM):   file _LOG;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "User:                student";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "Site:                70082322";
+MPRINT(EM_DIAGRAM):   put "Platform:            X64_10PRO";
+MPRINT(EM_DIAGRAM):   put "Maintenance Release: 9.04.01M4P110916";
+MPRINT(EM_DIAGRAM):   put "EM Version:          14.2";
+MPRINT(EM_DIAGRAM):   put "* ";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS1\Score2\EMTRAIN.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _LOG MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_LOGIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename _LOGIN "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS1\Score2\EMSCORE.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS1\Score2\EMREPORT.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    filename _LOG;
+MPRINT(EM_DIAGRAM):    filename _OUT "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS1\Score2\EMOUTPUT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 14, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "18:53:24" );
+MPRINT(EM_DIAGRAM):   file _OUT;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "User:                student";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Training Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS1\Score2\EMTRAIN.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   ;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _OUT MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_OUTIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS1\Score2\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Report Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS1\Score2\EMREPORT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    filename _OUT;
+MPRINT(EM_DIAGRAM):    filename _emtool_ 'C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS1\Score2\EMRUNSTATUS.xml' encoding="UTF-8" NOBOM;
+22118      proc freq data=EMWS1.Score2_VariableSet noprint;
+MPRINT(EM_DIAGRAM):    proc freq data=EMWS1.Score2_VariableSet noprint;
+22119      table ROLE*LEVEL/out=WORK.Score2META;
+MPRINT(EM_DIAGRAM):   table ROLE*LEVEL/out=WORK.Score2META;
+22120      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: No observations in data set EMWS1.SCORE2_VARIABLESET.
+NOTE: The data set WORK.SCORE2META has 0 observations and 4 variables.
+NOTE: PROCEDURE FREQ used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+22121      proc print data=WORK.Score2META label noobs;
+MPRINT(EM_DIAGRAM):   proc print data=WORK.Score2META label noobs;
+22122      var ROLE LEVEL COUNT;
+MPRINT(EM_DIAGRAM):   var ROLE LEVEL COUNT;
+22123      label ROLE = "%sysfunc(sasmsg(sashelp.dmine, meta_role_vlabel, NOQUOTE))" LEVEL = "%sysfunc(sasmsg(sashelp.dmine, meta_level_vlabel, NOQUOTE))" COUNT = "%sysfunc(sasmsg(sashelp.dmine, rpt_count_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label ROLE = "Role" LEVEL = "Measurement Level" COUNT = "Frequency Count";
+22124      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+22125      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_varSummary_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Variable Summary";
+MPRINT(EM_DIAGRAM):   run;
+22126      run;
+
+NOTE: No observations in data set WORK.SCORE2META.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+22127      title10;
+MPRINT(EM_DIAGRAM):   title10;
+22128      %let groupid =;
+22129      %let endGroupid =;
+22130      %let prescoreid =;
+22131      %let idsTable =;
+22132      %let hpdmTable =;
+22133      %let lasthptm =;
+22134      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+22135      set EMWS1.Ids2_EMINFO;
+MPRINT(EM_DIAGRAM):   set EMWS1.Ids2_EMINFO;
+22136      where upcase(key) in('LASTHPTM', 'IDSTABLE', 'HPDMSAMPLE', 'PRESCORECODE','ENDGROUP', 'GROUPINFO', 'BOOSTINFO', 'BAGINFO', 'TARGETINFO', 'INDEXINFO');
+MPRINT(EM_DIAGRAM):   where upcase(key) in('LASTHPTM', 'IDSTABLE', 'HPDMSAMPLE', 'PRESCORECODE','ENDGROUP', 'GROUPINFO', 'BOOSTINFO', 'BAGINFO', 'TARGETINFO', 'INDEXINFO');
+22137      select(upcase(key));
+MPRINT(EM_DIAGRAM):   select(upcase(key));
+22138      when('LASTHPTM') call symput('lasthptm', DATA);
+MPRINT(EM_DIAGRAM):   when('LASTHPTM') call symput('lasthptm', DATA);
+22139      when('IDSTABLE') call symput('idsTable', DATA);
+MPRINT(EM_DIAGRAM):   when('IDSTABLE') call symput('idsTable', DATA);
+22140      when('HPDMSAMPLE') call symput('hpdmSample', DATA);
+MPRINT(EM_DIAGRAM):   when('HPDMSAMPLE') call symput('hpdmSample', DATA);
+22141      when('PRESCORECODE') call symput('prescoreId', DATA);
+MPRINT(EM_DIAGRAM):   when('PRESCORECODE') call symput('prescoreId', DATA);
+22142      when('ENDGROUP') call symput('endGroupId', DATA);
+MPRINT(EM_DIAGRAM):   when('ENDGROUP') call symput('endGroupId', DATA);
+22143      otherwise call symput('groupId', DATA);
+MPRINT(EM_DIAGRAM):   otherwise call symput('groupId', DATA);
+22144      end;
+MPRINT(EM_DIAGRAM):   end;
+22145      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 1 observations read from the data set EMWS1.IDS2_EMINFO.
+      WHERE UPCASE(key) in ('BAGINFO', 'BOOSTINFO', 'ENDGROUP', 'GROUPINFO', 'HPDMSAMPLE', 'IDSTABLE', 'INDEXINFO', 'LASTHPTM', 'PRESCORECODE', 'TARGETINFO');
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+22146      %let em_rootkey=;
+22147      %let em_keytype=;
+22148      %let em_keylen=;
+22149      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+22150      set EMWS1.Ids2_cmeta_data;
+MPRINT(EM_DIAGRAM):   set EMWS1.Ids2_cmeta_data;
+22151      where role='KEY';
+MPRINT(EM_DIAGRAM):   where role='KEY';
+22152      call symput('em_rootkey', strip(NAME));
+MPRINT(EM_DIAGRAM):   call symput('em_rootkey', strip(NAME));
+22153      call symput('em_keytype', strip(TYPE));
+MPRINT(EM_DIAGRAM):   call symput('em_keytype', strip(TYPE));
+22154      call symput('em_rootlen', strip(put(length, best.)));
+MPRINT(EM_DIAGRAM):   call symput('em_rootlen', strip(put(length, best.)));
+22155      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 0 observations read from the data set EMWS1.IDS2_CMETA_DATA.
+      WHERE role='KEY';
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+NOTE: This SAS session is using a registry in WORK.  All changes will be lost at the end of this session.
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;
