@@ -8,8 +8,8 @@ proc sql;
 create table disease_cases_grouped as
 select Year, Gender, Age, Disease, sum(Cases_in_1000s) as Cases_in_1000s 
 from disease_cases_formated
-group by Year, Age, Gender
-order by Year, Age, Gender;
+group by Year, Age, Gender, Disease
+order by Year, Age;
 data disease_projected_final;
 set proj_pop_final_no_dupe_2;
 run;
