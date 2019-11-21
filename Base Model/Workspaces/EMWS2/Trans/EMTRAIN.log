@@ -1,0 +1,535 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 21, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:19:37" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Training Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Training Log
+Date:                November 21, 2019
+Time:                16:19:37
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O29FI9_3 "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Trans\EMTRAIN.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O29FI9_3 new;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOG "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Trans\EMLOG.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 21, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:19:37" );
+MPRINT(EM_DIAGRAM):   file _LOG;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "User:                student";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "Site:                70082322";
+MPRINT(EM_DIAGRAM):   put "Platform:            X64_10PRO";
+MPRINT(EM_DIAGRAM):   put "Maintenance Release: 9.04.01M4P110916";
+MPRINT(EM_DIAGRAM):   put "EM Version:          14.2";
+MPRINT(EM_DIAGRAM):   put "* ";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Trans\EMTRAIN.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _LOG MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_LOGIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename _LOGIN "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Trans\EMSCORE.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Trans\EMREPORT.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    filename _LOG;
+MPRINT(EM_DIAGRAM):    filename _OUT "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Trans\EMOUTPUT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 21, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:19:37" );
+MPRINT(EM_DIAGRAM):   file _OUT;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "User:                student";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Training Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Trans\EMTRAIN.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   ;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _OUT MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_OUTIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Trans\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Report Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Trans\EMREPORT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    filename _OUT;
+MPRINT(EM_DIAGRAM):    filename _emtool_ 'C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Trans\EMRUNSTATUS.xml' encoding="UTF-8" NOBOM;
+149361     proc freq data=EMWS2.Trans_VariableSet noprint;
+MPRINT(EM_DIAGRAM):    proc freq data=EMWS2.Trans_VariableSet noprint;
+149362     table ROLE*LEVEL/out=WORK.TransMETA;
+MPRINT(EM_DIAGRAM):   table ROLE*LEVEL/out=WORK.TransMETA;
+149363     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 4 observations read from the data set EMWS2.TRANS_VARIABLESET.
+NOTE: The data set WORK.TRANSMETA has 3 observations and 4 variables.
+NOTE: PROCEDURE FREQ used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+149364     proc print data=WORK.TransMETA label noobs;
+MPRINT(EM_DIAGRAM):   proc print data=WORK.TransMETA label noobs;
+149365     var ROLE LEVEL COUNT;
+MPRINT(EM_DIAGRAM):   var ROLE LEVEL COUNT;
+149366     label ROLE = "%sysfunc(sasmsg(sashelp.dmine, meta_role_vlabel, NOQUOTE))" LEVEL = "%sysfunc(sasmsg(sashelp.dmine, meta_level_vlabel, NOQUOTE))" COUNT = "%sysfunc(sasmsg(sashelp.dmine, rpt_count_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label ROLE = "Role" LEVEL = "Measurement Level" COUNT = "Frequency Count";
+149367     title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+149368     title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_varSummary_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Variable Summary";
+MPRINT(EM_DIAGRAM):   run;
+149369     run;
+
+NOTE: There were 3 observations read from the data set WORK.TRANSMETA.
+NOTE: The PROCEDURE PRINT printed page 43.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+149370     title10;
+MPRINT(EM_DIAGRAM):   title10;
+149371     data WORK.M3GRO9PI;
+MPRINT(EM_DIAGRAM):    data WORK.M3GRO9PI;
+149372     set WORK.M3GRO9PI;
+MPRINT(EM_DIAGRAM):   set WORK.M3GRO9PI;
+149373     if (METHOD='NONE' and ROLE ne 'FREQ') or (role = 'REJECTED' and METHOD = 'DEFAULT') then delete;
+MPRINT(EM_DIAGRAM):   if (METHOD='NONE' and ROLE ne 'FREQ') or (role = 'REJECTED' and METHOD = 'DEFAULT') then delete;
+149374     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 4 observations read from the data set WORK.M3GRO9PI.
+NOTE: The data set WORK.M3GRO9PI has 4 observations and 22 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_DIAGRAM):   reset noprint;
+MPRINT(EM_DIAGRAM):   select count(*) into :_tmpnobs from EMWS2.Impt_TRAIN;
+NOTE: View EMWS2.IMPT_TRAIN.VIEW used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+      
+NOTE: There were 336 observations read from the data set EMWS2.PART_TRAIN.
+MPRINT(EM_DIAGRAM):   quit;
+149439     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):     *------------------------------------------------------------*;
+149440     * Trans: Computing Summary Statistics;
+MPRINT(EM_DIAGRAM):   * Trans: Computing Summary Statistics;
+149441     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+149442     data WORK.M056W3FX;
+MPRINT(EM_DIAGRAM):   data WORK.M056W3FX;
+149443     set WORK.M056W3FX;
+MPRINT(EM_DIAGRAM):   set WORK.M056W3FX;
+149444     if (role = 'REJECTED') then role = 'INPUT';
+MPRINT(EM_DIAGRAM):   if (role = 'REJECTED') then role = 'INPUT';
+149445     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 4 observations read from the data set WORK.M056W3FX.
+NOTE: The data set WORK.M056W3FX has 4 observations and 22 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+149446     *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------* ;
+149447     * EM: DMDBClass Macro ;
+MPRINT(EM_DIAGRAM):   * EM: DMDBClass Macro ;
+149448     *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+149449     %macro DMDBClass;
+149450         Age_group(ASC) Date(ASC)
+149451     %mend DMDBClass;
+149452     *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+149453     * EM: DMDBVar Macro ;
+MPRINT(EM_DIAGRAM):   * EM: DMDBVar Macro ;
+149454     *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+149455     %macro DMDBVar;
+149456         Population_in_thousands Sum_Labor_Force_Pop
+149457     %mend DMDBVar;
+149458     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+149459     * EM: Create DMDB;
+MPRINT(EM_DIAGRAM):   * EM: Create DMDB;
+149460     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+149461     proc dmdb batch data=EMWS2.Impt_TRAIN
+149462     dmdbcat=WORK.EM_DMDB
+149463     classout=WORK.Transclassout
+149464     maxlevel = 513
+149465     ;
+MPRINT(EM_DIAGRAM):   proc dmdb batch data=EMWS2.Impt_TRAIN dmdbcat=WORK.EM_DMDB classout=WORK.Transclassout maxlevel = 513 ;
+MPRINT(EM_DIAGRAM):   class
+149466     class %DMDBClass;
+MPRINT(DMDBCLASS):   Age_group(ASC) Date(ASC)
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   var
+149467     var %DMDBVar;
+MPRINT(DMDBVAR):   Population_in_thousands Sum_Labor_Force_Pop
+MPRINT(EM_DIAGRAM):  ;
+149468     target
+149469     Sum_Labor_Force_Pop
+149470     ;
+MPRINT(EM_DIAGRAM):   target Sum_Labor_Force_Pop ;
+149471     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: Records processed = 336   Memory used = 511K.
+NOTE: View EMWS2.IMPT_TRAIN.VIEW used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.03 seconds
+      
+NOTE: There were 336 observations read from the data set EMWS2.PART_TRAIN.
+NOTE: There were 336 observations read from the data set EMWS2.IMPT_TRAIN.
+NOTE: The data set WORK.TRANSCLASSOUT has 18 observations and 9 variables.
+NOTE: PROCEDURE DMDB used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.04 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+MPRINT(EM_DIAGRAM):   *--- end code ---*;
+149472     quit;
+149473     *--- end code ---*;
+
+149474     data WORK.TransINTERVALMETA;
+MPRINT(EM_DIAGRAM):    data WORK.TransINTERVALMETA;
+149475     set WORK.M3GRO9PI;
+MPRINT(EM_DIAGRAM):   set WORK.M3GRO9PI;
+149476     if LEVEL ne 'INTERVAL' then delete;
+MPRINT(EM_DIAGRAM):   if LEVEL ne 'INTERVAL' then delete;
+149477     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 4 observations read from the data set WORK.M3GRO9PI.
+NOTE: The data set WORK.TRANSINTERVALMETA has 2 observations and 22 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+149478     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+149479     * Trans: Determining Variables to Scale;
+MPRINT(EM_DIAGRAM):   * Trans: Determining Variables to Scale;
+149480     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+149481     data WORK.M0SVYVGY;
+MPRINT(EM_DIAGRAM):   data WORK.M0SVYVGY;
+149482     set WORK.M0SVYVGY;
+MPRINT(EM_DIAGRAM):   set WORK.M0SVYVGY;
+149483     where (TYPE="N" and (METHOD in("MAX_NORM", "MAX_CORR", "EQUALIZE", "OP_MAX_NORM", "OP_EQUALIZE"))) or (ROLE eq "FREQ");
+MPRINT(EM_DIAGRAM):   where (TYPE="N" and (METHOD in("MAX_NORM", "MAX_CORR", "EQUALIZE", "OP_MAX_NORM", "OP_EQUALIZE"))) or (ROLE eq "FREQ");
+149484     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 0 observations read from the data set WORK.M0SVYVGY.
+      WHERE ((TYPE='N') and METHOD in ('EQUALIZE', 'MAX_CORR', 'MAX_NORM', 'OP_EQUALIZE', 'OP_MAX_NORM')) or (ROLE='FREQ');
+NOTE: The data set WORK.M0SVYVGY has 0 observations and 22 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+*------------------------------------------------------------* 
+*  Trans: Equalize transformation requires a class target variable.  Transformation will be ignored. 
+*------------------------------------------------------------* 
+*------------------------------------------------------------* 
+*  Trans: Optimize equalize max. transformation requires a class target variable.  Transformation will be ignored. 
+*------------------------------------------------------------* 
+NOTE: View EMWS2.IMPT_TRAIN.VIEW used (Total process time):
+      real time           0.21 seconds
+      cpu time            0.15 seconds
+      
+149487     %exploreSample(DATA=EMWS2.Impt_TRAIN, OUTPUT=EMWS2.Trans_SAMPLE_DATA, METADATA=EMWS2.Impt_CMeta_TRAIN, VARS=, METHOD=FIRSTN, SIZE=DEFAULT, ALPHA=0.01, PVALUE=0.01, SEED=12345);
+MPRINT(EM_DIAGRAM):     
+MPRINT(EXPLORESAMPLE):   filename x catalog 'sashelp.emutil.exploreobs.source';
+NOTE: %INCLUDE (level 1) file X is file SASHELP.EMUTIL.EXPLOREOBS.SOURCE.
+149488    +/*------------------------------------------------------------------
+149489    +  MACRO EXPLOREOBS
+149490    +
+149491    +  SUPPORT:  SASDHD - David Duling
+149492    +  PRODUCT:  Enterprise Miner
+149493    +
+149494    +  DESCRIPTION:
+149495    +  Generates maximum and default numbers of observations to
+149496    +  download for visualization depending on the record length.
+149497    +
+149498    +  Values were determined by trial and error using typical
+149499    +  Windows workstation configurations.
+149500    +
+149501    +  Discrete sets of values are returned so that user experience
+149502    +  will be consitent with similar sized data sets.
+149503    +
+149504    +  These macro variables are set:
+149505    +  _exploreobs_max -- maximum number of obs downloadable
+149506    +  _exploreobs_def -- default number of obs to be downloaded
+149507    +  _exploreobs_recl - record length.  Might be useful for reporting.
+149508    +
+149509    +  Use the _exploreobs_max to set limit the GUI selection of
+149510    +  observations for downloading.  The GUI selection for obs
+149511    +  could be reduced to "Default" and "Max".
+149512    +
+149513    +  Parameters
+149514    +  data=   libname.memname of input data
+149515    +  vars=   subset list of variables.
+149516    +          downloading 1 out of 500 really does work like downloading
+149517    +          1 out of 1 vars.  Users may select a subset of vars for
+149518    +                   visualizations.  Pass in the list as space delimited
+149519    +          var names.  If vars is not specified, the record length
+149520    +          of the entire data will be used.
+149521    +  NBYTES=   maximum number of bytes that shouldn't be exceeded.
+149522    +
+149523    +  Control
+149524    +  Users may control the values by entering these macro variables.
+149525    +            EM_EXPLOREOBS_MAX
+149526    +            EM_EXPLOREOBS_DEFAULT
+149527    +  These values override the computed values.
+149528    +
+149529    +  Debugging
+149530    +  %let _exploreobs_debug=1 ;
+149531    +--------------------------------------------------------------------
+149532    +  HISTORY: 20APR2004. sasdhd. pushed.
+149533    +           18DEC2004. sasdhd. S0280556.
+149534    +           07SEP2007. sasdhd. HK1009586
+149535    +--------------------------------------------------------------------*/
+149536    +
+149537    +%macro exploreobs(data=,vars=, nbytes=) ;
+149538    +
+149539    +   /*--- variable definitions ---*/
+149540    +   %global _exploreobs_max _exploreobs_def _exploreobs_recl _exploreobs_debug ;
+149541    +   %local xobs xvars xlen vlen xi vname vlist ;
+149542    +   %local _exp_source _exp_notes ;
+149543    +
+149544    +   /*--- USER definitions ---*/
+149545    +   %global EM_EXPLOREOBS_MAX EM_EXPLOREOBS_DEFAULT ;
+149546    +
+149547    +   /*--- variable intializations ---*/
+149548    +   %let _exploreobs_max=0 ;
+149549    +   %let _exploreobs_def=0 ;
+149550    +   %let _exploreobs_recl=0 ;
+149551    +   %let xvars= 0 ;
+149552    +   %let xlen = 0 ;
+149553    +   %let xobs = 0 ;
+149554    +
+149555    +   /*--- data error checks ---*/
+149556    +   %if "&data" eq "" %then %do ;
+149557    +            %put NOTE: DATA is not specified. ;
+149558    +            %goto term ;
+149559    +      %end ;
+149560    +
+149561    +   %let dsid=%sysfunc(open(&data)) ;
+149562    +   %if not &dsid %then %do ;
+149563    +            %put NOTE: DATA &data is not available. ;
+149564    +            %goto term ;
+149565    +      %end ;
+149566    +
+149567    +   /*--- if a vars list exists generate a subset ---*/
+149568    +   %if &vars ne %then %do ;
+149569    +         %let dsid=%sysfunc(close(&dsid)) ;
+149570    +         %if &_exploreobs_debug ne 1 %then %do ;
+149571    +                  %let _exp_source=%sysfunc(getoption(SOURCE)) ;
+149572    +            %let _exp_notes =%sysfunc(getoption(NOTES)) ;
+149573    +                  options nosource nonotes ;
+149574    +         %end ;
+149575    +         data _exploreobs_temp_data ;
+149576    +         set &data(obs=0) ;
+149577    +          keep &vars ;
+149578    +         run;
+149579    +         %if &_exploreobs_debug ne 1 %then %do ;
+149580    +                  options &_exp_source &_exp_notes ;
+149581    +         %end ;
+149582    +         %let dsid=%sysfunc(open(_exploreobs_temp_data)) ;
+149583    +         %if &dsid eq 0 %then %do ;
+149584    +                  %put NOTE: Sample is not available.;
+149585    +                  %goto term ;
+149586    +            %end ;
+149587    +      %end ;
+149588    +
+149589    +   /*--- get var attributes ---*/
+149590    +   %let xvars=%sysfunc(attrn(&dsid,nvars)) ;
+149591    +   %let xobs= %sysfunc(attrn(&dsid,nobs )) ;
+149592    +   %let xlen= %sysfunc(attrn(&dsid,lrecl)) ;
+149593    +   %let dsid= %sysfunc(close(&dsid)) ;
+149594    +
+149595    +   /*--- set default and max obs ---*/
+149596    +   %let _exploreobs_recl=%eval(&xlen) ;
+149597    +   %if &_exploreobs_recl eq 0 %then %do ;
+149598    +             %let _exploreobs_max= 0 ;
+149599    +             %let _exploreobs_def= 0 ;
+149600    +             %goto term ;
+149601    +
+149602    +   %end ;
+149603    +   %else
+149604    +   %if &_exploreobs_recl le 32 %then %do ;
+149605    +             %let _exploreobs_max=100000 ;
+149606    +             %let _exploreobs_def= 10000 ;
+149607    +   %end ;
+149608    +   %else
+149609    +   %if &_exploreobs_recl le 128 %then %do ;
+149610    +             %let _exploreobs_max=60000 ;
+149611    +             %let _exploreobs_def= 6000 ;
+149612    +   %end ;
+149613    +   %else
+149614    +   %if &_exploreobs_recl lt 1000 %then %do ;
+149615    +             %let _exploreobs_max=20000 ;
+149616    +             %let _exploreobs_def= 2000 ;
+149617    +   %end ;
+149618    +   %else
+149619    +   %if &_exploreobs_recl lt 5000 %then %do ;
+149620    +             %let _exploreobs_max= 10000 ;
+149621    +             %let _exploreobs_def=  1000 ;
+149622    +   %end ;
+149623    +   %else
+149624    +   %if &_exploreobs_recl lt 20000 %then %do ;
+149625    +             %let _exploreobs_max= 5000 ;
+149626    +             %let _exploreobs_def=  500 ;
+149627    +   %end ;
+149628    +   %else %do ;
+149629    +             %let _exploreobs_max= 1000 ;
+149630    +             %let _exploreobs_def=  200 ;
+149631    +   %end ;
+149632    +
+149633    +   /*--- Users options ---*/
+149634    +   %if &EM_EXPLOREOBS_MAX ne %then %do ;
+149635    +            %let _exploreobs_max= %eval(&EM_EXPLOREOBS_MAX) ;
+149636    +   %end;
+149637    +   %if &EM_EXPLOREOBS_DEFAULT ne %then %do ;
+149638    +            %let _exploreobs_def= %eval(&EM_EXPLOREOBS_DEFAULT) ;
+149639    +   %end;
+149640    +
+149641    +    /*--- S0868273 ---*/
+149642    +    %if "&NBYTES" ne "" %then %do;
+149643    +       %let nbytes_nrows = %eval(&nbytes/ &_exploreobs_recl);
+149644    +       %if &EM_EXPLOREOBS_MAX ne %then %do ;
+149645    +           %let _exploreobs_max   = %sysfunc(min(&nbytes_nrows , &EM_EXPLOREOBS_MAX));
+149646    +       %end;
+149647    +
+149648    +       %if &EM_EXPLOREOBS_DEFAULT ne %then %do ;
+149649    +          %let nbytes_nrows      = %eval(&nbytes_nrows/10);
+149650    +          %let _exploreobs_def   = %sysfunc(min(&nbytes_nrows , &EM_EXPLOREOBS_DEFAULT));
+149651    +          %if ^&_exploreobs_def %then
+149652    +              %let _exploreobs_def = 1;
+149653    +
+149654    +       %end;
+149655    +    %end;
+149656    +
+149657    +   /*--- Terminate ---*/
+149658    +   %term:
+149659    +
+149660    +   %put NOTE: EXPLOREOBS &data : vars= &xvars : recl= &_exploreobs_recl : max=&_exploreobs_max : def= &_exploreobs_def ;
+149661    +%mend ;
+149662    +
+149663    +
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EXPLORESAMPLE):   filename x;
+NOTE: Fileref X has been deassigned.
+NOTE: EXPLOREOBS EMWS2.Impt_TRAIN : vars= 7 : recl= 174 : max=20000 : def= 2000
+MPRINT(EXPLORESAMPLE):   ;
+MPRINT(HPDM_PERFORMANCE):  ;
+PERFORMANCE  DETAILS
+MPRINT(EXPLORESAMPLE):  ;
+*------------------------------------------------------------*
+* FirstN/Top sample
+*------------------------------------------------------------*
+MPRINT(EXPLORESAMPLE):   data EMWS2.Trans_SAMPLE_DATA;
+MPRINT(EXPLORESAMPLE):   set EMWS2.Impt_TRAIN(obs= 2000 );
+MPRINT(EXPLORESAMPLE):   run;
+
+NOTE: View EMWS2.IMPT_TRAIN.VIEW used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.01 seconds
+      
+NOTE: There were 336 observations read from the data set EMWS2.PART_TRAIN.
+NOTE: There were 336 observations read from the data set EMWS2.IMPT_TRAIN.
+NOTE: The data set EMWS2.TRANS_SAMPLE_DATA has 336 observations and 7 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_DIAGRAM):  ;
+
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;
