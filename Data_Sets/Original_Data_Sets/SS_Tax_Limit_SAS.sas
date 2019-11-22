@@ -1,9 +1,9 @@
 /*Establish the Lib - CHANGE TO WHEREVER YOUR LIB IS STORED*/
-libname Shirt "C:\Users\student\OneDrive - Bryant University\College\Senior\Semester I\AA490\Final Project\Git_Repository\AA490_Project\FP_Libs\SSTaxLimit";
+libname SS_Dat "C:\Users\student\OneDrive - Bryant University\College\Senior\Semester I\AA490\Final Project\Git_Repository\AA490_Project\FP_Libs\SSTaxLimit";
 /*So you don't have to say lib.table*/
-options user = SSTaxLim;
-data SSTaxLimit;
-	infile "C:\Users\student\OneDrive - Bryant University\College\Senior\Semester I\AA490\Final Project\Git_Repository\AA490_Project\SS_Tax_Limit_Data.prn"
+options user = SS_dat;
+data SSTaxLimit_Input;
+	infile "C:\Users\student\OneDrive - Bryant University\College\Senior\Semester I\AA490\Final Project\Git_Repository\AA490_Project\Excel_to_SAS_Files\SS_Tax_Limit_Data.prn"
 	truncover 
 	firstobs = 2;
 	input 	@1 Year $7.
@@ -16,7 +16,7 @@ data SSTaxLimit;
 	;
 run;
 data FixedValues;
-set SSTaxLimit;
+set SSTaxLimit_Input;
 	if Employee_SS_Rate ^= CHAR_Employee_SS_Rate then 
 		Employee_SS_Rate = CHAR_Employee_SS_Rate;
 	if Employer_SS_Rate ^= CHAR_Employer_SS_Rate then
