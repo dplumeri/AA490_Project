@@ -1,0 +1,1012 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 19, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "13:26:39" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Report Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Report Log
+Date:                November 19, 2019
+Time:                13:26:39
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O0V15FVE "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS1\Score4\EMREPORT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O0V15FVE new;
+MPRINT(EM_DIAGRAM):   run;
+23509      data WORK.SCOREHISTMETA;
+MPRINT(EM_DIAGRAM):    data WORK.SCOREHISTMETA;
+23510      length NAME $32 ROLE $32 LEVEL $8;
+MPRINT(EM_DIAGRAM):   length NAME $32 ROLE $32 LEVEL $8;
+23511      NAME="P_Sum_Labor_Force_Pop";
+MPRINT(EM_DIAGRAM):   NAME="P_Sum_Labor_Force_Pop";
+23512      ROLE="INPUT";
+MPRINT(EM_DIAGRAM):   ROLE="INPUT";
+23513      LEVEL="INTERVAL";
+MPRINT(EM_DIAGRAM):   LEVEL="INTERVAL";
+23514      TYPE="N";
+MPRINT(EM_DIAGRAM):   TYPE="N";
+23515      output;
+MPRINT(EM_DIAGRAM):   output;
+23516      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: The data set WORK.SCOREHISTMETA has 1 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+NOTE: View EMWS1.REG2_TRAIN.VIEW used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+23517      %var_profile(DATA=EMWS1.Reg2_TRAIN, OUTPUT=work.Score4_VARHIST, METADATA=WORK.SCOREHISTMETA, COMPUTESTAT=N, BINDATA=_bindata, STAT=_STAT, PCTLSTAT=work.Score4_SUMDATA, FREQ=, BIN=Y, NUMBARS= 16);
+MPRINT(EM_DIAGRAM):   
+*------------------------------------------------------------*
+* EM: Computing Summary Statistics
+*------------------------------------------------------------*
+MPRINT(VAR_PROFILE):   filename _mac catalog 'WORK.MACROS.VARIABLES.SOURCE';
+MPRINT(VAR_PROFILE):   data _null;
+MPRINT(VAR_PROFILE):   set WORK.SCOREHISTMETA(where=(LEVEL = 'INTERVAL' and ROLE ne 'FREQ')) end=eof;
+MPRINT(VAR_PROFILE):   if eof then call symput('_nobs', put(_N_, best.));
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: There were 1 observations read from the data set WORK.SCOREHISTMETA.
+      WHERE (LEVEL='INTERVAL') and (ROLE not = 'FREQ');
+NOTE: The data set WORK._NULL has 1 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(VAR_PROFILE):   data _null_;
+MPRINT(VAR_PROFILE):   file _mac;
+MPRINT(VAR_PROFILE):   length _VARS $80;
+MPRINT(VAR_PROFILE):   retain _vars;
+MPRINT(VAR_PROFILE):   if _n_ =1 then put '%macro _vars;';
+MPRINT(VAR_PROFILE):   set WORK.SCOREHISTMETA end=eof;
+MPRINT(VAR_PROFILE):   where LEVEL = 'INTERVAL' or ROLE='FREQ';
+MPRINT(VAR_PROFILE):   if ROLE='FREQ' then call symput('FREQ', trim(NAME));
+MPRINT(VAR_PROFILE):   else do;
+MPRINT(VAR_PROFILE):   if length(strip(_vars)) + length(strip(NAME)) + 1 <80 then _vars = strip(_vars)!! ' ' !!strip(NAME);
+MPRINT(VAR_PROFILE):   else do;
+MPRINT(VAR_PROFILE):   put _Vars;
+MPRINT(VAR_PROFILE):   _vars = strip(NAME);
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   if eof then do;
+MPRINT(VAR_PROFILE):   put _Vars;
+MPRINT(VAR_PROFILE):   put '%mend _vars;';
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: The file _MAC is:
+      Catalog Name=WORK.MACROS.VARIABLES.SOURCE,
+      Catalog Page Size=4096,
+      Number of Catalog Pages=4,
+      Created=Tue, Nov 19, 2019 01:26:39 PM,
+      Last Modified=Tue, Nov 19, 2019 01:26:39 PM,
+      Filename=C:\Users\student\AppData\Local\Temp\SAS Temporary Files\_TD7932_830-5CG9310VLM_\Prc2\macros.sas7bcat,
+      Release Created=9.0401M4,
+      Host Created=X64_10PRO,
+      Owner Name=830-5CG9310VLM\student,
+      File Size=             5KB,
+      File Size (bytes)=5120
+
+NOTE: 3 records were written to the file _MAC.
+      The minimum record length was 12.
+      The maximum record length was 21.
+NOTE: There were 1 observations read from the data set WORK.SCOREHISTMETA.
+      WHERE (LEVEL='INTERVAL') or (ROLE='FREQ');
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VAR_PROFILE):   filename _mac;
+NOTE: Fileref _MAC has been deassigned.
+*------------------------------------------------------------*
+* computingmidpoints_note
+*------------------------------------------------------------*
+MPRINT(VAR_PROFILE):   filename fref catalog 'work.em.profileformat.source';
+MPRINT(VAR_PROFILE):   proc dmdb data=EMWS1.Reg2_TRAIN(obs=1000000) classout=_CLASSOUT maxlevel=17;
+MPRINT(VAR_PROFILE):   class
+MPRINT(_VARS):   P_Sum_Labor_Force_Pop
+MPRINT(VAR_PROFILE):   ;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: Records processed = 168   Memory used = 511K.
+NOTE: View EMWS1.REG2_TRAIN.VIEW used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+NOTE: There were 168 observations read from the data set EMWS1.PART4_TRAIN.
+NOTE: There were 168 observations read from the data set EMWS1.REG2_TRAIN.
+NOTE: The data set WORK._CLASSOUT has 4 observations and 9 variables.
+NOTE: PROCEDURE DMDB used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(VAR_PROFILE):   proc freq data=_CLASSOUT ORDER=DATA noprint;
+MPRINT(VAR_PROFILE):   table NAME / OUT = _COUNT(where=(COUNT<17));
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: There were 4 observations read from the data set WORK._CLASSOUT.
+NOTE: The data set WORK._COUNT has 1 observations and 3 variables.
+NOTE: PROCEDURE FREQ used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VAR_PROFILE):   proc sort data=_COUNT(keep=NAME COUNT rename=(COUNT=_NUMCLASSBINS_));
+MPRINT(VAR_PROFILE):   by NAME;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: There were 1 observations read from the data set WORK._COUNT.
+NOTE: The data set WORK._COUNT has 1 observations and 2 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VAR_PROFILE):   proc sort data=_CLASSOUT;
+MPRINT(VAR_PROFILE):   by NAME;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: There were 4 observations read from the data set WORK._CLASSOUT.
+NOTE: The data set WORK._CLASSOUT has 4 observations and 9 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VAR_PROFILE):   proc transpose data=_CLASSOUT out=_DISCRETEMID(DROP=_NAME_ RENAME=(NAME=VARIABLE)) prefix=_MIDPOINT;
+MPRINT(VAR_PROFILE):   var NRAW;
+MPRINT(VAR_PROFILE):   by NAME;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: There were 4 observations read from the data set WORK._CLASSOUT.
+NOTE: The data set WORK._DISCRETEMID has 1 observations and 5 variables.
+NOTE: PROCEDURE TRANSPOSE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VAR_PROFILE):   proc delete data=WORK._CLASSOUT;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: Deleting WORK._CLASSOUT (memtype=DATA).
+NOTE: PROCEDURE DELETE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VAR_PROFILE):   data _null_;
+MPRINT(VAR_PROFILE):   dsid = open('_DISCRETEMID');
+MPRINT(VAR_PROFILE):   if dsid then do;
+MPRINT(VAR_PROFILE):   call symput('NUMCLASSBARS', left(trim(put(attrn(dsid, 'NVARS')-1, best12.))));
+MPRINT(VAR_PROFILE):   dsid = close(dsid);
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VAR_PROFILE):   data _DISCRETEMID;
+MPRINT(VAR_PROFILE):   merge _DISCRETEMID _COUNT(in=_b rename=(NAME=VARIABLE));
+MPRINT(VAR_PROFILE):   keep VARIABLE _MIDPOINT1--_MIDPOINT4 _NUMCLASSBINS_;
+MPRINT(VAR_PROFILE):   by VARIABLE;
+MPRINT(VAR_PROFILE):   if _b then output;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: There were 1 observations read from the data set WORK._DISCRETEMID.
+NOTE: There were 1 observations read from the data set WORK._COUNT.
+NOTE: The data set WORK._DISCRETEMID has 1 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VAR_PROFILE):   data _EMVARDIST / view=_EMVARDIST;
+MPRINT(VAR_PROFILE):   set EMWS1.Reg2_TRAIN(keep
+MPRINT(VAR_PROFILE):  =P_Sum_Labor_Force_Pop obs=1000000);
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: DATA STEP view saved on file WORK._EMVARDIST.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.REG2_TRAIN.VIEW used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(VAR_PROFILE):   proc stdize data=_EMVARDIST outstat=work.Score4_SUMDATA out=_null_ pctlpts=(0 5 25 50 75 95 100);
+MPRINT(VAR_PROFILE):   var
+MPRINT(_VARS):   P_Sum_Labor_Force_Pop
+MPRINT(VAR_PROFILE):   ;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: There were 168 observations read from the data set EMWS1.PART4_TRAIN.
+NOTE: View WORK._EMVARDIST.VIEW used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.04 seconds
+      
+NOTE: There were 168 observations read from the data set EMWS1.REG2_TRAIN.
+NOTE: There were 168 observations read from the data set WORK._EMVARDIST.
+NOTE: The data set WORK.SCORE4_SUMDATA has 15 observations and 2 variables.
+NOTE: PROCEDURE STDIZE used (Total process time):
+      real time           0.07 seconds
+      cpu time            0.06 seconds
+      
+
+MPRINT(VAR_PROFILE):   proc datasets lib=WORK NOLIST;
+MPRINT(VAR_PROFILE):   delete _EMVARDIST / mt=view;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: Deleting WORK._EMVARDIST (memtype=VIEW).
+MPRINT(VAR_PROFILE):   quit;
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VAR_PROFILE):   proc transpose data=work.Score4_SUMDATA out=_bindata(rename=(_NAME_=VARIABLE COL1=MIN COL2=P5 COL3=P95 COL4=MAX));
+MPRINT(VAR_PROFILE):   where _type_ in('P0', 'P5', 'P95', 'P100');
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: There were 4 observations read from the data set WORK.SCORE4_SUMDATA.
+      WHERE _type_ in ('P0', 'P100', 'P5', 'P95');
+NOTE: The data set WORK._BINDATA has 1 observations and 6 variables.
+NOTE: PROCEDURE TRANSPOSE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(VAR_PROFILE):   proc sort data=_bindata;
+MPRINT(VAR_PROFILE):   by VARIABLE;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: There were 1 observations read from the data set WORK._BINDATA.
+NOTE: The data set WORK._BINDATA has 1 observations and 6 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VAR_PROFILE):   data _bindata;
+MPRINT(VAR_PROFILE):   set _bindata;
+MPRINT(VAR_PROFILE):   length Format $12;
+MPRINT(VAR_PROFILE):   array _midpoint{28};
+MPRINT(VAR_PROFILE):   array _bounds{28};
+MPRINT(VAR_PROFILE):   if (max - min)>1e-10 then do;
+MPRINT(VAR_PROFILE):   step = abs(P95-P5)/16;
+MPRINT(VAR_PROFILE):   lstep = abs(p5- min)/5;
+MPRINT(VAR_PROFILE):   ustep = abs(max-p95)/5;
+MPRINT(VAR_PROFILE):   ;
+MPRINT(VAR_PROFILE):   if lstep<=step and ustep<=step then do;
+MPRINT(VAR_PROFILE):   step = abs(MIN-MAX)/16;
+MPRINT(VAR_PROFILE):   START=MIN;
+MPRINT(VAR_PROFILE):   do i=1 to 16;
+MPRINT(VAR_PROFILE):   _bounds(i) = MIN + i*step;
+MPRINT(VAR_PROFILE):   if abs(_bounds{i})< 1e-10 then _bounds(i)= 0;
+MPRINT(VAR_PROFILE):   _midpoint(i) = MIN+ (i-0.5)*step;
+MPRINT(VAR_PROFILE):   if abs(_midpoint{i})< 1e-10 then _midpoint(i)= 0;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   else do;
+MPRINT(VAR_PROFILE):   if lstep<=step then do;
+MPRINT(VAR_PROFILE):   step = abs(MIN-P95)/16;
+MPRINT(VAR_PROFILE):   do i=1 to 16;
+MPRINT(VAR_PROFILE):   _bounds(i) = MIN + i*step;
+MPRINT(VAR_PROFILE):   if abs(_bounds{i})< 1e-10 then _bounds(i)= 0;
+MPRINT(VAR_PROFILE):   _midpoint(i) = MIN+ (i-0.5)*step;
+MPRINT(VAR_PROFILE):   if abs(_midpoint{i})< 1e-10 then _midpoint(i)= 0;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   do i=1 to 5;
+MPRINT(VAR_PROFILE):   numbars = 16 + i;
+MPRINT(VAR_PROFILE):   _bounds(numbars) = P95 + i*ustep;
+MPRINT(VAR_PROFILE):   if abs(_bounds{numbars})< 1e-10 then _bounds(numbars)= 0;
+MPRINT(VAR_PROFILE):   _midpoint(numbars) = P95 + (i-0.5)*ustep + abs(ustep-step)/2;
+MPRINT(VAR_PROFILE):   if abs(_bounds{numbars})< 1e-10 then _bounds(numbars)= 0;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   else do;
+MPRINT(VAR_PROFILE):   do i=1 to 5;
+MPRINT(VAR_PROFILE):   _bounds(i) = P5 - (5-i)*lstep;
+MPRINT(VAR_PROFILE):   if abs(_bounds{i})< 1e-10 then _bounds(i)= 0;
+MPRINT(VAR_PROFILE):   _midpoint(i) = P5 - (5 - i + 0.5)*lstep - abs(lstep-step)/2;
+MPRINT(VAR_PROFILE):   if abs(_midpoint{i})< 1e-10 then _midpoint(i)= 0;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   if ustep<= step then do;
+MPRINT(VAR_PROFILE):   step = abs(P5-MAX)/16;
+MPRINT(VAR_PROFILE):   do i=1 to 16;
+MPRINT(VAR_PROFILE):   numbars = i+5;
+MPRINT(VAR_PROFILE):   _bounds(numbars) = P5 + i*step;
+MPRINT(VAR_PROFILE):   if abs(_bounds{numbars})< 1e-10 then _bounds(numbars)= 0;
+MPRINT(VAR_PROFILE):   _midpoint(numbars) = P5 + (i-0.5)*step;
+MPRINT(VAR_PROFILE):   if abs(_midpoint{numbars})< 1e-10 then _midpoint(numbars)= 0;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   else do;
+MPRINT(VAR_PROFILE):   do i=1 to 16;
+MPRINT(VAR_PROFILE):   numbars = i+5;
+MPRINT(VAR_PROFILE):   _bounds(numbars) = P5 + i*step;
+MPRINT(VAR_PROFILE):   if abs(_bounds{numbars})< 1e-10 then _bounds(numbars)= 0;
+MPRINT(VAR_PROFILE):   _midpoint(numbars) = P5 + (i-0.5)*step;
+MPRINT(VAR_PROFILE):   if abs(_midpoint{numbars})< 1e-10 then _midpoint(numbars)= 0;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   do i=1 to 5;
+MPRINT(VAR_PROFILE):   numbars = 16+5+i;
+MPRINT(VAR_PROFILE):   _bounds(numbars) = P95 + i*ustep;
+MPRINT(VAR_PROFILE):   if abs(_bounds{numbars})< 1e-10 then _bounds(numbars)= 0;
+MPRINT(VAR_PROFILE):   _midpoint(numbars) = P95 + (i-0.5)*ustep + abs(ustep-step)/2;
+MPRINT(VAR_PROFILE):  if abs(_midpoint{numbars})< 1e-10 then _midpoint(numbars)= 0;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   else do;
+MPRINT(VAR_PROFILE):   _bounds(1) = MIN;
+MPRINT(VAR_PROFILE):   _midpoint(1) = MIN;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   Format = 'F'!!trim(left(put(_n_,6.)))!!'_';
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: There were 1 observations read from the data set WORK._BINDATA.
+NOTE: The data set WORK._BINDATA has 1 observations and 69 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(VAR_PROFILE):   data _bindata;
+MPRINT(VAR_PROFILE):   merge _bindata _DISCRETEMID(in = _b);
+MPRINT(VAR_PROFILE):   by VARIABLE;
+MPRINT(VAR_PROFILE):   if _b then _DISCRETE=1;
+MPRINT(VAR_PROFILE):   else _DISCRETE=0;
+MPRINT(VAR_PROFILE):   run;
+
+WARNING: Multiple lengths were specified for the BY variable VARIABLE by input data sets. This might cause unexpected results.
+NOTE: There were 1 observations read from the data set WORK._BINDATA.
+NOTE: There were 1 observations read from the data set WORK._DISCRETEMID.
+NOTE: The data set WORK._BINDATA has 1 observations and 71 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VAR_PROFILE):   data _null_;
+MPRINT(VAR_PROFILE):   file fref;
+MPRINT(VAR_PROFILE):   set _bindata end=eof;
+MPRINT(VAR_PROFILE):   array _bounds{26};
+MPRINT(VAR_PROFILE):   array _midpoint{26};
+MPRINT(VAR_PROFILE):   if _n_=1 then put 'proc format;';
+MPRINT(VAR_PROFILE):   put 'value ' Format;
+MPRINT(VAR_PROFILE):   if _DISCRETE then do;
+MPRINT(VAR_PROFILE):   do i=1 to 16;
+MPRINT(VAR_PROFILE):   _MID = _midpoint{i};
+MPRINT(VAR_PROFILE):   if _MID ne . and i<= _NUMCLASSBINS_ then put _MID '="' _MID '"';
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   put ';';
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   else do;
+MPRINT(VAR_PROFILE):   if min eq max then do;
+MPRINT(VAR_PROFILE):   put 'low - high ="' MIN '";';
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   else do;
+MPRINT(VAR_PROFILE):   _LB = MIN;
+MPRINT(VAR_PROFILE):   _MID = _midpoint{1};
+MPRINT(VAR_PROFILE):   _UB = _bounds{1};
+MPRINT(VAR_PROFILE):   put 'LOW -' _UB '="' _MID '"';
+MPRINT(VAR_PROFILE):   do i=1 to 26-1;
+MPRINT(VAR_PROFILE):   _LB = _bounds{i};
+MPRINT(VAR_PROFILE):   j=i+1;
+MPRINT(VAR_PROFILE):   _MID = _midpoint{j};
+MPRINT(VAR_PROFILE):   _UB = _bounds{j};
+MPRINT(VAR_PROFILE):   if (_UB ne .) and (_LB ne _UB) then do;
+MPRINT(VAR_PROFILE):   if _UB>=MAX then put _LB '-HIGH="' _MID '"';
+MPRINT(VAR_PROFILE):   else put _LB '-' _UB '="' _MID '"';
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   put ';';
+MPRINT(VAR_PROFILE):   if eof then put 'run;';
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: The file FREF is:
+      Catalog Name=WORK.EM.PROFILEFORMAT.SOURCE,
+      Catalog Page Size=4096,
+      Number of Catalog Pages=4,
+      Created=Tue, Nov 19, 2019 01:26:39 PM,
+      Last Modified=Tue, Nov 19, 2019 01:26:39 PM,
+      Filename=C:\Users\student\AppData\Local\Temp\SAS Temporary Files\_TD7932_830-5CG9310VLM_\Prc2\em.sas7bcat,
+      Release Created=9.0401M4,
+      Host Created=X64_10PRO,
+      Owner Name=830-5CG9310VLM\student,
+      File Size=             5KB,
+      File Size (bytes)=5120
+
+NOTE: 9 records were written to the file FREF.
+      The minimum record length was 1.
+      The maximum record length was 29.
+NOTE: There were 1 observations read from the data set WORK._BINDATA.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(VAR_PROFILE):   proc format;
+MPRINT(VAR_PROFILE):   value F1_ 1206477.2727 ="1206477.2727 " 4121421.0526 ="4121421.0526 " 10060155.556 ="10060155.556 " 12222902.439 ="12222902.439 " ;
+NOTE: Format F1_ has been output.
+MPRINT(VAR_PROFILE):   ;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: PROCEDURE FORMAT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VAR_PROFILE):   filename fref;
+NOTE: Fileref FREF has been deassigned.
+MPRINT(VAR_PROFILE):   data _binneddata / view=_binneddata;
+MPRINT(VAR_PROFILE):   set EMWS1.Reg2_TRAIN(obs=1000000);
+MPRINT(VAR_PROFILE):   format P_Sum_Labor_Force_Pop F1_. ;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: DATA STEP view saved on file WORK._BINNEDDATA.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.REG2_TRAIN.VIEW used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(VAR_PROFILE):   proc dmdb data=_binneddata(obs=1000000) classout=_temptab(rename=(NAME=VARIABLE FREQUENCY=COUNT FREQPERCENT=PERCENT));
+MPRINT(VAR_PROFILE):   class
+MPRINT(_VARS):   P_Sum_Labor_Force_Pop
+MPRINT(VAR_PROFILE):   ;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: Records processed = 168   Memory used = 511K.
+NOTE: There were 168 observations read from the data set EMWS1.PART4_TRAIN.
+NOTE: View WORK._BINNEDDATA.VIEW used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.01 seconds
+      
+NOTE: There were 168 observations read from the data set EMWS1.REG2_TRAIN.
+NOTE: There were 168 observations read from the data set WORK._BINNEDDATA.
+NOTE: The data set WORK._TEMPTAB has 4 observations and 9 variables.
+NOTE: PROCEDURE DMDB used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+      
+
+MPRINT(VAR_PROFILE):   data work.Score4_VARHIST;
+MPRINT(VAR_PROFILE):   label VALUE = "Value";
+MPRINT(VAR_PROFILE):   label VARIABLE = "Variable";
+MPRINT(VAR_PROFILE):   label COUNT = "Frequency Count";
+MPRINT(VAR_PROFILE):   label PERCENT = "Percent";
+MPRINT(VAR_PROFILE):   set _temptab;
+MPRINT(VAR_PROFILE):   format VALUE 12.3 count;
+MPRINT(VAR_PROFILE):   value = inputn(level, 'best12.');
+MPRINT(VAR_PROFILE):   keep VARIABLE COUNT PERCENT VALUE;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: There were 4 observations read from the data set WORK._TEMPTAB.
+NOTE: The data set WORK.SCORE4_VARHIST has 4 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(VAR_PROFILE):   proc datasets lib=work nolist mt=(DATA VIEW);
+MPRINT(VAR_PROFILE):   delete _TEMPTAB _BINNEDDATA _MINMAXDATA;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: The file WORK._MINMAXDATA (memtype=(DATA VIEW)) was not found, but appears on a DELETE statement.
+NOTE: Deleting WORK._TEMPTAB (memtype=DATA).
+NOTE: Deleting WORK._BINNEDDATA (memtype=VIEW).
+MPRINT(VAR_PROFILE):   quit;
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_DIAGRAM):  ;
+
+23530      data work.Score4_VARHIST;
+MPRINT(EM_DIAGRAM):    data work.Score4_VARHIST;
+23531      length DATAROLE $8 TYPE $14;
+MPRINT(EM_DIAGRAM):   length DATAROLE $8 TYPE $14;
+23532      retain DATAROLE "TRAIN" TYPE "";
+MPRINT(EM_DIAGRAM):   retain DATAROLE "TRAIN" TYPE "";
+23533      set work.Score4_VARHIST(rename=(VALUE=X));
+MPRINT(EM_DIAGRAM):   set work.Score4_VARHIST(rename=(VALUE=X));
+23534      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 4 observations read from the data set WORK.SCORE4_VARHIST.
+NOTE: The data set WORK.SCORE4_VARHIST has 4 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+23535      proc append base=work.Score4_HIST data=work.Score4_VARHIST;
+MPRINT(EM_DIAGRAM):   proc append base=work.Score4_HIST data=work.Score4_VARHIST;
+23536      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: Appending WORK.SCORE4_VARHIST to WORK.SCORE4_HIST.
+NOTE: BASE data set does not exist. DATA file is being copied to BASE file.
+NOTE: There were 4 observations read from the data set WORK.SCORE4_VARHIST.
+NOTE: The data set WORK.SCORE4_HIST has 4 observations and 6 variables.
+NOTE: PROCEDURE APPEND used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+23537      proc transpose data=work.Score4_SUMDATA out=work.Score4_SUMDATA( rename=(_NAME_=VARIABLE _LABEL_=LABEL LOCATION=MEAN SCALE=STD P0=MIN P50=MEDIAN P100=MAX));
+MPRINT(EM_DIAGRAM):    proc transpose data=work.Score4_SUMDATA out=work.Score4_SUMDATA( rename=(_NAME_=VARIABLE _LABEL_=LABEL LOCATION=MEAN SCALE=STD P0=MIN P50=MEDIAN P100=MAX));
+23538      where _TYPE_ in('LOCATION' 'SCALE' 'N' 'P0' 'P25' 'P50' 'P75' 'P100');
+MPRINT(EM_DIAGRAM):   where _TYPE_ in('LOCATION' 'SCALE' 'N' 'P0' 'P25' 'P50' 'P75' 'P100');
+23539      id _type_;
+MPRINT(EM_DIAGRAM):   id _type_;
+23540      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 8 observations read from the data set WORK.SCORE4_SUMDATA.
+      WHERE _TYPE_ in ('LOCATION', 'N', 'P0', 'P100', 'P25', 'P50', 'P75', 'SCALE');
+NOTE: The data set WORK.SCORE4_SUMDATA has 1 observations and 10 variables.
+NOTE: PROCEDURE TRANSPOSE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+23541      data work.Score4_SUMDATA;
+MPRINT(EM_DIAGRAM):   data work.Score4_SUMDATA;
+23542      length DATAROLE $8 TYPE $14;
+MPRINT(EM_DIAGRAM):   length DATAROLE $8 TYPE $14;
+23543      retain DATAROLE "TRAIN" Type "";
+MPRINT(EM_DIAGRAM):   retain DATAROLE "TRAIN" Type "";
+23544      set work.Score4_SUMDATA;
+MPRINT(EM_DIAGRAM):   set work.Score4_SUMDATA;
+23545      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 1 observations read from the data set WORK.SCORE4_SUMDATA.
+NOTE: The data set WORK.SCORE4_SUMDATA has 1 observations and 12 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+23546      proc append base=WORK.Score4STAT data=work.Score4_SUMDATA;
+MPRINT(EM_DIAGRAM):   proc append base=WORK.Score4STAT data=work.Score4_SUMDATA;
+23547      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: Appending WORK.SCORE4_SUMDATA to WORK.SCORE4STAT.
+NOTE: BASE data set does not exist. DATA file is being copied to BASE file.
+NOTE: There were 1 observations read from the data set WORK.SCORE4_SUMDATA.
+NOTE: The data set WORK.SCORE4STAT has 1 observations and 12 variables.
+NOTE: PROCEDURE APPEND used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+23548      data WORK.SCOREHISTMETA;
+MPRINT(EM_DIAGRAM):    data WORK.SCOREHISTMETA;
+23549      length NAME $32 ROLE $32 LEVEL $8;
+MPRINT(EM_DIAGRAM):   length NAME $32 ROLE $32 LEVEL $8;
+23550      NAME="P_Sum_Labor_Force_Pop";
+MPRINT(EM_DIAGRAM):   NAME="P_Sum_Labor_Force_Pop";
+23551      ROLE="INPUT";
+MPRINT(EM_DIAGRAM):   ROLE="INPUT";
+23552      LEVEL="INTERVAL";
+MPRINT(EM_DIAGRAM):   LEVEL="INTERVAL";
+23553      TYPE="N";
+MPRINT(EM_DIAGRAM):   TYPE="N";
+23554      output;
+MPRINT(EM_DIAGRAM):   output;
+23555      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: The data set WORK.SCOREHISTMETA has 1 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+NOTE: View EMWS1.REG2_VALIDATE.VIEW used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+23556      %var_profile(DATA=EMWS1.Reg2_VALIDATE, OUTPUT=work.Score4_VARHIST, METADATA=WORK.SCOREHISTMETA, COMPUTESTAT=N, BINDATA=_bindata, STAT=_STAT, PCTLSTAT=work.Score4_SUMDATA, FREQ=, BIN=Y, NUMBARS= 16);
+MPRINT(EM_DIAGRAM):   
+*------------------------------------------------------------*
+* EM: Computing Summary Statistics
+*------------------------------------------------------------*
+MPRINT(VAR_PROFILE):   filename _mac catalog 'WORK.MACROS.VARIABLES.SOURCE';
+MPRINT(VAR_PROFILE):   data _null;
+MPRINT(VAR_PROFILE):   set WORK.SCOREHISTMETA(where=(LEVEL = 'INTERVAL' and ROLE ne 'FREQ')) end=eof;
+MPRINT(VAR_PROFILE):   if eof then call symput('_nobs', put(_N_, best.));
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: There were 1 observations read from the data set WORK.SCOREHISTMETA.
+      WHERE (LEVEL='INTERVAL') and (ROLE not = 'FREQ');
+NOTE: The data set WORK._NULL has 1 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VAR_PROFILE):   data _null_;
+MPRINT(VAR_PROFILE):   file _mac;
+MPRINT(VAR_PROFILE):   length _VARS $80;
+MPRINT(VAR_PROFILE):   retain _vars;
+MPRINT(VAR_PROFILE):   if _n_ =1 then put '%macro _vars;';
+MPRINT(VAR_PROFILE):   set WORK.SCOREHISTMETA end=eof;
+MPRINT(VAR_PROFILE):   where LEVEL = 'INTERVAL' or ROLE='FREQ';
+MPRINT(VAR_PROFILE):   if ROLE='FREQ' then call symput('FREQ', trim(NAME));
+MPRINT(VAR_PROFILE):   else do;
+MPRINT(VAR_PROFILE):   if length(strip(_vars)) + length(strip(NAME)) + 1 <80 then _vars = strip(_vars)!! ' ' !!strip(NAME);
+MPRINT(VAR_PROFILE):   else do;
+MPRINT(VAR_PROFILE):   put _Vars;
+MPRINT(VAR_PROFILE):   _vars = strip(NAME);
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   if eof then do;
+MPRINT(VAR_PROFILE):   put _Vars;
+MPRINT(VAR_PROFILE):   put '%mend _vars;';
+MPRINT(VAR_PROFILE):   end;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: The file _MAC is:
+      Catalog Name=WORK.MACROS.VARIABLES.SOURCE,
+      Catalog Page Size=4096,
+      Number of Catalog Pages=5,
+      Created=Tue, Nov 19, 2019 01:26:39 PM,
+      Last Modified=Tue, Nov 19, 2019 01:26:39 PM,
+      Filename=C:\Users\student\AppData\Local\Temp\SAS Temporary Files\_TD7932_830-5CG9310VLM_\Prc2\macros.sas7bcat,
+      Release Created=9.0401M4,
+      Host Created=X64_10PRO,
+      Owner Name=830-5CG9310VLM\student,
+      File Size=            17KB,
+      File Size (bytes)=17408
+
+NOTE: 3 records were written to the file _MAC.
+      The minimum record length was 12.
+      The maximum record length was 21.
+NOTE: There were 1 observations read from the data set WORK.SCOREHISTMETA.
+      WHERE (LEVEL='INTERVAL') or (ROLE='FREQ');
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(VAR_PROFILE):   filename _mac;
+NOTE: Fileref _MAC has been deassigned.
+MPRINT(VAR_PROFILE):   data _binneddata / view=_binneddata;
+MPRINT(VAR_PROFILE):   set EMWS1.Reg2_VALIDATE(obs=1000000);
+MPRINT(VAR_PROFILE):   format P_Sum_Labor_Force_Pop F1_. ;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: DATA STEP view saved on file WORK._BINNEDDATA.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.REG2_VALIDATE.VIEW used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(VAR_PROFILE):   proc dmdb data=_binneddata(obs=1000000) classout=_temptab(rename=(NAME=VARIABLE FREQUENCY=COUNT FREQPERCENT=PERCENT));
+MPRINT(VAR_PROFILE):   class
+MPRINT(_VARS):   P_Sum_Labor_Force_Pop
+MPRINT(VAR_PROFILE):   ;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: Records processed = 112   Memory used = 511K.
+NOTE: There were 112 observations read from the data set EMWS1.PART4_VALIDATE.
+NOTE: View WORK._BINNEDDATA.VIEW used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+      
+NOTE: There were 112 observations read from the data set EMWS1.REG2_VALIDATE.
+NOTE: There were 112 observations read from the data set WORK._BINNEDDATA.
+NOTE: The data set WORK._TEMPTAB has 4 observations and 9 variables.
+NOTE: PROCEDURE DMDB used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.03 seconds
+      
+
+MPRINT(VAR_PROFILE):   data work.Score4_VARHIST;
+MPRINT(VAR_PROFILE):   label VALUE = "Value";
+MPRINT(VAR_PROFILE):   label VARIABLE = "Variable";
+MPRINT(VAR_PROFILE):   label COUNT = "Frequency Count";
+MPRINT(VAR_PROFILE):   label PERCENT = "Percent";
+MPRINT(VAR_PROFILE):   set _temptab;
+MPRINT(VAR_PROFILE):   format VALUE 12.3 count;
+MPRINT(VAR_PROFILE):   value = inputn(level, 'best12.');
+MPRINT(VAR_PROFILE):   keep VARIABLE COUNT PERCENT VALUE;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: There were 4 observations read from the data set WORK._TEMPTAB.
+NOTE: The data set WORK.SCORE4_VARHIST has 4 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(VAR_PROFILE):   proc datasets lib=work nolist mt=(DATA VIEW);
+MPRINT(VAR_PROFILE):   delete _TEMPTAB _BINNEDDATA _MINMAXDATA;
+MPRINT(VAR_PROFILE):   run;
+
+NOTE: The file WORK._MINMAXDATA (memtype=(DATA VIEW)) was not found, but appears on a DELETE statement.
+NOTE: Deleting WORK._TEMPTAB (memtype=DATA).
+NOTE: Deleting WORK._BINNEDDATA (memtype=VIEW).
+MPRINT(VAR_PROFILE):   quit;
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_DIAGRAM):  ;
+
+23560      data work.Score4_VARHIST;
+MPRINT(EM_DIAGRAM):    data work.Score4_VARHIST;
+23561      length DATAROLE $8 TYPE $14;
+MPRINT(EM_DIAGRAM):   length DATAROLE $8 TYPE $14;
+23562      retain DATAROLE "VALIDATE" TYPE "";
+MPRINT(EM_DIAGRAM):   retain DATAROLE "VALIDATE" TYPE "";
+23563      set work.Score4_VARHIST(rename=(VALUE=X));
+MPRINT(EM_DIAGRAM):   set work.Score4_VARHIST(rename=(VALUE=X));
+23564      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 4 observations read from the data set WORK.SCORE4_VARHIST.
+NOTE: The data set WORK.SCORE4_VARHIST has 4 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+23565      proc append base=work.Score4_HIST data=work.Score4_VARHIST;
+MPRINT(EM_DIAGRAM):   proc append base=work.Score4_HIST data=work.Score4_VARHIST;
+23566      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: Appending WORK.SCORE4_VARHIST to WORK.SCORE4_HIST.
+NOTE: There were 4 observations read from the data set WORK.SCORE4_VARHIST.
+NOTE: 4 observations added.
+NOTE: The data set WORK.SCORE4_HIST has 8 observations and 6 variables.
+NOTE: PROCEDURE APPEND used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+23567      proc stdize data=EMWS1.Reg2_VALIDATE(obs=1000000) outstat=work.Score4_SUMDATA out=_null_ pctlpts=(0 5 25 50 75 95 100);
+MPRINT(EM_DIAGRAM):    proc stdize data=EMWS1.Reg2_VALIDATE(obs=1000000) outstat=work.Score4_SUMDATA out=_null_ pctlpts=(0 5 25 50 75 95 100);
+23568      var
+23569      P_Sum_Labor_Force_Pop;
+MPRINT(EM_DIAGRAM):   var P_Sum_Labor_Force_Pop;
+23570      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: View EMWS1.REG2_VALIDATE.VIEW used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+      
+NOTE: There were 112 observations read from the data set EMWS1.PART4_VALIDATE.
+NOTE: There were 112 observations read from the data set EMWS1.REG2_VALIDATE.
+NOTE: The data set WORK.SCORE4_SUMDATA has 15 observations and 2 variables.
+NOTE: PROCEDURE STDIZE used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.06 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+23571      quit;
+
+23572      proc transpose data=work.Score4_SUMDATA out=work.Score4_SUMDATA( rename=(_NAME_=VARIABLE _LABEL_=LABEL LOCATION=MEAN SCALE=STD P0=MIN P50=MEDIAN P100=MAX));
+MPRINT(EM_DIAGRAM):    proc transpose data=work.Score4_SUMDATA out=work.Score4_SUMDATA( rename=(_NAME_=VARIABLE _LABEL_=LABEL LOCATION=MEAN SCALE=STD P0=MIN P50=MEDIAN P100=MAX));
+23573      where _TYPE_ in('LOCATION' 'SCALE' 'N' 'P0' 'P25' 'P50' 'P75' 'P100');
+MPRINT(EM_DIAGRAM):   where _TYPE_ in('LOCATION' 'SCALE' 'N' 'P0' 'P25' 'P50' 'P75' 'P100');
+23574      id _type_;
+MPRINT(EM_DIAGRAM):   id _type_;
+23575      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 8 observations read from the data set WORK.SCORE4_SUMDATA.
+      WHERE _TYPE_ in ('LOCATION', 'N', 'P0', 'P100', 'P25', 'P50', 'P75', 'SCALE');
+NOTE: The data set WORK.SCORE4_SUMDATA has 1 observations and 10 variables.
+NOTE: PROCEDURE TRANSPOSE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+23576      data work.Score4_SUMDATA;
+MPRINT(EM_DIAGRAM):   data work.Score4_SUMDATA;
+23577      length DATAROLE $8 TYPE $14;
+MPRINT(EM_DIAGRAM):   length DATAROLE $8 TYPE $14;
+23578      retain DATAROLE "VALIDATE" Type "";
+MPRINT(EM_DIAGRAM):   retain DATAROLE "VALIDATE" Type "";
+23579      set work.Score4_SUMDATA;
+MPRINT(EM_DIAGRAM):   set work.Score4_SUMDATA;
+23580      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 1 observations read from the data set WORK.SCORE4_SUMDATA.
+NOTE: The data set WORK.SCORE4_SUMDATA has 1 observations and 12 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+23581      proc append base=WORK.Score4STAT data=work.Score4_SUMDATA;
+MPRINT(EM_DIAGRAM):   proc append base=WORK.Score4STAT data=work.Score4_SUMDATA;
+23582      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: Appending WORK.SCORE4_SUMDATA to WORK.SCORE4STAT.
+NOTE: There were 1 observations read from the data set WORK.SCORE4_SUMDATA.
+NOTE: 1 observations added.
+NOTE: The data set WORK.SCORE4STAT has 2 observations and 12 variables.
+NOTE: PROCEDURE APPEND used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+23583      data EMWS1.Score4_HIST;
+MPRINT(EM_DIAGRAM):    data EMWS1.Score4_HIST;
+23584      set work.Score4_HIST(rename=(Percent=Value));
+MPRINT(EM_DIAGRAM):   set work.Score4_HIST(rename=(Percent=Value));
+23585      label VARIABLE= "%sysfunc(sasmsg(sashelp.dmine, meta_name_vlabel,      NOQUOTE))" DATAROLE= "%sysfunc(sasmsg(sashelp.dmine, rpt_datarole_vlabel,   NOQUOTE))" TYPE = "%sysfunc(sasmsg(sashelp.dmine, rpt_outputType_vlabel, NOQUOTE))" X =
+23586         "%sysfunc(sasmsg(sashelp.dmine, rpt_numValue_vlabel,   NOQUOTE))" COUNT = "%sysfunc(sasmsg(sashelp.dmine, rpt_count_vlabel,      NOQUOTE))" Value = "%sysfunc(sasmsg(sashelp.dmine, rpt_percent_vlabel,    NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label VARIABLE= "Variable Name" DATAROLE= "Data Role" TYPE = "Output Type" X = "Numeric Value" COUNT = "Frequency Count" Value = "Percent";
+23587      select(VARIABLE);
+MPRINT(EM_DIAGRAM):   select(VARIABLE);
+23588      when("P_Sum_Labor_Force_Pop") TYPE = 'PREDICTED';
+MPRINT(EM_DIAGRAM):   when("P_Sum_Labor_Force_Pop") TYPE = 'PREDICTED';
+23589      otherwise;
+MPRINT(EM_DIAGRAM):   otherwise;
+23590      end;
+MPRINT(EM_DIAGRAM):   end;
+23591      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 8 observations read from the data set WORK.SCORE4_HIST.
+NOTE: The data set EMWS1.SCORE4_HIST has 8 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+23592      data WORK.Score4STAT;
+MPRINT(EM_DIAGRAM):    data WORK.Score4STAT;
+23593      set WORK.Score4STAT;
+MPRINT(EM_DIAGRAM):   set WORK.Score4STAT;
+23594      label VARIABLE= "%sysfunc(sasmsg(sashelp.dmine, meta_name_vlabel,  NOQUOTE))" LABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_label_vlabel,  NOQUOTE))" MEAN = "%sysfunc(sasmsg(sashelp.dmine, rpt_mean_vlabel,  NOQUOTE))" N =
+23595         "%sysfunc(sasmsg(sashelp.dmine, rpt_nonmiss_vlabel,  NOQUOTE))" STD = "%sysfunc(sasmsg(sashelp.dmine, rpt_std_vlabel,  NOQUOTE))" MIN = "%sysfunc(sasmsg(sashelp.dmine, rpt_minimum_vlabel,  NOQUOTE))" MAX =
+23596         "%sysfunc(sasmsg(sashelp.dmine, rpt_maximum_vlabel,  NOQUOTE))" MEDIAN = "%sysfunc(sasmsg(sashelp.dmine, rpt_median_vlabel,  NOQUOTE))" P25 = "%sysfunc(sasmsg(sashelp.dmine, rpt_p25_vlabel,  NOQUOTE))" P75 =
+23597         "%sysfunc(sasmsg(sashelp.dmine, rpt_p75_vlabel,  NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label VARIABLE= "Variable Name" LABEL = "Label" MEAN = "Mean" N = "Non Missing" STD = "Standard Deviation" MIN = "Minimum" MAX = "Maximum" MEDIAN = "Median" P25 = "25th Percentile" P75 = "75th Percentile";
+23598      select(VARIABLE);
+MPRINT(EM_DIAGRAM):   select(VARIABLE);
+23599      when("P_Sum_Labor_Force_Pop") TYPE = 'PREDICTED';
+MPRINT(EM_DIAGRAM):   when("P_Sum_Labor_Force_Pop") TYPE = 'PREDICTED';
+23600      otherwise;
+MPRINT(EM_DIAGRAM):   otherwise;
+23601      end;
+MPRINT(EM_DIAGRAM):   end;
+23602      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 2 observations read from the data set WORK.SCORE4STAT.
+NOTE: The data set WORK.SCORE4STAT has 2 observations and 12 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+23603      proc sort data = WORK.Score4STAT NOTHREADS;
+MPRINT(EM_DIAGRAM):   proc sort data = WORK.Score4STAT NOTHREADS;
+23604      by VARIABLE;
+MPRINT(EM_DIAGRAM):   by VARIABLE;
+23605      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 2 observations read from the data set WORK.SCORE4STAT.
+NOTE: The data set WORK.SCORE4STAT has 2 observations and 12 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+23606      proc transpose data = WORK.Score4STAT out=WORK.Score4STAT(rename=(_NAME_=STATISTICS _LABEL_=LABEL));
+MPRINT(EM_DIAGRAM):   proc transpose data = WORK.Score4STAT out=WORK.Score4STAT(rename=(_NAME_=STATISTICS _LABEL_=LABEL));
+23607      by VARIABLE;
+MPRINT(EM_DIAGRAM):   by VARIABLE;
+23608      id DATAROLE;
+MPRINT(EM_DIAGRAM):   id DATAROLE;
+23609      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 2 observations read from the data set WORK.SCORE4STAT.
+NOTE: The data set WORK.SCORE4STAT has 8 observations and 5 variables.
+NOTE: PROCEDURE TRANSPOSE used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+23610      proc datasets library=WORK nolist;
+MPRINT(EM_DIAGRAM):   proc datasets library=WORK nolist;
+23611      modify Score4STAT;
+MPRINT(EM_DIAGRAM):   modify Score4STAT;
+23612      label STATISTICS = "%sysfunc(sasmsg(sashelp.dmine, rpt_statistics_vlabel,  NOQUOTE))" VARIABLE= "%sysfunc(sasmsg(sashelp.dmine, meta_name_vlabel,  NOQUOTE))" LABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_label_vlabel,  NOQUOTE))" TYPE =
+MPRINT(EM_DIAGRAM):   label STATISTICS = "Statistics" VARIABLE= "Variable Name" LABEL = "Label" TYPE = "Output Type";
+WARNING: Variable TYPE not found in data set WORK.SCORE4STAT.
+23613         "%sysfunc(sasmsg(sashelp.dmine, rpt_outputType_vlabel,  NOQUOTE))";
+MPRINT(EM_DIAGRAM):   run;
+23614      run;
+
+NOTE: MODIFY was successful for WORK.SCORE4STAT.DATA.
+23615      %let _cn = %sysfunc(getoption(CENTER));
+23616      %let _nb = %sysfunc(getoption(NUMBER));
+23617      options nonumber nocenter;
+MPRINT(EM_DIAGRAM):   options nonumber nocenter;
+23618      title;
+MPRINT(EM_DIAGRAM):   title;
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+23619      proc print data = WORK.Score4STAT label noobs;
+MPRINT(EM_DIAGRAM):   proc print data = WORK.Score4STAT label noobs;
+23620      by VARIABLE;
+MPRINT(EM_DIAGRAM):   by VARIABLE;
+23621      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+23622      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_intervalStats_title, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Interval Variable Summary Statistics";
+MPRINT(EM_DIAGRAM):   run;
+23623      run;
+
+NOTE: There were 8 observations read from the data set WORK.SCORE4STAT.
+NOTE: The PROCEDURE PRINT printed page 4.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+23624      title10;
+MPRINT(EM_DIAGRAM):   title10;
+23625      options &_cn &_nb;
+MPRINT(EM_DIAGRAM):   options NOCENTER NONUMBER;
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;
