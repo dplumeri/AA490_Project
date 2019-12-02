@@ -1,6 +1,6 @@
 /*This code was extracted from a SAS Guide Import Function*/
-
-DATA WORK.SocialSecurity_data_STEP1;
+options user = SS_Dat;
+DATA SocialSecurity_data_STEP1;
     LENGTH
         Year               7
         Employee_SS_Rate   8
@@ -57,8 +57,8 @@ DATALINES4;
 2000-156.26.212.4
 ;;;;
 
-data work.socialsecurity_data_STEP2;
-set work.socialsecurity_data_STEP1;
+data socialsecurity_data_STEP2;
+set socialsecurity_data_STEP1;
 if Year = 1950 then do 
 	Year = 1937 to 1949;
 	Employee_SS_Rate = 1;
@@ -137,16 +137,16 @@ if Year > 1989 then do
 output;
 end;
 run;
-proc sort data = work.socialsecurity_data_STEP2 nodup out = work.socialsecurity_data_STEP3;
+proc sort data = socialsecurity_data_STEP2 nodup out = socialsecurity_data_STEP3;
 	by Year;
 run;
-proc append base = work.Socialsecurity_data_Step1 data = work.socialsecurity_data_step3;
+proc append base = Socialsecurity_data_Step1 data = socialsecurity_data_step3;
 run;
-data work.Socialsecurity_data_step4;
-set work.Socialsecurity_data_step1;
+data Socialsecurity_data_step4;
+set Socialsecurity_data_step1;
 if missing(Year)then delete;
 run;
 proc sql;
-create table work.socialsecurity_data_final as 
-select * from work.socialsecurity_data_step4 
+create table socialsecurity_data_final as 
+select * from socialsecurity_data_step4 
 order by Year;
