@@ -1,4 +1,4 @@
-if upcase(NAME) = "Q_SUM_LABOR_FORCE_POP" then do;
+if upcase(NAME) = "Q_CASES_IN_1000S" then do;
 ROLE = "ASSESS";
 end;
 else 

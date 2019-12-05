@@ -1,37 +1,37 @@
 *------------------------------------------------------------*;
 * Neural: Create decision matrix;
 *------------------------------------------------------------*;
-data WORK.Sum_Labor_Force_Pop;
-  length   Sum_Labor_Force_Pop                  8
+data WORK.Cases_in_1000s(label="Cases_in_1000s");
+  length   Cases_in_1000s                       8
            ;
 
- Sum_Labor_Force_Pop=225000;
+ Cases_in_1000s=0;
 output;
- Sum_Labor_Force_Pop=25077000;
+ Cases_in_1000s=229;
 output;
- Sum_Labor_Force_Pop=12651000;
+ Cases_in_1000s=114.5;
 output;
 ;
 run;
 proc datasets lib=work nolist;
-modify Sum_Labor_Force_Pop(type=PROFIT label=Sum_Labor_Force_Pop);
+modify Cases_in_1000s(type=PROFIT label=Cases_in_1000s);
 run;
 quit;
 data EM_Neural;
 set EMWS2.Part_TRAIN(keep=
-Age_group Date Population_in_thousands Sum_Labor_Force_Pop);
+Age_group Cases_in_1000s Date Disease Gender Population_in_thousands);
 run;
 *------------------------------------------------------------* ;
 * Neural: DMDBClass Macro ;
 *------------------------------------------------------------* ;
 %macro DMDBClass;
-    Age_group(ASC) Date(ASC)
+    Age_group(ASC) Date(ASC) Disease(ASC) Gender(ASC)
 %mend DMDBClass;
 *------------------------------------------------------------* ;
 * Neural: DMDBVar Macro ;
 *------------------------------------------------------------* ;
 %macro DMDBVar;
-    Population_in_thousands Sum_Labor_Force_Pop
+    Cases_in_1000s Population_in_thousands
 %mend DMDBVar;
 *------------------------------------------------------------*;
 * Neural: Create DMDB;
@@ -43,7 +43,7 @@ maxlevel = 513
 class %DMDBClass;
 var %DMDBVar;
 target
-Sum_Labor_Force_Pop
+Cases_in_1000s
 ;
 run;
 quit;
@@ -63,7 +63,7 @@ quit;
 * Neural: Nominal Inputs Macro ;
 *------------------------------------------------------------* ;
 %macro NOMINPUTS;
-    Age_group Date
+    Age_group Date Disease Gender
 %mend NOMINPUTS;
 *------------------------------------------------------------* ;
 * Neural: Ordinal Inputs Macro ;
@@ -89,7 +89,7 @@ input %INTINPUTS / level=interval id=intvl
 input %NOMINPUTS / level=nominal id=nom
 ;
 target
-Sum_Labor_Force_Pop
+Cases_in_1000s
 / level=interval id=intervalTargets
 bias
 ;

@@ -13,11 +13,11 @@ label _dataobs_ = "%sysfunc(sasmsg(sashelp.dmine, sample_dataobs_vlabel, NOQUOTE
 _dataobs_ = _N_;
 drop _c00:;
 set EMWS2.Stat_TRAIN;
-if (840+1-_n_)*_genvalue_ <= (336 - _C000001) then do;
+if (945+1-_n_)*_genvalue_ <= (378 - _C000001) then do;
 _C000001 + 1;
 output EMWS2.Part_TRAIN;
 end;
-else if (840+1-_n_)*_genvalue_ <= (336 - _C000001 + 252 - _C000002) then do;
+else if (945+1-_n_)*_genvalue_ <= (378 - _C000001 + 284 - _C000002) then do;
 _C000002 + 1;
 output EMWS2.Part_VALIDATE;
 end;

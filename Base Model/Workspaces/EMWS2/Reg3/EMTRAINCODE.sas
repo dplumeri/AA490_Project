@@ -1,37 +1,37 @@
 *------------------------------------------------------------*;
 * Reg3: Create decision matrix;
 *------------------------------------------------------------*;
-data WORK.Sum_Labor_Force_Pop;
-  length   Sum_Labor_Force_Pop                  8
+data WORK.Cases_in_1000s(label="Cases_in_1000s");
+  length   Cases_in_1000s                       8
            ;
 
- Sum_Labor_Force_Pop=225000;
+ Cases_in_1000s=0;
 output;
- Sum_Labor_Force_Pop=25077000;
+ Cases_in_1000s=229;
 output;
- Sum_Labor_Force_Pop=12651000;
+ Cases_in_1000s=114.5;
 output;
 ;
 run;
 proc datasets lib=work nolist;
-modify Sum_Labor_Force_Pop(type=PROFIT label=Sum_Labor_Force_Pop);
+modify Cases_in_1000s(type=PROFIT label=Cases_in_1000s);
 run;
 quit;
 data EM_DMREG / view=EM_DMREG;
 set EMWS2.Part_TRAIN(keep=
-Age_group Date Population_in_thousands Sum_Labor_Force_Pop);
+Age_group Cases_in_1000s Date Disease Gender Population_in_thousands);
 run;
 *------------------------------------------------------------* ;
 * Reg3: DMDBClass Macro ;
 *------------------------------------------------------------* ;
 %macro DMDBClass;
-    Age_group(ASC) Date(ASC)
+    Age_group(ASC) Date(ASC) Disease(ASC) Gender(ASC)
 %mend DMDBClass;
 *------------------------------------------------------------* ;
 * Reg3: DMDBVar Macro ;
 *------------------------------------------------------------* ;
 %macro DMDBVar;
-    Population_in_thousands Sum_Labor_Force_Pop
+    Cases_in_1000s Population_in_thousands
 %mend DMDBVar;
 *------------------------------------------------------------*;
 * Reg3: Create DMDB;
@@ -43,7 +43,7 @@ maxlevel = 513
 class %DMDBClass;
 var %DMDBVar;
 target
-Sum_Labor_Force_Pop
+Cases_in_1000s
 ;
 run;
 quit;
@@ -59,10 +59,14 @@ outmap= EMWS2.Reg3_MAPDS namelen=200
 class
 Age_group
 Date
+Disease
+Gender
 ;
-model Sum_Labor_Force_Pop =
+model Cases_in_1000s =
 Age_group
 Date
+Disease
+Gender
 Population_in_thousands
 /error=normal
 coding=DEVIATION

@@ -1,7 +1,7 @@
 *------------------------------------------------------------*
 User:                student
-Date:                November 21, 2019
-Time:                16:19:32
+Date:                December 04, 2019
+Time:                13:48:50
 *------------------------------------------------------------*
 * Training Output
 *------------------------------------------------------------*
@@ -15,7 +15,7 @@ Variable Summary
  Role        Level         Count
  
 INPUT      INTERVAL          1
-INPUT      NOMINAL           2
+INPUT      NOMINAL           4
 TARGET     INTERVAL          1
  
  
@@ -23,11 +23,11 @@ TARGET     INTERVAL          1
  
 Predicted and decision variables
  
-Type               Variable                       Label
+Type             Variable                  Label
  
-TARGET       Sum_Labor_Force_Pop
-PREDICTED    P_Sum_Labor_Force_Pop    Predicted: Sum_Labor_Force_Pop
-RESIDUAL     R_Sum_Labor_Force_Pop    Residual: Sum_Labor_Force_Pop
+TARGET       Cases_in_1000s
+PREDICTED    P_Cases_in_1000s    Predicted: Cases_in_1000s
+RESIDUAL     R_Cases_in_1000s    Residual: Cases_in_1000s
  
  
  
@@ -35,41 +35,58 @@ RESIDUAL     R_Sum_Labor_Force_Pop    Residual: Sum_Labor_Force_Pop
  
 The DMREG Procedure
  
-                Model Information
+               Model Information
  
 Training Data Set             WORK.EM_DMREG.VIEW
 DMDB Catalog                  WORK.REG_DMDB
-Target Variable               Sum_Labor_Force_Pop
+Target Variable               Cases_in_1000s
 Target Measurement Level      Interval
 Error                         Normal
 Link Function                 Identity
-Number of Model Parameters    17
-Number of Observations        336
+Number of Model Parameters    30
+Number of Observations        372
  
  
-Frequency Distribution of Input Class Variables
+      Frequency Distribution of Input Class Variables
  
-Class         Value           Total
+Class         Value                                   Total
  
-Age_group     16 to 24           84
-              25 to 44           89
-              45 to 64           75
-              65+                88
+Age_group     0-17                                      117
+              18-24                                     127
+              25-44                                       7
+              85+                                       121
  
-Date          2000               28
-              2001               19
-              2002               19
-              2003               25
-              2004               22
-              2005               21
-              2006               21
-              2007               26
-              2008               20
-              2009               27
-              2010               25
-              2011               30
-              2012               26
-              2013               27
+Date          1990                                       24
+              1991                                        9
+              1992                                       17
+              1993                                       16
+              1994                                       23
+              1995                                       11
+              1996                                       19
+              1997                                       14
+              1998                                       19
+              1999                                       16
+              2000                                       19
+              2001                                       13
+              2002                                       17
+              2003                                       20
+              2004                                       18
+              2005                                       24
+              2006                                       20
+              2007                                       16
+              2008                                       18
+              2009                                       20
+              2010                                       19
+ 
+Disease       Asthma                                     87
+              Cancer, all                                80
+              Dementia and Alzheimer's disease           65
+              Osteoarthritis                             68
+              Septicemia                                 72
+ 
+Gender        All                                       134
+              Female                                    114
+              Male                                      124
  
  
  
@@ -88,25 +105,25 @@ Step 0: Intercept entered.
 Source                 DF         Squares     Mean Square    F Value    Pr > F
  
 Model                   0               0               .        .       .
-Error                 335    1.4062812E16    4.1978543E13
-Corrected Total       335    1.4062812E16
+Error                 371          488171     1315.826015
+Corrected Total       371          488171
  
  
               Model Fit Statistics
  
 R-Square        0.0000     Adj R-Sq        0.0000
-AIC         10540.7069     BIC         10541.1278
-SBC         10544.5240     C(p)          365.3999
+AIC          2672.7845     BIC          2674.0342
+SBC          2676.7033     C(p)          154.4224
  
  
  
  
-               Analysis of Maximum Likelihood Estimates
+                           Analysis of Maximum Likelihood Estimates
  
-                                        Standard
-Parameter             DF    Estimate       Error    t Value    Pr > |t|
+                                                                Standard
+Parameter                                     DF    Estimate       Error    t Value    Pr > |t|
  
-Intercept              1     6735625      353463      19.06      <.0001
+Intercept                                      1     22.4355      1.8807      11.93      <.0001
  
  
 Estimated Correlation Matrix
@@ -116,7 +133,7 @@ Parameter      Intercept
 Intercept        1.00000
  
  
-Step 1: Effect Age_group entered.
+Step 1: Effect Disease entered.
  
  
                              Analysis of Variance
@@ -124,16 +141,16 @@ Step 1: Effect Age_group entered.
                                    Sum of
 Source                 DF         Squares     Mean Square    F Value    Pr > F
  
-Model                   3     7.446407E15    2.4821357E15     124.55    <.0001
-Error                 332     6.616405E15    1.9928931E13
-Corrected Total       335    1.4062812E16
+Model                   4           73323           18331      16.22    <.0001
+Error                 367          414848     1130.376001
+Corrected Total       371          488171
  
  
               Model Fit Statistics
  
-R-Square        0.5295     Adj R-Sq        0.5253
-AIC         10293.3690     BIC         10295.5369
-SBC         10308.6375     C(p)            1.0603
+R-Square        0.1502     Adj R-Sq        0.1409
+AIC          2620.2398     BIC          2620.5324
+SBC          2639.8342     C(p)           83.6540
  
  
              Type 3 Analysis of Effects
@@ -141,29 +158,157 @@ SBC         10308.6375     C(p)            1.0603
                          Sum of
 Effect         DF       Squares    F Value    Pr > F
  
-Age_group       3    7.44641E15     124.55    <.0001
+Disease         4    73323.4593      16.22    <.0001
  
  
-               Analysis of Maximum Likelihood Estimates
+                           Analysis of Maximum Likelihood Estimates
  
-                                        Standard
-Parameter             DF    Estimate       Error    t Value    Pr > |t|
+                                                                Standard
+Parameter                                     DF    Estimate       Error    t Value    Pr > |t|
  
-Intercept              1     6785065      244100      27.80      <.0001
-Age_group 16 to 24     1    -3040910      422148      -7.20      <.0001
-Age_group 25 to 44     1     6062587      414180      14.64      <.0001
-Age_group 45 to 64     1     2679855      438685       6.11      <.0001
+Intercept                                      1     21.0148      1.7531      11.99      <.0001
+Disease   Asthma                               1     23.3415      3.2968       7.08      <.0001
+Disease   Cancer, all                          1      4.1227      3.3987       1.21      0.2259
+Disease   Dementia and Alzheimer's disease     1    -12.0302      3.6753      -3.27      0.0012
+Disease   Osteoarthritis                       1    -15.2942      3.6121      -4.23      <.0001
  
  
-                             Estimated Correlation Matrix
+                                           Estimated Correlation Matrix
  
-                                      Age_group16_      Age_group25_      Age_group45_
-Parameter              Intercept             TO_24             TO_44             TO_64
+                                                                   Disease             Disease
+                                                     Disease      CANCER__       DEMENTIA_AND_             Disease
+Parameter                            Intercept        ASTHMA           ALL         ALZHEIMER_S      OSTEOARTHRITIS
  
-Intercept                1.00000          -0.00264          -0.03565           0.06392
-Age_group16_TO_24       -0.00264           1.00000          -0.31861          -0.35724
-Age_group25_TO_44       -0.03565          -0.31861           1.00000          -0.34577
-Age_group45_TO_64        0.06392          -0.35724          -0.34577           1.00000
+Intercept                              1.00000      -0.08216      -0.04154             0.06280             0.03967
+DiseaseASTHMA                         -0.08216       1.00000      -0.20982            -0.24786            -0.23930
+DiseaseCANCER__ALL                    -0.04154      -0.20982       1.00000            -0.25863            -0.25065
+DiseaseDEMENTIA_AND_ALZHEIMER_S        0.06280      -0.24786      -0.25863             1.00000            -0.28091
+DiseaseOSTEOARTHRITIS                  0.03967      -0.23930      -0.25065            -0.28091             1.00000
+ 
+ 
+Step 2: Effect Age_group entered.
+ 
+ 
+                             Analysis of Variance
+ 
+                                   Sum of
+Source                 DF         Squares     Mean Square    F Value    Pr > F
+ 
+Model                   7          136075           19439      20.10    <.0001
+Error                 364          352096      967.297990
+Corrected Total       371          488171
+ 
+ 
+              Model Fit Statistics
+ 
+R-Square        0.2787     Adj R-Sq        0.2649
+AIC          2565.2292     BIC          2566.9646
+SBC          2596.5803     C(p)           22.2426
+ 
+ 
+             Type 3 Analysis of Effects
+ 
+                         Sum of
+Effect         DF       Squares    F Value    Pr > F
+ 
+Age_group       3    62751.5238      21.62    <.0001
+Disease         4    77150.1754      19.94    <.0001
+ 
+ 
+                           Analysis of Maximum Likelihood Estimates
+ 
+                                                                Standard
+Parameter                                     DF    Estimate       Error    t Value    Pr > |t|
+ 
+Intercept                                      1     23.3356      3.1992       7.29      <.0001
+Age_group 0-17                                 1      7.9640      3.7869       2.10      0.0361
+Age_group 18-24                                1    -20.3878      3.7367      -5.46      <.0001
+Age_group 25-44                                1      6.3744      8.9237       0.71      0.4755
+Disease   Asthma                               1     23.8118      3.0511       7.80      <.0001
+Disease   Cancer, all                          1      4.7774      3.1468       1.52      0.1298
+Disease   Dementia and Alzheimer's disease     1    -12.5122      3.4009      -3.68      0.0003
+Disease   Osteoarthritis                       1    -15.7588      3.3494      -4.70      <.0001
+ 
+ 
+                                                                  Estimated Correlation Matrix
+ 
+                                                                                                                  Disease             Disease
+                                                         Age_            Age_            Age_       Disease      CANCER__       DEMENTIA_AND_             Disease
+Parameter                            Intercept      group0N17      group18N24      group25N44        ASTHMA           ALL         ALZHEIMER_S      OSTEOARTHRITIS
+ 
+Intercept                              1.00000       -0.67272        -0.69095         0.86187      -0.05743      -0.04282             0.04021             0.07568
+Age_group0N17                         -0.67272        1.00000         0.43764        -0.78882       0.02595       0.03849            -0.02117            -0.06111
+Age_group18N24                        -0.69095        0.43764         1.00000        -0.79219       0.00234       0.00375             0.00291            -0.03749
+Age_group25N44                         0.86187       -0.78882        -0.79219         1.00000      -0.01871      -0.02582             0.01011             0.06492
+DiseaseASTHMA                         -0.05743        0.02595         0.00234        -0.01871       1.00000      -0.20834            -0.24836            -0.24036
+DiseaseCANCER__ALL                    -0.04282        0.03849         0.00375        -0.02582      -0.20834       1.00000            -0.25934            -0.25224
+DiseaseDEMENTIA_AND_ALZHEIMER_S        0.04021       -0.02117         0.00291         0.01011      -0.24836      -0.25934             1.00000            -0.27901
+DiseaseOSTEOARTHRITIS                  0.07568       -0.06111        -0.03749         0.06492      -0.24036      -0.25224            -0.27901             1.00000
+ 
+ 
+Step 3: Effect Gender entered.
+ 
+ 
+                             Analysis of Variance
+ 
+                                   Sum of
+Source                 DF         Squares     Mean Square    F Value    Pr > F
+ 
+Model                   9          160460           17829      19.69    <.0001
+Error                 362          327712      905.281303
+Corrected Total       371          488171
+ 
+ 
+              Model Fit Statistics
+ 
+R-Square        0.3287     Adj R-Sq        0.3120
+AIC          2542.5305     BIC          2545.6576
+SBC          2581.7195     C(p)            0.0472
+ 
+ 
+             Type 3 Analysis of Effects
+ 
+                         Sum of
+Effect         DF       Squares    F Value    Pr > F
+ 
+Age_group       3    67826.4003      24.97    <.0001
+Disease         4    78860.4174      21.78    <.0001
+Gender          2    24384.6370      13.47    <.0001
+ 
+ 
+                           Analysis of Maximum Likelihood Estimates
+ 
+                                                                Standard
+Parameter                                     DF    Estimate       Error    t Value    Pr > |t|
+ 
+Intercept                                      1     23.7957      3.0964       7.68      <.0001
+Age_group 0-17                                 1      7.5449      3.6650       2.06      0.0402
+Age_group 18-24                                1    -22.0525      3.6292      -6.08      <.0001
+Age_group 25-44                                1      9.3319      8.6522       1.08      0.2815
+Disease   Asthma                               1     24.1021      2.9524       8.16      <.0001
+Disease   Cancer, all                          1      5.8446      3.0513       1.92      0.0562
+Disease   Dementia and Alzheimer's disease     1    -13.7943      3.3039      -4.18      <.0001
+Disease   Osteoarthritis                       1    -14.4429      3.2533      -4.44      <.0001
+Gender    All                                  1     11.2865      2.1944       5.14      <.0001
+Gender    Female                               1     -4.4860      2.2633      -1.98      0.0482
+ 
+ 
+                                                                                Estimated Correlation Matrix
+ 
+                                                                                                                  Disease             Disease
+                                                         Age_            Age_            Age_       Disease      CANCER__       DEMENTIA_AND_             Disease        Gender        Gender
+Parameter                            Intercept      group0N17      group18N24      group25N44        ASTHMA           ALL         ALZHEIMER_S      OSTEOARTHRITIS           ALL        FEMALE
+ 
+Intercept                              1.00000       -0.67257        -0.69035         0.86130      -0.05698      -0.04087             0.03732             0.07805       0.02691      -0.00086
+Age_group0N17                         -0.67257        1.00000         0.43782        -0.78840       0.02530       0.03673            -0.02035            -0.06176      -0.02422       0.02492
+Age_group18N24                        -0.69035        0.43782         1.00000        -0.79321       0.00056      -0.00231             0.00909            -0.04374      -0.08863       0.04094
+Age_group25N44                         0.86130       -0.78840        -0.79321         1.00000      -0.01727      -0.02115             0.00573             0.06913       0.06683      -0.03595
+DiseaseASTHMA                         -0.05698        0.02530         0.00056        -0.01727       1.00000      -0.20641            -0.24804            -0.23840       0.02041      -0.01851
+DiseaseCANCER__ALL                    -0.04087        0.03673        -0.00231        -0.02115      -0.20641       1.00000            -0.26220            -0.24580       0.06804      -0.03444
+DiseaseDEMENTIA_AND_ALZHEIMER_S        0.03732       -0.02035         0.00909         0.00573      -0.24804      -0.26220             1.00000            -0.28487      -0.06712      -0.01972
+DiseaseOSTEOARTHRITIS                  0.07805       -0.06176        -0.04374         0.06913      -0.23840      -0.24580            -0.28487             1.00000       0.07131       0.01115
+GenderALL                              0.02691       -0.02422        -0.08863         0.06683       0.02041       0.06804            -0.06712             0.07131       1.00000      -0.50208
+GenderFEMALE                          -0.00086        0.02492         0.04094        -0.03595      -0.01851      -0.03444            -0.01972             0.01115      -0.50208       1.00000
  
  
 NOTE: No (additional) effects met the 0.05 significance level for entry into the model.
@@ -174,12 +319,14 @@ NOTE: No (additional) effects met the 0.05 significance level for entry into the
              Effect              Number
     Step    Entered        DF        In    F Value    Pr > F
  
-       1    Age_group       3         1     124.55    <.0001
+       1    Disease         4         1      16.22    <.0001
+       2    Age_group       3         2      21.62    <.0001
+       3    Gender          2         3      13.47    <.0001
  
  
-The selected model is the model trained in the last step (Step 1). It consists of the following effects:
+The selected model is the model trained in the last step (Step 3). It consists of the following effects:
  
-Intercept  Age_group
+Intercept  Age_group  Disease  Gender
  
  
                              Analysis of Variance
@@ -187,16 +334,16 @@ Intercept  Age_group
                                    Sum of
 Source                 DF         Squares     Mean Square    F Value    Pr > F
  
-Model                   3     7.446407E15    2.4821357E15     124.55    <.0001
-Error                 332     6.616405E15    1.9928931E13
-Corrected Total       335    1.4062812E16
+Model                   9          160460           17829      19.69    <.0001
+Error                 362          327712      905.281303
+Corrected Total       371          488171
  
  
               Model Fit Statistics
  
-R-Square        0.5295     Adj R-Sq        0.5253
-AIC         10293.3690     BIC         10295.5369
-SBC         10308.6375     C(p)            1.0603
+R-Square        0.3287     Adj R-Sq        0.3120
+AIC          2542.5305     BIC          2545.6576
+SBC          2581.7195     C(p)            0.0472
  
  
              Type 3 Analysis of Effects
@@ -204,29 +351,44 @@ SBC         10308.6375     C(p)            1.0603
                          Sum of
 Effect         DF       Squares    F Value    Pr > F
  
-Age_group       3    7.44641E15     124.55    <.0001
+Age_group       3    67826.4003      24.97    <.0001
+Disease         4    78860.4174      21.78    <.0001
+Gender          2    24384.6370      13.47    <.0001
  
  
-               Analysis of Maximum Likelihood Estimates
+                           Analysis of Maximum Likelihood Estimates
  
-                                        Standard
-Parameter             DF    Estimate       Error    t Value    Pr > |t|
+                                                                Standard
+Parameter                                     DF    Estimate       Error    t Value    Pr > |t|
  
-Intercept              1     6785065      244100      27.80      <.0001
-Age_group 16 to 24     1    -3040910      422148      -7.20      <.0001
-Age_group 25 to 44     1     6062587      414180      14.64      <.0001
-Age_group 45 to 64     1     2679855      438685       6.11      <.0001
+Intercept                                      1     23.7957      3.0964       7.68      <.0001
+Age_group 0-17                                 1      7.5449      3.6650       2.06      0.0402
+Age_group 18-24                                1    -22.0525      3.6292      -6.08      <.0001
+Age_group 25-44                                1      9.3319      8.6522       1.08      0.2815
+Disease   Asthma                               1     24.1021      2.9524       8.16      <.0001
+Disease   Cancer, all                          1      5.8446      3.0513       1.92      0.0562
+Disease   Dementia and Alzheimer's disease     1    -13.7943      3.3039      -4.18      <.0001
+Disease   Osteoarthritis                       1    -14.4429      3.2533      -4.44      <.0001
+Gender    All                                  1     11.2865      2.1944       5.14      <.0001
+Gender    Female                               1     -4.4860      2.2633      -1.98      0.0482
  
  
-                             Estimated Correlation Matrix
+                                                                                Estimated Correlation Matrix
  
-                                      Age_group16_      Age_group25_      Age_group45_
-Parameter              Intercept             TO_24             TO_44             TO_64
+                                                                                                                  Disease             Disease
+                                                         Age_            Age_            Age_       Disease      CANCER__       DEMENTIA_AND_             Disease        Gender        Gender
+Parameter                            Intercept      group0N17      group18N24      group25N44        ASTHMA           ALL         ALZHEIMER_S      OSTEOARTHRITIS           ALL        FEMALE
  
-Intercept                1.00000          -0.00264          -0.03565           0.06392
-Age_group16_TO_24       -0.00264           1.00000          -0.31861          -0.35724
-Age_group25_TO_44       -0.03565          -0.31861           1.00000          -0.34577
-Age_group45_TO_64        0.06392          -0.35724          -0.34577           1.00000
+Intercept                              1.00000       -0.67257        -0.69035         0.86130      -0.05698      -0.04087             0.03732             0.07805       0.02691      -0.00086
+Age_group0N17                         -0.67257        1.00000         0.43782        -0.78840       0.02530       0.03673            -0.02035            -0.06176      -0.02422       0.02492
+Age_group18N24                        -0.69035        0.43782         1.00000        -0.79321       0.00056      -0.00231             0.00909            -0.04374      -0.08863       0.04094
+Age_group25N44                         0.86130       -0.78840        -0.79321         1.00000      -0.01727      -0.02115             0.00573             0.06913       0.06683      -0.03595
+DiseaseASTHMA                         -0.05698        0.02530         0.00056        -0.01727       1.00000      -0.20641            -0.24804            -0.23840       0.02041      -0.01851
+DiseaseCANCER__ALL                    -0.04087        0.03673        -0.00231        -0.02115      -0.20641       1.00000            -0.26220            -0.24580       0.06804      -0.03444
+DiseaseDEMENTIA_AND_ALZHEIMER_S        0.03732       -0.02035         0.00909         0.00573      -0.24804      -0.26220             1.00000            -0.28487      -0.06712      -0.01972
+DiseaseOSTEOARTHRITIS                  0.07805       -0.06176        -0.04374         0.06913      -0.23840      -0.24580            -0.28487             1.00000       0.07131       0.01115
+GenderALL                              0.02691       -0.02422        -0.08863         0.06683       0.02041       0.06804            -0.06712             0.07131       1.00000      -0.50208
+GenderFEMALE                          -0.00086        0.02492         0.04094        -0.03595      -0.01851      -0.03444            -0.01972             0.01115      -0.50208       1.00000
 
 
 *------------------------------------------------------------*
@@ -243,79 +405,137 @@ Age_group45_TO_64        0.06392          -0.35724          -0.34577           1
  
 Fit Statistics
  
-Target=Sum_Labor_Force_Pop Target Label=' '
+Target=Cases_in_1000s Target Label=' '
  
    Fit
-Statistics    Statistics Label                        Train     Validation           Test
+Statistics    Statistics Label                      Train    Validation         Test
  
- _AIC_        Akaike's Information Criterion       10293.37            .              .
- _ASE_        Average Squared Error             1.969168E13    1.870728E13    2.222303E13
- _AVERR_      Average Error Function            1.969168E13    1.870728E13    2.222303E13
- _DFE_        Degrees of Freedom for Error           332.00            .              .
- _DFM_        Model Degrees of Freedom                 4.00            .              .
- _DFT_        Total Degrees of Freedom               336.00            .              .
- _DIV_        Divisor for ASE                        336.00         252.00         252.00
- _ERR_        Error Function                    6.616405E15    4.714235E15    5.600203E15
- _FPE_        Final Prediction Error            2.016618E13            .              .
- _MAX_        Maximum Absolute Error            13796080.00    13796080.00    13796080.00
- _MSE_        Mean Square Error                 1.992893E13    1.870728E13    2.222303E13
- _NOBS_       Sum of Frequencies                     336.00         252.00         252.00
- _NW_         Number of Estimate Weights               4.00            .              .
- _RASE_       Root Average Sum of Squares        4437531.01     4325191.73     4714130.58
- _RFPE_       Root Final Prediction Error        4490676.99            .              .
- _RMSE_       Root Mean Squared Error            4464183.09     4325191.73     4714130.58
- _SBC_        Schwarz's Bayesian Criterion         10308.64            .              .
- _SSE_        Sum of Squared Errors             6.616405E15    4.714235E15    5.600203E15
- _SUMW_       Sum of Case Weights Times Freq         336.00         252.00         252.00
+ _AIC_        Akaike's Information Criterion      2542.53           .            .
+ _ASE_        Average Squared Error                880.95       1040.08       758.34
+ _AVERR_      Average Error Function               880.95       1040.08       758.34
+ _DFE_        Degrees of Freedom for Error         362.00           .            .
+ _DFM_        Model Degrees of Freedom              10.00           .            .
+ _DFT_        Total Degrees of Freedom             372.00           .            .
+ _DIV_        Divisor for ASE                      372.00        277.00       278.00
+ _ERR_        Error Function                    327711.83     288101.65    210817.57
+ _FPE_        Final Prediction Error               929.62           .            .
+ _MAX_        Maximum Absolute Error               161.27        162.27       133.27
+ _MSE_        Mean Square Error                    905.28       1040.08       758.34
+ _NOBS_       Sum of Frequencies                   372.00        277.00       278.00
+ _NW_         Number of Estimate Weights            10.00           .            .
+ _RASE_       Root Average Sum of Squares           29.68         32.25        27.54
+ _RFPE_       Root Final Prediction Error           30.49           .            .
+ _RMSE_       Root Mean Squared Error               30.09         32.25        27.54
+ _SBC_        Schwarz's Bayesian Criterion        2581.72           .            .
+ _SSE_        Sum of Squared Errors             327711.83     288101.65    210817.57
+ _SUMW_       Sum of Case Weights Times Freq       372.00        277.00       278.00
  
  
  
  
 Assessment Score Rankings
  
-Data Role=TRAIN Target Variable=Sum_Labor_Force_Pop Target Label=' '
+Data Role=TRAIN Target Variable=Cases_in_1000s Target Label=' '
  
-           Number of                        Mean
-Depth    Observations    Mean Target     Predicted
+           Number of       Mean        Mean
+Depth    Observations     Target    Predicted
  
-   5          89         12847651.69    12847651.69
-  30          75          9464920.00     9464920.00
-  50          84          3744154.76     3744154.76
-  75          88          1083534.09     1083534.09
+   5          18         95.2222      65.5445
+  10          19         84.9474      49.9266
+  15          14         16.9286      48.5378
+  20          19         34.0526      46.0223
+  25          20         43.4500      39.6146
+  30          21         19.0000      35.3171
+  35          19         31.5263      30.4528
+  40          25         13.7600      28.3501
+  45          10         36.9000      26.4635
+  50          21         13.3810      24.5399
+  55          17         26.1765      21.8593
+  60          25         10.6000      19.3098
+  65          14          0.0000      12.9099
+  70          17          1.2941      11.1175
+  75          26         11.7692      10.2152
+  80          13         11.4615       7.9774
+  85          18          4.4444       1.9445
+  90          22          0.0000      -1.8386
+  95          20          0.3000     -12.7911
+ 100          14          0.0000     -19.2686
  
  
-Data Role=VALIDATE Target Variable=Sum_Labor_Force_Pop Target Label=' '
+Data Role=VALIDATE Target Variable=Cases_in_1000s Target Label=' '
  
-           Number of                        Mean
-Depth    Observations    Mean Target     Predicted
+           Number of        Mean       Mean
+Depth    Observations     Target    Predicted
  
-   5          60         13104950.00    12847651.69
-  25          75          9773026.67     9464920.00
-  55          51          3618372.55     3744154.76
-  75          66          1123984.85     1083534.09
+   5          10         128.800      65.7814
+  10          16          92.250      49.6111
+  15          12          17.250      48.5392
+  20          12          37.000      46.2019
+  25          18          43.389      39.0763
+  30          14          13.214      31.8725
+  35          16          29.688      29.7460
+  40          13          17.462      28.1063
+  45          14          31.429      26.2190
+  50          12           9.417      23.9879
+  55          17          30.882      21.6786
+  60          16           4.188      16.3839
+  65          11           0.273      12.0258
+  70          13          14.462      10.7163
+  75          17          11.176       9.2681
+  80          11           5.636       5.2046
+  85          18           1.500      -0.7441
+  90          13           0.385      -9.2783
+  95          15           0.000     -17.8521
+ 100           9           0.000     -19.5002
  
  
  
  
 Assessment Score Distribution
  
-Data Role=TRAIN Target Variable=Sum_Labor_Force_Pop Target Label=' '
+Data Role=TRAIN Target Variable=Cases_in_1000s Target Label=' '
  
-                                                  Mean         Number of
-    Range for Predicted        Mean Target     Predicted     Observations    Model Score
+    Range for           Mean        Mean        Number of        Model
+    Predicted          Target    Predicted    Observations       Score
  
-12259445.805 - 12847651.685    12847651.69    12847651.69         89         12553548.75
- 9318416.407 -  9906622.286     9464920.00     9464920.00         75          9612519.35
- 3436357.610 -  4024563.489     3744154.76     3744154.76         84          3730460.55
- 1083534.091 -  1671739.971     1083534.09     1083534.09         88          1377637.03
+62.418 -  66.729      95.2222      65.5445         18          64.5734
+49.483 -  53.795      59.8000      51.0826         10          51.6390
+45.172 -  49.483      44.9756      47.5373         41          47.3275
+40.860 -  45.172      15.4000      41.0964         10          43.0160
+36.549 -  40.860      43.6957      37.8093         23          38.7046
+32.237 -  36.549      18.3333      32.8977          9          34.3931
+27.926 -  32.237      21.4318      29.2581         44          30.0816
+23.614 -  27.926      25.0833      25.8399         24          25.7702
+19.303 -  23.614      20.2000      21.8064         30          21.4587
+14.991 -  19.303       8.0000      18.9460         19          17.1472
+10.680 -  14.991       4.2162      11.7265         37          12.8358
+6.369 -  10.680        9.7273       9.2472         33           8.5243
+2.057 -  6.369         4.4444       3.1017          9           4.2128
+-2.254 -  2.057        1.5385      -0.4270         26          -0.0986
+-6.566 -  -2.254       0.0000      -4.4522          5          -4.4101
+-10.877 -  -6.566      0.7500      -6.7667          8          -8.7216
+-19.500 -  -15.189     0.0000     -18.1327         26         -17.3445
  
  
-Data Role=VALIDATE Target Variable=Sum_Labor_Force_Pop Target Label=' '
+Data Role=VALIDATE Target Variable=Cases_in_1000s Target Label=' '
  
-                                                  Mean         Number of
-    Range for Predicted        Mean Target     Predicted     Observations    Model Score
+    Range for            Mean       Mean        Number of        Model
+    Predicted          Target    Predicted    Observations       Score
  
-12259445.805 - 12847651.685    13104950.00    12847651.69         60         12553548.75
- 9318416.407 -  9906622.286     9773026.67     9464920.00         75          9612519.35
- 3436357.610 -  4024563.489     3618372.55     3744154.76         51          3730460.55
- 1083534.091 -  1671739.971     1123984.85     1083534.09         66          1377637.03
+62.418 -  66.729      128.800      65.7814         10          64.5734
+49.483 -  53.795       68.286      50.8569          7          51.6390
+45.172 -  49.483       49.970      47.7173         33          47.3275
+40.860 -  45.172       19.714      40.9177          7          43.0160
+36.549 -  40.860       58.455      37.9045         11          38.7046
+32.237 -  36.549       11.556      32.6991          9          34.3931
+27.926 -  32.237       23.029      29.2130         34          30.0816
+23.614 -  27.926       24.250      25.8969         20          25.7702
+19.303 -  23.614       25.783      21.9791         23          21.4587
+14.991 -  19.303        7.444      18.9690          9          17.1472
+10.680 -  14.991        6.161      11.7102         31          12.8358
+6.369 -  10.680        10.000       8.9181         22           8.5243
+2.057 -  6.369          5.333       3.1017          6           4.2128
+-2.254 -  2.057         1.500      -0.7441         18          -0.0986
+-6.566 -  -2.254        0.714      -4.4522          7          -4.4101
+-10.877 -  -6.566       0.000      -6.7667          1          -8.7216
+-19.500 -  -15.189      0.000     -18.1369         29         -17.3445

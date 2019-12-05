@@ -1,4 +1,4 @@
-if NAME = "P_Sum_Labor_Force_Pop" then ROLE = 'REJECTED';
+if NAME = "P_Cases_in_1000s" then ROLE = 'REJECTED';
 if NAME = "EM_CLASSIFICATION" then LEVEL = 'NOMINAL';
 else if NAME = "EM_PREDICTION" then LEVEL = 'INTERVAL';
 else if NAME = "EM_PROBABILITY" then LEVEL = 'INTERVAL';
