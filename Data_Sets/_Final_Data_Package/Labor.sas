@@ -2,7 +2,7 @@ Libname Step_1 "C:\Users\student\OneDrive - Bryant University\College\Senior\Sem
 options user = Step_1;
 
 /* Historic recode step 1*/
-
+/*Recoding Historical Data to Fit Buckets*/
 data PopRecode;
 set census_population;
 
@@ -51,7 +51,7 @@ data PopAgeRecode_AllGender;
 		if Gender = "both sexes" then output;
 run;
 
-
+/*Recoding future data to fit buckets*/
 data LaborForceProjectedRecode;
 set Projected_Population;
 	if age_group = "18 to 24 years" then
@@ -140,14 +140,22 @@ select Date, gender, Age_Group, sum(population_in_thousands) as Population_in_th
 group by Date, Age_Group, Gender
 order by Date, Age_Group, Gender;
 
+data labor_projected_final;
+set labor_projected_final;
+if Age_group = "45 to 64 years" then Age_group = "45 to 64";
+if Age_group = "25 to 44 years" then Age_group = "25 to 44";
+run;
+
 /*projected*/
 data laborforceprojectedrecode_2;
 set laborforceprojectedrecode;
 if Age_Group = '16 to 17' then Age_Group = '16 to 24';
+if Age_group = '25 to 44 years' then Age_group = "25 to 44";
+if Age_group = '45 to 64 years' then Age_group = '45 to 64'; 
 run;
-proc freq data = laborforceprojectedrecode_2;
+/*proc freq data = laborforceprojectedrecode_2;
 table Age_Group /nocum nofreq;
-run;
+run;*/
 proc sql;
 create table labor_projected_FINAL as 
 select Date, gender, Age_Group, sum(population_in_thousands) as Population_in_thousands from laborforceprojectedrecode_2
@@ -169,7 +177,7 @@ set labor_force_population;
 	output;
 	run;
 	
-/* Using proc sql to aggregate population by year and age_group) */
+/* Using proc sql to aggregate population by year and age_group */
 proc sql;
 create table labor_force_population_FINAL as 
 select Industry, Year, Age_Group, sum(Labor_force_pop) as labor_force_pop
@@ -178,10 +186,34 @@ group by Industry, Year, Age_Group
 order by Industry, Year, Age_Group;
 
 /* Joining labor_historic_final to labor_force_population_final to create final table for modeling future laborforce */
-
+data labor_force_population_formated;
+	set labor_force_population;
+	if Age_Group = "16-19years" then Age_Group = "16 to 24";
+	if Age_Group = "20-24years" then Age_Group = "16 to 24";
+	if Age_Group = "25-34years" then Age_Group = "25 to 44";
+	if Age_Group = "35-44years" then Age_Group = "25 to 44";
+	if Age_Group = "45-54years" then Age_Group = "45 to 64";
+	if Age_Group = "55-64years" then Age_Group = "55 to 64";
+	if Age_Group = "65years and over" then Age_Group = "65+";
+run;
 proc sql;
-create table modeling_future_labor_force as
-select * from labor_historic_final, labor_force_population_final
-from labor_historic_final 
-	join labor_force_population_final on labor_force_population_final.age_group = labor_historic_final.age_group;
+create table labor_force_grouped as
+	select Industry, Year, Age_Group, sum(Labor_Force_Pop) as Sum_Labor_Force_Pop from labor_force_population_formated
+	group by Year, Industry, Age_Group
+	order by Year, Industry, Age_Group;
+data labor_force_final;
+set labor_force_grouped;
+Year_char = put(Year, $4.);
+drop Year;
+run;
+PROC SQL;
+   CREATE TABLE QUERY_FOR_LABOR_PROJECTED_FINAL AS 
+   SELECT t1.Date, 
+          t1.Age_group, 
+          t1.Gender, 
+          t1.Population_in_thousands, 
+          t2.Sum_Labor_Force_Pop
+      FROM labor_force_final t2
+           RIGHT JOIN labor_projected_final t1 ON (t2.Age_Group = t1.Age_group) AND (t1.Date = t2.Year_char);
+QUIT;
 	
