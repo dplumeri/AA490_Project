@@ -7,8 +7,7 @@ Variable Summary
           Measurement    Frequency
  Role        Level         Count
 
-INPUT      INTERVAL          1    
-INPUT      NOMINAL           2    
+INPUT      NOMINAL           5    
 TARGET     INTERVAL          1    
  
                                                                                                                                                                                                                                                                 
@@ -16,11 +15,11 @@ TARGET     INTERVAL          1
  
 Predicted and decision variables
 
-Type               Variable                       Label
+Type             Variable                  Label
 
-TARGET       Sum_Labor_Force_Pop                                    
-PREDICTED    P_Sum_Labor_Force_Pop    Predicted: Sum_Labor_Force_Pop
-RESIDUAL     R_Sum_Labor_Force_Pop    Residual: Sum_Labor_Force_Pop 
+TARGET       Cases_in_1000s                               
+PREDICTED    P_Cases_in_1000s    Predicted: Cases_in_1000s
+RESIDUAL     R_Cases_in_1000s    Residual: Cases_in_1000s 
  
                                                                                                                                                                                                                                                                 
  
@@ -28,16 +27,16 @@ RESIDUAL     R_Sum_Labor_Force_Pop    Residual: Sum_Labor_Force_Pop
 
 The DMREG Procedure
 
-                Model Information
+               Model Information
 
-Training Data Set             WORK.EM_DMREG.VIEW 
-DMDB Catalog                  WORK.REG2_DMDB     
-Target Variable               Sum_Labor_Force_Pop
-Target Measurement Level      Interval           
-Error                         Normal             
-Link Function                 Identity           
-Number of Model Parameters    18                 
-Number of Observations        336                
+Training Data Set             WORK.EM_DMREG.VIEW
+DMDB Catalog                  WORK.REG2_DMDB    
+Target Variable               Cases_in_1000s    
+Target Measurement Level      Interval          
+Error                         Normal            
+Link Function                 Identity          
+Number of Model Parameters    33                
+Number of Observations        372               
 
 
                              Analysis of Variance
@@ -45,48 +44,65 @@ Number of Observations        336
                                    Sum of
 Source                 DF         Squares     Mean Square    F Value    Pr > F
 
-Model                  17    7.6873973E15    4.5219984E14      22.56    <.0001
-Error                 318    6.3754147E15    2.0048474E13                     
-Corrected Total       335    1.4062812E16                                     
+Model                  31          175837     5672.164799       6.17    <.0001
+Error                 340          312334      918.630420                     
+Corrected Total       371          488171                                     
 
 
               Model Fit Statistics
 
-R-Square        0.5466     Adj R-Sq        0.5224
-AIC         10308.9024     BIC         10312.9338
-SBC         10377.6104     C(p)           18.0000
+R-Square        0.3602     Adj R-Sq        0.3019
+AIC          2568.6521     BIC          2576.6579
+SBC          2694.0567     C(p)           32.0000
 
 
-                    Type 3 Analysis of Effects
+                      Type 3 Analysis of Effects
  
-                                       Sum of
-Effect                       DF       Squares    F Value    Pr > F
+                                           Sum of
+Effect                           DF       Squares    F Value    Pr > F
 
-Age_group                     3    3.50409E15      58.26    <.0001
-Date                         13    1.98931E14       0.76    0.6989
-Population_in_thousands       1    3.87085E13       1.93    0.1656
+Age_group                         3     1727.4336       0.63    0.5981
+Date                             20     9715.6166       0.53    0.9539
+Disease                           4    75109.1682      20.44    <.0001
+Gender                            2    11989.3064       6.53    0.0017
+OPT_Population_in_thousands       2     6024.7711       3.28    0.0389
 
 
-                      Analysis of Maximum Likelihood Estimates
+                                    Analysis of Maximum Likelihood Estimates
  
-                                                      Standard
-Parameter                           DF    Estimate       Error    t Value    Pr > |t|
+                                                                                  Standard
+Parameter                                                       DF    Estimate       Error    t Value    Pr > |t|
 
-Intercept                            1     5860646      691724       8.47      <.0001
-Age_group               16 to 24     1    -2764115      484815      -5.70      <.0001
-Age_group               25 to 44     1     5768711      498184      11.58      <.0001
-Age_group               45 to 64     1     2379679      493201       4.82      <.0001
-Date                    2000         1     -144260      826994      -0.17      0.8616
-Date                    2001         1      399666      985364       0.41      0.6853
-Date                    2002         1    -1505728      990653      -1.52      0.1295
-Date                    2003         1      316018      869589       0.36      0.7165
-Date                    2004         1     -170070      919825      -0.18      0.8534
-Date                    2005         1     -628034      942657      -0.67      0.5057
-Date                    2006         1     -727975      937889      -0.78      0.4382
-Date                    2007         1     1359086      854240       1.59      0.1126
-Date                    2008         1     1523785      963267       1.58      0.1147
-Date                    2009         1     -729404      837310      -0.87      0.3843
-Date                    2010         1     -637954      865370      -0.74      0.4615
-Date                    2011         1      564348      803392       0.70      0.4829
-Date                    2012         1      204361      852091       0.24      0.8106
-Population_in_thousands              1     22.9298     16.5021       1.39      0.1656
+Intercept                                                        1     29.6165      3.9216       7.55      <.0001
+Age_group                   0-17                                 1     -2.3760      5.2080      -0.46      0.6485
+Age_group                   18-24                                1    -11.5032     16.8506      -0.68      0.4953
+Age_group                   25-44                                1     13.8808     11.1689       1.24      0.2148
+Date                        1990                                 1      2.2462      6.2609       0.36      0.7200
+Date                        1991                                 1     -6.1324      9.9481      -0.62      0.5380
+Date                        1992                                 1      7.3212      7.4692       0.98      0.3277
+Date                        1993                                 1      2.8083      7.4792       0.38      0.7075
+Date                        1994                                 1     -6.4589      6.2854      -1.03      0.3049
+Date                        1995                                 1     -1.3156      8.9288      -0.15      0.8830
+Date                        1996                                 1      3.4692      6.8658       0.51      0.6137
+Date                        1997                                 1      5.7511      7.9835       0.72      0.4718
+Date                        1998                                 1     -4.4811      6.8684      -0.65      0.5146
+Date                        1999                                 1     -2.4953      7.4830      -0.33      0.7390
+Date                        2000                                 1      1.7667      6.8443       0.26      0.7965
+Date                        2001                                 1     -1.8916      8.2060      -0.23      0.8178
+Date                        2002                                 1     -4.1488      7.3177      -0.57      0.5711
+Date                        2003                                 1      4.4538      6.6954       0.67      0.5064
+Date                        2004                                 1     10.4881      7.0461       1.49      0.1375
+Date                        2005                                 1     -2.4298      6.1691      -0.39      0.6939
+Date                        2006                                 1      1.2911      6.6929       0.19      0.8471
+Date                        2007                                 1      2.5535      7.5211       0.34      0.7344
+Date                        2008                                 1     -5.1099      7.0980      -0.72      0.4721
+Date                        2009                                 1      5.6423      6.6963       0.84      0.4000
+Disease                     Asthma                               1     23.8144      3.0133       7.90      <.0001
+Disease                     Cancer, all                          1      6.1724      3.1528       1.96      0.0511
+Disease                     Dementia and Alzheimer's disease     1    -13.7079      3.4045      -4.03      <.0001
+Disease                     Osteoarthritis                       1    -13.9913      3.3373      -4.19      <.0001
+Gender                      All                                  1      9.0587      2.5525       3.55      0.0004
+Gender                      Female                               1     -3.2383      2.4068      -1.35      0.1794
+OPT_Population_in_thousands 01:low-8773.6505                     1     -1.1907     18.5478      -0.06      0.9488
+OPT_Population_in_thousands 02:8773.6505-34177.5, MISSING        1    -16.0523     16.4501      -0.98      0.3299
+OPT_Population_in_thousands 03:34177.5-72628.5                   0           0           .        .         .    
