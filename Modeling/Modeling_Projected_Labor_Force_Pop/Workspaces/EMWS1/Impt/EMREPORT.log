@@ -1,0 +1,29 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 19, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:09:42" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Report Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Report Log
+Date:                November 19, 2019
+Time:                16:09:42
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O1X0OLLE "C:\Users\student\Desktop\AA Capstone\Project\GitRepository\aa490_project\Modeling\Modeling_Projected_Labor_Force_Pop\Workspaces\EMWS1\Impt\EMREPORT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O1X0OLLE new;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data EMWS1.Impt_RESULT;
+MPRINT(EM_DIAGRAM):   label NAME = "Variable Name" METHOD = "Impute Method" IMPUTED = "Imputed Variable" INDICATOR = "Indicator Variable" VALUE = "Impute Value" ROLE = "Role" LEVEL = "Measurement Level" LABEL = "Label" TRAIN = "Number of Missing for 
+TRAIN";
+MPRINT(EM_DIAGRAM):   set EMWS1.Impt_META(where=(IMPUTED ne '') keep=NAME METHOD IMP VALUE ROLE NMISS LEVEL LABEL rename=(IMP=IMPUTED NMISS=TRAIN)) end=eof;
+MPRINT(EM_DIAGRAM):   if eof then call symput('_nimpute', '1');
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;
