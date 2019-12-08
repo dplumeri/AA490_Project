@@ -146,16 +146,16 @@ run;
 
 /* Computing "Employee_Contribution", "Employeer_Contribution", and "Combined_Contributions" columns */
 
-data work.temp14;
+data SSdata.historic_ss_calculation_final;
 set work.temp13;
 employee_contribution = (total_taxable_income * new_employee_ss_rate);
 employer_contribution = (total_taxable_income * new_employer_ss_rate);
 combined_contribution = (employer_contribution + employer_contribution);
 run;
 
+libname labor "C:\Users\student\Desktop\AA Capstone\Project\GitRepository\aa490_project\Data_Sets\labor_force_pop";
 
-/* Dropping uneeded columns */
-
-data ssdata.historic_ss_data_final;
-set work.temp14;
-(drop employee_ss_rate employer_ss_rate active_contributors);
+data labor.cross_join_labor_2;
+set labor.cross_join_labor;
+rename population_in_thousands=Population;
+run;
