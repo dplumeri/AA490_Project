@@ -46,8 +46,8 @@ set PopRecode;
 		or missing (age_group) then
 		delete;
 		run;
-data PopAgeRecode_AllGender;
-	set PopAgeRecode;
+data PopAgeRecode_Both_Gender;
+	set laborforcehistoricrecode;
 		if Gender = "both sexes" then output;
 run;
 
