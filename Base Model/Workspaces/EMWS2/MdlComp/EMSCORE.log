@@ -3,8 +3,8 @@ MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
 MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
 MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   data _null_;
-MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "December 04, 2019" );
-MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "13:49:25" );
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "December 09, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:48:27" );
 MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
 MPRINT(EM_DIAGRAM):   put "* Score Log";
 MPRINT(EM_DIAGRAM):   put nldate;
@@ -13,531 +13,467 @@ MPRINT(EM_DIAGRAM):   put "*----------------------------------------------------
 MPRINT(EM_DIAGRAM):   run;
 *------------------------------------------------------------*
 * Score Log
-Date:                December 04, 2019
-Time:                13:49:25
+Date:                December 09, 2019
+Time:                16:48:27
 *------------------------------------------------------------*
-MPRINT(EM_DIAGRAM):    filename O2MONS14 "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\MdlComp\EMSCORE.out" encoding="UTF-8" NOBOM;
-MPRINT(EM_DIAGRAM):   proc printto print=O2MONS14 new;
+MPRINT(EM_DIAGRAM):    filename O3HHP7R5 "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\MdlComp\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O3HHP7R5 new;
 MPRINT(EM_DIAGRAM):   run;
-NOTE: View EMWS2.TREE_TRAIN.VIEW used (Total process time):
+NOTE: View EMWS2.REG5_TRAIN.VIEW used (Total process time):
       real time           0.02 seconds
       cpu time            0.03 seconds
       
-NOTE: View EMWS2.TREE_TRAIN.VIEW used (Total process time):
+NOTE: View EMWS2.REG5_TRAIN.VIEW used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.06 seconds
+      
+120715     /* Generate assessment metadata, which will be used to generate assessment data step */
+120716     /* code, such as retrieving names of temporary variables and summary variables,      */
+120717     /* labels, etc.  It is used in almost all the assessment computations such as lift,  */
+120718     /* roc, index, scoreDist and could be thought as a global variable in assessment     */
+120719     /* computation.                                                                      */
+120720     data work.ASSESS_0_PI0TB_assessMeta_SWhTHA;
+MPRINT(EM_DIAGRAM):    data work.ASSESS_0_PI0TB_assessMeta_SWhTHA;
+120721     length VARIABLE $32 FORMAT $44 TYPE $32 PARENT $32 LEVEL $32 PROPERTY $32 MEASUREMENT $10 LAST_LEVEL $32 GEN_VAR_IN_TEMP_DATA $32 RESULT_MEAN $32 RESULT_MEAN_LABEL $100 RESULT_MIN $32 RESULT_MIN_LABEL $100 MIN_ADJUSTED $32 RESULT_MAX $32
+120721   ! RESULT_MAX_LABEL
+120722        $100 MAX_ADJUSTED $32 RESULT_COUNT $32 RESULT_COUNT_LABEL $100 TEMPORARY_VARIABLE $32;
+MPRINT(EM_DIAGRAM):   length VARIABLE $32 FORMAT $44 TYPE $32 PARENT $32 LEVEL $32 PROPERTY $32 MEASUREMENT $10 LAST_LEVEL $32 GEN_VAR_IN_TEMP_DATA $32 RESULT_MEAN $32 RESULT_MEAN_LABEL $100 RESULT_MIN $32 RESULT_MIN_LABEL $100 MIN_ADJUSTED $32 RESULT_MAX 
+$32 RESULT_MAX_LABEL $100 MAX_ADJUSTED $32 RESULT_COUNT $32 RESULT_COUNT_LABEL $100 TEMPORARY_VARIABLE $32;
+120723     VARIABLE = "Cases_in_1000s";
+MPRINT(EM_DIAGRAM):   VARIABLE = "Cases_in_1000s";
+120724     PARENT = "";
+MPRINT(EM_DIAGRAM):   PARENT = "";
+120725     FORMAT = "";
+MPRINT(EM_DIAGRAM):   FORMAT = "";
+120726     TYPE = "";
+MPRINT(EM_DIAGRAM):   TYPE = "";
+120727     LEVEL = '';
+MPRINT(EM_DIAGRAM):   LEVEL = '';
+120728     PROPERTY = "TARGET";
+MPRINT(EM_DIAGRAM):   PROPERTY = "TARGET";
+120729     MEASUREMENT = "INTERVAL";
+MPRINT(EM_DIAGRAM):   MEASUREMENT = "INTERVAL";
+120730     LAST_LEVEL = '';
+MPRINT(EM_DIAGRAM):   LAST_LEVEL = '';
+120731     GEN_VAR_IN_TEMP_DATA = "Cases_in_1000s";
+MPRINT(EM_DIAGRAM):   GEN_VAR_IN_TEMP_DATA = "Cases_in_1000s";
+120732     RESULT_MEAN = "_targetMean_";
+MPRINT(EM_DIAGRAM):   RESULT_MEAN = "_targetMean_";
+120733     RESULT_MEAN_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_trgtMean_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   RESULT_MEAN_LABEL = "Mean Target";
+120734     RESULT_MIN = "_targetMin_";
+MPRINT(EM_DIAGRAM):   RESULT_MIN = "_targetMin_";
+120735     RESULT_MIN_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_trgtMin_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   RESULT_MIN_LABEL = "Min Target";
+120736     MIN_ADJUSTED = "Cases_in_minAdjusted_OYDhVXrhs";
+MPRINT(EM_DIAGRAM):   MIN_ADJUSTED = "Cases_in_minAdjusted_OYDhVXrhs";
+120737     RESULT_MAX = "_targetMax_";
+MPRINT(EM_DIAGRAM):   RESULT_MAX = "_targetMax_";
+120738     RESULT_MAX_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_trgtMax_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   RESULT_MAX_LABEL = "Max Target";
+120739     MAX_ADJUSTED = "Cases_in_maxAdjusted_8Xe3Rc8gJ";
+MPRINT(EM_DIAGRAM):   MAX_ADJUSTED = "Cases_in_maxAdjusted_8Xe3Rc8gJ";
+120740     RESULT_COUNT = "";
+MPRINT(EM_DIAGRAM):   RESULT_COUNT = "";
+120741     RESULT_COUNT_LABEL = "";
+MPRINT(EM_DIAGRAM):   RESULT_COUNT_LABEL = "";
+120742     TEMPORARY_VARIABLE = "Cases_in_1000s_AwIQ42mcIo0sDYu";
+MPRINT(EM_DIAGRAM):   TEMPORARY_VARIABLE = "Cases_in_1000s_AwIQ42mcIo0sDYu";
+120743     output;
+MPRINT(EM_DIAGRAM):   output;
+120744     VARIABLE = "P_Cases_in_1000s";
+MPRINT(EM_DIAGRAM):   VARIABLE = "P_Cases_in_1000s";
+120745     FORMAT = "";
+MPRINT(EM_DIAGRAM):   FORMAT = "";
+120746     TYPE = "";
+MPRINT(EM_DIAGRAM):   TYPE = "";
+120747     PARENT = "";
+MPRINT(EM_DIAGRAM):   PARENT = "";
+120748     LEVEL = "";
+MPRINT(EM_DIAGRAM):   LEVEL = "";
+120749     PROPERTY = "PREDICTED";
+MPRINT(EM_DIAGRAM):   PROPERTY = "PREDICTED";
+120750     MEASUREMENT = "INTERVAL";
+MPRINT(EM_DIAGRAM):   MEASUREMENT = "INTERVAL";
+120751     LAST_LEVEL = "";
+MPRINT(EM_DIAGRAM):   LAST_LEVEL = "";
+120752     GEN_VAR_IN_TEMP_DATA = "P_Cases_in_1000s";
+MPRINT(EM_DIAGRAM):   GEN_VAR_IN_TEMP_DATA = "P_Cases_in_1000s";
+120753     RESULT_MEAN = "_meanP_";
+MPRINT(EM_DIAGRAM):   RESULT_MEAN = "_meanP_";
+120754     RESULT_MEAN_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_predMean_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   RESULT_MEAN_LABEL = "Mean Predicted";
+120755     RESULT_MIN = "_minP_";
+MPRINT(EM_DIAGRAM):   RESULT_MIN = "_minP_";
+120756     RESULT_MIN_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_predMin_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   RESULT_MIN_LABEL = "Min Predicted";
+120757     MIN_ADJUSTED = "P_Cases__minAdjusted_tbowtbBj0";
+MPRINT(EM_DIAGRAM):   MIN_ADJUSTED = "P_Cases__minAdjusted_tbowtbBj0";
+120758     RESULT_MIN_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_predMin_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   RESULT_MIN_LABEL = "Min Predicted";
+120759     RESULT_MAX = "_maxP_";
+MPRINT(EM_DIAGRAM):   RESULT_MAX = "_maxP_";
+120760     RESULT_MAX_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_predMax_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   RESULT_MAX_LABEL = "Max Predicted";
+120761     MAX_ADJUSTED = "max_adjusted";
+MPRINT(EM_DIAGRAM):   MAX_ADJUSTED = "max_adjusted";
+120762     RESULT_COUNT = "";
+MPRINT(EM_DIAGRAM):   RESULT_COUNT = "";
+120763     RESULT_COUNT_LABEL = "";
+MPRINT(EM_DIAGRAM):   RESULT_COUNT_LABEL = "";
+120764     TEMPORARY_VARIABLE = "P_Cases_in_1000s_z69NG5EC7iOmC5N";
+MPRINT(EM_DIAGRAM):   TEMPORARY_VARIABLE = "P_Cases_in_1000s_z69NG5EC7iOmC5N";
+120765     output;
+MPRINT(EM_DIAGRAM):   output;
+120766     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: The data set WORK.ASSESS_0_PI0TB_ASSESSMETA_SWHTHA has 2 observations and 20 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.03 seconds
+      
+
+120767     /* Generate temporary dataset and obtain summary statistics such as total number of   */
+120768     /* obserations, frequency of target.  However, summary statistics for class reporting */
+120769     /* variabels are not computed here since if there exist class reporting variables,    */
+120770     /* then PROC DMDB will be called. And there is no need to compute interval reporting  */
+120771     /* summary statisitcs, if any.                                                        */
+120772     data work.ASSESS_0_PI0TB_normSD_S5gOrv(drop=
+120773     _numberOfObservation_
+120774     _intervalTargetMin_ _intervalTargetMax_
+120775     )
+120776     work.ASSESS_0_PI0TB_meansAndTi_0QBIyc (keep=
+120777     _numberOfObservation_
+120778     _intervalTargetMin_ _intervalTargetMax_
+120779     );
+MPRINT(EM_DIAGRAM):    data work.ASSESS_0_PI0TB_normSD_S5gOrv(drop= _numberOfObservation_ _intervalTargetMin_ _intervalTargetMax_ ) work.ASSESS_0_PI0TB_meansAndTi_0QBIyc (keep= _numberOfObservation_ _intervalTargetMin_ _intervalTargetMax_ );
+120780     set EMWS2.Reg5_TRAIN(
+120781     where=(
+120782     (Cases_in_1000s ^= .)
+120783     and (P_Cases_in_1000s ^= .)
+120784     )
+120785     ) end=_lastObservation_;
+MPRINT(EM_DIAGRAM):   set EMWS2.Reg5_TRAIN( where=( (Cases_in_1000s ^= .) and (P_Cases_in_1000s ^= .) ) ) end=_lastObservation_;
+120786     keep frequency_tE3bZ5;
+MPRINT(EM_DIAGRAM):   keep frequency_tE3bZ5;
+120787     frequency_tE3bZ5 = 1;
+MPRINT(EM_DIAGRAM):   frequency_tE3bZ5 = 1;
+120788     keep Cases_in_1000s;
+MPRINT(EM_DIAGRAM):   keep Cases_in_1000s;
+120789     keep P_Cases_in_1000s;
+MPRINT(EM_DIAGRAM):   keep P_Cases_in_1000s;
+120790     output work.ASSESS_0_PI0TB_normSD_S5gOrv;
+MPRINT(EM_DIAGRAM):   output work.ASSESS_0_PI0TB_normSD_S5gOrv;
+120791     keep _numberOfObservation_;
+MPRINT(EM_DIAGRAM):   keep _numberOfObservation_;
+120792     retain _numberOfObservation_ 0;
+MPRINT(EM_DIAGRAM):   retain _numberOfObservation_ 0;
+120793     _numberOfObservation_ + frequency_tE3bZ5;
+MPRINT(EM_DIAGRAM):   _numberOfObservation_ + frequency_tE3bZ5;
+120794     keep _intervalTargetMin_ _intervalTargetMax_;
+MPRINT(EM_DIAGRAM):   keep _intervalTargetMin_ _intervalTargetMax_;
+120795     retain _intervalTargetMin_ .;
+MPRINT(EM_DIAGRAM):   retain _intervalTargetMin_ .;
+120796     retain _intervalTargetMax_ .;
+MPRINT(EM_DIAGRAM):   retain _intervalTargetMax_ .;
+120797     if (_n_ = 1) then do;
+MPRINT(EM_DIAGRAM):   if (_n_ = 1) then do;
+120798     _intervalTargetMin_ = P_Cases_in_1000s;
+MPRINT(EM_DIAGRAM):   _intervalTargetMin_ = P_Cases_in_1000s;
+120799     _intervalTargetMax_ = P_Cases_in_1000s;
+MPRINT(EM_DIAGRAM):   _intervalTargetMax_ = P_Cases_in_1000s;
+120800     end;
+MPRINT(EM_DIAGRAM):   end;
+120801     else do;
+MPRINT(EM_DIAGRAM):   else do;
+120802     if (_intervalTargetMin_ > P_Cases_in_1000s) then do;
+MPRINT(EM_DIAGRAM):   if (_intervalTargetMin_ > P_Cases_in_1000s) then do;
+120803     _intervalTargetMin_ = P_Cases_in_1000s;
+MPRINT(EM_DIAGRAM):   _intervalTargetMin_ = P_Cases_in_1000s;
+120804     end;
+MPRINT(EM_DIAGRAM):   end;
+120805     if (_intervalTargetMax_ < P_Cases_in_1000s) then do;
+MPRINT(EM_DIAGRAM):   if (_intervalTargetMax_ < P_Cases_in_1000s) then do;
+120806     _intervalTargetMax_ = P_Cases_in_1000s;
+MPRINT(EM_DIAGRAM):   _intervalTargetMax_ = P_Cases_in_1000s;
+120807     end;
+MPRINT(EM_DIAGRAM):   end;
+120808     end;
+MPRINT(EM_DIAGRAM):   end;
+120809     if _lastObservation_ then do;
+MPRINT(EM_DIAGRAM):   if _lastObservation_ then do;
+120810     output work.ASSESS_0_PI0TB_meansAndTi_0QBIyc;
+MPRINT(EM_DIAGRAM):   output work.ASSESS_0_PI0TB_meansAndTi_0QBIyc;
+120811     end;
+MPRINT(EM_DIAGRAM):   end;
+120812     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: View EMWS2.REG5_TRAIN.VIEW used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.04 seconds
+      
+NOTE: There were 750 observations read from the data set EMWS2.PART_TRAIN.
+NOTE: There were 743 observations read from the data set EMWS2.REG5_TRAIN.
+      WHERE (Cases_in_1000s not = .) and (P_Cases_in_1000s not = .);
+NOTE: The data set WORK.ASSESS_0_PI0TB_NORMSD_S5GORV has 743 observations and 3 variables.
+NOTE: The data set WORK.ASSESS_0_PI0TB_MEANSANDTI_0QBIYC has 1 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
       real time           0.05 seconds
       cpu time            0.04 seconds
       
-87915      /* Generate assessment metadata, which will be used to generate assessment data step */
-87916      /* code, such as retrieving names of temporary variables and summary variables,      */
-87917      /* labels, etc.  It is used in almost all the assessment computations such as lift,  */
-87918      /* roc, index, scoreDist and could be thought as a global variable in assessment     */
-87919      /* computation.                                                                      */
-87920      data work.ASSESS_23ICA85_assessMeta_dx23U4;
-MPRINT(EM_DIAGRAM):    data work.ASSESS_23ICA85_assessMeta_dx23U4;
-87921      length VARIABLE $32 FORMAT $44 TYPE $32 PARENT $32 LEVEL $32 PROPERTY $32 MEASUREMENT $10 LAST_LEVEL $32 GEN_VAR_IN_TEMP_DATA $32 RESULT_MEAN $32 RESULT_MEAN_LABEL $100 RESULT_MIN $32 RESULT_MIN_LABEL $100 MIN_ADJUSTED $32 RESULT_MAX $32
-87921    ! RESULT_MAX_LABEL
-87922         $100 MAX_ADJUSTED $32 RESULT_COUNT $32 RESULT_COUNT_LABEL $100 TEMPORARY_VARIABLE $32;
-MPRINT(EM_DIAGRAM):   length VARIABLE $32 FORMAT $44 TYPE $32 PARENT $32 LEVEL $32 PROPERTY $32 MEASUREMENT $10 LAST_LEVEL $32 GEN_VAR_IN_TEMP_DATA $32 RESULT_MEAN $32 RESULT_MEAN_LABEL $100 RESULT_MIN $32 RESULT_MIN_LABEL $100 MIN_ADJUSTED $32 RESULT_MAX 
-$32 RESULT_MAX_LABEL $100 MAX_ADJUSTED $32 RESULT_COUNT $32 RESULT_COUNT_LABEL $100 TEMPORARY_VARIABLE $32;
-87923      VARIABLE = "Cases_in_1000s";
-MPRINT(EM_DIAGRAM):   VARIABLE = "Cases_in_1000s";
-87924      PARENT = "";
-MPRINT(EM_DIAGRAM):   PARENT = "";
-87925      FORMAT = "";
-MPRINT(EM_DIAGRAM):   FORMAT = "";
-87926      TYPE = "";
-MPRINT(EM_DIAGRAM):   TYPE = "";
-87927      LEVEL = '';
-MPRINT(EM_DIAGRAM):   LEVEL = '';
-87928      PROPERTY = "TARGET";
-MPRINT(EM_DIAGRAM):   PROPERTY = "TARGET";
-87929      MEASUREMENT = "INTERVAL";
-MPRINT(EM_DIAGRAM):   MEASUREMENT = "INTERVAL";
-87930      LAST_LEVEL = '';
-MPRINT(EM_DIAGRAM):   LAST_LEVEL = '';
-87931      GEN_VAR_IN_TEMP_DATA = "Cases_in_1000s";
-MPRINT(EM_DIAGRAM):   GEN_VAR_IN_TEMP_DATA = "Cases_in_1000s";
-87932      RESULT_MEAN = "_targetMean_";
-MPRINT(EM_DIAGRAM):   RESULT_MEAN = "_targetMean_";
-87933      RESULT_MEAN_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_trgtMean_vlabel, NOQUOTE))";
-MPRINT(EM_DIAGRAM):   RESULT_MEAN_LABEL = "Mean Target";
-87934      RESULT_MIN = "_targetMin_";
-MPRINT(EM_DIAGRAM):   RESULT_MIN = "_targetMin_";
-87935      RESULT_MIN_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_trgtMin_vlabel, NOQUOTE))";
-MPRINT(EM_DIAGRAM):   RESULT_MIN_LABEL = "Min Target";
-87936      MIN_ADJUSTED = "Cases_in_minAdjusted_dDi34JcLh";
-MPRINT(EM_DIAGRAM):   MIN_ADJUSTED = "Cases_in_minAdjusted_dDi34JcLh";
-87937      RESULT_MAX = "_targetMax_";
-MPRINT(EM_DIAGRAM):   RESULT_MAX = "_targetMax_";
-87938      RESULT_MAX_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_trgtMax_vlabel, NOQUOTE))";
-MPRINT(EM_DIAGRAM):   RESULT_MAX_LABEL = "Max Target";
-87939      MAX_ADJUSTED = "Cases_in_maxAdjusted_oi48qD3S4";
-MPRINT(EM_DIAGRAM):   MAX_ADJUSTED = "Cases_in_maxAdjusted_oi48qD3S4";
-87940      RESULT_COUNT = "";
-MPRINT(EM_DIAGRAM):   RESULT_COUNT = "";
-87941      RESULT_COUNT_LABEL = "";
-MPRINT(EM_DIAGRAM):   RESULT_COUNT_LABEL = "";
-87942      TEMPORARY_VARIABLE = "Cases_in_1000s_izmeSILD6n0Q6C5";
-MPRINT(EM_DIAGRAM):   TEMPORARY_VARIABLE = "Cases_in_1000s_izmeSILD6n0Q6C5";
-87943      output;
-MPRINT(EM_DIAGRAM):   output;
-87944      VARIABLE = "P_Cases_in_1000s";
-MPRINT(EM_DIAGRAM):   VARIABLE = "P_Cases_in_1000s";
-87945      FORMAT = "";
-MPRINT(EM_DIAGRAM):   FORMAT = "";
-87946      TYPE = "";
-MPRINT(EM_DIAGRAM):   TYPE = "";
-87947      PARENT = "";
-MPRINT(EM_DIAGRAM):   PARENT = "";
-87948      LEVEL = "";
-MPRINT(EM_DIAGRAM):   LEVEL = "";
-87949      PROPERTY = "PREDICTED";
-MPRINT(EM_DIAGRAM):   PROPERTY = "PREDICTED";
-87950      MEASUREMENT = "INTERVAL";
-MPRINT(EM_DIAGRAM):   MEASUREMENT = "INTERVAL";
-87951      LAST_LEVEL = "";
-MPRINT(EM_DIAGRAM):   LAST_LEVEL = "";
-87952      GEN_VAR_IN_TEMP_DATA = "P_Cases_in_1000s";
-MPRINT(EM_DIAGRAM):   GEN_VAR_IN_TEMP_DATA = "P_Cases_in_1000s";
-87953      RESULT_MEAN = "_meanP_";
-MPRINT(EM_DIAGRAM):   RESULT_MEAN = "_meanP_";
-87954      RESULT_MEAN_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_predMean_vlabel, NOQUOTE))";
-MPRINT(EM_DIAGRAM):   RESULT_MEAN_LABEL = "Mean Predicted";
-87955      RESULT_MIN = "_minP_";
-MPRINT(EM_DIAGRAM):   RESULT_MIN = "_minP_";
-87956      RESULT_MIN_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_predMin_vlabel, NOQUOTE))";
-MPRINT(EM_DIAGRAM):   RESULT_MIN_LABEL = "Min Predicted";
-87957      MIN_ADJUSTED = "P_Cases__minAdjusted_a7B36iGRb";
-MPRINT(EM_DIAGRAM):   MIN_ADJUSTED = "P_Cases__minAdjusted_a7B36iGRb";
-87958      RESULT_MIN_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_predMin_vlabel, NOQUOTE))";
-MPRINT(EM_DIAGRAM):   RESULT_MIN_LABEL = "Min Predicted";
-87959      RESULT_MAX = "_maxP_";
-MPRINT(EM_DIAGRAM):   RESULT_MAX = "_maxP_";
-87960      RESULT_MAX_LABEL = "%sysfunc(sasmsg(sashelp.dmine, assmt_predMax_vlabel, NOQUOTE))";
-MPRINT(EM_DIAGRAM):   RESULT_MAX_LABEL = "Max Predicted";
-87961      MAX_ADJUSTED = "max_adjusted";
-MPRINT(EM_DIAGRAM):   MAX_ADJUSTED = "max_adjusted";
-87962      RESULT_COUNT = "";
-MPRINT(EM_DIAGRAM):   RESULT_COUNT = "";
-87963      RESULT_COUNT_LABEL = "";
-MPRINT(EM_DIAGRAM):   RESULT_COUNT_LABEL = "";
-87964      TEMPORARY_VARIABLE = "P_Cases_in_1000s_Wo6EedqtfQ1IniT";
-MPRINT(EM_DIAGRAM):   TEMPORARY_VARIABLE = "P_Cases_in_1000s_Wo6EedqtfQ1IniT";
-87965      output;
-MPRINT(EM_DIAGRAM):   output;
-87966      run;
-MPRINT(EM_DIAGRAM):   run;
 
-NOTE: The data set WORK.ASSESS_23ICA85_ASSESSMETA_DX23U4 has 2 observations and 20 variables.
-NOTE: DATA statement used (Total process time):
-      real time           0.02 seconds
-      cpu time            0.03 seconds
-      
-
-87967      /* Generate temporary dataset and obtain summary statistics such as total number of   */
-87968      /* obserations, frequency of target.  However, summary statistics for class reporting */
-87969      /* variabels are not computed here since if there exist class reporting variables,    */
-87970      /* then PROC DMDB will be called. And there is no need to compute interval reporting  */
-87971      /* summary statisitcs, if any.                                                        */
-87972      data work.ASSESS_23ICA85_normSD_XLfnz1(drop=
-87973      _numberOfObservation_
-87974      _intervalTargetMin_ _intervalTargetMax_
-87975      )
-87976      work.ASSESS_23ICA85_meansAndTi_BJNc6P (keep=
-87977      _numberOfObservation_
-87978      _intervalTargetMin_ _intervalTargetMax_
-87979      );
-MPRINT(EM_DIAGRAM):    data work.ASSESS_23ICA85_normSD_XLfnz1(drop= _numberOfObservation_ _intervalTargetMin_ _intervalTargetMax_ ) work.ASSESS_23ICA85_meansAndTi_BJNc6P (keep= _numberOfObservation_ _intervalTargetMin_ _intervalTargetMax_ );
-87980      set EMWS2.Tree_TRAIN(
-87981      where=(
-87982      (Cases_in_1000s ^= .)
-87983      and (P_Cases_in_1000s ^= .)
-87984      )
-87985      ) end=_lastObservation_;
-MPRINT(EM_DIAGRAM):   set EMWS2.Tree_TRAIN( where=( (Cases_in_1000s ^= .) and (P_Cases_in_1000s ^= .) ) ) end=_lastObservation_;
-87986      keep frequency_AQNCEr;
-MPRINT(EM_DIAGRAM):   keep frequency_AQNCEr;
-87987      frequency_AQNCEr = 1;
-MPRINT(EM_DIAGRAM):   frequency_AQNCEr = 1;
-87988      keep Cases_in_1000s;
-MPRINT(EM_DIAGRAM):   keep Cases_in_1000s;
-87989      keep P_Cases_in_1000s;
-MPRINT(EM_DIAGRAM):   keep P_Cases_in_1000s;
-87990      output work.ASSESS_23ICA85_normSD_XLfnz1;
-MPRINT(EM_DIAGRAM):   output work.ASSESS_23ICA85_normSD_XLfnz1;
-87991      keep _numberOfObservation_;
-MPRINT(EM_DIAGRAM):   keep _numberOfObservation_;
-87992      retain _numberOfObservation_ 0;
-MPRINT(EM_DIAGRAM):   retain _numberOfObservation_ 0;
-87993      _numberOfObservation_ + frequency_AQNCEr;
-MPRINT(EM_DIAGRAM):   _numberOfObservation_ + frequency_AQNCEr;
-87994      keep _intervalTargetMin_ _intervalTargetMax_;
-MPRINT(EM_DIAGRAM):   keep _intervalTargetMin_ _intervalTargetMax_;
-87995      retain _intervalTargetMin_ .;
-MPRINT(EM_DIAGRAM):   retain _intervalTargetMin_ .;
-87996      retain _intervalTargetMax_ .;
-MPRINT(EM_DIAGRAM):   retain _intervalTargetMax_ .;
-87997      if (_n_ = 1) then do;
-MPRINT(EM_DIAGRAM):   if (_n_ = 1) then do;
-87998      _intervalTargetMin_ = P_Cases_in_1000s;
-MPRINT(EM_DIAGRAM):   _intervalTargetMin_ = P_Cases_in_1000s;
-87999      _intervalTargetMax_ = P_Cases_in_1000s;
-MPRINT(EM_DIAGRAM):   _intervalTargetMax_ = P_Cases_in_1000s;
-88000      end;
-MPRINT(EM_DIAGRAM):   end;
-88001      else do;
-MPRINT(EM_DIAGRAM):   else do;
-88002      if (_intervalTargetMin_ > P_Cases_in_1000s) then do;
-MPRINT(EM_DIAGRAM):   if (_intervalTargetMin_ > P_Cases_in_1000s) then do;
-88003      _intervalTargetMin_ = P_Cases_in_1000s;
-MPRINT(EM_DIAGRAM):   _intervalTargetMin_ = P_Cases_in_1000s;
-88004      end;
-MPRINT(EM_DIAGRAM):   end;
-88005      if (_intervalTargetMax_ < P_Cases_in_1000s) then do;
-MPRINT(EM_DIAGRAM):   if (_intervalTargetMax_ < P_Cases_in_1000s) then do;
-88006      _intervalTargetMax_ = P_Cases_in_1000s;
-MPRINT(EM_DIAGRAM):   _intervalTargetMax_ = P_Cases_in_1000s;
-88007      end;
-MPRINT(EM_DIAGRAM):   end;
-88008      end;
-MPRINT(EM_DIAGRAM):   end;
-88009      if _lastObservation_ then do;
-MPRINT(EM_DIAGRAM):   if _lastObservation_ then do;
-88010      output work.ASSESS_23ICA85_meansAndTi_BJNc6P;
-MPRINT(EM_DIAGRAM):   output work.ASSESS_23ICA85_meansAndTi_BJNc6P;
-88011      end;
-MPRINT(EM_DIAGRAM):   end;
-88012      run;
-MPRINT(EM_DIAGRAM):   run;
-
-NOTE: Variable _WARN_ is uninitialized.
-NOTE: View EMWS2.TREE_TRAIN.VIEW used (Total process time):
-      real time           0.04 seconds
-      cpu time            0.03 seconds
-      
-NOTE: There were 378 observations read from the data set EMWS2.PART_TRAIN.
-NOTE: There were 372 observations read from the data set EMWS2.TREE_TRAIN.
-      WHERE (Cases_in_1000s not = .) and (P_Cases_in_1000s not = .);
-NOTE: The data set WORK.ASSESS_23ICA85_NORMSD_XLFNZ1 has 372 observations and 3 variables.
-NOTE: The data set WORK.ASSESS_23ICA85_MEANSANDTI_BJNC6P has 1 observations and 3 variables.
-NOTE: DATA statement used (Total process time):
-      real time           0.06 seconds
-      cpu time            0.04 seconds
-      
-
-88013      data WORK._EMRANK;
+120813     data WORK._EMRANK;
 MPRINT(EM_DIAGRAM):    data WORK._EMRANK;
-88014      set EMWS2.MdlComp_EMRANK;
+120814     set EMWS2.MdlComp_EMRANK;
 MPRINT(EM_DIAGRAM):   set EMWS2.MdlComp_EMRANK;
-88015      where MODEL = "Tree" and TARGET = "Cases_in_1000s" and dataRole="TRAIN";
-MPRINT(EM_DIAGRAM):   where MODEL = "Tree" and TARGET = "Cases_in_1000s" and dataRole="TRAIN";
-88016      run;
+120815     where MODEL = "Reg5" and TARGET = "Cases_in_1000s" and dataRole="TRAIN";
+MPRINT(EM_DIAGRAM):   where MODEL = "Reg5" and TARGET = "Cases_in_1000s" and dataRole="TRAIN";
+120816     run;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 14 observations read from the data set EMWS2.MDLCOMP_EMRANK.
-      WHERE (MODEL='Tree') and (TARGET='Cases_in_1000s') and (dataRole='TRAIN');
-NOTE: The data set WORK._EMRANK has 14 observations and 15 variables.
-NOTE: DATA statement used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.00 seconds
-      
-
-88017      data work._augment;
-MPRINT(EM_DIAGRAM):    data work._augment;
-88018      do BIN= 1 to 20;
-MPRINT(EM_DIAGRAM):   do BIN= 1 to 20;
-88019      DECILE = BIN*5;
-MPRINT(EM_DIAGRAM):   DECILE = BIN*5;
-88020      output;
-MPRINT(EM_DIAGRAM):   output;
-88021      end;
-MPRINT(EM_DIAGRAM):   end;
-88022      run;
-MPRINT(EM_DIAGRAM):   run;
-
-NOTE: The data set WORK._AUGMENT has 20 observations and 2 variables.
-NOTE: DATA statement used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.00 seconds
-      
-
-88023      data WORK._EMRANK;
-MPRINT(EM_DIAGRAM):   data WORK._EMRANK;
-88024      merge WORK._AUGMENT WORK._EMRANK;
-MPRINT(EM_DIAGRAM):   merge WORK._AUGMENT WORK._EMRANK;
-88025      by BIN;
-MPRINT(EM_DIAGRAM):   by BIN;
-88026      run;
-MPRINT(EM_DIAGRAM):   run;
-
-NOTE: There were 20 observations read from the data set WORK._AUGMENT.
-NOTE: There were 14 observations read from the data set WORK._EMRANK.
+NOTE: There were 20 observations read from the data set EMWS2.MDLCOMP_EMRANK.
+      WHERE (MODEL='Reg5') and (TARGET='Cases_in_1000s') and (dataRole='TRAIN');
 NOTE: The data set WORK._EMRANK has 20 observations and 15 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.00 seconds
       cpu time            0.00 seconds
       
 
-88027      data WORK._EMRANK;
-MPRINT(EM_DIAGRAM):    data WORK._EMRANK;
-88028      set WORK._EMRANK end=_lastObservation_;
-MPRINT(EM_DIAGRAM):   set WORK._EMRANK end=_lastObservation_;
-88029      retain _previousMinP_ _previousMaxP_;
-MPRINT(EM_DIAGRAM):   retain _previousMinP_ _previousMaxP_;
-88030      retain _group_ 1;
-MPRINT(EM_DIAGRAM):   retain _group_ 1;
-88031      keep bin _cutoff_ _group_;
-MPRINT(EM_DIAGRAM):   keep bin _cutoff_ _group_;
-88032      if (bin > 1) then do;
-MPRINT(EM_DIAGRAM):   if (bin > 1) then do;
-88033      bin = bin - 1;
-MPRINT(EM_DIAGRAM):   bin = bin - 1;
-88034      _cutoff_ = (_maxP_ + _previousMinP_) / 2;
-MPRINT(EM_DIAGRAM):   _cutoff_ = (_maxP_ + _previousMinP_) / 2;
-88035      if (abs(_previousMaxP_ - _previousMinP_) < 1E-6) then do;
-MPRINT(EM_DIAGRAM):   if (abs(_previousMaxP_ - _previousMinP_) < 1E-6) then do;
-88036      /* tied */
-88037      _cutoff_ = max((_minP_ + _maxP_)/2, min(_cutoff_, _previousMinP_/*-1E-6*/
-88038      ));
-MPRINT(EM_DIAGRAM):   _cutoff_ = max((_minP_ + _maxP_)/2, min(_cutoff_, _previousMinP_ ));
-88039      end;
-MPRINT(EM_DIAGRAM):   end;
-88040      else if (abs(_maxP_ - _minP_) < 1E-6) then do;
-MPRINT(EM_DIAGRAM):   else if (abs(_maxP_ - _minP_) < 1E-6) then do;
-88041      /* next tied */
-88042      _cutoff_ = min((_previousMinP_ + _previousMaxP_)/2, max(_cutoff_, _maxP_/*+ 1E-6*/
-88043      ));
-MPRINT(EM_DIAGRAM):   _cutoff_ = min((_previousMinP_ + _previousMaxP_)/2, max(_cutoff_, _maxP_ ));
-88044      end;
-MPRINT(EM_DIAGRAM):   end;
-88045      output;
+120817     data work._augment;
+MPRINT(EM_DIAGRAM):    data work._augment;
+120818     do BIN= 1 to 20;
+MPRINT(EM_DIAGRAM):   do BIN= 1 to 20;
+120819     DECILE = BIN*5;
+MPRINT(EM_DIAGRAM):   DECILE = BIN*5;
+120820     output;
 MPRINT(EM_DIAGRAM):   output;
-88046      *if ( abs((_maxP_ +_minP_)/2 - (_previousMaxP_ + _previousMinP_)/2) > 1E-6) then do;
-MPRINT(EM_DIAGRAM):   *if ( abs((_maxP_ +_minP_)/2 - (_previousMaxP_ + _previousMinP_)/2) > 1E-6) then do;
-88047      * _group_ + 1;
-MPRINT(EM_DIAGRAM):   * _group_ + 1;
-88048      *end;
-MPRINT(EM_DIAGRAM):   *end;
-88049      if (_maxP_ le _previousMinP_ - 1E-6) then do;
-MPRINT(EM_DIAGRAM):   if (_maxP_ le _previousMinP_ - 1E-6) then do;
-88050      _group_ + 1;
-MPRINT(EM_DIAGRAM):   _group_ + 1;
-88051      end;
+120821     end;
 MPRINT(EM_DIAGRAM):   end;
-88052      else if (abs(_maxP_ - _previousMinP_) < 1E-6) then do;
-MPRINT(EM_DIAGRAM):   else if (abs(_maxP_ - _previousMinP_) < 1E-6) then do;
-88053      if (abs(_maxP_ - _minP_) > 1E-6) then do;
-MPRINT(EM_DIAGRAM):   if (abs(_maxP_ - _minP_) > 1E-6) then do;
-88054      _group_ + 1;
-MPRINT(EM_DIAGRAM):   _group_ + 1;
-88055      end;
-MPRINT(EM_DIAGRAM):   end;
-88056      end;
-MPRINT(EM_DIAGRAM):   end;
-88057      bin + 1;
-MPRINT(EM_DIAGRAM):   bin + 1;
-88058      /* correct the previous change */
-88059      end;
-MPRINT(EM_DIAGRAM):   end;
-88060      if (_lastObservation_) then do;
-MPRINT(EM_DIAGRAM):   if (_lastObservation_) then do;
-88061      _cutoff_ = .;
-MPRINT(EM_DIAGRAM):   _cutoff_ = .;
-88062      output;
-MPRINT(EM_DIAGRAM):   output;
-88063      end;
-MPRINT(EM_DIAGRAM):   end;
-88064      _previousMinP_ = _minP_;
-MPRINT(EM_DIAGRAM):   _previousMinP_ = _minP_;
-88065      _previousMaxP_ = _maxP_;
-MPRINT(EM_DIAGRAM):   _previousMaxP_ = _maxP_;
-88066      run;
+120822     run;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: Missing values were generated as a result of performing an operation on missing values.
-      Each place is given by: (Number of times) at (Line):(Column).
-      9 at 88034:20   5 at 88035:5    5 at 88035:24   2 at 88037:12   4 at 88037:24   4 at 88037:33   5 at 88037:37   2 at 88040:10   2 at 88040:21   2 at 88042:53   5 at 88049:30   3 at 88052:10   3 at 88052:21   
-NOTE: There were 20 observations read from the data set WORK._EMRANK.
-NOTE: The data set WORK._EMRANK has 20 observations and 3 variables.
+NOTE: The data set WORK._AUGMENT has 20 observations and 2 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.00 seconds
       cpu time            0.01 seconds
       
 
-88067      data WORK._EMRANK;
-MPRINT(EM_DIAGRAM):    data WORK._EMRANK;
-88068      set WORK._EMRANK;
-MPRINT(EM_DIAGRAM):   set WORK._EMRANK;
-88069      by _group_;
-MPRINT(EM_DIAGRAM):   by _group_;
-88070      retain _start_;
-MPRINT(EM_DIAGRAM):   retain _start_;
-88071      if (first._group_) then do;
-MPRINT(EM_DIAGRAM):   if (first._group_) then do;
-88072      _start_ = _n_;
-MPRINT(EM_DIAGRAM):   _start_ = _n_;
-88073      end;
-MPRINT(EM_DIAGRAM):   end;
-88074      if (last._group_) then do;
-MPRINT(EM_DIAGRAM):   if (last._group_) then do;
-88075      _end_ = _n_;
-MPRINT(EM_DIAGRAM):   _end_ = _n_;
-88076      output;
-MPRINT(EM_DIAGRAM):   output;
-88077      end;
-MPRINT(EM_DIAGRAM):   end;
-88078      run;
+120823     data WORK._EMRANK;
+MPRINT(EM_DIAGRAM):   data WORK._EMRANK;
+120824     merge WORK._AUGMENT WORK._EMRANK;
+MPRINT(EM_DIAGRAM):   merge WORK._AUGMENT WORK._EMRANK;
+120825     by BIN;
+MPRINT(EM_DIAGRAM):   by BIN;
+120826     run;
 MPRINT(EM_DIAGRAM):   run;
 
+NOTE: There were 20 observations read from the data set WORK._AUGMENT.
 NOTE: There were 20 observations read from the data set WORK._EMRANK.
-NOTE: The data set WORK._EMRANK has 18 observations and 5 variables.
+NOTE: The data set WORK._EMRANK has 20 observations and 15 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.00 seconds
       cpu time            0.00 seconds
       
 
-NOTE: This SAS session is using a registry in WORK.  All changes will be lost at the end of this session.
-88079      filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\MdlComp\EMFLOWSCORE.sas";
+120827     data WORK._EMRANK;
+MPRINT(EM_DIAGRAM):    data WORK._EMRANK;
+120828     set WORK._EMRANK end=_lastObservation_;
+MPRINT(EM_DIAGRAM):   set WORK._EMRANK end=_lastObservation_;
+120829     retain _previousMinP_ _previousMaxP_;
+MPRINT(EM_DIAGRAM):   retain _previousMinP_ _previousMaxP_;
+120830     retain _group_ 1;
+MPRINT(EM_DIAGRAM):   retain _group_ 1;
+120831     keep bin _cutoff_ _group_;
+MPRINT(EM_DIAGRAM):   keep bin _cutoff_ _group_;
+120832     if (bin > 1) then do;
+MPRINT(EM_DIAGRAM):   if (bin > 1) then do;
+120833     bin = bin - 1;
+MPRINT(EM_DIAGRAM):   bin = bin - 1;
+120834     _cutoff_ = (_maxP_ + _previousMinP_) / 2;
+MPRINT(EM_DIAGRAM):   _cutoff_ = (_maxP_ + _previousMinP_) / 2;
+120835     if (abs(_previousMaxP_ - _previousMinP_) < 1E-6) then do;
+MPRINT(EM_DIAGRAM):   if (abs(_previousMaxP_ - _previousMinP_) < 1E-6) then do;
+120836     /* tied */
+120837     _cutoff_ = max((_minP_ + _maxP_)/2, min(_cutoff_, _previousMinP_/*-1E-6*/
+120838     ));
+MPRINT(EM_DIAGRAM):   _cutoff_ = max((_minP_ + _maxP_)/2, min(_cutoff_, _previousMinP_ ));
+120839     end;
+MPRINT(EM_DIAGRAM):   end;
+120840     else if (abs(_maxP_ - _minP_) < 1E-6) then do;
+MPRINT(EM_DIAGRAM):   else if (abs(_maxP_ - _minP_) < 1E-6) then do;
+120841     /* next tied */
+120842     _cutoff_ = min((_previousMinP_ + _previousMaxP_)/2, max(_cutoff_, _maxP_/*+ 1E-6*/
+120843     ));
+MPRINT(EM_DIAGRAM):   _cutoff_ = min((_previousMinP_ + _previousMaxP_)/2, max(_cutoff_, _maxP_ ));
+120844     end;
+MPRINT(EM_DIAGRAM):   end;
+120845     output;
+MPRINT(EM_DIAGRAM):   output;
+120846     *if ( abs((_maxP_ +_minP_)/2 - (_previousMaxP_ + _previousMinP_)/2) > 1E-6) then do;
+MPRINT(EM_DIAGRAM):   *if ( abs((_maxP_ +_minP_)/2 - (_previousMaxP_ + _previousMinP_)/2) > 1E-6) then do;
+120847     * _group_ + 1;
+MPRINT(EM_DIAGRAM):   * _group_ + 1;
+120848     *end;
+MPRINT(EM_DIAGRAM):   *end;
+120849     if (_maxP_ le _previousMinP_ - 1E-6) then do;
+MPRINT(EM_DIAGRAM):   if (_maxP_ le _previousMinP_ - 1E-6) then do;
+120850     _group_ + 1;
+MPRINT(EM_DIAGRAM):   _group_ + 1;
+120851     end;
+MPRINT(EM_DIAGRAM):   end;
+120852     else if (abs(_maxP_ - _previousMinP_) < 1E-6) then do;
+MPRINT(EM_DIAGRAM):   else if (abs(_maxP_ - _previousMinP_) < 1E-6) then do;
+120853     if (abs(_maxP_ - _minP_) > 1E-6) then do;
+MPRINT(EM_DIAGRAM):   if (abs(_maxP_ - _minP_) > 1E-6) then do;
+120854     _group_ + 1;
+MPRINT(EM_DIAGRAM):   _group_ + 1;
+120855     end;
+MPRINT(EM_DIAGRAM):   end;
+120856     end;
+MPRINT(EM_DIAGRAM):   end;
+120857     bin + 1;
+MPRINT(EM_DIAGRAM):   bin + 1;
+120858     /* correct the previous change */
+120859     end;
+MPRINT(EM_DIAGRAM):   end;
+120860     if (_lastObservation_) then do;
+MPRINT(EM_DIAGRAM):   if (_lastObservation_) then do;
+120861     _cutoff_ = .;
+MPRINT(EM_DIAGRAM):   _cutoff_ = .;
+120862     output;
+MPRINT(EM_DIAGRAM):   output;
+120863     end;
+MPRINT(EM_DIAGRAM):   end;
+120864     _previousMinP_ = _minP_;
+MPRINT(EM_DIAGRAM):   _previousMinP_ = _minP_;
+120865     _previousMaxP_ = _maxP_;
+MPRINT(EM_DIAGRAM):   _previousMaxP_ = _maxP_;
+120866     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 20 observations read from the data set WORK._EMRANK.
+NOTE: The data set WORK._EMRANK has 20 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+120867     data WORK._EMRANK;
+MPRINT(EM_DIAGRAM):    data WORK._EMRANK;
+120868     set WORK._EMRANK;
+MPRINT(EM_DIAGRAM):   set WORK._EMRANK;
+120869     by _group_;
+MPRINT(EM_DIAGRAM):   by _group_;
+120870     retain _start_;
+MPRINT(EM_DIAGRAM):   retain _start_;
+120871     if (first._group_) then do;
+MPRINT(EM_DIAGRAM):   if (first._group_) then do;
+120872     _start_ = _n_;
+MPRINT(EM_DIAGRAM):   _start_ = _n_;
+120873     end;
+MPRINT(EM_DIAGRAM):   end;
+120874     if (last._group_) then do;
+MPRINT(EM_DIAGRAM):   if (last._group_) then do;
+120875     _end_ = _n_;
+MPRINT(EM_DIAGRAM):   _end_ = _n_;
+120876     output;
+MPRINT(EM_DIAGRAM):   output;
+120877     end;
+MPRINT(EM_DIAGRAM):   end;
+120878     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 20 observations read from the data set WORK._EMRANK.
+NOTE: The data set WORK._EMRANK has 20 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+120879     filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\MdlComp\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\MdlComp\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   * MdlComp: Scoring TREE_TRAIN data;
+MPRINT(EM_DIAGRAM):   * MdlComp: Scoring REG5_TRAIN data;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-88080      *------------------------------------------------------------*;
-88081      * MdlComp: Scoring TREE_TRAIN data;
-88082      *------------------------------------------------------------*;
-88083      data EMWS2.MdlComp_TRAIN
-88084      / view=EMWS2.MdlComp_TRAIN
-88085      ;
+120880     *------------------------------------------------------------*;
+120881     * MdlComp: Scoring REG5_TRAIN data;
+120882     *------------------------------------------------------------*;
+120883     data EMWS2.MdlComp_TRAIN
+120884     / view=EMWS2.MdlComp_TRAIN
+120885     ;
 MPRINT(EM_DIAGRAM):   data EMWS2.MdlComp_TRAIN / view=EMWS2.MdlComp_TRAIN ;
-88086      set EMWS2.Tree_TRAIN
-88087      ;
-MPRINT(EM_DIAGRAM):   set EMWS2.Tree_TRAIN ;
-88088      %inc emflow;
-NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\MdlComp\EMFLOWSCORE.sas.
-88089     +drop _temp_;
-MPRINT(EM_DIAGRAM):   drop _temp_;
-88090     +if (P_Cases_in_1000s ge 92.944444444444) then do;
-MPRINT(EM_DIAGRAM):   if (P_Cases_in_1000s ge 92.944444444444) then do;
-88091     +b_Cases_in_1000s = 1;
+120886     set EMWS2.Reg5_TRAIN
+120887     ;
+MPRINT(EM_DIAGRAM):   set EMWS2.Reg5_TRAIN ;
+120888     %inc emflow;
+MPRINT(EM_DIAGRAM):   if (P_Cases_in_1000s ge 355.072643522041) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 1;
-88092     +end;
 MPRINT(EM_DIAGRAM):   end;
-88093     +else
-88094     +if (P_Cases_in_1000s ge 69.8125) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 69.8125) then do;
-88095     +b_Cases_in_1000s = 2;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 234.666145749101) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 2;
-88096     +end;
 MPRINT(EM_DIAGRAM):   end;
-88097     +else
-88098     +if (P_Cases_in_1000s ge 41.375) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 41.375) then do;
-88099     +b_Cases_in_1000s = 3;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 147.729625909147) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 3;
-88100     +end;
 MPRINT(EM_DIAGRAM):   end;
-88101     +else
-88102     +if (P_Cases_in_1000s ge 30.7152777777777) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 30.7152777777777) then do;
-88103     +b_Cases_in_1000s = 4;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 130.478995919262) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 4;
-88104     +end;
 MPRINT(EM_DIAGRAM):   end;
-88105     +else
-88106     +if (P_Cases_in_1000s ge 24.2777777777777) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 24.2777777777777) then do;
-88107     +b_Cases_in_1000s = 5;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 100.39422684677) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 5;
-88108     +end;
 MPRINT(EM_DIAGRAM):   end;
-88109     +else
-88110     +if (P_Cases_in_1000s ge 18.0760869565217) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 18.0760869565217) then do;
-88111     +b_Cases_in_1000s = 6;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 72.452747704593) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 6;
-88112     +end;
 MPRINT(EM_DIAGRAM):   end;
-88113     +else
-88114     +if (P_Cases_in_1000s ge 14.2084639498432) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 14.2084639498432) then do;
-88115     +_temp_ = dmran(1234);
-MPRINT(EM_DIAGRAM):   _temp_ = dmran(1234);
-88116     +b_Cases_in_1000s = floor(7 + 2*_temp_);
-MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = floor(7 + 2*_temp_);
-88117     +end;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 54.5819441293905) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 7;
 MPRINT(EM_DIAGRAM):   end;
-88118     +else
-88119     +if (P_Cases_in_1000s ge 12.6414141414141) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 12.6414141414141) then do;
-88120     +b_Cases_in_1000s = 9;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 42.0451350069787) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 8;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 35.1304133696853) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 9;
-88121     +end;
 MPRINT(EM_DIAGRAM):   end;
-88122     +else
-88123     +if (P_Cases_in_1000s ge 10.9595959595959) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 10.9595959595959) then do;
-88124     +b_Cases_in_1000s = 10;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 23.6912314856704) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 10;
-88125     +end;
 MPRINT(EM_DIAGRAM):   end;
-88126     +else
-88127     +if (P_Cases_in_1000s ge 9.11660079051383) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 9.11660079051383) then do;
-88128     +b_Cases_in_1000s = 11;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 20.5804160497774) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 11;
-88129     +end;
 MPRINT(EM_DIAGRAM):   end;
-88130     +else
-88131     +if (P_Cases_in_1000s ge 5.28472222222222) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 5.28472222222222) then do;
-88132     +b_Cases_in_1000s = 12;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 16.320871806452) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 12;
-88133     +end;
 MPRINT(EM_DIAGRAM):   end;
-88134     +else
-88135     +if (P_Cases_in_1000s ge 4.34722222222222) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 4.34722222222222) then do;
-88136     +b_Cases_in_1000s = 13;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 12.5787213295769) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 13;
-88137     +end;
 MPRINT(EM_DIAGRAM):   end;
-88138     +else
-88139     +if (P_Cases_in_1000s ge 2.33395522388059) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 2.33395522388059) then do;
-88140     +b_Cases_in_1000s = 14;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 9.11373278944923) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 14;
-88141     +end;
 MPRINT(EM_DIAGRAM):   end;
-88142     +else
-88143     +if (P_Cases_in_1000s ge 0.41791044776119) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 0.41791044776119) then do;
-88144     +b_Cases_in_1000s = 15;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 4.3461858815957) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 15;
-88145     +end;
 MPRINT(EM_DIAGRAM):   end;
-88146     +else
-88147     +if (P_Cases_in_1000s ge 0) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 0) then do;
-88148     +_temp_ = dmran(1234);
-MPRINT(EM_DIAGRAM):   _temp_ = dmran(1234);
-88149     +b_Cases_in_1000s = floor(17 + 2*_temp_);
-MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = floor(17 + 2*_temp_);
-88150     +end;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 0.57194666419032) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 16;
 MPRINT(EM_DIAGRAM):   end;
-88151     +else
-88152     +do;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge -5.42645254107284) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 17;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge -9.13852238479099) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 18;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge -14.3849626365788) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 19;
+MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else do;
-88153     +b_Cases_in_1000s = 20;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 20;
-88154     +end;
 MPRINT(EM_DIAGRAM):   end;
-NOTE: %INCLUDE (level 1) ending.
+120968     run;
 MPRINT(EM_DIAGRAM):   run;
-88155      run;
 
 NOTE: DATA STEP view saved on file EMWS2.MDLCOMP_TRAIN.
 NOTE: A stored DATA STEP view cannot run under a different operating system.
-NOTE: View EMWS2.TREE_TRAIN.VIEW used (Total process time):
+NOTE: View EMWS2.REG5_TRAIN.VIEW used (Total process time):
       real time           0.03 seconds
       cpu time            0.03 seconds
       
@@ -547,328 +483,210 @@ NOTE: DATA statement used (Total process time):
       
 
 MPRINT(EM_DIAGRAM):   quit;
-88156      quit;
-88157      filename emflow;
+120969     quit;
+120970     filename emflow;
 MPRINT(EM_DIAGRAM):   filename emflow;
 NOTE: Fileref EMFLOW has been deassigned.
-88158      filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\MdlComp\EMFLOWSCORE.sas";
+120971     filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\MdlComp\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\MdlComp\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   * MdlComp: Scoring TREE_VALIDATE data;
+MPRINT(EM_DIAGRAM):   * MdlComp: Scoring REG5_VALIDATE data;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-88159      *------------------------------------------------------------*;
-88160      * MdlComp: Scoring TREE_VALIDATE data;
-88161      *------------------------------------------------------------*;
-88162      data EMWS2.MdlComp_VALIDATE
-88163      / view=EMWS2.MdlComp_VALIDATE
-88164      ;
+120972     *------------------------------------------------------------*;
+120973     * MdlComp: Scoring REG5_VALIDATE data;
+120974     *------------------------------------------------------------*;
+120975     data EMWS2.MdlComp_VALIDATE
+120976     / view=EMWS2.MdlComp_VALIDATE
+120977     ;
 MPRINT(EM_DIAGRAM):   data EMWS2.MdlComp_VALIDATE / view=EMWS2.MdlComp_VALIDATE ;
-88165      set EMWS2.Tree_VALIDATE
-88166      ;
-MPRINT(EM_DIAGRAM):   set EMWS2.Tree_VALIDATE ;
-88167      %inc emflow;
-NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\MdlComp\EMFLOWSCORE.sas.
-88168     +drop _temp_;
-MPRINT(EM_DIAGRAM):   drop _temp_;
-88169     +if (P_Cases_in_1000s ge 92.944444444444) then do;
-MPRINT(EM_DIAGRAM):   if (P_Cases_in_1000s ge 92.944444444444) then do;
-88170     +b_Cases_in_1000s = 1;
+120978     set EMWS2.Reg5_VALIDATE
+120979     ;
+MPRINT(EM_DIAGRAM):   set EMWS2.Reg5_VALIDATE ;
+120980     %inc emflow;
+MPRINT(EM_DIAGRAM):   if (P_Cases_in_1000s ge 355.072643522041) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 1;
-88171     +end;
 MPRINT(EM_DIAGRAM):   end;
-88172     +else
-88173     +if (P_Cases_in_1000s ge 69.8125) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 69.8125) then do;
-88174     +b_Cases_in_1000s = 2;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 234.666145749101) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 2;
-88175     +end;
 MPRINT(EM_DIAGRAM):   end;
-88176     +else
-88177     +if (P_Cases_in_1000s ge 41.375) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 41.375) then do;
-88178     +b_Cases_in_1000s = 3;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 147.729625909147) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 3;
-88179     +end;
 MPRINT(EM_DIAGRAM):   end;
-88180     +else
-88181     +if (P_Cases_in_1000s ge 30.7152777777777) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 30.7152777777777) then do;
-88182     +b_Cases_in_1000s = 4;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 130.478995919262) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 4;
-88183     +end;
 MPRINT(EM_DIAGRAM):   end;
-88184     +else
-88185     +if (P_Cases_in_1000s ge 24.2777777777777) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 24.2777777777777) then do;
-88186     +b_Cases_in_1000s = 5;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 100.39422684677) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 5;
-88187     +end;
 MPRINT(EM_DIAGRAM):   end;
-88188     +else
-88189     +if (P_Cases_in_1000s ge 18.0760869565217) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 18.0760869565217) then do;
-88190     +b_Cases_in_1000s = 6;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 72.452747704593) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 6;
-88191     +end;
 MPRINT(EM_DIAGRAM):   end;
-88192     +else
-88193     +if (P_Cases_in_1000s ge 14.2084639498432) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 14.2084639498432) then do;
-88194     +_temp_ = dmran(1234);
-MPRINT(EM_DIAGRAM):   _temp_ = dmran(1234);
-88195     +b_Cases_in_1000s = floor(7 + 2*_temp_);
-MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = floor(7 + 2*_temp_);
-88196     +end;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 54.5819441293905) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 7;
 MPRINT(EM_DIAGRAM):   end;
-88197     +else
-88198     +if (P_Cases_in_1000s ge 12.6414141414141) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 12.6414141414141) then do;
-88199     +b_Cases_in_1000s = 9;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 42.0451350069787) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 8;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 35.1304133696853) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 9;
-88200     +end;
 MPRINT(EM_DIAGRAM):   end;
-88201     +else
-88202     +if (P_Cases_in_1000s ge 10.9595959595959) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 10.9595959595959) then do;
-88203     +b_Cases_in_1000s = 10;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 23.6912314856704) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 10;
-88204     +end;
 MPRINT(EM_DIAGRAM):   end;
-88205     +else
-88206     +if (P_Cases_in_1000s ge 9.11660079051383) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 9.11660079051383) then do;
-88207     +b_Cases_in_1000s = 11;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 20.5804160497774) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 11;
-88208     +end;
 MPRINT(EM_DIAGRAM):   end;
-88209     +else
-88210     +if (P_Cases_in_1000s ge 5.28472222222222) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 5.28472222222222) then do;
-88211     +b_Cases_in_1000s = 12;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 16.320871806452) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 12;
-88212     +end;
 MPRINT(EM_DIAGRAM):   end;
-88213     +else
-88214     +if (P_Cases_in_1000s ge 4.34722222222222) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 4.34722222222222) then do;
-88215     +b_Cases_in_1000s = 13;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 12.5787213295769) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 13;
-88216     +end;
 MPRINT(EM_DIAGRAM):   end;
-88217     +else
-88218     +if (P_Cases_in_1000s ge 2.33395522388059) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 2.33395522388059) then do;
-88219     +b_Cases_in_1000s = 14;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 9.11373278944923) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 14;
-88220     +end;
 MPRINT(EM_DIAGRAM):   end;
-88221     +else
-88222     +if (P_Cases_in_1000s ge 0.41791044776119) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 0.41791044776119) then do;
-88223     +b_Cases_in_1000s = 15;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 4.3461858815957) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 15;
-88224     +end;
 MPRINT(EM_DIAGRAM):   end;
-88225     +else
-88226     +if (P_Cases_in_1000s ge 0) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 0) then do;
-88227     +_temp_ = dmran(1234);
-MPRINT(EM_DIAGRAM):   _temp_ = dmran(1234);
-88228     +b_Cases_in_1000s = floor(17 + 2*_temp_);
-MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = floor(17 + 2*_temp_);
-88229     +end;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 0.57194666419032) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 16;
 MPRINT(EM_DIAGRAM):   end;
-88230     +else
-88231     +do;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge -5.42645254107284) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 17;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge -9.13852238479099) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 18;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge -14.3849626365788) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 19;
+MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else do;
-88232     +b_Cases_in_1000s = 20;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 20;
-88233     +end;
 MPRINT(EM_DIAGRAM):   end;
-NOTE: %INCLUDE (level 1) ending.
+121060     run;
 MPRINT(EM_DIAGRAM):   run;
-88234      run;
 
 NOTE: DATA STEP view saved on file EMWS2.MDLCOMP_VALIDATE.
 NOTE: A stored DATA STEP view cannot run under a different operating system.
-NOTE: View EMWS2.TREE_VALIDATE.VIEW used (Total process time):
-      real time           0.03 seconds
+NOTE: View EMWS2.REG5_VALIDATE.VIEW used (Total process time):
+      real time           0.02 seconds
       cpu time            0.03 seconds
       
 NOTE: DATA statement used (Total process time):
-      real time           0.04 seconds
-      cpu time            0.06 seconds
+      real time           0.03 seconds
+      cpu time            0.03 seconds
       
 
 MPRINT(EM_DIAGRAM):   quit;
-88235      quit;
-88236      filename emflow;
+121061     quit;
+121062     filename emflow;
 MPRINT(EM_DIAGRAM):   filename emflow;
 NOTE: Fileref EMFLOW has been deassigned.
-88237      filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\MdlComp\EMFLOWSCORE.sas";
+121063     filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\MdlComp\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\MdlComp\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   * MdlComp: Scoring TREE_TEST data;
+MPRINT(EM_DIAGRAM):   * MdlComp: Scoring REG5_TEST data;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-88238      *------------------------------------------------------------*;
-88239      * MdlComp: Scoring TREE_TEST data;
-88240      *------------------------------------------------------------*;
-88241      data EMWS2.MdlComp_TEST
-88242      / view=EMWS2.MdlComp_TEST
-88243      ;
+121064     *------------------------------------------------------------*;
+121065     * MdlComp: Scoring REG5_TEST data;
+121066     *------------------------------------------------------------*;
+121067     data EMWS2.MdlComp_TEST
+121068     / view=EMWS2.MdlComp_TEST
+121069     ;
 MPRINT(EM_DIAGRAM):   data EMWS2.MdlComp_TEST / view=EMWS2.MdlComp_TEST ;
-88244      set EMWS2.Tree_TEST
-88245      ;
-MPRINT(EM_DIAGRAM):   set EMWS2.Tree_TEST ;
-88246      %inc emflow;
-NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\MdlComp\EMFLOWSCORE.sas.
-88247     +drop _temp_;
-MPRINT(EM_DIAGRAM):   drop _temp_;
-88248     +if (P_Cases_in_1000s ge 92.944444444444) then do;
-MPRINT(EM_DIAGRAM):   if (P_Cases_in_1000s ge 92.944444444444) then do;
-88249     +b_Cases_in_1000s = 1;
+121070     set EMWS2.Reg5_TEST
+121071     ;
+MPRINT(EM_DIAGRAM):   set EMWS2.Reg5_TEST ;
+121072     %inc emflow;
+MPRINT(EM_DIAGRAM):   if (P_Cases_in_1000s ge 355.072643522041) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 1;
-88250     +end;
 MPRINT(EM_DIAGRAM):   end;
-88251     +else
-88252     +if (P_Cases_in_1000s ge 69.8125) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 69.8125) then do;
-88253     +b_Cases_in_1000s = 2;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 234.666145749101) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 2;
-88254     +end;
 MPRINT(EM_DIAGRAM):   end;
-88255     +else
-88256     +if (P_Cases_in_1000s ge 41.375) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 41.375) then do;
-88257     +b_Cases_in_1000s = 3;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 147.729625909147) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 3;
-88258     +end;
 MPRINT(EM_DIAGRAM):   end;
-88259     +else
-88260     +if (P_Cases_in_1000s ge 30.7152777777777) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 30.7152777777777) then do;
-88261     +b_Cases_in_1000s = 4;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 130.478995919262) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 4;
-88262     +end;
 MPRINT(EM_DIAGRAM):   end;
-88263     +else
-88264     +if (P_Cases_in_1000s ge 24.2777777777777) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 24.2777777777777) then do;
-88265     +b_Cases_in_1000s = 5;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 100.39422684677) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 5;
-88266     +end;
 MPRINT(EM_DIAGRAM):   end;
-88267     +else
-88268     +if (P_Cases_in_1000s ge 18.0760869565217) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 18.0760869565217) then do;
-88269     +b_Cases_in_1000s = 6;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 72.452747704593) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 6;
-88270     +end;
 MPRINT(EM_DIAGRAM):   end;
-88271     +else
-88272     +if (P_Cases_in_1000s ge 14.2084639498432) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 14.2084639498432) then do;
-88273     +_temp_ = dmran(1234);
-MPRINT(EM_DIAGRAM):   _temp_ = dmran(1234);
-88274     +b_Cases_in_1000s = floor(7 + 2*_temp_);
-MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = floor(7 + 2*_temp_);
-88275     +end;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 54.5819441293905) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 7;
 MPRINT(EM_DIAGRAM):   end;
-88276     +else
-88277     +if (P_Cases_in_1000s ge 12.6414141414141) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 12.6414141414141) then do;
-88278     +b_Cases_in_1000s = 9;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 42.0451350069787) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 8;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 35.1304133696853) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 9;
-88279     +end;
 MPRINT(EM_DIAGRAM):   end;
-88280     +else
-88281     +if (P_Cases_in_1000s ge 10.9595959595959) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 10.9595959595959) then do;
-88282     +b_Cases_in_1000s = 10;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 23.6912314856704) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 10;
-88283     +end;
 MPRINT(EM_DIAGRAM):   end;
-88284     +else
-88285     +if (P_Cases_in_1000s ge 9.11660079051383) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 9.11660079051383) then do;
-88286     +b_Cases_in_1000s = 11;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 20.5804160497774) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 11;
-88287     +end;
 MPRINT(EM_DIAGRAM):   end;
-88288     +else
-88289     +if (P_Cases_in_1000s ge 5.28472222222222) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 5.28472222222222) then do;
-88290     +b_Cases_in_1000s = 12;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 16.320871806452) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 12;
-88291     +end;
 MPRINT(EM_DIAGRAM):   end;
-88292     +else
-88293     +if (P_Cases_in_1000s ge 4.34722222222222) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 4.34722222222222) then do;
-88294     +b_Cases_in_1000s = 13;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 12.5787213295769) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 13;
-88295     +end;
 MPRINT(EM_DIAGRAM):   end;
-88296     +else
-88297     +if (P_Cases_in_1000s ge 2.33395522388059) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 2.33395522388059) then do;
-88298     +b_Cases_in_1000s = 14;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 9.11373278944923) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 14;
-88299     +end;
 MPRINT(EM_DIAGRAM):   end;
-88300     +else
-88301     +if (P_Cases_in_1000s ge 0.41791044776119) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 0.41791044776119) then do;
-88302     +b_Cases_in_1000s = 15;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 4.3461858815957) then do;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 15;
-88303     +end;
 MPRINT(EM_DIAGRAM):   end;
-88304     +else
-88305     +if (P_Cases_in_1000s ge 0) then do;
-MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 0) then do;
-88306     +_temp_ = dmran(1234);
-MPRINT(EM_DIAGRAM):   _temp_ = dmran(1234);
-88307     +b_Cases_in_1000s = floor(17 + 2*_temp_);
-MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = floor(17 + 2*_temp_);
-88308     +end;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge 0.57194666419032) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 16;
 MPRINT(EM_DIAGRAM):   end;
-88309     +else
-88310     +do;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge -5.42645254107284) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 17;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge -9.13852238479099) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 18;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if (P_Cases_in_1000s ge -14.3849626365788) then do;
+MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 19;
+MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else do;
-88311     +b_Cases_in_1000s = 20;
 MPRINT(EM_DIAGRAM):   b_Cases_in_1000s = 20;
-88312     +end;
 MPRINT(EM_DIAGRAM):   end;
-NOTE: %INCLUDE (level 1) ending.
+121152     run;
 MPRINT(EM_DIAGRAM):   run;
-88313      run;
 
 NOTE: DATA STEP view saved on file EMWS2.MDLCOMP_TEST.
 NOTE: A stored DATA STEP view cannot run under a different operating system.
-NOTE: View EMWS2.TREE_TEST.VIEW used (Total process time):
+NOTE: View EMWS2.REG5_TEST.VIEW used (Total process time):
       real time           0.02 seconds
-      cpu time            0.01 seconds
+      cpu time            0.03 seconds
       
 NOTE: DATA statement used (Total process time):
       real time           0.03 seconds
-      cpu time            0.04 seconds
+      cpu time            0.03 seconds
       
 
 MPRINT(EM_DIAGRAM):   quit;
-88314      quit;
-88315      filename emflow;
+121153     quit;
+121154     filename emflow;
 MPRINT(EM_DIAGRAM):   filename emflow;
 NOTE: Fileref EMFLOW has been deassigned.
-88316      *------------------------------------------------------------*;
+121155     *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
-88317      * MdlComp: Computing metadata for TRAIN data;
+121156     * MdlComp: Computing metadata for TRAIN data;
 MPRINT(EM_DIAGRAM):   * MdlComp: Computing metadata for TRAIN data;
-88318      *------------------------------------------------------------*;
+121157     *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
 
 NOTE: View EMWS2.MDLCOMP_TRAIN.VIEW used (Total process time):
-      real time           0.05 seconds
-      cpu time            0.06 seconds
+      real time           0.04 seconds
+      cpu time            0.04 seconds
       
 MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   * &nodeid: Computing Metadata for TRAIN data;
@@ -887,12 +705,12 @@ MPRINT(EMADVISECOLUMNS):   call symput('_engineTable', attrc(dsid, 'ENGINE'));
 MPRINT(EMADVISECOLUMNS):   dsid = close(dsid);
 MPRINT(EMADVISECOLUMNS):   end;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    proc contents data=EMWS2.MdlComp_TRAIN out=WORK.M2R4ICVR noprint;
+MPRINT(EMADVISECOLUMNS):    proc contents data=EMWS2.MdlComp_TRAIN out=WORK.M3MKHIPT noprint;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M2R4ICVR;
+MPRINT(EMADVISECOLUMNS):    data WORK.M3MKHIPT;
 MPRINT(EMADVISECOLUMNS):   length NAME $ 64 TYPE $ 1 LABEL $ 200 FORMAT $ 36 INFORMAT $36 INDEX $ 1 INDEXTYPE $ 9;
 MPRINT(EMADVISECOLUMNS):   label NAME =;
-MPRINT(EMADVISECOLUMNS):   set WORK.M2R4ICVR(keep=name type length label format formatl formatd informat informl informd idxusage rename=(type=itype));
+MPRINT(EMADVISECOLUMNS):   set WORK.M3MKHIPT(keep=name type length label format formatl formatd informat informl informd idxusage rename=(type=itype));
 MPRINT(EMADVISECOLUMNS):   if itype = 1 then type = 'N';
 MPRINT(EMADVISECOLUMNS):   else type = 'C';
 MPRINT(EMADVISECOLUMNS):   if formatl > 0 then do;
@@ -916,21 +734,21 @@ MPRINT(EMADVISECOLUMNS):   else index = "Y";
 MPRINT(EMADVISECOLUMNS):   indextype = idxusage;
 MPRINT(EMADVISECOLUMNS):   drop idxusage itype formatl formatd informl informd;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M2R4ICVR;
+MPRINT(EMADVISECOLUMNS):    data WORK.M3MKHIPT;
 MPRINT(EMADVISECOLUMNS):   length UNAME $64;
-MPRINT(EMADVISECOLUMNS):   set WORK.M2R4ICVR;
+MPRINT(EMADVISECOLUMNS):   set WORK.M3MKHIPT;
 MPRINT(EMADVISECOLUMNS):   UNAME = upcase(NAME);
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    proc sort data=WORK.M1N7UFDA NOTHREADS;
+MPRINT(EMADVISECOLUMNS):    proc sort data=WORK.M00VMLMM NOTHREADS;
 MPRINT(EMADVISECOLUMNS):   by UNAME;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M1N7UFDA;
+MPRINT(EMADVISECOLUMNS):    data WORK.M00VMLMM;
 MPRINT(EMADVISECOLUMNS):   drop UNAME;
-MPRINT(EMADVISECOLUMNS):   set WORK.M1N7UFDA;
+MPRINT(EMADVISECOLUMNS):   set WORK.M00VMLMM;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M2RP7LHS(keep=NAME ATTR);
+MPRINT(EMADVISECOLUMNS):    data WORK.M3LLDUZE(keep=NAME ATTR);
 MPRINT(EMADVISECOLUMNS):   length ATTR $ 20;
-MPRINT(EMADVISECOLUMNS):   set WORK.M1N7UFDA;
+MPRINT(EMADVISECOLUMNS):   set WORK.M00VMLMM;
 MPRINT(EMADVISECOLUMNS):   if level ne "INTERVAL" then do;
 MPRINT(EMADVISECOLUMNS):   if order = ' ' then do;
 MPRINT(EMADVISECOLUMNS):   attr = 'ORDER';
@@ -965,10 +783,10 @@ MPRINT(EMADVISECOLUMNS):   run;
 MPRINT(EMADVISECOLUMNS):   proc sort NOTHREADS;
 MPRINT(EMADVISECOLUMNS):   by attr;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M1N7UFDA;
+MPRINT(EMADVISECOLUMNS):    data WORK.M00VMLMM;
 MPRINT(EMADVISECOLUMNS):   length NAME $64 ROLE $ 32 LEVEL $ 10 ORDER $ 8 CREATOR $32 FORMATTYPE $ 10 FAMILY $ 10 LOWERLIMIT 8 UPPERLIMIT 8 REPORT $1 DISTRIBUTION $ 20 COMMENT $64;
 MPRINT(EMADVISECOLUMNS):   length levelAssigned 8 roleAssigned 8 PRICE 8;
-MPRINT(EMADVISECOLUMNS):   set WORK.M1N7UFDA;
+MPRINT(EMADVISECOLUMNS):   set WORK.M00VMLMM;
 MPRINT(EMADVISECOLUMNS):   if formattype = ' ' then do;
 MPRINT(EMADVISECOLUMNS):   if format ne ' ' then do;
 MPRINT(EMADVISECOLUMNS):   if type = 'N' then do;
@@ -1129,8 +947,8 @@ MPRINT(EMADVISECOLUMNS):   if ROLE ^in('INPUT', 'TARGET', 'REJECTED', 'SEGMENT',
 MPRINT(EMADVISECOLUMNS):   end;
 MPRINT(EMADVISECOLUMNS):   end;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M1N7UFDA;
-MPRINT(EMADVISECOLUMNS):   set WORK.M1N7UFDA;
+MPRINT(EMADVISECOLUMNS):    data WORK.M00VMLMM;
+MPRINT(EMADVISECOLUMNS):   set WORK.M00VMLMM;
 MPRINT(EMADVISECOLUMNS):   label NAME = "Variable Name" TYPE = "Type" ROLE = "Role" LEVEL= "Measurement Level" ORDER= "Order" CREATOR= "Creator" FORMATTYPE= "Format Type" FAMILY= "Family" DISTRIBUTION= "Distribution" PRICE= "Price" LOWERLIMIT= "Lower 
 limit" UPPERLIMIT= "Upper Limit" REPORT= "Report" COMMENT= "Comment" INDEX= "Index" INDEXTYPE= "IndexType" LABEL= "Label" LENGTH= "Length";
 MPRINT(EMADVISECOLUMNS):   drop levelAssigned roleAssigned;
@@ -1143,12 +961,12 @@ MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   * &nodeid: Merge incoming metadata;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   proc contents data=EMWS2.Tree_TRAIN noprint out=_temp2(keep=NAME);
+MPRINT(EM_DIAGRAM):   proc contents data=EMWS2.Reg5_TRAIN noprint out=_temp2(keep=NAME);
 MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   proc sort data=_temp2;
 MPRINT(EM_DIAGRAM):   by NAME;
 MPRINT(EM_DIAGRAM):   run;
-MPRINT(EM_DIAGRAM):   proc sort data=EMWS2.Tree_CMeta_TRAIN out=_temp;
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS2.Reg5_CMeta_TRAIN out=_temp;
 MPRINT(EM_DIAGRAM):   by NAME;
 MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   data EMWS2.MdlComp_CMeta_TRAIN;
@@ -1158,12 +976,12 @@ MPRINT(EM_DIAGRAM):   if (^_a and _b) or (^_c and _a and _b) then delete;
 MPRINT(EM_DIAGRAM):   if ^_b then CREATOR = "MdlComp";
 MPRINT(EM_DIAGRAM):   run;
 NOTE: View EMWS2.MDLCOMP_TRAIN.VIEW used (Total process time):
-      real time           0.06 seconds
-      cpu time            0.06 seconds
+      real time           0.04 seconds
+      cpu time            0.04 seconds
       
 NOTE: View EMWS2.MDLCOMP_VALIDATE.VIEW used (Total process time):
-      real time           0.06 seconds
-      cpu time            0.07 seconds
+      real time           0.05 seconds
+      cpu time            0.04 seconds
       
 NOTE: View EMWS2.MDLCOMP_TEST.VIEW used (Total process time):
       real time           0.04 seconds

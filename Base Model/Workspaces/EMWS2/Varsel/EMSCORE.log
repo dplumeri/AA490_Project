@@ -3,8 +3,8 @@ MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
 MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
 MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   data _null_;
-MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "December 04, 2019" );
-MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "13:45:34" );
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "December 09, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:19:36" );
 MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
 MPRINT(EM_DIAGRAM):   put "* Score Log";
 MPRINT(EM_DIAGRAM):   put nldate;
@@ -13,700 +13,364 @@ MPRINT(EM_DIAGRAM):   put "*----------------------------------------------------
 MPRINT(EM_DIAGRAM):   run;
 *------------------------------------------------------------*
 * Score Log
-Date:                December 04, 2019
-Time:                13:45:34
+Date:                December 09, 2019
+Time:                16:19:36
 *------------------------------------------------------------*
-MPRINT(EM_DIAGRAM):    filename O0GBUBOR "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMSCORE.out" encoding="UTF-8" NOBOM;
-MPRINT(EM_DIAGRAM):   proc printto print=O0GBUBOR new;
+MPRINT(EM_DIAGRAM):    filename O347I2T7 "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O347I2T7 new;
 MPRINT(EM_DIAGRAM):   run;
-192290     filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMFLOWSCORE.sas";
+196652     filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   * Varsel: Scoring DATA data;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-192291     *------------------------------------------------------------*;
-192292     * Varsel: Scoring DATA data;
-192293     *------------------------------------------------------------*;
-192294     data EMWS2.Varsel_TRAIN
-192295     / view=EMWS2.Varsel_TRAIN
-192296     ;
+196653     *------------------------------------------------------------*;
+196654     * Varsel: Scoring DATA data;
+196655     *------------------------------------------------------------*;
+196656     data EMWS2.Varsel_TRAIN
+196657     / view=EMWS2.Varsel_TRAIN
+196658     ;
 MPRINT(EM_DIAGRAM):   data EMWS2.Varsel_TRAIN / view=EMWS2.Varsel_TRAIN ;
-192297     set EMWS2.Trans_TRAIN
-192298     ;
+196659     set EMWS2.Trans_TRAIN
+196660     ;
 MPRINT(EM_DIAGRAM):   set EMWS2.Trans_TRAIN ;
-192299     %inc emflow;
+196661     %inc emflow;
 NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMFLOWSCORE.sas.
-192300    +******************************************;
+196662    +******************************************;
 MPRINT(EM_DIAGRAM):   ******************************************;
-192301    +*** Begin Scoring Code from PROC DMINE ***;
+196663    +*** Begin Scoring Code from PROC DMINE ***;
 MPRINT(EM_DIAGRAM):   *** Begin Scoring Code from PROC DMINE ***;
-192302    +******************************************;
+196664    +******************************************;
 MPRINT(EM_DIAGRAM):   ******************************************;
-192303    +
-192304    +length _WARN_ $ 4;
+196665    +
+196666    +length _WARN_ $ 4;
 MPRINT(EM_DIAGRAM):   length _WARN_ $ 4;
-192305    +label _WARN_ = "Warnings";
+196667    +label _WARN_ = "Warnings";
 MPRINT(EM_DIAGRAM):   label _WARN_ = "Warnings";
-192306    +
-192307    +
-192308    +/*----G_OPT_Population_in_thousands begin----*/
-192309    +length _NORM32 $ 32;
-MPRINT(EM_DIAGRAM):   length _NORM32 $ 32;
-192310    +%DMNORMCP( OPT_Population_in_thousands , _NORM32 )
-MPRINT(DMNORMCP):   _NORM32=dmnorm(OPT_Population_in_thousands,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMCP):  );
-192311    +drop _NORM32;
-MPRINT(EM_DIAGRAM):   drop _NORM32;
-192312    +select(_NORM32);
-MPRINT(EM_DIAGRAM):   select(_NORM32);
-192313    +  when('01:LOW-8773.6505' ) G_OPT_Population_in_thousands = 1;
-MPRINT(EM_DIAGRAM):   when('01:LOW-8773.6505' ) G_OPT_Population_in_thousands = 1;
-192314    +  when('02:8773.6505-34177.5, MISSING' ) G_OPT_Population_in_thousands = 0;
-MPRINT(EM_DIAGRAM):   when('02:8773.6505-34177.5, MISSING' ) G_OPT_Population_in_thousands = 0;
-192315    +  when('03:34177.5-72628.5' ) G_OPT_Population_in_thousands = 1;
-MPRINT(EM_DIAGRAM):   when('03:34177.5-72628.5' ) G_OPT_Population_in_thousands = 1;
-192316    +  when('04:72628.5-HIGH' ) G_OPT_Population_in_thousands = 2;
-MPRINT(EM_DIAGRAM):   when('04:72628.5-HIGH' ) G_OPT_Population_in_thousands = 2;
-192317    +  otherwise substr(_WARN_, 2, 1) = 'U';
-MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
-192318    +end;
-MPRINT(EM_DIAGRAM):   end;
-192319    +label G_OPT_Population_in_thousands="Grouped Levels for
-192320    +        OPT_Population_in_thousands";
-MPRINT(EM_DIAGRAM):   label G_OPT_Population_in_thousands= "Grouped Levels for          OPT_Population_in_thousands";
-192321    +/*----OPT_Population_in_thousands end----*/
-192322    +
-192323    +/*----G_Disease begin----*/
-192324    +length _NORM32 $ 32;
-MPRINT(EM_DIAGRAM):   length _NORM32 $ 32;
-192325    +%DMNORMCP( Disease , _NORM32 )
-MPRINT(DMNORMCP):   _NORM32=dmnorm(Disease,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMCP):  );
-192326    +drop _NORM32;
-MPRINT(EM_DIAGRAM):   drop _NORM32;
-192327    +select(_NORM32);
-MPRINT(EM_DIAGRAM):   select(_NORM32);
-192328    +  when('ASTHMA' ) G_Disease = 2;
-MPRINT(EM_DIAGRAM):   when('ASTHMA' ) G_Disease = 2;
-192329    +  when('CANCER, ALL' ) G_Disease = 1;
-MPRINT(EM_DIAGRAM):   when('CANCER, ALL' ) G_Disease = 1;
-192330    +  when('DEMENTIA AND ALZHEIMER''S DISEASE' ) G_Disease = 0;
-MPRINT(EM_DIAGRAM):   when('DEMENTIA AND ALZHEIMER''S DISEASE' ) G_Disease = 0;
-192331    +  when('OSTEOARTHRITIS' ) G_Disease = 0;
-MPRINT(EM_DIAGRAM):   when('OSTEOARTHRITIS' ) G_Disease = 0;
-192332    +  when('SEPTICEMIA' ) G_Disease = 1;
-MPRINT(EM_DIAGRAM):   when('SEPTICEMIA' ) G_Disease = 1;
-192333    +  otherwise substr(_WARN_, 2, 1) = 'U';
-MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
-192334    +end;
-MPRINT(EM_DIAGRAM):   end;
-192335    +label G_Disease="Grouped Levels for  Disease";
-MPRINT(EM_DIAGRAM):   label G_Disease= "Grouped Levels for  Disease";
-192336    +/*----Disease end----*/
-192337    +
-192338    +/*----G_Age_group begin----*/
-192339    +length _NORM19 $ 19;
+196668    +
+196669    +
+196670    +/*----G_Age_group begin----*/
+196671    +length _NORM19 $ 19;
 MPRINT(EM_DIAGRAM):   length _NORM19 $ 19;
-192340    +%DMNORMCP( Age_group , _NORM19 )
+196672    +%DMNORMCP( Age_group , _NORM19 )
 MPRINT(DMNORMCP):   _NORM19=dmnorm(Age_group,
 MPRINT(DMNORLEN):  32
 MPRINT(DMNORMCP):  );
-192341    +drop _NORM19;
+196673    +drop _NORM19;
 MPRINT(EM_DIAGRAM):   drop _NORM19;
-192342    +select(_NORM19);
+196674    +select(_NORM19);
 MPRINT(EM_DIAGRAM):   select(_NORM19);
-192343    +  when('0-17' ) G_Age_group = 1;
+196675    +  when('0-17' ) G_Age_group = 1;
 MPRINT(EM_DIAGRAM):   when('0-17' ) G_Age_group = 1;
-192344    +  when('18-24' ) G_Age_group = 0;
+196676    +  when('18-24' ) G_Age_group = 0;
 MPRINT(EM_DIAGRAM):   when('18-24' ) G_Age_group = 0;
-192345    +  when('25-44' ) G_Age_group = 1;
+196677    +  when('25-44' ) G_Age_group = 1;
 MPRINT(EM_DIAGRAM):   when('25-44' ) G_Age_group = 1;
-192346    +  when('85+' ) G_Age_group = 1;
+196678    +  when('45-64' ) G_Age_group = 2;
+MPRINT(EM_DIAGRAM):   when('45-64' ) G_Age_group = 2;
+196679    +  when('65-84' ) G_Age_group = 3;
+MPRINT(EM_DIAGRAM):   when('65-84' ) G_Age_group = 3;
+196680    +  when('85+' ) G_Age_group = 1;
 MPRINT(EM_DIAGRAM):   when('85+' ) G_Age_group = 1;
-192347    +  otherwise substr(_WARN_, 2, 1) = 'U';
+196681    +  otherwise substr(_WARN_, 2, 1) = 'U';
 MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
-192348    +end;
+196682    +end;
 MPRINT(EM_DIAGRAM):   end;
-192349    +label G_Age_group="Grouped Levels for  Age_group";
+196683    +label G_Age_group="Grouped Levels for  Age_group";
 MPRINT(EM_DIAGRAM):   label G_Age_group= "Grouped Levels for  Age_group";
-192350    +/*----Age_group end----*/
-192351    +
-192352    +/*----G_Gender begin----*/
-192353    +length _NORM10 $ 10;
-MPRINT(EM_DIAGRAM):   length _NORM10 $ 10;
-192354    +_NORM10 = put( Gender , $CHAR10. );
-MPRINT(EM_DIAGRAM):   _NORM10 = put( Gender , $CHAR10. );
-192355    +%DMNORMIP( _NORM10 )
-MPRINT(DMNORMIP):   call dmnorm(_NORM10,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMIP):  );
-192356    +drop _NORM10;
-MPRINT(EM_DIAGRAM):   drop _NORM10;
-192357    +select(_NORM10);
-MPRINT(EM_DIAGRAM):   select(_NORM10);
-192358    +  when('ALL' ) G_Gender = 1;
-MPRINT(EM_DIAGRAM):   when('ALL' ) G_Gender = 1;
-192359    +  when('FEMALE' ) G_Gender = 0;
-MPRINT(EM_DIAGRAM):   when('FEMALE' ) G_Gender = 0;
-192360    +  when('MALE' ) G_Gender = 0;
-MPRINT(EM_DIAGRAM):   when('MALE' ) G_Gender = 0;
-192361    +  otherwise substr(_WARN_, 2, 1) = 'U';
-MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
-192362    +end;
-MPRINT(EM_DIAGRAM):   end;
-192363    +label G_Gender="Grouped Levels for  Gender";
-MPRINT(EM_DIAGRAM):   label G_Gender= "Grouped Levels for  Gender";
-192364    +/*----Gender end----*/
-192365    +
-192366    +/*----G_Date begin----*/
-192367    +length _NORM10 $ 10;
-MPRINT(EM_DIAGRAM):   length _NORM10 $ 10;
-192368    +%DMNORMCP( Date , _NORM10 )
-MPRINT(DMNORMCP):   _NORM10=dmnorm(Date,
+196684    +/*----Age_group end----*/
+196685    +
+196686    +/*----G_Disease begin----*/
+196687    +length _NORM32 $ 32;
+MPRINT(EM_DIAGRAM):   length _NORM32 $ 32;
+196688    +%DMNORMCP( Disease , _NORM32 )
+MPRINT(DMNORMCP):   _NORM32=dmnorm(Disease,
 MPRINT(DMNORLEN):  32
 MPRINT(DMNORMCP):  );
-192369    +drop _NORM10;
-MPRINT(EM_DIAGRAM):   drop _NORM10;
-192370    +select(_NORM10);
-MPRINT(EM_DIAGRAM):   select(_NORM10);
-192371    +  when('1990' ) G_Date = 2;
-MPRINT(EM_DIAGRAM):   when('1990' ) G_Date = 2;
-192372    +  when('1991' ) G_Date = 2;
-MPRINT(EM_DIAGRAM):   when('1991' ) G_Date = 2;
-192373    +  when('1992' ) G_Date = 2;
-MPRINT(EM_DIAGRAM):   when('1992' ) G_Date = 2;
-192374    +  when('1993' ) G_Date = 4;
-MPRINT(EM_DIAGRAM):   when('1993' ) G_Date = 4;
-192375    +  when('1994' ) G_Date = 1;
-MPRINT(EM_DIAGRAM):   when('1994' ) G_Date = 1;
-192376    +  when('1995' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('1995' ) G_Date = 3;
-192377    +  when('1996' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('1996' ) G_Date = 3;
-192378    +  when('1997' ) G_Date = 4;
-MPRINT(EM_DIAGRAM):   when('1997' ) G_Date = 4;
-192379    +  when('1998' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('1998' ) G_Date = 3;
-192380    +  when('1999' ) G_Date = 0;
-MPRINT(EM_DIAGRAM):   when('1999' ) G_Date = 0;
-192381    +  when('2000' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('2000' ) G_Date = 3;
-192382    +  when('2001' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('2001' ) G_Date = 3;
-192383    +  when('2002' ) G_Date = 1;
-MPRINT(EM_DIAGRAM):   when('2002' ) G_Date = 1;
-192384    +  when('2003' ) G_Date = 5;
-MPRINT(EM_DIAGRAM):   when('2003' ) G_Date = 5;
-192385    +  when('2004' ) G_Date = 5;
-MPRINT(EM_DIAGRAM):   when('2004' ) G_Date = 5;
-192386    +  when('2005' ) G_Date = 0;
-MPRINT(EM_DIAGRAM):   when('2005' ) G_Date = 0;
-192387    +  when('2006' ) G_Date = 5;
-MPRINT(EM_DIAGRAM):   when('2006' ) G_Date = 5;
-192388    +  when('2007' ) G_Date = 5;
-MPRINT(EM_DIAGRAM):   when('2007' ) G_Date = 5;
-192389    +  when('2008' ) G_Date = 2;
-MPRINT(EM_DIAGRAM):   when('2008' ) G_Date = 2;
-192390    +  when('2009' ) G_Date = 5;
-MPRINT(EM_DIAGRAM):   when('2009' ) G_Date = 5;
-192391    +  when('2010' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('2010' ) G_Date = 3;
-192392    +  otherwise substr(_WARN_, 2, 1) = 'U';
+196689    +drop _NORM32;
+MPRINT(EM_DIAGRAM):   drop _NORM32;
+196690    +select(_NORM32);
+MPRINT(EM_DIAGRAM):   select(_NORM32);
+196691    +  when('ASTHMA' ) G_Disease = 1;
+MPRINT(EM_DIAGRAM):   when('ASTHMA' ) G_Disease = 1;
+196692    +  when('CANCER, ALL' ) G_Disease = 2;
+MPRINT(EM_DIAGRAM):   when('CANCER, ALL' ) G_Disease = 2;
+196693    +  when('DEMENTIA AND ALZHEIMER''S DISEASE' ) G_Disease = 0;
+MPRINT(EM_DIAGRAM):   when('DEMENTIA AND ALZHEIMER''S DISEASE' ) G_Disease = 0;
+196694    +  when('OSTEOARTHRITIS' ) G_Disease = 1;
+MPRINT(EM_DIAGRAM):   when('OSTEOARTHRITIS' ) G_Disease = 1;
+196695    +  when('SEPTICEMIA' ) G_Disease = 1;
+MPRINT(EM_DIAGRAM):   when('SEPTICEMIA' ) G_Disease = 1;
+196696    +  otherwise substr(_WARN_, 2, 1) = 'U';
 MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
-192393    +end;
+196697    +end;
 MPRINT(EM_DIAGRAM):   end;
-192394    +label G_Date="Grouped Levels for  Date";
-MPRINT(EM_DIAGRAM):   label G_Date= "Grouped Levels for  Date";
-192395    +/*----Date end----*/
-192396    +
-192397    +
-192398    +****************************************;
+196698    +label G_Disease="Grouped Levels for  Disease";
+MPRINT(EM_DIAGRAM):   label G_Disease= "Grouped Levels for  Disease";
+196699    +/*----Disease end----*/
+196700    +
+196701    +
+196702    +****************************************;
 MPRINT(EM_DIAGRAM):   ****************************************;
-192399    +*** End Scoring Code from PROC DMINE ***;
+196703    +*** End Scoring Code from PROC DMINE ***;
 MPRINT(EM_DIAGRAM):   *** End Scoring Code from PROC DMINE ***;
-192400    +****************************************;
+196704    +****************************************;
 MPRINT(EM_DIAGRAM):   ****************************************;
 NOTE: %INCLUDE (level 1) ending.
 MPRINT(EM_DIAGRAM):   run;
-192401     run;
+196705     run;
 
 NOTE: DATA STEP view saved on file EMWS2.VARSEL_TRAIN.
 NOTE: A stored DATA STEP view cannot run under a different operating system.
 NOTE: View EMWS2.TRANS_TRAIN.VIEW used (Total process time):
-      real time           0.06 seconds
-      cpu time            0.06 seconds
+      real time           0.04 seconds
+      cpu time            0.04 seconds
       
 NOTE: DATA statement used (Total process time):
-      real time           0.09 seconds
-      cpu time            0.09 seconds
+      real time           0.05 seconds
+      cpu time            0.06 seconds
       
 
 MPRINT(EM_DIAGRAM):   quit;
-192402     quit;
-192403     filename emflow;
+196706     quit;
+196707     filename emflow;
 MPRINT(EM_DIAGRAM):   filename emflow;
 NOTE: Fileref EMFLOW has been deassigned.
-192404     filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMFLOWSCORE.sas";
+196708     filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   * Varsel: Scoring VALIDATE data;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-192405     *------------------------------------------------------------*;
-192406     * Varsel: Scoring VALIDATE data;
-192407     *------------------------------------------------------------*;
-192408     data EMWS2.Varsel_VALIDATE
-192409     / view=EMWS2.Varsel_VALIDATE
-192410     ;
+196709     *------------------------------------------------------------*;
+196710     * Varsel: Scoring VALIDATE data;
+196711     *------------------------------------------------------------*;
+196712     data EMWS2.Varsel_VALIDATE
+196713     / view=EMWS2.Varsel_VALIDATE
+196714     ;
 MPRINT(EM_DIAGRAM):   data EMWS2.Varsel_VALIDATE / view=EMWS2.Varsel_VALIDATE ;
-192411     set EMWS2.Trans_VALIDATE
-192412     ;
+196715     set EMWS2.Trans_VALIDATE
+196716     ;
 MPRINT(EM_DIAGRAM):   set EMWS2.Trans_VALIDATE ;
-192413     %inc emflow;
+196717     %inc emflow;
 NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMFLOWSCORE.sas.
-192414    +******************************************;
+196718    +******************************************;
 MPRINT(EM_DIAGRAM):   ******************************************;
-192415    +*** Begin Scoring Code from PROC DMINE ***;
+196719    +*** Begin Scoring Code from PROC DMINE ***;
 MPRINT(EM_DIAGRAM):   *** Begin Scoring Code from PROC DMINE ***;
-192416    +******************************************;
+196720    +******************************************;
 MPRINT(EM_DIAGRAM):   ******************************************;
-192417    +
-192418    +length _WARN_ $ 4;
+196721    +
+196722    +length _WARN_ $ 4;
 MPRINT(EM_DIAGRAM):   length _WARN_ $ 4;
-192419    +label _WARN_ = "Warnings";
+196723    +label _WARN_ = "Warnings";
 MPRINT(EM_DIAGRAM):   label _WARN_ = "Warnings";
-192420    +
-192421    +
-192422    +/*----G_OPT_Population_in_thousands begin----*/
-192423    +length _NORM32 $ 32;
-MPRINT(EM_DIAGRAM):   length _NORM32 $ 32;
-192424    +%DMNORMCP( OPT_Population_in_thousands , _NORM32 )
-MPRINT(DMNORMCP):   _NORM32=dmnorm(OPT_Population_in_thousands,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMCP):  );
-192425    +drop _NORM32;
-MPRINT(EM_DIAGRAM):   drop _NORM32;
-192426    +select(_NORM32);
-MPRINT(EM_DIAGRAM):   select(_NORM32);
-192427    +  when('01:LOW-8773.6505' ) G_OPT_Population_in_thousands = 1;
-MPRINT(EM_DIAGRAM):   when('01:LOW-8773.6505' ) G_OPT_Population_in_thousands = 1;
-192428    +  when('02:8773.6505-34177.5, MISSING' ) G_OPT_Population_in_thousands = 0;
-MPRINT(EM_DIAGRAM):   when('02:8773.6505-34177.5, MISSING' ) G_OPT_Population_in_thousands = 0;
-192429    +  when('03:34177.5-72628.5' ) G_OPT_Population_in_thousands = 1;
-MPRINT(EM_DIAGRAM):   when('03:34177.5-72628.5' ) G_OPT_Population_in_thousands = 1;
-192430    +  when('04:72628.5-HIGH' ) G_OPT_Population_in_thousands = 2;
-MPRINT(EM_DIAGRAM):   when('04:72628.5-HIGH' ) G_OPT_Population_in_thousands = 2;
-192431    +  otherwise substr(_WARN_, 2, 1) = 'U';
-MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
-192432    +end;
-MPRINT(EM_DIAGRAM):   end;
-192433    +label G_OPT_Population_in_thousands="Grouped Levels for
-192434    +        OPT_Population_in_thousands";
-MPRINT(EM_DIAGRAM):   label G_OPT_Population_in_thousands= "Grouped Levels for          OPT_Population_in_thousands";
-192435    +/*----OPT_Population_in_thousands end----*/
-192436    +
-192437    +/*----G_Disease begin----*/
-192438    +length _NORM32 $ 32;
-MPRINT(EM_DIAGRAM):   length _NORM32 $ 32;
-192439    +%DMNORMCP( Disease , _NORM32 )
-MPRINT(DMNORMCP):   _NORM32=dmnorm(Disease,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMCP):  );
-192440    +drop _NORM32;
-MPRINT(EM_DIAGRAM):   drop _NORM32;
-192441    +select(_NORM32);
-MPRINT(EM_DIAGRAM):   select(_NORM32);
-192442    +  when('ASTHMA' ) G_Disease = 2;
-MPRINT(EM_DIAGRAM):   when('ASTHMA' ) G_Disease = 2;
-192443    +  when('CANCER, ALL' ) G_Disease = 1;
-MPRINT(EM_DIAGRAM):   when('CANCER, ALL' ) G_Disease = 1;
-192444    +  when('DEMENTIA AND ALZHEIMER''S DISEASE' ) G_Disease = 0;
-MPRINT(EM_DIAGRAM):   when('DEMENTIA AND ALZHEIMER''S DISEASE' ) G_Disease = 0;
-192445    +  when('OSTEOARTHRITIS' ) G_Disease = 0;
-MPRINT(EM_DIAGRAM):   when('OSTEOARTHRITIS' ) G_Disease = 0;
-192446    +  when('SEPTICEMIA' ) G_Disease = 1;
-MPRINT(EM_DIAGRAM):   when('SEPTICEMIA' ) G_Disease = 1;
-192447    +  otherwise substr(_WARN_, 2, 1) = 'U';
-MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
-192448    +end;
-MPRINT(EM_DIAGRAM):   end;
-192449    +label G_Disease="Grouped Levels for  Disease";
-MPRINT(EM_DIAGRAM):   label G_Disease= "Grouped Levels for  Disease";
-192450    +/*----Disease end----*/
-192451    +
-192452    +/*----G_Age_group begin----*/
-192453    +length _NORM19 $ 19;
+196724    +
+196725    +
+196726    +/*----G_Age_group begin----*/
+196727    +length _NORM19 $ 19;
 MPRINT(EM_DIAGRAM):   length _NORM19 $ 19;
-192454    +%DMNORMCP( Age_group , _NORM19 )
+196728    +%DMNORMCP( Age_group , _NORM19 )
 MPRINT(DMNORMCP):   _NORM19=dmnorm(Age_group,
 MPRINT(DMNORLEN):  32
 MPRINT(DMNORMCP):  );
-192455    +drop _NORM19;
+196729    +drop _NORM19;
 MPRINT(EM_DIAGRAM):   drop _NORM19;
-192456    +select(_NORM19);
+196730    +select(_NORM19);
 MPRINT(EM_DIAGRAM):   select(_NORM19);
-192457    +  when('0-17' ) G_Age_group = 1;
+196731    +  when('0-17' ) G_Age_group = 1;
 MPRINT(EM_DIAGRAM):   when('0-17' ) G_Age_group = 1;
-192458    +  when('18-24' ) G_Age_group = 0;
+196732    +  when('18-24' ) G_Age_group = 0;
 MPRINT(EM_DIAGRAM):   when('18-24' ) G_Age_group = 0;
-192459    +  when('25-44' ) G_Age_group = 1;
+196733    +  when('25-44' ) G_Age_group = 1;
 MPRINT(EM_DIAGRAM):   when('25-44' ) G_Age_group = 1;
-192460    +  when('85+' ) G_Age_group = 1;
+196734    +  when('45-64' ) G_Age_group = 2;
+MPRINT(EM_DIAGRAM):   when('45-64' ) G_Age_group = 2;
+196735    +  when('65-84' ) G_Age_group = 3;
+MPRINT(EM_DIAGRAM):   when('65-84' ) G_Age_group = 3;
+196736    +  when('85+' ) G_Age_group = 1;
 MPRINT(EM_DIAGRAM):   when('85+' ) G_Age_group = 1;
-192461    +  otherwise substr(_WARN_, 2, 1) = 'U';
+196737    +  otherwise substr(_WARN_, 2, 1) = 'U';
 MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
-192462    +end;
+196738    +end;
 MPRINT(EM_DIAGRAM):   end;
-192463    +label G_Age_group="Grouped Levels for  Age_group";
+196739    +label G_Age_group="Grouped Levels for  Age_group";
 MPRINT(EM_DIAGRAM):   label G_Age_group= "Grouped Levels for  Age_group";
-192464    +/*----Age_group end----*/
-192465    +
-192466    +/*----G_Gender begin----*/
-192467    +length _NORM10 $ 10;
-MPRINT(EM_DIAGRAM):   length _NORM10 $ 10;
-192468    +_NORM10 = put( Gender , $CHAR10. );
-MPRINT(EM_DIAGRAM):   _NORM10 = put( Gender , $CHAR10. );
-192469    +%DMNORMIP( _NORM10 )
-MPRINT(DMNORMIP):   call dmnorm(_NORM10,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMIP):  );
-192470    +drop _NORM10;
-MPRINT(EM_DIAGRAM):   drop _NORM10;
-192471    +select(_NORM10);
-MPRINT(EM_DIAGRAM):   select(_NORM10);
-192472    +  when('ALL' ) G_Gender = 1;
-MPRINT(EM_DIAGRAM):   when('ALL' ) G_Gender = 1;
-192473    +  when('FEMALE' ) G_Gender = 0;
-MPRINT(EM_DIAGRAM):   when('FEMALE' ) G_Gender = 0;
-192474    +  when('MALE' ) G_Gender = 0;
-MPRINT(EM_DIAGRAM):   when('MALE' ) G_Gender = 0;
-192475    +  otherwise substr(_WARN_, 2, 1) = 'U';
-MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
-192476    +end;
-MPRINT(EM_DIAGRAM):   end;
-192477    +label G_Gender="Grouped Levels for  Gender";
-MPRINT(EM_DIAGRAM):   label G_Gender= "Grouped Levels for  Gender";
-192478    +/*----Gender end----*/
-192479    +
-192480    +/*----G_Date begin----*/
-192481    +length _NORM10 $ 10;
-MPRINT(EM_DIAGRAM):   length _NORM10 $ 10;
-192482    +%DMNORMCP( Date , _NORM10 )
-MPRINT(DMNORMCP):   _NORM10=dmnorm(Date,
+196740    +/*----Age_group end----*/
+196741    +
+196742    +/*----G_Disease begin----*/
+196743    +length _NORM32 $ 32;
+MPRINT(EM_DIAGRAM):   length _NORM32 $ 32;
+196744    +%DMNORMCP( Disease , _NORM32 )
+MPRINT(DMNORMCP):   _NORM32=dmnorm(Disease,
 MPRINT(DMNORLEN):  32
 MPRINT(DMNORMCP):  );
-192483    +drop _NORM10;
-MPRINT(EM_DIAGRAM):   drop _NORM10;
-192484    +select(_NORM10);
-MPRINT(EM_DIAGRAM):   select(_NORM10);
-192485    +  when('1990' ) G_Date = 2;
-MPRINT(EM_DIAGRAM):   when('1990' ) G_Date = 2;
-192486    +  when('1991' ) G_Date = 2;
-MPRINT(EM_DIAGRAM):   when('1991' ) G_Date = 2;
-192487    +  when('1992' ) G_Date = 2;
-MPRINT(EM_DIAGRAM):   when('1992' ) G_Date = 2;
-192488    +  when('1993' ) G_Date = 4;
-MPRINT(EM_DIAGRAM):   when('1993' ) G_Date = 4;
-192489    +  when('1994' ) G_Date = 1;
-MPRINT(EM_DIAGRAM):   when('1994' ) G_Date = 1;
-192490    +  when('1995' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('1995' ) G_Date = 3;
-192491    +  when('1996' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('1996' ) G_Date = 3;
-192492    +  when('1997' ) G_Date = 4;
-MPRINT(EM_DIAGRAM):   when('1997' ) G_Date = 4;
-192493    +  when('1998' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('1998' ) G_Date = 3;
-192494    +  when('1999' ) G_Date = 0;
-MPRINT(EM_DIAGRAM):   when('1999' ) G_Date = 0;
-192495    +  when('2000' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('2000' ) G_Date = 3;
-192496    +  when('2001' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('2001' ) G_Date = 3;
-192497    +  when('2002' ) G_Date = 1;
-MPRINT(EM_DIAGRAM):   when('2002' ) G_Date = 1;
-192498    +  when('2003' ) G_Date = 5;
-MPRINT(EM_DIAGRAM):   when('2003' ) G_Date = 5;
-192499    +  when('2004' ) G_Date = 5;
-MPRINT(EM_DIAGRAM):   when('2004' ) G_Date = 5;
-192500    +  when('2005' ) G_Date = 0;
-MPRINT(EM_DIAGRAM):   when('2005' ) G_Date = 0;
-192501    +  when('2006' ) G_Date = 5;
-MPRINT(EM_DIAGRAM):   when('2006' ) G_Date = 5;
-192502    +  when('2007' ) G_Date = 5;
-MPRINT(EM_DIAGRAM):   when('2007' ) G_Date = 5;
-192503    +  when('2008' ) G_Date = 2;
-MPRINT(EM_DIAGRAM):   when('2008' ) G_Date = 2;
-192504    +  when('2009' ) G_Date = 5;
-MPRINT(EM_DIAGRAM):   when('2009' ) G_Date = 5;
-192505    +  when('2010' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('2010' ) G_Date = 3;
-192506    +  otherwise substr(_WARN_, 2, 1) = 'U';
+196745    +drop _NORM32;
+MPRINT(EM_DIAGRAM):   drop _NORM32;
+196746    +select(_NORM32);
+MPRINT(EM_DIAGRAM):   select(_NORM32);
+196747    +  when('ASTHMA' ) G_Disease = 1;
+MPRINT(EM_DIAGRAM):   when('ASTHMA' ) G_Disease = 1;
+196748    +  when('CANCER, ALL' ) G_Disease = 2;
+MPRINT(EM_DIAGRAM):   when('CANCER, ALL' ) G_Disease = 2;
+196749    +  when('DEMENTIA AND ALZHEIMER''S DISEASE' ) G_Disease = 0;
+MPRINT(EM_DIAGRAM):   when('DEMENTIA AND ALZHEIMER''S DISEASE' ) G_Disease = 0;
+196750    +  when('OSTEOARTHRITIS' ) G_Disease = 1;
+MPRINT(EM_DIAGRAM):   when('OSTEOARTHRITIS' ) G_Disease = 1;
+196751    +  when('SEPTICEMIA' ) G_Disease = 1;
+MPRINT(EM_DIAGRAM):   when('SEPTICEMIA' ) G_Disease = 1;
+196752    +  otherwise substr(_WARN_, 2, 1) = 'U';
 MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
-192507    +end;
+196753    +end;
 MPRINT(EM_DIAGRAM):   end;
-192508    +label G_Date="Grouped Levels for  Date";
-MPRINT(EM_DIAGRAM):   label G_Date= "Grouped Levels for  Date";
-192509    +/*----Date end----*/
-192510    +
-192511    +
-192512    +****************************************;
+196754    +label G_Disease="Grouped Levels for  Disease";
+MPRINT(EM_DIAGRAM):   label G_Disease= "Grouped Levels for  Disease";
+196755    +/*----Disease end----*/
+196756    +
+196757    +
+196758    +****************************************;
 MPRINT(EM_DIAGRAM):   ****************************************;
-192513    +*** End Scoring Code from PROC DMINE ***;
+196759    +*** End Scoring Code from PROC DMINE ***;
 MPRINT(EM_DIAGRAM):   *** End Scoring Code from PROC DMINE ***;
-192514    +****************************************;
+196760    +****************************************;
 MPRINT(EM_DIAGRAM):   ****************************************;
 NOTE: %INCLUDE (level 1) ending.
 MPRINT(EM_DIAGRAM):   run;
-192515     run;
+196761     run;
 
 NOTE: DATA STEP view saved on file EMWS2.VARSEL_VALIDATE.
 NOTE: A stored DATA STEP view cannot run under a different operating system.
 NOTE: View EMWS2.TRANS_VALIDATE.VIEW used (Total process time):
-      real time           0.07 seconds
-      cpu time            0.07 seconds
+      real time           0.05 seconds
+      cpu time            0.06 seconds
       
 NOTE: DATA statement used (Total process time):
-      real time           0.09 seconds
-      cpu time            0.11 seconds
-      
-
-MPRINT(EM_DIAGRAM):   quit;
-192516     quit;
-192517     filename emflow;
-MPRINT(EM_DIAGRAM):   filename emflow;
-NOTE: Fileref EMFLOW has been deassigned.
-192518     filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMFLOWSCORE.sas";
-MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMFLOWSCORE.sas";
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   * Varsel: Scoring TEST data;
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-192519     *------------------------------------------------------------*;
-192520     * Varsel: Scoring TEST data;
-192521     *------------------------------------------------------------*;
-192522     data EMWS2.Varsel_TEST
-192523     / view=EMWS2.Varsel_TEST
-192524     ;
-MPRINT(EM_DIAGRAM):   data EMWS2.Varsel_TEST / view=EMWS2.Varsel_TEST ;
-192525     set EMWS2.Trans_TEST
-192526     ;
-MPRINT(EM_DIAGRAM):   set EMWS2.Trans_TEST ;
-192527     %inc emflow;
-NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMFLOWSCORE.sas.
-192528    +******************************************;
-MPRINT(EM_DIAGRAM):   ******************************************;
-192529    +*** Begin Scoring Code from PROC DMINE ***;
-MPRINT(EM_DIAGRAM):   *** Begin Scoring Code from PROC DMINE ***;
-192530    +******************************************;
-MPRINT(EM_DIAGRAM):   ******************************************;
-192531    +
-192532    +length _WARN_ $ 4;
-MPRINT(EM_DIAGRAM):   length _WARN_ $ 4;
-192533    +label _WARN_ = "Warnings";
-MPRINT(EM_DIAGRAM):   label _WARN_ = "Warnings";
-192534    +
-192535    +
-192536    +/*----G_OPT_Population_in_thousands begin----*/
-192537    +length _NORM32 $ 32;
-MPRINT(EM_DIAGRAM):   length _NORM32 $ 32;
-192538    +%DMNORMCP( OPT_Population_in_thousands , _NORM32 )
-MPRINT(DMNORMCP):   _NORM32=dmnorm(OPT_Population_in_thousands,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMCP):  );
-192539    +drop _NORM32;
-MPRINT(EM_DIAGRAM):   drop _NORM32;
-192540    +select(_NORM32);
-MPRINT(EM_DIAGRAM):   select(_NORM32);
-192541    +  when('01:LOW-8773.6505' ) G_OPT_Population_in_thousands = 1;
-MPRINT(EM_DIAGRAM):   when('01:LOW-8773.6505' ) G_OPT_Population_in_thousands = 1;
-192542    +  when('02:8773.6505-34177.5, MISSING' ) G_OPT_Population_in_thousands = 0;
-MPRINT(EM_DIAGRAM):   when('02:8773.6505-34177.5, MISSING' ) G_OPT_Population_in_thousands = 0;
-192543    +  when('03:34177.5-72628.5' ) G_OPT_Population_in_thousands = 1;
-MPRINT(EM_DIAGRAM):   when('03:34177.5-72628.5' ) G_OPT_Population_in_thousands = 1;
-192544    +  when('04:72628.5-HIGH' ) G_OPT_Population_in_thousands = 2;
-MPRINT(EM_DIAGRAM):   when('04:72628.5-HIGH' ) G_OPT_Population_in_thousands = 2;
-192545    +  otherwise substr(_WARN_, 2, 1) = 'U';
-MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
-192546    +end;
-MPRINT(EM_DIAGRAM):   end;
-192547    +label G_OPT_Population_in_thousands="Grouped Levels for
-192548    +        OPT_Population_in_thousands";
-MPRINT(EM_DIAGRAM):   label G_OPT_Population_in_thousands= "Grouped Levels for          OPT_Population_in_thousands";
-192549    +/*----OPT_Population_in_thousands end----*/
-192550    +
-192551    +/*----G_Disease begin----*/
-192552    +length _NORM32 $ 32;
-MPRINT(EM_DIAGRAM):   length _NORM32 $ 32;
-192553    +%DMNORMCP( Disease , _NORM32 )
-MPRINT(DMNORMCP):   _NORM32=dmnorm(Disease,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMCP):  );
-192554    +drop _NORM32;
-MPRINT(EM_DIAGRAM):   drop _NORM32;
-192555    +select(_NORM32);
-MPRINT(EM_DIAGRAM):   select(_NORM32);
-192556    +  when('ASTHMA' ) G_Disease = 2;
-MPRINT(EM_DIAGRAM):   when('ASTHMA' ) G_Disease = 2;
-192557    +  when('CANCER, ALL' ) G_Disease = 1;
-MPRINT(EM_DIAGRAM):   when('CANCER, ALL' ) G_Disease = 1;
-192558    +  when('DEMENTIA AND ALZHEIMER''S DISEASE' ) G_Disease = 0;
-MPRINT(EM_DIAGRAM):   when('DEMENTIA AND ALZHEIMER''S DISEASE' ) G_Disease = 0;
-192559    +  when('OSTEOARTHRITIS' ) G_Disease = 0;
-MPRINT(EM_DIAGRAM):   when('OSTEOARTHRITIS' ) G_Disease = 0;
-192560    +  when('SEPTICEMIA' ) G_Disease = 1;
-MPRINT(EM_DIAGRAM):   when('SEPTICEMIA' ) G_Disease = 1;
-192561    +  otherwise substr(_WARN_, 2, 1) = 'U';
-MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
-192562    +end;
-MPRINT(EM_DIAGRAM):   end;
-192563    +label G_Disease="Grouped Levels for  Disease";
-MPRINT(EM_DIAGRAM):   label G_Disease= "Grouped Levels for  Disease";
-192564    +/*----Disease end----*/
-192565    +
-192566    +/*----G_Age_group begin----*/
-192567    +length _NORM19 $ 19;
-MPRINT(EM_DIAGRAM):   length _NORM19 $ 19;
-192568    +%DMNORMCP( Age_group , _NORM19 )
-MPRINT(DMNORMCP):   _NORM19=dmnorm(Age_group,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMCP):  );
-192569    +drop _NORM19;
-MPRINT(EM_DIAGRAM):   drop _NORM19;
-192570    +select(_NORM19);
-MPRINT(EM_DIAGRAM):   select(_NORM19);
-192571    +  when('0-17' ) G_Age_group = 1;
-MPRINT(EM_DIAGRAM):   when('0-17' ) G_Age_group = 1;
-192572    +  when('18-24' ) G_Age_group = 0;
-MPRINT(EM_DIAGRAM):   when('18-24' ) G_Age_group = 0;
-192573    +  when('25-44' ) G_Age_group = 1;
-MPRINT(EM_DIAGRAM):   when('25-44' ) G_Age_group = 1;
-192574    +  when('85+' ) G_Age_group = 1;
-MPRINT(EM_DIAGRAM):   when('85+' ) G_Age_group = 1;
-192575    +  otherwise substr(_WARN_, 2, 1) = 'U';
-MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
-192576    +end;
-MPRINT(EM_DIAGRAM):   end;
-192577    +label G_Age_group="Grouped Levels for  Age_group";
-MPRINT(EM_DIAGRAM):   label G_Age_group= "Grouped Levels for  Age_group";
-192578    +/*----Age_group end----*/
-192579    +
-192580    +/*----G_Gender begin----*/
-192581    +length _NORM10 $ 10;
-MPRINT(EM_DIAGRAM):   length _NORM10 $ 10;
-192582    +_NORM10 = put( Gender , $CHAR10. );
-MPRINT(EM_DIAGRAM):   _NORM10 = put( Gender , $CHAR10. );
-192583    +%DMNORMIP( _NORM10 )
-MPRINT(DMNORMIP):   call dmnorm(_NORM10,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMIP):  );
-192584    +drop _NORM10;
-MPRINT(EM_DIAGRAM):   drop _NORM10;
-192585    +select(_NORM10);
-MPRINT(EM_DIAGRAM):   select(_NORM10);
-192586    +  when('ALL' ) G_Gender = 1;
-MPRINT(EM_DIAGRAM):   when('ALL' ) G_Gender = 1;
-192587    +  when('FEMALE' ) G_Gender = 0;
-MPRINT(EM_DIAGRAM):   when('FEMALE' ) G_Gender = 0;
-192588    +  when('MALE' ) G_Gender = 0;
-MPRINT(EM_DIAGRAM):   when('MALE' ) G_Gender = 0;
-192589    +  otherwise substr(_WARN_, 2, 1) = 'U';
-MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
-192590    +end;
-MPRINT(EM_DIAGRAM):   end;
-192591    +label G_Gender="Grouped Levels for  Gender";
-MPRINT(EM_DIAGRAM):   label G_Gender= "Grouped Levels for  Gender";
-192592    +/*----Gender end----*/
-192593    +
-192594    +/*----G_Date begin----*/
-192595    +length _NORM10 $ 10;
-MPRINT(EM_DIAGRAM):   length _NORM10 $ 10;
-192596    +%DMNORMCP( Date , _NORM10 )
-MPRINT(DMNORMCP):   _NORM10=dmnorm(Date,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMCP):  );
-192597    +drop _NORM10;
-MPRINT(EM_DIAGRAM):   drop _NORM10;
-192598    +select(_NORM10);
-MPRINT(EM_DIAGRAM):   select(_NORM10);
-192599    +  when('1990' ) G_Date = 2;
-MPRINT(EM_DIAGRAM):   when('1990' ) G_Date = 2;
-192600    +  when('1991' ) G_Date = 2;
-MPRINT(EM_DIAGRAM):   when('1991' ) G_Date = 2;
-192601    +  when('1992' ) G_Date = 2;
-MPRINT(EM_DIAGRAM):   when('1992' ) G_Date = 2;
-192602    +  when('1993' ) G_Date = 4;
-MPRINT(EM_DIAGRAM):   when('1993' ) G_Date = 4;
-192603    +  when('1994' ) G_Date = 1;
-MPRINT(EM_DIAGRAM):   when('1994' ) G_Date = 1;
-192604    +  when('1995' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('1995' ) G_Date = 3;
-192605    +  when('1996' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('1996' ) G_Date = 3;
-192606    +  when('1997' ) G_Date = 4;
-MPRINT(EM_DIAGRAM):   when('1997' ) G_Date = 4;
-192607    +  when('1998' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('1998' ) G_Date = 3;
-192608    +  when('1999' ) G_Date = 0;
-MPRINT(EM_DIAGRAM):   when('1999' ) G_Date = 0;
-192609    +  when('2000' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('2000' ) G_Date = 3;
-192610    +  when('2001' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('2001' ) G_Date = 3;
-192611    +  when('2002' ) G_Date = 1;
-MPRINT(EM_DIAGRAM):   when('2002' ) G_Date = 1;
-192612    +  when('2003' ) G_Date = 5;
-MPRINT(EM_DIAGRAM):   when('2003' ) G_Date = 5;
-192613    +  when('2004' ) G_Date = 5;
-MPRINT(EM_DIAGRAM):   when('2004' ) G_Date = 5;
-192614    +  when('2005' ) G_Date = 0;
-MPRINT(EM_DIAGRAM):   when('2005' ) G_Date = 0;
-192615    +  when('2006' ) G_Date = 5;
-MPRINT(EM_DIAGRAM):   when('2006' ) G_Date = 5;
-192616    +  when('2007' ) G_Date = 5;
-MPRINT(EM_DIAGRAM):   when('2007' ) G_Date = 5;
-192617    +  when('2008' ) G_Date = 2;
-MPRINT(EM_DIAGRAM):   when('2008' ) G_Date = 2;
-192618    +  when('2009' ) G_Date = 5;
-MPRINT(EM_DIAGRAM):   when('2009' ) G_Date = 5;
-192619    +  when('2010' ) G_Date = 3;
-MPRINT(EM_DIAGRAM):   when('2010' ) G_Date = 3;
-192620    +  otherwise substr(_WARN_, 2, 1) = 'U';
-MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
-192621    +end;
-MPRINT(EM_DIAGRAM):   end;
-192622    +label G_Date="Grouped Levels for  Date";
-MPRINT(EM_DIAGRAM):   label G_Date= "Grouped Levels for  Date";
-192623    +/*----Date end----*/
-192624    +
-192625    +
-192626    +****************************************;
-MPRINT(EM_DIAGRAM):   ****************************************;
-192627    +*** End Scoring Code from PROC DMINE ***;
-MPRINT(EM_DIAGRAM):   *** End Scoring Code from PROC DMINE ***;
-192628    +****************************************;
-MPRINT(EM_DIAGRAM):   ****************************************;
-NOTE: %INCLUDE (level 1) ending.
-MPRINT(EM_DIAGRAM):   run;
-192629     run;
-
-NOTE: DATA STEP view saved on file EMWS2.VARSEL_TEST.
-NOTE: A stored DATA STEP view cannot run under a different operating system.
-NOTE: View EMWS2.TRANS_TEST.VIEW used (Total process time):
       real time           0.06 seconds
-      cpu time            0.07 seconds
-      
-NOTE: DATA statement used (Total process time):
-      real time           0.08 seconds
       cpu time            0.09 seconds
       
 
 MPRINT(EM_DIAGRAM):   quit;
-192630     quit;
-192631     filename emflow;
+196762     quit;
+196763     filename emflow;
 MPRINT(EM_DIAGRAM):   filename emflow;
 NOTE: Fileref EMFLOW has been deassigned.
-192632     options nosource;
+196764     filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Varsel: Scoring TEST data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+196765     *------------------------------------------------------------*;
+196766     * Varsel: Scoring TEST data;
+196767     *------------------------------------------------------------*;
+196768     data EMWS2.Varsel_TEST
+196769     / view=EMWS2.Varsel_TEST
+196770     ;
+MPRINT(EM_DIAGRAM):   data EMWS2.Varsel_TEST / view=EMWS2.Varsel_TEST ;
+196771     set EMWS2.Trans_TEST
+196772     ;
+MPRINT(EM_DIAGRAM):   set EMWS2.Trans_TEST ;
+196773     %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Varsel\EMFLOWSCORE.sas.
+196774    +******************************************;
+MPRINT(EM_DIAGRAM):   ******************************************;
+196775    +*** Begin Scoring Code from PROC DMINE ***;
+MPRINT(EM_DIAGRAM):   *** Begin Scoring Code from PROC DMINE ***;
+196776    +******************************************;
+MPRINT(EM_DIAGRAM):   ******************************************;
+196777    +
+196778    +length _WARN_ $ 4;
+MPRINT(EM_DIAGRAM):   length _WARN_ $ 4;
+196779    +label _WARN_ = "Warnings";
+MPRINT(EM_DIAGRAM):   label _WARN_ = "Warnings";
+196780    +
+196781    +
+196782    +/*----G_Age_group begin----*/
+196783    +length _NORM19 $ 19;
+MPRINT(EM_DIAGRAM):   length _NORM19 $ 19;
+196784    +%DMNORMCP( Age_group , _NORM19 )
+MPRINT(DMNORMCP):   _NORM19=dmnorm(Age_group,
+MPRINT(DMNORLEN):  32
+MPRINT(DMNORMCP):  );
+196785    +drop _NORM19;
+MPRINT(EM_DIAGRAM):   drop _NORM19;
+196786    +select(_NORM19);
+MPRINT(EM_DIAGRAM):   select(_NORM19);
+196787    +  when('0-17' ) G_Age_group = 1;
+MPRINT(EM_DIAGRAM):   when('0-17' ) G_Age_group = 1;
+196788    +  when('18-24' ) G_Age_group = 0;
+MPRINT(EM_DIAGRAM):   when('18-24' ) G_Age_group = 0;
+196789    +  when('25-44' ) G_Age_group = 1;
+MPRINT(EM_DIAGRAM):   when('25-44' ) G_Age_group = 1;
+196790    +  when('45-64' ) G_Age_group = 2;
+MPRINT(EM_DIAGRAM):   when('45-64' ) G_Age_group = 2;
+196791    +  when('65-84' ) G_Age_group = 3;
+MPRINT(EM_DIAGRAM):   when('65-84' ) G_Age_group = 3;
+196792    +  when('85+' ) G_Age_group = 1;
+MPRINT(EM_DIAGRAM):   when('85+' ) G_Age_group = 1;
+196793    +  otherwise substr(_WARN_, 2, 1) = 'U';
+MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
+196794    +end;
+MPRINT(EM_DIAGRAM):   end;
+196795    +label G_Age_group="Grouped Levels for  Age_group";
+MPRINT(EM_DIAGRAM):   label G_Age_group= "Grouped Levels for  Age_group";
+196796    +/*----Age_group end----*/
+196797    +
+196798    +/*----G_Disease begin----*/
+196799    +length _NORM32 $ 32;
+MPRINT(EM_DIAGRAM):   length _NORM32 $ 32;
+196800    +%DMNORMCP( Disease , _NORM32 )
+MPRINT(DMNORMCP):   _NORM32=dmnorm(Disease,
+MPRINT(DMNORLEN):  32
+MPRINT(DMNORMCP):  );
+196801    +drop _NORM32;
+MPRINT(EM_DIAGRAM):   drop _NORM32;
+196802    +select(_NORM32);
+MPRINT(EM_DIAGRAM):   select(_NORM32);
+196803    +  when('ASTHMA' ) G_Disease = 1;
+MPRINT(EM_DIAGRAM):   when('ASTHMA' ) G_Disease = 1;
+196804    +  when('CANCER, ALL' ) G_Disease = 2;
+MPRINT(EM_DIAGRAM):   when('CANCER, ALL' ) G_Disease = 2;
+196805    +  when('DEMENTIA AND ALZHEIMER''S DISEASE' ) G_Disease = 0;
+MPRINT(EM_DIAGRAM):   when('DEMENTIA AND ALZHEIMER''S DISEASE' ) G_Disease = 0;
+196806    +  when('OSTEOARTHRITIS' ) G_Disease = 1;
+MPRINT(EM_DIAGRAM):   when('OSTEOARTHRITIS' ) G_Disease = 1;
+196807    +  when('SEPTICEMIA' ) G_Disease = 1;
+MPRINT(EM_DIAGRAM):   when('SEPTICEMIA' ) G_Disease = 1;
+196808    +  otherwise substr(_WARN_, 2, 1) = 'U';
+MPRINT(EM_DIAGRAM):   otherwise substr(_WARN_, 2, 1) = 'U';
+196809    +end;
+MPRINT(EM_DIAGRAM):   end;
+196810    +label G_Disease="Grouped Levels for  Disease";
+MPRINT(EM_DIAGRAM):   label G_Disease= "Grouped Levels for  Disease";
+196811    +/*----Disease end----*/
+196812    +
+196813    +
+196814    +****************************************;
+MPRINT(EM_DIAGRAM):   ****************************************;
+196815    +*** End Scoring Code from PROC DMINE ***;
+MPRINT(EM_DIAGRAM):   *** End Scoring Code from PROC DMINE ***;
+196816    +****************************************;
+MPRINT(EM_DIAGRAM):   ****************************************;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+196817     run;
+
+NOTE: DATA STEP view saved on file EMWS2.VARSEL_TEST.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS2.TRANS_TEST.VIEW used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.06 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.06 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+196818     quit;
+196819     filename emflow;
+MPRINT(EM_DIAGRAM):   filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+196820     options nosource;
 MPRINT(EM_DIAGRAM):    options nosource;
 MPRINT(EM_DIAGRAM):   data EMWS2.Varsel_R2DS;
 MPRINT(EM_DIAGRAM):   set EMWS2.Varsel_OUTRSQUARE;
@@ -718,8 +382,8 @@ MPRINT(EM_DIAGRAM):   keep Effect DF RSquare;
 MPRINT(EM_DIAGRAM):   if Type="AOV16" then delete;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 30 observations read from the data set EMWS2.VARSEL_OUTRSQUARE.
-NOTE: The data set EMWS2.VARSEL_R2DS has 30 observations and 3 variables.
+NOTE: There were 18 observations read from the data set EMWS2.VARSEL_OUTRSQUARE.
+NOTE: The data set EMWS2.VARSEL_R2DS has 18 observations and 3 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.00 seconds
       cpu time            0.01 seconds
@@ -729,10 +393,10 @@ MPRINT(EM_DIAGRAM):   proc sort data = EMWS2.Varsel_R2DS;
 MPRINT(EM_DIAGRAM):   by descending R2;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 30 observations read from the data set EMWS2.VARSEL_R2DS.
-NOTE: The data set EMWS2.VARSEL_R2DS has 30 observations and 3 variables.
+NOTE: There were 18 observations read from the data set EMWS2.VARSEL_R2DS.
+NOTE: The data set EMWS2.VARSEL_R2DS has 18 observations and 3 variables.
 NOTE: PROCEDURE SORT used (Total process time):
-      real time           0.01 seconds
+      real time           0.00 seconds
       cpu time            0.00 seconds
       
 
@@ -745,19 +409,19 @@ MPRINT(EM_DIAGRAM):   Rename RSquare = R2;
 MPRINT(EM_DIAGRAM):   keep Effect DF RSquare;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 5 observations read from the data set EMWS2.VARSEL_OUTEFFECT.
-NOTE: The data set EMWS2.VARSEL_EFFECTDS has 5 observations and 3 variables.
+NOTE: There were 4 observations read from the data set EMWS2.VARSEL_OUTEFFECT.
+NOTE: The data set EMWS2.VARSEL_EFFECTDS has 4 observations and 3 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.00 seconds
-      cpu time            0.01 seconds
+      cpu time            0.00 seconds
       
 
 MPRINT(EM_DIAGRAM):   proc sort data = EMWS2.Varsel_EFFECTDS;
 MPRINT(EM_DIAGRAM):   by descending R2;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 5 observations read from the data set EMWS2.VARSEL_EFFECTDS.
-NOTE: The data set EMWS2.VARSEL_EFFECTDS has 5 observations and 3 variables.
+NOTE: There were 4 observations read from the data set EMWS2.VARSEL_EFFECTDS.
+NOTE: The data set EMWS2.VARSEL_EFFECTDS has 4 observations and 3 variables.
 NOTE: PROCEDURE SORT used (Total process time):
       real time           0.00 seconds
       cpu time            0.01 seconds
@@ -768,8 +432,8 @@ MPRINT(EM_DIAGRAM):   * Varsel: Computing metadata for TRAIN data;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
 
 NOTE: View EMWS2.VARSEL_TRAIN.VIEW used (Total process time):
-      real time           0.12 seconds
-      cpu time            0.12 seconds
+      real time           0.08 seconds
+      cpu time            0.09 seconds
       
 MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   * &nodeid: Computing Metadata for TRAIN data;
@@ -789,12 +453,12 @@ MPRINT(EMADVISECOLUMNS):   call symput('_engineTable', attrc(dsid, 'ENGINE'));
 MPRINT(EMADVISECOLUMNS):   dsid = close(dsid);
 MPRINT(EMADVISECOLUMNS):   end;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    proc contents data=EMWS2.Varsel_TRAIN out=WORK.M2V5DRFR noprint;
+MPRINT(EMADVISECOLUMNS):    proc contents data=EMWS2.Varsel_TRAIN out=WORK.M29_T4PC noprint;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M2V5DRFR;
+MPRINT(EMADVISECOLUMNS):    data WORK.M29_T4PC;
 MPRINT(EMADVISECOLUMNS):   length NAME $ 64 TYPE $ 1 LABEL $ 200 FORMAT $ 36 INFORMAT $36 INDEX $ 1 INDEXTYPE $ 9;
 MPRINT(EMADVISECOLUMNS):   label NAME =;
-MPRINT(EMADVISECOLUMNS):   set WORK.M2V5DRFR(keep=name type length label format formatl formatd informat informl informd idxusage rename=(type=itype));
+MPRINT(EMADVISECOLUMNS):   set WORK.M29_T4PC(keep=name type length label format formatl formatd informat informl informd idxusage rename=(type=itype));
 MPRINT(EMADVISECOLUMNS):   if itype = 1 then type = 'N';
 MPRINT(EMADVISECOLUMNS):   else type = 'C';
 MPRINT(EMADVISECOLUMNS):   if formatl > 0 then do;
@@ -818,21 +482,21 @@ MPRINT(EMADVISECOLUMNS):   else index = "Y";
 MPRINT(EMADVISECOLUMNS):   indextype = idxusage;
 MPRINT(EMADVISECOLUMNS):   drop idxusage itype formatl formatd informl informd;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M2V5DRFR;
+MPRINT(EMADVISECOLUMNS):    data WORK.M29_T4PC;
 MPRINT(EMADVISECOLUMNS):   length UNAME $64;
-MPRINT(EMADVISECOLUMNS):   set WORK.M2V5DRFR;
+MPRINT(EMADVISECOLUMNS):   set WORK.M29_T4PC;
 MPRINT(EMADVISECOLUMNS):   UNAME = upcase(NAME);
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    proc sort data=WORK.M315QASU NOTHREADS;
+MPRINT(EMADVISECOLUMNS):    proc sort data=WORK.M2915IJG NOTHREADS;
 MPRINT(EMADVISECOLUMNS):   by UNAME;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M315QASU;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2915IJG;
 MPRINT(EMADVISECOLUMNS):   drop UNAME;
-MPRINT(EMADVISECOLUMNS):   set WORK.M315QASU;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2915IJG;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M3QP7GO6(keep=NAME ATTR);
+MPRINT(EMADVISECOLUMNS):    data WORK.M1S0GT9B(keep=NAME ATTR);
 MPRINT(EMADVISECOLUMNS):   length ATTR $ 20;
-MPRINT(EMADVISECOLUMNS):   set WORK.M315QASU;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2915IJG;
 MPRINT(EMADVISECOLUMNS):   if level ne "INTERVAL" then do;
 MPRINT(EMADVISECOLUMNS):   if order = ' ' then do;
 MPRINT(EMADVISECOLUMNS):   attr = 'ORDER';
@@ -867,10 +531,10 @@ MPRINT(EMADVISECOLUMNS):   run;
 MPRINT(EMADVISECOLUMNS):   proc sort NOTHREADS;
 MPRINT(EMADVISECOLUMNS):   by attr;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M315QASU;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2915IJG;
 MPRINT(EMADVISECOLUMNS):   length NAME $64 ROLE $ 32 LEVEL $ 10 ORDER $ 8 CREATOR $32 FORMATTYPE $ 10 FAMILY $ 10 LOWERLIMIT 8 UPPERLIMIT 8 REPORT $1 DISTRIBUTION $ 20 COMMENT $64;
 MPRINT(EMADVISECOLUMNS):   length levelAssigned 8 roleAssigned 8 PRICE 8;
-MPRINT(EMADVISECOLUMNS):   set WORK.M315QASU;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2915IJG;
 MPRINT(EMADVISECOLUMNS):   if formattype = ' ' then do;
 MPRINT(EMADVISECOLUMNS):   if format ne ' ' then do;
 MPRINT(EMADVISECOLUMNS):   if type = 'N' then do;
@@ -1031,8 +695,8 @@ MPRINT(EMADVISECOLUMNS):   if ROLE ^in('INPUT', 'TARGET', 'REJECTED', 'SEGMENT',
 MPRINT(EMADVISECOLUMNS):   end;
 MPRINT(EMADVISECOLUMNS):   end;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M315QASU;
-MPRINT(EMADVISECOLUMNS):   set WORK.M315QASU;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2915IJG;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2915IJG;
 MPRINT(EMADVISECOLUMNS):   label NAME = "Variable Name" TYPE = "Type" ROLE = "Role" LEVEL= "Measurement Level" ORDER= "Order" CREATOR= "Creator" FORMATTYPE= "Format Type" FAMILY= "Family" DISTRIBUTION= "Distribution" PRICE= "Price" LOWERLIMIT= "Lower 
 limit" UPPERLIMIT= "Upper Limit" REPORT= "Report" COMMENT= "Comment" INDEX= "Index" INDEXTYPE= "IndexType" LABEL= "Label" LENGTH= "Length";
 MPRINT(EMADVISECOLUMNS):   drop levelAssigned roleAssigned;
@@ -1062,28 +726,22 @@ MPRINT(EM_DIAGRAM):   *---------------------------------------------------------
 MPRINT(EM_DIAGRAM):   * Varsel: Apply Delta Code;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   if upcase(name) = 'AGE_GROUP' then role = 'REJECTED';
-MPRINT(EM_DIAGRAM):   else if upcase(name) = 'DATE' then role = 'REJECTED';
 MPRINT(EM_DIAGRAM):   else if upcase(name) = 'DISEASE' then role = 'REJECTED';
-MPRINT(EM_DIAGRAM):   else if upcase(name) = 'GENDER' then role = 'REJECTED';
-MPRINT(EM_DIAGRAM):   else if upcase(name) = 'OPT_POPULATION_IN_THOUSANDS' then role = 'REJECTED';
-MPRINT(EM_DIAGRAM):   if upcase(strip(name)) = "G_OPT_POPULATION_IN_THOUSANDS" then level = "NOMINAL";
-MPRINT(EM_DIAGRAM):   if upcase(strip(name)) = "G_DISEASE" then level = "NOMINAL";
 MPRINT(EM_DIAGRAM):   if upcase(strip(name)) = "G_AGE_GROUP" then level = "NOMINAL";
-MPRINT(EM_DIAGRAM):   if upcase(strip(name)) = "G_GENDER" then level = "NOMINAL";
-MPRINT(EM_DIAGRAM):   if upcase(strip(name)) = "G_DATE" then level = "NOMINAL";
+MPRINT(EM_DIAGRAM):   if upcase(strip(name)) = "G_DISEASE" then level = "NOMINAL";
 MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   filename _delta;
 NOTE: View EMWS2.VARSEL_TRAIN.VIEW used (Total process time):
-      real time           0.12 seconds
-      cpu time            0.12 seconds
+      real time           0.08 seconds
+      cpu time            0.07 seconds
       
 NOTE: View EMWS2.VARSEL_VALIDATE.VIEW used (Total process time):
-      real time           0.09 seconds
-      cpu time            0.09 seconds
+      real time           0.08 seconds
+      cpu time            0.07 seconds
       
 NOTE: View EMWS2.VARSEL_TEST.VIEW used (Total process time):
-      real time           0.08 seconds
-      cpu time            0.09 seconds
+      real time           0.07 seconds
+      cpu time            0.06 seconds
       
 MPRINT(EM_DIAGRAM):    options nonotes nosource;
 MPRINT(EM_DIAGRAM):   data EMWS2.Varsel_RESULTEDVARS(keep = NAME ROLE LEVEL TYPE LABEL);
@@ -1096,16 +754,7 @@ MPRINT(EM_DIAGRAM):   label COMMENT = "Reasons for Rejection";
 MPRINT(EM_DIAGRAM):   if upcase(name) = 'AGE_GROUP' then do;
 MPRINT(EM_DIAGRAM):   comment = "Varsel:Small R-square value, Group variable preferred";
 MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if upcase(name) = 'DATE' then do;
-MPRINT(EM_DIAGRAM):   comment = "Varsel:Small R-square value, Group variable preferred";
-MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else if upcase(name) = 'DISEASE' then do;
-MPRINT(EM_DIAGRAM):   comment = "Varsel:Small R-square value, Group variable preferred";
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if upcase(name) = 'GENDER' then do;
-MPRINT(EM_DIAGRAM):   comment = "Varsel:Small R-square value, Group variable preferred";
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if upcase(name) = 'OPT_POPULATION_IN_THOUSANDS' then do;
 MPRINT(EM_DIAGRAM):   comment = "Varsel:Small R-square value, Group variable preferred";
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   ;
@@ -1118,52 +767,52 @@ MPRINT(EM_DIAGRAM):   set EMWS2.Varsel_RESULTEDVARS;
 MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   options notes source;
 MPRINT(EM_DIAGRAM):   run;
-193047     run;
+197214     run;
 
-193048     data EMWS2.Varsel_CMETA_NONREJECTS EMWS2.Varsel_CMETA_REJECTS;
+197215     data EMWS2.Varsel_CMETA_NONREJECTS EMWS2.Varsel_CMETA_REJECTS;
 MPRINT(EM_DIAGRAM):    data EMWS2.Varsel_CMETA_NONREJECTS EMWS2.Varsel_CMETA_REJECTS;
-193049     set EMWS2.Varsel_CMETA_TRAIN;
+197216     set EMWS2.Varsel_CMETA_TRAIN;
 MPRINT(EM_DIAGRAM):   set EMWS2.Varsel_CMETA_TRAIN;
-193050     if ROLE ='REJECTED' then output EMWS2.Varsel_CMETA_REJECTS;
+197217     if ROLE ='REJECTED' then output EMWS2.Varsel_CMETA_REJECTS;
 MPRINT(EM_DIAGRAM):   if ROLE ='REJECTED' then output EMWS2.Varsel_CMETA_REJECTS;
-193051     else output EMWS2.Varsel_CMETA_NONREJECTS;
+197218     else output EMWS2.Varsel_CMETA_NONREJECTS;
 MPRINT(EM_DIAGRAM):   else output EMWS2.Varsel_CMETA_NONREJECTS;
-193052     run;
+197219     run;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 13 observations read from the data set EMWS2.VARSEL_CMETA_TRAIN.
-NOTE: The data set EMWS2.VARSEL_CMETA_NONREJECTS has 8 observations and 20 variables.
-NOTE: The data set EMWS2.VARSEL_CMETA_REJECTS has 5 observations and 20 variables.
+NOTE: There were 9 observations read from the data set EMWS2.VARSEL_CMETA_TRAIN.
+NOTE: The data set EMWS2.VARSEL_CMETA_NONREJECTS has 7 observations and 20 variables.
+NOTE: The data set EMWS2.VARSEL_CMETA_REJECTS has 2 observations and 20 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.01 seconds
       cpu time            0.01 seconds
       
 
-193053     data EMWS2.Varsel_CMETA_TRAIN;
+197220     data EMWS2.Varsel_CMETA_TRAIN;
 MPRINT(EM_DIAGRAM):    data EMWS2.Varsel_CMETA_TRAIN;
-193054     set EMWS2.Varsel_CMETA_NONREJECTS;
+197221     set EMWS2.Varsel_CMETA_NONREJECTS;
 MPRINT(EM_DIAGRAM):   set EMWS2.Varsel_CMETA_NONREJECTS;
-193055     run;
+197222     run;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 8 observations read from the data set EMWS2.VARSEL_CMETA_NONREJECTS.
-NOTE: The data set EMWS2.VARSEL_CMETA_TRAIN has 8 observations and 20 variables.
+NOTE: There were 7 observations read from the data set EMWS2.VARSEL_CMETA_NONREJECTS.
+NOTE: The data set EMWS2.VARSEL_CMETA_TRAIN has 7 observations and 20 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.00 seconds
-      cpu time            0.01 seconds
+      cpu time            0.00 seconds
       
 
-193056     data WORK._tmp_meta_;
+197223     data WORK._tmp_meta_;
 MPRINT(EM_DIAGRAM):    data WORK._tmp_meta_;
-193057     set EMWS2.Varsel_CMETA_TRAIN;
+197224     set EMWS2.Varsel_CMETA_TRAIN;
 MPRINT(EM_DIAGRAM):   set EMWS2.Varsel_CMETA_TRAIN;
-193058     if ROLE ^= 'INPUT' then delete;
+197225     if ROLE ^= 'INPUT' then delete;
 MPRINT(EM_DIAGRAM):   if ROLE ^= 'INPUT' then delete;
-193059     run;
+197226     run;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 8 observations read from the data set EMWS2.VARSEL_CMETA_TRAIN.
-NOTE: The data set WORK._TMP_META_ has 5 observations and 20 variables.
+NOTE: There were 7 observations read from the data set EMWS2.VARSEL_CMETA_TRAIN.
+NOTE: The data set WORK._TMP_META_ has 4 observations and 20 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.00 seconds
       cpu time            0.00 seconds

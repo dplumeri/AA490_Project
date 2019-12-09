@@ -2,15 +2,15 @@ if upcase(NAME) = "AGE_GROUP" then do;
 ROLE = "INPUT";
 end;
 else 
-if upcase(NAME) = "DATE" then do;
-ROLE = "INPUT";
-end;
-else 
 if upcase(NAME) = "DISEASE" then do;
 ROLE = "INPUT";
 end;
 else 
 if upcase(NAME) = "GENDER" then do;
+ROLE = "INPUT";
+end;
+else 
+if upcase(NAME) = "POPULATION_IN_THOUSANDS" then do;
 ROLE = "INPUT";
 end;
 else 

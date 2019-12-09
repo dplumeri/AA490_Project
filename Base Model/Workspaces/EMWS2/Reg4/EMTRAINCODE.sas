@@ -7,9 +7,9 @@ data WORK.Cases_in_1000s(label="Cases_in_1000s");
 
  Cases_in_1000s=0;
 output;
- Cases_in_1000s=229;
+ Cases_in_1000s=801;
 output;
- Cases_in_1000s=114.5;
+ Cases_in_1000s=400.5;
 output;
 ;
 run;
@@ -19,19 +19,19 @@ run;
 quit;
 data EM_DMREG / view=EM_DMREG;
 set EMWS2.Part_TRAIN(keep=
-Age_group Cases_in_1000s Date Disease Gender);
+Age_group Cases_in_1000s Disease Gender Population_in_thousands);
 run;
 *------------------------------------------------------------* ;
 * Reg4: DMDBClass Macro ;
 *------------------------------------------------------------* ;
 %macro DMDBClass;
-    Age_group(ASC) Date(ASC) Disease(ASC) Gender(ASC)
+    Age_group(ASC) Disease(ASC) Gender(ASC)
 %mend DMDBClass;
 *------------------------------------------------------------* ;
 * Reg4: DMDBVar Macro ;
 *------------------------------------------------------------* ;
 %macro DMDBVar;
-    Cases_in_1000s
+    Cases_in_1000s Population_in_thousands
 %mend DMDBVar;
 *------------------------------------------------------------*;
 * Reg4: Create DMDB;
@@ -58,15 +58,14 @@ outmap= EMWS2.Reg4_MAPDS namelen=200
 ;
 class
 Age_group
-Date
 Disease
 Gender
 ;
 model Cases_in_1000s =
 Age_group
-Date
 Disease
 Gender
+Population_in_thousands
 /error=normal
 coding=DEVIATION
 nodesignprint

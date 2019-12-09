@@ -7,9 +7,9 @@ data WORK.Cases_in_1000s(label="Cases_in_1000s");
 
  Cases_in_1000s=0;
 output;
- Cases_in_1000s=229;
+ Cases_in_1000s=801;
 output;
- Cases_in_1000s=114.5;
+ Cases_in_1000s=400.5;
 output;
 ;
 run;
@@ -19,13 +19,13 @@ run;
 quit;
 data EM_Neural;
 set EMWS2.Part_TRAIN(keep=
-Age_group Cases_in_1000s Date Disease Gender Population_in_thousands);
+Age_group Cases_in_1000s Disease Gender Population_in_thousands);
 run;
 *------------------------------------------------------------* ;
 * Neural: DMDBClass Macro ;
 *------------------------------------------------------------* ;
 %macro DMDBClass;
-    Age_group(ASC) Date(ASC) Disease(ASC) Gender(ASC)
+    Age_group(ASC) Disease(ASC) Gender(ASC)
 %mend DMDBClass;
 *------------------------------------------------------------* ;
 * Neural: DMDBVar Macro ;
@@ -63,7 +63,7 @@ quit;
 * Neural: Nominal Inputs Macro ;
 *------------------------------------------------------------* ;
 %macro NOMINPUTS;
-    Age_group Date Disease Gender
+    Age_group Disease Gender
 %mend NOMINPUTS;
 *------------------------------------------------------------* ;
 * Neural: Ordinal Inputs Macro ;

@@ -1,64 +1,77 @@
-drop _temp_;
-if (P_Cases_in_1000s ge 92.944444444444) then do;
+if (P_Cases_in_1000s ge 355.072643522041) then do;
 b_Cases_in_1000s = 1;
 end;
 else
-if (P_Cases_in_1000s ge 69.8125) then do;
+if (P_Cases_in_1000s ge 234.666145749101) then do;
 b_Cases_in_1000s = 2;
 end;
 else
-if (P_Cases_in_1000s ge 41.375) then do;
+if (P_Cases_in_1000s ge 147.729625909147) then do;
 b_Cases_in_1000s = 3;
 end;
 else
-if (P_Cases_in_1000s ge 30.7152777777777) then do;
+if (P_Cases_in_1000s ge 130.478995919262) then do;
 b_Cases_in_1000s = 4;
 end;
 else
-if (P_Cases_in_1000s ge 24.2777777777777) then do;
+if (P_Cases_in_1000s ge 100.39422684677) then do;
 b_Cases_in_1000s = 5;
 end;
 else
-if (P_Cases_in_1000s ge 18.0760869565217) then do;
+if (P_Cases_in_1000s ge 72.452747704593) then do;
 b_Cases_in_1000s = 6;
 end;
 else
-if (P_Cases_in_1000s ge 14.2084639498432) then do;
-_temp_ = dmran(1234);
-b_Cases_in_1000s = floor(7 + 2*_temp_);
+if (P_Cases_in_1000s ge 54.5819441293905) then do;
+b_Cases_in_1000s = 7;
 end;
 else
-if (P_Cases_in_1000s ge 12.6414141414141) then do;
+if (P_Cases_in_1000s ge 42.0451350069787) then do;
+b_Cases_in_1000s = 8;
+end;
+else
+if (P_Cases_in_1000s ge 35.1304133696853) then do;
 b_Cases_in_1000s = 9;
 end;
 else
-if (P_Cases_in_1000s ge 10.9595959595959) then do;
+if (P_Cases_in_1000s ge 23.6912314856704) then do;
 b_Cases_in_1000s = 10;
 end;
 else
-if (P_Cases_in_1000s ge 9.11660079051383) then do;
+if (P_Cases_in_1000s ge 20.5804160497774) then do;
 b_Cases_in_1000s = 11;
 end;
 else
-if (P_Cases_in_1000s ge 5.28472222222222) then do;
+if (P_Cases_in_1000s ge 16.320871806452) then do;
 b_Cases_in_1000s = 12;
 end;
 else
-if (P_Cases_in_1000s ge 4.34722222222222) then do;
+if (P_Cases_in_1000s ge 12.5787213295769) then do;
 b_Cases_in_1000s = 13;
 end;
 else
-if (P_Cases_in_1000s ge 2.33395522388059) then do;
+if (P_Cases_in_1000s ge 9.11373278944923) then do;
 b_Cases_in_1000s = 14;
 end;
 else
-if (P_Cases_in_1000s ge 0.41791044776119) then do;
+if (P_Cases_in_1000s ge 4.3461858815957) then do;
 b_Cases_in_1000s = 15;
 end;
 else
-if (P_Cases_in_1000s ge 0) then do;
-_temp_ = dmran(1234);
-b_Cases_in_1000s = floor(17 + 2*_temp_);
+if (P_Cases_in_1000s ge 0.57194666419032) then do;
+b_Cases_in_1000s = 16;
+end;
+else
+if (P_Cases_in_1000s ge -5.42645254107284) then do;
+b_Cases_in_1000s = 17;
+end;
+else
+if (P_Cases_in_1000s ge -9.13852238479099) then do;
+b_Cases_in_1000s = 18;
+end;
+else
+if (P_Cases_in_1000s ge -14.3849626365788) then do;
+b_Cases_in_1000s = 19;
 end;
 else
 do;

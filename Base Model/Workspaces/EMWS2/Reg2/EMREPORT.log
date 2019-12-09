@@ -3,8 +3,8 @@ MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
 MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
 MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   data _null_;
-MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "December 04, 2019" );
-MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "13:49:08" );
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "December 09, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:48:14" );
 MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
 MPRINT(EM_DIAGRAM):   put "* Report Log";
 MPRINT(EM_DIAGRAM):   put nldate;
@@ -13,107 +13,107 @@ MPRINT(EM_DIAGRAM):   put "*----------------------------------------------------
 MPRINT(EM_DIAGRAM):   run;
 *------------------------------------------------------------*
 * Report Log
-Date:                December 04, 2019
-Time:                13:49:08
+Date:                December 09, 2019
+Time:                16:48:14
 *------------------------------------------------------------*
-MPRINT(EM_DIAGRAM):    filename O13_VTIN "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Reg2\EMREPORT.out" encoding="UTF-8" NOBOM;
-MPRINT(EM_DIAGRAM):   proc printto print=O13_VTIN new;
+MPRINT(EM_DIAGRAM):    filename O28_YDG2 "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Reg2\EMREPORT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O28_YDG2 new;
 MPRINT(EM_DIAGRAM):   run;
-72184      data WORK.DMREGTEMP;
+105416     data WORK.DMREGTEMP;
 MPRINT(EM_DIAGRAM):    data WORK.DMREGTEMP;
-72185      merge EMWS2.Reg2_EMESTIMATE EMWS2.Reg2_FITTEST;
+105417     merge EMWS2.Reg2_EMESTIMATE EMWS2.Reg2_FITTEST;
 MPRINT(EM_DIAGRAM):   merge EMWS2.Reg2_EMESTIMATE EMWS2.Reg2_FITTEST;
-72186      run;
+105418     run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 3 observations read from the data set EMWS2.REG2_EMESTIMATE.
 NOTE: There were 1 observations read from the data set EMWS2.REG2_FITTEST.
-NOTE: The data set WORK.DMREGTEMP has 3 observations and 78 variables.
+NOTE: The data set WORK.DMREGTEMP has 3 observations and 60 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.00 seconds
       cpu time            0.00 seconds
       
 
-72187      data EMWS2.Reg2_EMOUTFIT;
+105419     data EMWS2.Reg2_EMOUTFIT;
 MPRINT(EM_DIAGRAM):    data EMWS2.Reg2_EMOUTFIT;
-72188      length TARGET $32;
+105420     length TARGET $32;
 MPRINT(EM_DIAGRAM):   length TARGET $32;
-72189      set WORK.DMREGTEMP end=eof;
+105421     set WORK.DMREGTEMP end=eof;
 MPRINT(EM_DIAGRAM):   set WORK.DMREGTEMP end=eof;
-72190      where (_TYPE_='PARMS');
+105422     where (_TYPE_='PARMS');
 MPRINT(EM_DIAGRAM):   where (_TYPE_='PARMS');
-72191      drop _TYPE_--OPT_Population_in_thousands03_34;
-MPRINT(EM_DIAGRAM):   drop _TYPE_--OPT_Population_in_thousands03_34;
-72192      if eof then do;
+105423     drop _TYPE_--OPT_Population_in_thousands03_28;
+MPRINT(EM_DIAGRAM):   drop _TYPE_--OPT_Population_in_thousands03_28;
+105424     if eof then do;
 MPRINT(EM_DIAGRAM):   if eof then do;
-72193      TARGET = "Cases_in_1000s";
+105425     TARGET = "Cases_in_1000s";
 MPRINT(EM_DIAGRAM):   TARGET = "Cases_in_1000s";
-72194      output;
+105426     output;
 MPRINT(EM_DIAGRAM):   output;
-72195      end;
+105427     end;
 MPRINT(EM_DIAGRAM):   end;
-72196      run;
+105428     run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 1 observations read from the data set WORK.DMREGTEMP.
       WHERE _TYPE_='PARMS';
 NOTE: The data set EMWS2.REG2_EMOUTFIT has 1 observations and 44 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.00 seconds
+      real time           0.01 seconds
+      cpu time            0.01 seconds
       
 
-72197      data EMWS2.Reg2_EMOUTFIT;
+105429     data EMWS2.Reg2_EMOUTFIT;
 MPRINT(EM_DIAGRAM):    data EMWS2.Reg2_EMOUTFIT;
-72198      set EMWS2.Reg2_EMOUTFIT;
+105430     set EMWS2.Reg2_EMOUTFIT;
 MPRINT(EM_DIAGRAM):   set EMWS2.Reg2_EMOUTFIT;
-72199      length TargetLabel $200;
+105431     length TargetLabel $200;
 MPRINT(EM_DIAGRAM):   length TargetLabel $200;
-72200      label targetLabel = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+105432     label targetLabel = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
 MPRINT(EM_DIAGRAM):   label targetLabel = "Target Label";
-72201      run;
+105433     run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: Variable TargetLabel is uninitialized.
 NOTE: There were 1 observations read from the data set EMWS2.REG2_EMOUTFIT.
 NOTE: The data set EMWS2.REG2_EMOUTFIT has 1 observations and 45 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.00 seconds
+      real time           0.01 seconds
+      cpu time            0.01 seconds
       
 
-72202      proc sort data=EMWS2.Reg2_EMREPORTFIT nothreads;
+105434     proc sort data=EMWS2.Reg2_EMREPORTFIT nothreads;
 MPRINT(EM_DIAGRAM):    proc sort data=EMWS2.Reg2_EMREPORTFIT nothreads;
-72203      by TARGET;
+105435     by TARGET;
 MPRINT(EM_DIAGRAM):   by TARGET;
-72204      run;
+105436     run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 19 observations read from the data set EMWS2.REG2_EMREPORTFIT.
 NOTE: The data set EMWS2.REG2_EMREPORTFIT has 19 observations and 7 variables.
 NOTE: PROCEDURE SORT used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.01 seconds
+      real time           0.01 seconds
+      cpu time            0.00 seconds
       
 
-72205      %let _EMwarndup = 0;
-72206      %let _EMtargetdup =;
-72207      %let _EMASEtargetdup =;
-72208      data _null_;
+105437     %let _EMwarndup = 0;
+105438     %let _EMtargetdup =;
+105439     %let _EMASEtargetdup =;
+105440     data _null_;
 MPRINT(EM_DIAGRAM):    data _null_;
-72209      set EMWS2.Reg2_EMOUTFIT;
+105441     set EMWS2.Reg2_EMOUTFIT;
 MPRINT(EM_DIAGRAM):   set EMWS2.Reg2_EMOUTFIT;
-72210      if .<_ASE_<0.000001 then do;
+105442     if .<_ASE_<0.000001 then do;
 MPRINT(EM_DIAGRAM):   if .<_ASE_<0.000001 then do;
-72211      call symput('_EMwarndup', '1');
+105443     call symput('_EMwarndup', '1');
 MPRINT(EM_DIAGRAM):   call symput('_EMwarndup', '1');
-72212      call symput('_EMtargetdup', target);
+105444     call symput('_EMtargetdup', target);
 MPRINT(EM_DIAGRAM):   call symput('_EMtargetdup', target);
-72213      call symput('_EMASEtargetdup', put(_ASE_, best.));
+105445     call symput('_EMASEtargetdup', put(_ASE_, best.));
 MPRINT(EM_DIAGRAM):   call symput('_EMASEtargetdup', put(_ASE_, best.));
-72214      end;
+105446     end;
 MPRINT(EM_DIAGRAM):   end;
-72215      run;
+105447     run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 1 observations read from the data set EMWS2.REG2_EMOUTFIT.
@@ -122,58 +122,58 @@ NOTE: DATA statement used (Total process time):
       cpu time            0.00 seconds
       
 
-72216      proc sort data=EMWS2.Trans_CMeta_TRAIN out=WORK.SUBSETINMETA;
+105448     proc sort data=EMWS2.Trans_CMeta_TRAIN out=WORK.SUBSETINMETA;
 MPRINT(EM_DIAGRAM):    proc sort data=EMWS2.Trans_CMeta_TRAIN out=WORK.SUBSETINMETA;
-72217      by NAME;
+105449     by NAME;
 MPRINT(EM_DIAGRAM):   by NAME;
-72218      run;
+105450     run;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 7 observations read from the data set EMWS2.TRANS_CMETA_TRAIN.
-NOTE: The data set WORK.SUBSETINMETA has 7 observations and 20 variables.
+NOTE: There were 6 observations read from the data set EMWS2.TRANS_CMETA_TRAIN.
+NOTE: The data set WORK.SUBSETINMETA has 6 observations and 20 variables.
 NOTE: PROCEDURE SORT used (Total process time):
-      real time           0.00 seconds
+      real time           0.01 seconds
       cpu time            0.01 seconds
       
 
-72219      proc sort data=EMWS2.Reg2_VariableSet out=WORK.SUBSETVARSET(keep=NAME REPORT);
+105451     proc sort data=EMWS2.Reg2_VariableSet out=WORK.SUBSETVARSET(keep=NAME REPORT);
 MPRINT(EM_DIAGRAM):   proc sort data=EMWS2.Reg2_VariableSet out=WORK.SUBSETVARSET(keep=NAME REPORT);
-72220      by NAME;
+105452     by NAME;
 MPRINT(EM_DIAGRAM):   by NAME;
-72221      run;
+105453     run;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 6 observations read from the data set EMWS2.REG2_VARIABLESET.
-NOTE: The data set WORK.SUBSETVARSET has 6 observations and 2 variables.
+NOTE: There were 5 observations read from the data set EMWS2.REG2_VARIABLESET.
+NOTE: The data set WORK.SUBSETVARSET has 5 observations and 2 variables.
 NOTE: PROCEDURE SORT used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.00 seconds
+      real time           0.01 seconds
+      cpu time            0.01 seconds
       
 
-72222      data WORK.ASSESS_META;
+105454     data WORK.ASSESS_META;
 MPRINT(EM_DIAGRAM):   data WORK.ASSESS_META;
-72223      merge WORK.SUBSETINMETA WORK.SUBSETVARSET;
+105455     merge WORK.SUBSETINMETA WORK.SUBSETVARSET;
 MPRINT(EM_DIAGRAM):   merge WORK.SUBSETINMETA WORK.SUBSETVARSET;
-72224      by NAME;
+105456     by NAME;
 MPRINT(EM_DIAGRAM):   by NAME;
-72225      run;
+105457     run;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 7 observations read from the data set WORK.SUBSETINMETA.
-NOTE: There were 6 observations read from the data set WORK.SUBSETVARSET.
-NOTE: The data set WORK.ASSESS_META has 7 observations and 20 variables.
+NOTE: There were 6 observations read from the data set WORK.SUBSETINMETA.
+NOTE: There were 5 observations read from the data set WORK.SUBSETVARSET.
+NOTE: The data set WORK.ASSESS_META has 6 observations and 20 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.00 seconds
       cpu time            0.01 seconds
       
 
-72226      data EM_temp_assessMeta;
+105458     data EM_temp_assessMeta;
 MPRINT(EM_DIAGRAM):    data EM_temp_assessMeta;
-72227      set EMWS2.Reg2_CMeta_TRAIN;
+105459     set EMWS2.Reg2_CMeta_TRAIN;
 MPRINT(EM_DIAGRAM):   set EMWS2.Reg2_CMeta_TRAIN;
-72228      where role in('DECISION', 'PREDICT', 'RESIDUAL', 'CLASSIFICATION', 'ASSESS', 'COST');
+105460     where role in('DECISION', 'PREDICT', 'RESIDUAL', 'CLASSIFICATION', 'ASSESS', 'COST');
 MPRINT(EM_DIAGRAM):   where role in('DECISION', 'PREDICT', 'RESIDUAL', 'CLASSIFICATION', 'ASSESS', 'COST');
-72229      run;
+105461     run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 3 observations read from the data set EMWS2.REG2_CMETA_TRAIN.
@@ -184,30 +184,30 @@ NOTE: DATA statement used (Total process time):
       cpu time            0.01 seconds
       
 
-72230      data EM_temp_assessdata;
+105462     data EM_temp_assessdata;
 MPRINT(EM_DIAGRAM):    data EM_temp_assessdata;
-72231      set EMWS2.Reg2_TRAIN(keep=
-72232      P_Cases_in_1000s
-72233      R_Cases_in_1000s
-72234      _WARN_
-72235      Cases_in_1000s
-72236      );
+105463     set EMWS2.Reg2_TRAIN(keep=
+105464     P_Cases_in_1000s
+105465     R_Cases_in_1000s
+105466     _WARN_
+105467     Cases_in_1000s
+105468     );
 MPRINT(EM_DIAGRAM):   set EMWS2.Reg2_TRAIN(keep= P_Cases_in_1000s R_Cases_in_1000s _WARN_ Cases_in_1000s );
-72237      run;
+105469     run;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 378 observations read from the data set EMWS2.PART_TRAIN.
-NOTE: There were 378 observations read from the data set EMWS2.IMPT_TRAIN.
+NOTE: There were 750 observations read from the data set EMWS2.PART_TRAIN.
+NOTE: There were 750 observations read from the data set EMWS2.IMPT_TRAIN.
 NOTE: View EMWS2.REG2_TRAIN.VIEW used (Total process time):
-      real time           0.09 seconds
-      cpu time            0.09 seconds
+      real time           0.11 seconds
+      cpu time            0.12 seconds
       
-NOTE: There were 378 observations read from the data set EMWS2.TRANS_TRAIN.
-NOTE: There were 378 observations read from the data set EMWS2.REG2_TRAIN.
-NOTE: The data set WORK.EM_TEMP_ASSESSDATA has 378 observations and 4 variables.
+NOTE: There were 750 observations read from the data set EMWS2.TRANS_TRAIN.
+NOTE: There were 750 observations read from the data set EMWS2.REG2_TRAIN.
+NOTE: The data set WORK.EM_TEMP_ASSESSDATA has 750 observations and 4 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.12 seconds
-      cpu time            0.10 seconds
+      real time           0.15 seconds
+      cpu time            0.15 seconds
       
 
 MPRINT(EM_DIAGRAM):    data WORK._RESMETA;
@@ -297,7 +297,7 @@ MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emassmt.em_assess.source';
 MPRINT(EM_DIAGRAM):   filename temp;
 MPRINT(EM_DIAGRAM):    data _null_;
-MPRINT(EM_DIAGRAM):   set EMWS2.Ids_Cases_in_1000s_DM;
+MPRINT(EM_DIAGRAM):   set EMWS2.Ids2_Cases_in_1000s_DM;
 MPRINT(EM_DIAGRAM):   where _TYPE_="TARGET";
 MPRINT(EM_DIAGRAM):   call symput('ASSMT_EVENT', strip(event));
 MPRINT(EM_DIAGRAM):   run;
@@ -438,7 +438,7 @@ MPRINT(EM_ASSESS):   N1 + _FREQ_;
 MPRINT(EM_ASSESS):   *;
 MPRINT(EM_ASSESS):   * .......... Outdist Processing For Interval Target;
 MPRINT(EM_ASSESS):   *;
-MPRINT(EM_ASSESS):   SCRBIN = MIN (CEIL (( P_Cases_in_1000s - -22.8606460672369) / 5.5352685629618), 20);
+MPRINT(EM_ASSESS):   SCRBIN = MIN (CEIL (( P_Cases_in_1000s - -69.5820435707943) / 20.8946588325397), 20);
 MPRINT(EM_ASSESS):   IF SCRBIN <= 0 THEN SCRBIN = 1;
 MPRINT(EM_ASSESS):   SCRBIN = 20 + 1 - SCRBIN;
 MPRINT(EM_ASSESS):   NUMOBSS ( SCRBIN) = SUM (NUMOBSS ( SCRBIN) , _FREQ_ );
@@ -448,7 +448,7 @@ MPRINT(EM_ASSESS):   MINTGTS ( SCRBIN) = MIN (MINTGTS (SCRBIN), _MINTARGET);
 MPRINT(EM_ASSESS):   MAXPTGTS ( SCRBIN) = MAX (MAXPTGTS ( SCRBIN), P_Cases_in_1000s);
 MPRINT(EM_ASSESS):   MINPTGTS ( SCRBIN) = MIN (MINPTGTS ( SCRBIN), P_Cases_in_1000s);
 MPRINT(EM_ASSESS):   MNPTGTS ( SCRBIN) = SUM (MNPTGTS ( SCRBIN), P_Cases_in_1000s * _FREQ_);
-MPRINT(EM_ASSESS):   BIN = CEIL (N1 * 20 / 378);
+MPRINT(EM_ASSESS):   BIN = CEIL (N1 * 20 / 750);
 MPRINT(EM_ASSESS):   IF BIN <= 0 THEN BIN = 1;
 MPRINT(EM_ASSESS):   IF BIN > 20 THEN BIN = 20;
 MPRINT(EM_ASSESS):   IF BIN < 1 THEN BIN = 1;
@@ -464,9 +464,9 @@ MPRINT(EM_ASSESS):   IF EOF THEN DO;
 MPRINT(EM_ASSESS):   *;
 MPRINT(EM_ASSESS):   * Start of Outdist Area, Continuous Dep Var;
 MPRINT(EM_ASSESS):   *;
-MPRINT(EM_ASSESS):   UPP = 87.844725192;
+MPRINT(EM_ASSESS):   UPP = 348.31113308;
 MPRINT(EM_ASSESS):   DO SCRBIN = 1 TO 20;
-MPRINT(EM_ASSESS):   LOWP = UPP - 5.5352685629618;
+MPRINT(EM_ASSESS):   LOWP = UPP - 20.8946588325397;
 MPRINT(EM_ASSESS):   N = NUMOBSS (SCRBIN);
 MPRINT(EM_ASSESS):   IF N > 0 THEN DO;
 MPRINT(EM_ASSESS):   _TARGETMEAN_ = MNTGTS (SCRBIN) / N ;
@@ -576,13 +576,13 @@ MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   data EMWS2.Reg2_EMSCOREDIST;
 MPRINT(EM_DIAGRAM):   set WORK._TEMPSCOREDIST;
 MPRINT(EM_DIAGRAM):   run;
-76568      data EM_temp_assessMeta;
+109800     data EM_temp_assessMeta;
 MPRINT(EM_DIAGRAM):    data EM_temp_assessMeta;
-76569      set EMWS2.Reg2_CMeta_TRAIN;
+109801     set EMWS2.Reg2_CMeta_TRAIN;
 MPRINT(EM_DIAGRAM):   set EMWS2.Reg2_CMeta_TRAIN;
-76570      where role in('DECISION', 'PREDICT', 'RESIDUAL', 'CLASSIFICATION', 'ASSESS', 'COST');
+109802     where role in('DECISION', 'PREDICT', 'RESIDUAL', 'CLASSIFICATION', 'ASSESS', 'COST');
 MPRINT(EM_DIAGRAM):   where role in('DECISION', 'PREDICT', 'RESIDUAL', 'CLASSIFICATION', 'ASSESS', 'COST');
-76571      run;
+109803     run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 3 observations read from the data set EMWS2.REG2_CMETA_TRAIN.
@@ -590,33 +590,33 @@ NOTE: There were 3 observations read from the data set EMWS2.REG2_CMETA_TRAIN.
 NOTE: The data set WORK.EM_TEMP_ASSESSMETA has 3 observations and 21 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.00 seconds
-      cpu time            0.01 seconds
+      cpu time            0.00 seconds
       
 
-76572      data EM_temp_assessdata;
+109804     data EM_temp_assessdata;
 MPRINT(EM_DIAGRAM):    data EM_temp_assessdata;
-76573      set EMWS2.Reg2_VALIDATE(keep=
-76574      P_Cases_in_1000s
-76575      R_Cases_in_1000s
-76576      _WARN_
-76577      Cases_in_1000s
-76578      );
+109805     set EMWS2.Reg2_VALIDATE(keep=
+109806     P_Cases_in_1000s
+109807     R_Cases_in_1000s
+109808     _WARN_
+109809     Cases_in_1000s
+109810     );
 MPRINT(EM_DIAGRAM):   set EMWS2.Reg2_VALIDATE(keep= P_Cases_in_1000s R_Cases_in_1000s _WARN_ Cases_in_1000s );
-76579      run;
+109811     run;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 284 observations read from the data set EMWS2.PART_VALIDATE.
-NOTE: There were 284 observations read from the data set EMWS2.IMPT_VALIDATE.
+NOTE: There were 563 observations read from the data set EMWS2.PART_VALIDATE.
+NOTE: There were 563 observations read from the data set EMWS2.IMPT_VALIDATE.
 NOTE: View EMWS2.REG2_VALIDATE.VIEW used (Total process time):
-      real time           0.09 seconds
-      cpu time            0.07 seconds
+      real time           0.10 seconds
+      cpu time            0.12 seconds
       
-NOTE: There were 284 observations read from the data set EMWS2.TRANS_VALIDATE.
-NOTE: There were 284 observations read from the data set EMWS2.REG2_VALIDATE.
-NOTE: The data set WORK.EM_TEMP_ASSESSDATA has 284 observations and 4 variables.
+NOTE: There were 563 observations read from the data set EMWS2.TRANS_VALIDATE.
+NOTE: There were 563 observations read from the data set EMWS2.REG2_VALIDATE.
+NOTE: The data set WORK.EM_TEMP_ASSESSDATA has 563 observations and 4 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.11 seconds
-      cpu time            0.09 seconds
+      real time           0.14 seconds
+      cpu time            0.14 seconds
       
 
 MPRINT(EM_DIAGRAM):    data WORK._RESMETA;
@@ -709,7 +709,7 @@ MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emassmt.em_assess.source';
 MPRINT(EM_DIAGRAM):   filename temp;
 MPRINT(EM_DIAGRAM):    data _null_;
-MPRINT(EM_DIAGRAM):   set EMWS2.Ids_Cases_in_1000s_DM;
+MPRINT(EM_DIAGRAM):   set EMWS2.Ids2_Cases_in_1000s_DM;
 MPRINT(EM_DIAGRAM):   where _TYPE_="TARGET";
 MPRINT(EM_DIAGRAM):   call symput('ASSMT_EVENT', strip(event));
 MPRINT(EM_DIAGRAM):   run;
@@ -756,8 +756,6 @@ MPRINT(EM_ASSESS):   PROC DMDB DATA = _ea_tmpdata VAROUT = VAROUT DMDBCAT = _D ;
 
 
 MPRINT(EM_ASSESS):   VAR P_Cases_in_1000s _tmpfreqvar_ ;
-The SAS System
-
 MPRINT(EM_ASSESS):   FREQ _tmpfreqvar_;
 MPRINT(EM_ASSESS):   RUN ;
 MPRINT(EM_ASSESS):   QUIT;
@@ -852,7 +850,7 @@ MPRINT(EM_ASSESS):   N1 + _FREQ_;
 MPRINT(EM_ASSESS):   *;
 MPRINT(EM_ASSESS):   * .......... Outdist Processing For Interval Target;
 MPRINT(EM_ASSESS):   *;
-MPRINT(EM_ASSESS):   SCRBIN = MIN (CEIL (( P_Cases_in_1000s - -31.0788780463074) / 5.70933212536535), 20);
+MPRINT(EM_ASSESS):   SCRBIN = MIN (CEIL (( P_Cases_in_1000s - -69.5820435707943) / 20.8946588325397), 20);
 MPRINT(EM_ASSESS):   IF SCRBIN <= 0 THEN SCRBIN = 1;
 MPRINT(EM_ASSESS):   SCRBIN = 20 + 1 - SCRBIN;
 MPRINT(EM_ASSESS):   NUMOBSS ( SCRBIN) = SUM (NUMOBSS ( SCRBIN) , _FREQ_ );
@@ -862,7 +860,7 @@ MPRINT(EM_ASSESS):   MINTGTS ( SCRBIN) = MIN (MINTGTS (SCRBIN), _MINTARGET);
 MPRINT(EM_ASSESS):   MAXPTGTS ( SCRBIN) = MAX (MAXPTGTS ( SCRBIN), P_Cases_in_1000s);
 MPRINT(EM_ASSESS):   MINPTGTS ( SCRBIN) = MIN (MINPTGTS ( SCRBIN), P_Cases_in_1000s);
 MPRINT(EM_ASSESS):   MNPTGTS ( SCRBIN) = SUM (MNPTGTS ( SCRBIN), P_Cases_in_1000s * _FREQ_);
-MPRINT(EM_ASSESS):   BIN = CEIL (N1 * 20 / 284);
+MPRINT(EM_ASSESS):   BIN = CEIL (N1 * 20 / 563);
 MPRINT(EM_ASSESS):   IF BIN <= 0 THEN BIN = 1;
 MPRINT(EM_ASSESS):   IF BIN > 20 THEN BIN = 20;
 MPRINT(EM_ASSESS):   IF BIN < 1 THEN BIN = 1;
@@ -878,9 +876,9 @@ MPRINT(EM_ASSESS):   IF EOF THEN DO;
 MPRINT(EM_ASSESS):   *;
 MPRINT(EM_ASSESS):   * Start of Outdist Area, Continuous Dep Var;
 MPRINT(EM_ASSESS):   *;
-MPRINT(EM_ASSESS):   UPP = 83.107764461;
+MPRINT(EM_ASSESS):   UPP = 348.31113308;
 MPRINT(EM_ASSESS):   DO SCRBIN = 1 TO 20;
-MPRINT(EM_ASSESS):   LOWP = UPP - 5.70933212536535;
+MPRINT(EM_ASSESS):   LOWP = UPP - 20.8946588325397;
 MPRINT(EM_ASSESS):   N = NUMOBSS (SCRBIN);
 MPRINT(EM_ASSESS):   IF N > 0 THEN DO;
 MPRINT(EM_ASSESS):   _TARGETMEAN_ = MNTGTS (SCRBIN) / N ;
@@ -997,106 +995,106 @@ MPRINT(EM_DIAGRAM):   length dataRole $20;
 MPRINT(EM_DIAGRAM):   length P_LABEL $27;
 MPRINT(EM_DIAGRAM):   set EMWS2.Reg2_EMSCOREDIST WORK._TEMPSCOREDIST;
 MPRINT(EM_DIAGRAM):   run;
-80920      %let _cn = %sysfunc(getoption(CENTER));
-80921      options nocenter;
+114152     %let _cn = %sysfunc(getoption(CENTER));
+114153     options nocenter;
 MPRINT(EM_DIAGRAM):    options nocenter;
-80922      proc print data=EMWS2.Reg2_EMREPORTFIT noobs label;
+114154     proc print data=EMWS2.Reg2_EMREPORTFIT noobs label;
 MPRINT(EM_DIAGRAM):   proc print data=EMWS2.Reg2_EMREPORTFIT noobs label;
-80923      var STAT LABEL TRAIN
-80924      VALIDATE
-80925      TEST
-80926      ;
+114155     var STAT LABEL TRAIN
+114156     VALIDATE
+114157     TEST
+114158     ;
 MPRINT(EM_DIAGRAM):   var STAT LABEL TRAIN VALIDATE TEST ;
-80927      by TARGET TARGETLABEL;
+114159     by TARGET TARGETLABEL;
 MPRINT(EM_DIAGRAM):   by TARGET TARGETLABEL;
-80928      title9 ' ';
+114160     title9 ' ';
 MPRINT(EM_DIAGRAM):   title9 ' ';
-80929      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_fitstat_title  , NOQUOTE))";
+114161     title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_fitstat_title  , NOQUOTE))";
 MPRINT(EM_DIAGRAM):   title10 "Fit Statistics";
 MPRINT(EM_DIAGRAM):   run;
-80930      run;
+114162     run;
 
 NOTE: There were 19 observations read from the data set EMWS2.REG2_EMREPORTFIT.
-NOTE: The PROCEDURE PRINT printed page 22.
+NOTE: The PROCEDURE PRINT printed page 34.
 NOTE: PROCEDURE PRINT used (Total process time):
       real time           0.00 seconds
-      cpu time            0.00 seconds
+      cpu time            0.01 seconds
       
 
-80931      title10;
+114163     title10;
 MPRINT(EM_DIAGRAM):   title10;
-80932      options &_cn;
+114164     options &_cn;
 MPRINT(EM_DIAGRAM):   options NOCENTER;
-80933      proc datasets library=EMWS2 nolist;
+114165     proc datasets library=EMWS2 nolist;
 MPRINT(EM_DIAGRAM):    proc datasets library=EMWS2 nolist;
-80934      modify Reg2_EMRANK;
+114166     modify Reg2_EMRANK;
 MPRINT(EM_DIAGRAM):   modify Reg2_EMRANK;
 MPRINT(EM_DIAGRAM):   label target = "Target Variable";
-80935      label target = "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel ,   NOQUOTE))";
+114167     label target = "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel ,   NOQUOTE))";
 MPRINT(EM_DIAGRAM):   label datarole = "Data Role";
-80936      label datarole = "%sysfunc(sasmsg(sashelp.dmine, rpt_datarole_vlabel ,    NOQUOTE))";
+114168     label datarole = "%sysfunc(sasmsg(sashelp.dmine, rpt_datarole_vlabel ,    NOQUOTE))";
 MPRINT(EM_DIAGRAM):   run;
-80937      run;
+114169     run;
 
 NOTE: MODIFY was successful for EMWS2.REG2_EMRANK.DATA.
-80938      quit;
+114170     quit;
 MPRINT(EM_DIAGRAM):   quit;
 
 NOTE: PROCEDURE DATASETS used (Total process time):
       real time           0.03 seconds
-      cpu time            0.03 seconds
+      cpu time            0.00 seconds
       
 
-80939      %let _cn = %sysfunc(getoption(CENTER));
-80940      options nocenter;
+114171     %let _cn = %sysfunc(getoption(CENTER));
+114172     options nocenter;
 MPRINT(EM_DIAGRAM):    options nocenter;
-80941      proc print data=EMWS2.Reg2_EMRANK label noobs;
+114173     proc print data=EMWS2.Reg2_EMRANK label noobs;
 MPRINT(EM_DIAGRAM):   proc print data=EMWS2.Reg2_EMRANK label noobs;
-80942      var
-80943      decile N _targetMean_ _meanP_;
+114174     var
+114175     decile N _targetMean_ _meanP_;
 MPRINT(EM_DIAGRAM):   var decile N _targetMean_ _meanP_;
-80944      by
-80945      notsorted DATAROLE
-80946      notsorted TARGET
-80947      notsorted TARGETLABEL
-80948      ;
+114176     by
+114177     notsorted DATAROLE
+114178     notsorted TARGET
+114179     notsorted TARGETLABEL
+114180     ;
 MPRINT(EM_DIAGRAM):   by notsorted DATAROLE notsorted TARGET notsorted TARGETLABEL ;
-80949      title9 ' ';
+114181     title9 ' ';
 MPRINT(EM_DIAGRAM):   title9 ' ';
-80950      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_scoreranking_title , NOQUOTE))";
+114182     title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_scoreranking_title , NOQUOTE))";
 MPRINT(EM_DIAGRAM):   title10 "Assessment Score Rankings";
 MPRINT(EM_DIAGRAM):   run;
-80951      run;
+114183     run;
 
 NOTE: There were 40 observations read from the data set EMWS2.REG2_EMRANK.
-NOTE: The PROCEDURE PRINT printed page 23.
+NOTE: The PROCEDURE PRINT printed page 35.
 NOTE: PROCEDURE PRINT used (Total process time):
       real time           0.00 seconds
       cpu time            0.00 seconds
       
 
-80952      title10;
+114184     title10;
 MPRINT(EM_DIAGRAM):   title10;
-80953      options &_cn;
+114185     options &_cn;
 MPRINT(EM_DIAGRAM):   options NOCENTER;
-80954      proc datasets library=EMWS2 nolist;
+114186     proc datasets library=EMWS2 nolist;
 MPRINT(EM_DIAGRAM):    proc datasets library=EMWS2 nolist;
-80955      modify Reg2_EMSCOREDIST;
+114187     modify Reg2_EMSCOREDIST;
 MPRINT(EM_DIAGRAM):   modify Reg2_EMSCOREDIST;
 MPRINT(EM_DIAGRAM):   label target = "Target Variable";
-80956      label target = "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel ,      NOQUOTE))";
+114188     label target = "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel ,      NOQUOTE))";
 MPRINT(EM_DIAGRAM):   label datarole = "Data Role";
-80957      label datarole = "%sysfunc(sasmsg(sashelp.dmine, rpt_datarole_vlabel ,    NOQUOTE))";
+114189     label datarole = "%sysfunc(sasmsg(sashelp.dmine, rpt_datarole_vlabel ,    NOQUOTE))";
 MPRINT(EM_DIAGRAM):   run;
-80958      run;
+114190     run;
 
 NOTE: MODIFY was successful for EMWS2.REG2_EMSCOREDIST.DATA.
-80959      quit;
+114191     quit;
 MPRINT(EM_DIAGRAM):   quit;
 
 NOTE: PROCEDURE DATASETS used (Total process time):
       real time           0.02 seconds
-      cpu time            0.03 seconds
+      cpu time            0.01 seconds
       
 
 MPRINT(EM_DIAGRAM):    options nocenter;
