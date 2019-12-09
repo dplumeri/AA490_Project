@@ -1,6 +1,6 @@
 options user = disease;
 PROC SQL;
-   CREATE TABLE Disease_Historic_Join AS 
+   CREATE TABLE Disease_Historic_Join_1 AS 
    SELECT t1.Date, 
           t1.Gender, 
           t1.Age_group, 
