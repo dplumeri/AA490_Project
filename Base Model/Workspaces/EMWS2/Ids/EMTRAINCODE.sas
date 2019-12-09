@@ -8,5 +8,5 @@ libname EMWS2 "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base 
 data EMWS2.Ids_DATA (label="")
 / view=EMWS2.Ids_DATA
 ;
-set DISEASE.DISEASE_FUTURE_JOIN_1;
+set NEWDIS.DISEASE_FUTURE_JOIN_1;
 run;

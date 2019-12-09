@@ -7,7 +7,8 @@ Variable Summary
           Measurement    Frequency
  Role        Level         Count
 
-INPUT      NOMINAL           4    
+INPUT      INTERVAL          1    
+INPUT      NOMINAL           3    
 TARGET     INTERVAL          1    
  
                                                                                                                                                                                                                                                                 
@@ -15,11 +16,11 @@ TARGET     INTERVAL          1
  
 Predicted and decision variables
 
-Type             Variable                  Label
+Type               Variable                       Label
 
-TARGET       Cases_in_1000s                               
-PREDICTED    P_Cases_in_1000s    Predicted: Cases_in_1000s
-RESIDUAL     R_Cases_in_1000s    Residual: Cases_in_1000s 
+TARGET       LG10_Cases_in_1000s      Transformed Cases_in_1000s    
+PREDICTED    P_LG10_Cases_in_1000s    Predicted: LG10_Cases_in_1000s
+RESIDUAL     R_LG10_Cases_in_1000s    Residual: LG10_Cases_in_1000s 
  
                                                                                                                                                                                                                                                                 
  
@@ -27,16 +28,16 @@ RESIDUAL     R_Cases_in_1000s    Residual: Cases_in_1000s
 
 The DMREG Procedure
 
-               Model Information
+                              Model Information
 
-Training Data Set             WORK.EM_DMREG.VIEW
-DMDB Catalog                  WORK.REG2_DMDB    
-Target Variable               Cases_in_1000s    
-Target Measurement Level      Interval          
-Error                         Normal            
-Link Function                 Identity          
-Number of Model Parameters    15                
-Number of Observations        743               
+Training Data Set             WORK.EM_DMREG.VIEW                              
+DMDB Catalog                  WORK.REG2_DMDB                                  
+Target Variable               LG10_Cases_in_1000s (Transformed Cases_in_1000s)
+Target Measurement Level      Interval                                        
+Error                         Normal                                          
+Link Function                 Identity                                        
+Number of Model Parameters    12                                              
+Number of Observations        865                                             
 
 
                              Analysis of Variance
@@ -44,46 +45,43 @@ Number of Observations        743
                                    Sum of
 Source                 DF         Squares     Mean Square    F Value    Pr > F
 
-Model                  14         6008575          429184      71.80    <.0001
-Error                 728         4351486     5977.316079                     
-Corrected Total       742        10360061                                     
+Model                  11      373.437348       33.948850     176.80    <.0001
+Error                 853      163.789582        0.192016                     
+Corrected Total       864      537.226930                                     
 
 
               Model Fit Statistics
 
-R-Square        0.5800     Adj R-Sq        0.5719
-AIC          6475.7716     BIC          6478.3889
-SBC          6544.9321     C(p)           15.0000
+R-Square        0.6951     Adj R-Sq        0.6912
+AIC         -1415.4871     BIC         -1413.1499
+SBC         -1358.3344     C(p)           12.0000
 
 
                       Type 3 Analysis of Effects
  
-                                           Sum of
-Effect                           DF       Squares    F Value    Pr > F
+                                            Sum of
+Effect                            DF       Squares    F Value    Pr > F
 
-Age_group                         5    2620383.10      87.68    <.0001
-Disease                           4    1719662.31      71.92    <.0001
-Gender                            2    125386.346      10.49    <.0001
-OPT_Population_in_thousands       3    297474.518      16.59    <.0001
+Age_group                          5      212.0615     220.88    <.0001
+Disease                            4      151.9008     197.77    <.0001
+Gender                             1        0.1092       0.57    0.4510
+LG10_Population_in_thousands       1        5.0678      26.39    <.0001
 
 
-                                    Analysis of Maximum Likelihood Estimates
+                                     Analysis of Maximum Likelihood Estimates
  
-                                                                                  Standard
-Parameter                                                       DF    Estimate       Error    t Value    Pr > |t|
+                                                                                   Standard
+Parameter                                                        DF    Estimate       Error    t Value    Pr > |t|
 
-Intercept                                                        1     66.1748      3.6004      18.38      <.0001
-Age_group                   0-17                                 1    -82.6555     10.4840      -7.88      <.0001
-Age_group                   18-24                                1    -31.5773      9.6421      -3.27      0.0011
-Age_group                   25-44                                1    -71.8729     11.3064      -6.36      <.0001
-Age_group                   45-64                                1     40.2362      7.9909       5.04      <.0001
-Age_group                   65-84                                1       138.6      8.2021      16.90      <.0001
-Disease                     Asthma                               1    -14.4795      5.6653      -2.56      0.0108
-Disease                     Cancer, all                          1     88.2483      5.5499      15.90      <.0001
-Disease                     Dementia and Alzheimer's disease     1    -50.3260      5.7156      -8.80      <.0001
-Disease                     Osteoarthritis                       1      2.0539      5.6955       0.36      0.7185
-Gender                      All                                  1     21.6844      4.8630       4.46      <.0001
-Gender                      Female                               1     -4.9149      4.1224      -1.19      0.2336
-OPT_Population_in_thousands 01:low-16090.642                     1    -37.0842     10.2299      -3.63      0.0003
-OPT_Population_in_thousands 02:16090.642-28948.373               1    -39.4931      6.7756      -5.83      <.0001
-OPT_Population_in_thousands 03:28948.373-35431.169               1     33.6126      7.7129       4.36      <.0001
+Intercept                                                         1     -2.4949      0.7132      -3.50      0.0005
+Age_group                    0-17                                 1     -0.6996      0.0704      -9.94      <.0001
+Age_group                    18-24                                1     -0.7270      0.0370     -19.63      <.0001
+Age_group                    25-44                                1     -0.4063      0.0760      -5.34      <.0001
+Age_group                    45-64                                1      0.1219      0.0573       2.13      0.0336
+Age_group                    65-84                                1      0.7791      0.0336      23.21      <.0001
+Disease                      Asthma                               1      0.2446      0.0303       8.08      <.0001
+Disease                      Cancer, all                          1      0.5255      0.0300      17.54      <.0001
+Disease                      Dementia and Alzheimer's disease     1     -0.7168      0.0293     -24.44      <.0001
+Disease                      Osteoarthritis                       1     -0.0992      0.0299      -3.31      0.0010
+Gender                       Female                               1      0.0125      0.0166       0.75      0.4510
+LG10_Population_in_thousands                                      1      0.8696      0.1693       5.14      <.0001

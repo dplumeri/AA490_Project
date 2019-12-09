@@ -7,9 +7,9 @@ data WORK.Cases_in_1000s(label="Cases_in_1000s");
 
  Cases_in_1000s=0;
 output;
- Cases_in_1000s=801;
+ Cases_in_1000s=416;
 output;
- Cases_in_1000s=400.5;
+ Cases_in_1000s=208;
 output;
 ;
 run;
@@ -69,16 +69,10 @@ Population_in_thousands
 Age_group*Disease
 Age_group*Gender
 Disease*Gender
-Population_in_thousands*Population_in_thousands
 /error=normal
 coding=DEVIATION
 nodesignprint
 ;
-;
-score data=EMWS2.Part_TEST
-out=_null_
-outfit=EMWS2.Reg5_FITTEST
-role = TEST
 ;
 code file="C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Reg5\EMPUBLISHSCORE.sas"
 group=Reg5

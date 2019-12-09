@@ -4,7 +4,7 @@ MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
 MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   data _null_;
 MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "December 09, 2019" );
-MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "16:48:01" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "17:13:21" );
 MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
 MPRINT(EM_DIAGRAM):   put "* Score Log";
 MPRINT(EM_DIAGRAM):   put nldate;
@@ -14,147 +14,147 @@ MPRINT(EM_DIAGRAM):   run;
 *------------------------------------------------------------*
 * Score Log
 Date:                December 09, 2019
-Time:                16:48:01
+Time:                17:13:21
 *------------------------------------------------------------*
-MPRINT(EM_DIAGRAM):    filename O39GCEFW "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Reg4\EMSCORE.out" encoding="UTF-8" NOBOM;
-MPRINT(EM_DIAGRAM):   proc printto print=O39GCEFW new;
+MPRINT(EM_DIAGRAM):    filename O0ZJ9QJB "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Reg4\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O0ZJ9QJB new;
 MPRINT(EM_DIAGRAM):   run;
-81682      proc transpose data=EMWS2.Reg4_EMESTIMATE out=WORK.TEMPREG;
+28450      proc transpose data=EMWS2.Reg4_EMESTIMATE out=WORK.TEMPREG;
 MPRINT(EM_DIAGRAM):    proc transpose data=EMWS2.Reg4_EMESTIMATE out=WORK.TEMPREG;
-81683      where _CHOSEN_ ne '' and _TYPE_='PARMS';
+28451      where _CHOSEN_ ne '' and _TYPE_='PARMS';
 MPRINT(EM_DIAGRAM):   where _CHOSEN_ ne '' and _TYPE_='PARMS';
-81684      run;
+28452      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 1 observations read from the data set EMWS2.REG4_EMESTIMATE.
       WHERE (_CHOSEN_ not = ' ') and (_TYPE_='PARMS');
-NOTE: The data set WORK.TEMPREG has 44 observations and 3 variables.
+NOTE: The data set WORK.TEMPREG has 43 observations and 3 variables.
+NOTE: PROCEDURE TRANSPOSE used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.01 seconds
+      
+
+28453      proc transpose data=EMWS2.Reg4_MAPDS out=WORK.TEMPREG2(rename=(TARGET=_TARGET_));
+MPRINT(EM_DIAGRAM):   proc transpose data=EMWS2.Reg4_MAPDS out=WORK.TEMPREG2(rename=(TARGET=_TARGET_));
+28454      var "Age_group0N17"n--"Population_in_thousands"n;
+MPRINT(EM_DIAGRAM):   var "Age_group0N17"n--"Population_in_thousands"n;
+28455      run;
+MPRINT(EM_DIAGRAM):   run;
+
+WARNING: The variable TARGET in the DROP, KEEP, or RENAME list has never been referenced.
+NOTE: There were 2 observations read from the data set EMWS2.REG4_MAPDS.
+NOTE: The data set WORK.TEMPREG2 has 11 observations and 4 variables.
 NOTE: PROCEDURE TRANSPOSE used (Total process time):
       real time           0.01 seconds
       cpu time            0.01 seconds
       
 
-81685      proc transpose data=EMWS2.Reg4_MAPDS out=WORK.TEMPREG2(rename=(TARGET=_TARGET_));
-MPRINT(EM_DIAGRAM):   proc transpose data=EMWS2.Reg4_MAPDS out=WORK.TEMPREG2(rename=(TARGET=_TARGET_));
-81686      var "Age_group0N17"n--"Population_in_thousands"n;
-MPRINT(EM_DIAGRAM):   var "Age_group0N17"n--"Population_in_thousands"n;
-81687      run;
-MPRINT(EM_DIAGRAM):   run;
-
-WARNING: The variable TARGET in the DROP, KEEP, or RENAME list has never been referenced.
-NOTE: There were 2 observations read from the data set EMWS2.REG4_MAPDS.
-NOTE: The data set WORK.TEMPREG2 has 12 observations and 4 variables.
-NOTE: PROCEDURE TRANSPOSE used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.01 seconds
-      
-
-81688      proc sort data=WORK.TEMPREG NOTHREADS;
+28456      proc sort data=WORK.TEMPREG NOTHREADS;
 MPRINT(EM_DIAGRAM):   proc sort data=WORK.TEMPREG NOTHREADS;
-81689      by _NAME_;
+28457      by _NAME_;
 MPRINT(EM_DIAGRAM):   by _NAME_;
-81690      run;
+28458      run;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 44 observations read from the data set WORK.TEMPREG.
-NOTE: The data set WORK.TEMPREG has 44 observations and 3 variables.
-NOTE: PROCEDURE SORT used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.00 seconds
-      
-
-81691      proc sort data=WORK.TEMPREG2 NOTHREADS;
-MPRINT(EM_DIAGRAM):   proc sort data=WORK.TEMPREG2 NOTHREADS;
-81692      by _NAME_;
-MPRINT(EM_DIAGRAM):   by _NAME_;
-81693      run;
-MPRINT(EM_DIAGRAM):   run;
-
-NOTE: There were 12 observations read from the data set WORK.TEMPREG2.
-NOTE: The data set WORK.TEMPREG2 has 12 observations and 4 variables.
+NOTE: There were 43 observations read from the data set WORK.TEMPREG.
+NOTE: The data set WORK.TEMPREG has 43 observations and 3 variables.
 NOTE: PROCEDURE SORT used (Total process time):
       real time           0.00 seconds
       cpu time            0.01 seconds
       
 
-81694      data WORK.TEMPREG3;
-MPRINT(EM_DIAGRAM):   data WORK.TEMPREG3;
-81695      merge WORK.TEMPREG(in=ina) WORK.TEMPREG2(in=inb);
-MPRINT(EM_DIAGRAM):   merge WORK.TEMPREG(in=ina) WORK.TEMPREG2(in=inb);
-81696      by _NAME_;
+28459      proc sort data=WORK.TEMPREG2 NOTHREADS;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.TEMPREG2 NOTHREADS;
+28460      by _NAME_;
 MPRINT(EM_DIAGRAM):   by _NAME_;
-81697      if (ina and inb) and Cases_in_1000s ne . then output;
-MPRINT(EM_DIAGRAM):   if (ina and inb) and Cases_in_1000s ne . then output;
-81698      run;
+28461      run;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 44 observations read from the data set WORK.TEMPREG.
-NOTE: There were 12 observations read from the data set WORK.TEMPREG2.
+NOTE: There were 11 observations read from the data set WORK.TEMPREG2.
+NOTE: The data set WORK.TEMPREG2 has 11 observations and 4 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+28462      data WORK.TEMPREG3;
+MPRINT(EM_DIAGRAM):   data WORK.TEMPREG3;
+28463      merge WORK.TEMPREG(in=ina) WORK.TEMPREG2(in=inb);
+MPRINT(EM_DIAGRAM):   merge WORK.TEMPREG(in=ina) WORK.TEMPREG2(in=inb);
+28464      by _NAME_;
+MPRINT(EM_DIAGRAM):   by _NAME_;
+28465      if (ina and inb) and Cases_in_1000s ne . then output;
+MPRINT(EM_DIAGRAM):   if (ina and inb) and Cases_in_1000s ne . then output;
+28466      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 43 observations read from the data set WORK.TEMPREG.
+NOTE: There were 11 observations read from the data set WORK.TEMPREG2.
 NOTE: The data set WORK.TEMPREG3 has 11 observations and 5 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.00 seconds
       cpu time            0.00 seconds
       
 
-81699      data WORK.TEMPREG3(KEEP=TERM);
+28467      data WORK.TEMPREG3(KEEP=TERM);
 MPRINT(EM_DIAGRAM):   data WORK.TEMPREG3(KEEP=TERM);
-81700      length term $32;
+28468      length term $32;
 MPRINT(EM_DIAGRAM):   length term $32;
-81701      set WORK.TEMPREG3;
+28469      set WORK.TEMPREG3;
 MPRINT(EM_DIAGRAM):   set WORK.TEMPREG3;
-81702      i=1;
+28470      i=1;
 MPRINT(EM_DIAGRAM):   i=1;
-81703      do while( scan(input , i, '*') ne '' );
+28471      do while( scan(input , i, '*') ne '' );
 MPRINT(EM_DIAGRAM):   do while( scan(input , i, '*') ne '' );
-81704      term= scan(input , i, '*');
+28472      term= scan(input , i, '*');
 MPRINT(EM_DIAGRAM):   term= scan(input , i, '*');
-81705      i=i+1;
+28473      i=i+1;
 MPRINT(EM_DIAGRAM):   i=i+1;
-81706      output;
+28474      output;
 MPRINT(EM_DIAGRAM):   output;
-81707      end;
+28475      end;
 MPRINT(EM_DIAGRAM):   end;
-81708      run;
+28476      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 11 observations read from the data set WORK.TEMPREG3.
 NOTE: The data set WORK.TEMPREG3 has 11 observations and 1 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.00 seconds
-      cpu time            0.01 seconds
-      
-
-81709      proc sort data=WORK.TEMPREG3 nodupkey NOTHREADS;
-MPRINT(EM_DIAGRAM):   proc sort data=WORK.TEMPREG3 nodupkey NOTHREADS;
-81710      by TERM;
-MPRINT(EM_DIAGRAM):   by TERM;
-81711      run;
-MPRINT(EM_DIAGRAM):   run;
-
-NOTE: There were 11 observations read from the data set WORK.TEMPREG3.
-NOTE: 8 observations with duplicate key values were deleted.
-NOTE: The data set WORK.TEMPREG3 has 3 observations and 1 variables.
-NOTE: PROCEDURE SORT used (Total process time):
-      real time           0.00 seconds
       cpu time            0.00 seconds
       
 
-81712      filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Reg4\EMFLOWSCORE.sas";
+28477      proc sort data=WORK.TEMPREG3 nodupkey NOTHREADS;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.TEMPREG3 nodupkey NOTHREADS;
+28478      by TERM;
+MPRINT(EM_DIAGRAM):   by TERM;
+28479      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 11 observations read from the data set WORK.TEMPREG3.
+NOTE: 7 observations with duplicate key values were deleted.
+NOTE: The data set WORK.TEMPREG3 has 4 observations and 1 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+28480      filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Reg4\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Reg4\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   * Reg4: Scoring DATA data;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-81713      *------------------------------------------------------------*;
-81714      * Reg4: Scoring DATA data;
-81715      *------------------------------------------------------------*;
-81716      data EMWS2.Reg4_TRAIN
-81717      / view=EMWS2.Reg4_TRAIN
-81718      ;
+28481      *------------------------------------------------------------*;
+28482      * Reg4: Scoring DATA data;
+28483      *------------------------------------------------------------*;
+28484      data EMWS2.Reg4_TRAIN
+28485      / view=EMWS2.Reg4_TRAIN
+28486      ;
 MPRINT(EM_DIAGRAM):   data EMWS2.Reg4_TRAIN / view=EMWS2.Reg4_TRAIN ;
-81719      set EMWS2.Part_TRAIN
-81720      ;
+28487      set EMWS2.Part_TRAIN
+28488      ;
 MPRINT(EM_DIAGRAM):   set EMWS2.Part_TRAIN ;
-81721      %inc emflow;
+28489      %inc emflow;
 MPRINT(EM_DIAGRAM):   *************************************;
 MPRINT(EM_DIAGRAM):   *** begin scoring code for regression;
 MPRINT(EM_DIAGRAM):   *************************************;
@@ -164,6 +164,11 @@ MPRINT(EM_DIAGRAM):   drop _Y;
 MPRINT(EM_DIAGRAM):   _Y = Cases_in_1000s ;
 MPRINT(EM_DIAGRAM):   drop _DM_BAD;
 MPRINT(EM_DIAGRAM):   _DM_BAD=0;
+MPRINT(EM_DIAGRAM):   *** Check Population_in_thousands for missing values ;
+MPRINT(EM_DIAGRAM):   if missing( Population_in_thousands ) then do;
+MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Age_group ;
 MPRINT(EM_DIAGRAM):   drop _0_0 _0_1 _0_2 _0_3 _0_4 ;
 MPRINT(EM_DIAGRAM):   *** encoding is sparse, initialize to zero;
@@ -187,14 +192,11 @@ MPRINT(EM_DIAGRAM):   drop _dm19 ;
 MPRINT(DMNORMCP):   _dm19=dmnorm(Age_group,
 MPRINT(DMNORLEN):  32
 MPRINT(DMNORMCP):  );
-MPRINT(EM_DIAGRAM):   if _dm19 = '65-84' then do;
-MPRINT(EM_DIAGRAM):   _0_4 = 1;
+MPRINT(EM_DIAGRAM):   if _dm19 = '25-44' then do;
+MPRINT(EM_DIAGRAM):   _0_2 = 1;
 MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '18-24' then do;
-MPRINT(EM_DIAGRAM):   _0_1 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '0-17' then do;
-MPRINT(EM_DIAGRAM):   _0_0 = 1;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '45-64' then do;
+MPRINT(EM_DIAGRAM):   _0_3 = 1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else if _dm19 = '85+' then do;
 MPRINT(EM_DIAGRAM):   _0_0 = -1;
@@ -203,11 +205,14 @@ MPRINT(EM_DIAGRAM):   _0_2 = -1;
 MPRINT(EM_DIAGRAM):   _0_3 = -1;
 MPRINT(EM_DIAGRAM):   _0_4 = -1;
 MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '25-44' then do;
-MPRINT(EM_DIAGRAM):   _0_2 = 1;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '65-84' then do;
+MPRINT(EM_DIAGRAM):   _0_4 = 1;
 MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '45-64' then do;
-MPRINT(EM_DIAGRAM):   _0_3 = 1;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '18-24' then do;
+MPRINT(EM_DIAGRAM):   _0_1 = 1;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '0-17' then do;
+MPRINT(EM_DIAGRAM):   _0_0 = 1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else do;
 MPRINT(EM_DIAGRAM):   _0_0 = .;
@@ -240,16 +245,7 @@ MPRINT(EM_DIAGRAM):   drop _dm32 ;
 MPRINT(DMNORMCP):   _dm32=dmnorm(Disease,
 MPRINT(DMNORLEN):  32
 MPRINT(DMNORMCP):  );
-MPRINT(EM_DIAGRAM):   if _dm32 = 'CANCER, ALL' then do;
-MPRINT(EM_DIAGRAM):   _1_1 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm32 = 'ASTHMA' then do;
-MPRINT(EM_DIAGRAM):   _1_0 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm32 = 'OSTEOARTHRITIS' then do;
-MPRINT(EM_DIAGRAM):   _1_3 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm32 = 'DEMENTIA AND ALZHEIMER''S DISEASE' then do;
+MPRINT(EM_DIAGRAM):   if _dm32 = 'DEMENTIA AND ALZHEIMER''S DISEASE' then do;
 MPRINT(EM_DIAGRAM):   _1_2 = 1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else if _dm32 = 'SEPTICEMIA' then do;
@@ -257,6 +253,15 @@ MPRINT(EM_DIAGRAM):   _1_0 = -1;
 MPRINT(EM_DIAGRAM):   _1_1 = -1;
 MPRINT(EM_DIAGRAM):   _1_2 = -1;
 MPRINT(EM_DIAGRAM):   _1_3 = -1;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'CANCER, ALL' then do;
+MPRINT(EM_DIAGRAM):   _1_1 = 1;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'OSTEOARTHRITIS' then do;
+MPRINT(EM_DIAGRAM):   _1_3 = 1;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'ASTHMA' then do;
+MPRINT(EM_DIAGRAM):   _1_0 = 1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else do;
 MPRINT(EM_DIAGRAM):   _1_0 = .;
@@ -268,10 +273,9 @@ MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Gender ;
-MPRINT(EM_DIAGRAM):   drop _2_0 _2_1 ;
+MPRINT(EM_DIAGRAM):   drop _2_0 ;
 MPRINT(EM_DIAGRAM):   if missing( Gender ) then do;
 MPRINT(EM_DIAGRAM):   _2_0 = .;
-MPRINT(EM_DIAGRAM):   _2_1 = .;
 MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
 MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
 MPRINT(EM_DIAGRAM):   end;
@@ -282,28 +286,21 @@ MPRINT(EM_DIAGRAM):   _dm10 = put( Gender , $CHAR10. );
 MPRINT(DMNORMIP):   call dmnorm(_dm10,
 MPRINT(DMNORLEN):  32
 MPRINT(DMNORMIP):  );
-MPRINT(EM_DIAGRAM):   if _dm10 = 'ALL' then do;
+MPRINT(EM_DIAGRAM):   if _dm10 = 'FEMALE' then do;
 MPRINT(EM_DIAGRAM):   _2_0 = 1;
-MPRINT(EM_DIAGRAM):   _2_1 = 0;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else if _dm10 = 'MALE' then do;
 MPRINT(EM_DIAGRAM):   _2_0 = -1;
-MPRINT(EM_DIAGRAM):   _2_1 = -1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm10 = 'FEMALE' then do;
-MPRINT(EM_DIAGRAM):   _2_0 = 0;
-MPRINT(EM_DIAGRAM):   _2_1 = 1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else do;
 MPRINT(EM_DIAGRAM):   _2_0 = .;
-MPRINT(EM_DIAGRAM):   _2_1 = .;
 MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
 MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   *** If missing inputs, use averages;
 MPRINT(EM_DIAGRAM):   if _DM_BAD > 0 then do;
-MPRINT(EM_DIAGRAM):   _LP0 = 71.1668909825033;
+MPRINT(EM_DIAGRAM):   _LP0 = 49.9179190751445;
 MPRINT(EM_DIAGRAM):   goto REG4DR1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   *** Compute Linear Predictor;
@@ -312,23 +309,25 @@ MPRINT(EM_DIAGRAM):   drop _LP0;
 MPRINT(EM_DIAGRAM):   _LP0 = 0;
 MPRINT(EM_DIAGRAM):   *** Effect: Age_group ;
 MPRINT(EM_DIAGRAM):   _TEMP = 1;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -43.8056890607145) * _TEMP * _0_0;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -64.2613986008538) * _TEMP * _0_1;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -31.6108040350378) * _TEMP * _0_2;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 51.3319121658971) * _TEMP * _0_3;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 120.289837755199) * _TEMP * _0_4;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -69.3396746404147) * _TEMP * _0_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -11.7515619691173) * _TEMP * _0_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -83.4533761301505) * _TEMP * _0_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 14.2942198480921) * _TEMP * _0_3;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 102.626046897887) * _TEMP * _0_4;
 MPRINT(EM_DIAGRAM):   *** Effect: Disease ;
 MPRINT(EM_DIAGRAM):   _TEMP = 1;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -14.3934266242964) * _TEMP * _1_0;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 88.0560967443537) * _TEMP * _1_1;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -50.1961812920124) * _TEMP * _1_2;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 2.53879969767984) * _TEMP * _1_3;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -10.1199253894713) * _TEMP * _1_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 65.7796898433449) * _TEMP * _1_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -41.5190017581615) * _TEMP * _1_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 2.28001752647267) * _TEMP * _1_3;
 MPRINT(EM_DIAGRAM):   *** Effect: Gender ;
 MPRINT(EM_DIAGRAM):   _TEMP = 1;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 36.1777425477028) * _TEMP * _2_0;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -10.7483953124386) * _TEMP * _2_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 3.46953708818157) * _TEMP * _2_0;
+MPRINT(EM_DIAGRAM):   *** Effect: Population_in_thousands ;
+MPRINT(EM_DIAGRAM):   _TEMP = Population_in_thousands ;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.00335241400954 * _TEMP);
 MPRINT(EM_DIAGRAM):   *--- Intercept ---*;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 68.4345277089545);
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -29.8684689808885);
 MPRINT(EM_DIAGRAM):   REG4DR1: *** Predicted Value, Error, and Residual;
 MPRINT(EM_DIAGRAM):   label P_Cases_in_1000s = 'Predicted: Cases_in_1000s' ;
 MPRINT(EM_DIAGRAM):   P_Cases_in_1000s = _LP0;
@@ -344,37 +343,37 @@ MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   *************************************;
 MPRINT(EM_DIAGRAM):   ***** end scoring code for regression;
 MPRINT(EM_DIAGRAM):   *************************************;
-81918      run;
 MPRINT(EM_DIAGRAM):   run;
+28687      run;
 
 NOTE: DATA STEP view saved on file EMWS2.REG4_TRAIN.
 NOTE: A stored DATA STEP view cannot run under a different operating system.
 NOTE: DATA statement used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.01 seconds
+      real time           0.02 seconds
+      cpu time            0.00 seconds
       
 
 MPRINT(EM_DIAGRAM):   quit;
-81919      quit;
-81920      filename emflow;
+28688      quit;
+28689      filename emflow;
 MPRINT(EM_DIAGRAM):   filename emflow;
 NOTE: Fileref EMFLOW has been deassigned.
-81921      filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Reg4\EMFLOWSCORE.sas";
+28690      filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Reg4\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Reg4\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   * Reg4: Scoring VALIDATE data;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-81922      *------------------------------------------------------------*;
-81923      * Reg4: Scoring VALIDATE data;
-81924      *------------------------------------------------------------*;
-81925      data EMWS2.Reg4_VALIDATE
-81926      / view=EMWS2.Reg4_VALIDATE
-81927      ;
+28691      *------------------------------------------------------------*;
+28692      * Reg4: Scoring VALIDATE data;
+28693      *------------------------------------------------------------*;
+28694      data EMWS2.Reg4_VALIDATE
+28695      / view=EMWS2.Reg4_VALIDATE
+28696      ;
 MPRINT(EM_DIAGRAM):   data EMWS2.Reg4_VALIDATE / view=EMWS2.Reg4_VALIDATE ;
-81928      set EMWS2.Part_VALIDATE
-81929      ;
+28697      set EMWS2.Part_VALIDATE
+28698      ;
 MPRINT(EM_DIAGRAM):   set EMWS2.Part_VALIDATE ;
-81930      %inc emflow;
+28699      %inc emflow;
 MPRINT(EM_DIAGRAM):   *************************************;
 MPRINT(EM_DIAGRAM):   *** begin scoring code for regression;
 MPRINT(EM_DIAGRAM):   *************************************;
@@ -384,6 +383,11 @@ MPRINT(EM_DIAGRAM):   drop _Y;
 MPRINT(EM_DIAGRAM):   _Y = Cases_in_1000s ;
 MPRINT(EM_DIAGRAM):   drop _DM_BAD;
 MPRINT(EM_DIAGRAM):   _DM_BAD=0;
+MPRINT(EM_DIAGRAM):   *** Check Population_in_thousands for missing values ;
+MPRINT(EM_DIAGRAM):   if missing( Population_in_thousands ) then do;
+MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Age_group ;
 MPRINT(EM_DIAGRAM):   drop _0_0 _0_1 _0_2 _0_3 _0_4 ;
 MPRINT(EM_DIAGRAM):   *** encoding is sparse, initialize to zero;
@@ -407,14 +411,11 @@ MPRINT(EM_DIAGRAM):   drop _dm19 ;
 MPRINT(DMNORMCP):   _dm19=dmnorm(Age_group,
 MPRINT(DMNORLEN):  32
 MPRINT(DMNORMCP):  );
-MPRINT(EM_DIAGRAM):   if _dm19 = '65-84' then do;
-MPRINT(EM_DIAGRAM):   _0_4 = 1;
+MPRINT(EM_DIAGRAM):   if _dm19 = '25-44' then do;
+MPRINT(EM_DIAGRAM):   _0_2 = 1;
 MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '18-24' then do;
-MPRINT(EM_DIAGRAM):   _0_1 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '0-17' then do;
-MPRINT(EM_DIAGRAM):   _0_0 = 1;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '45-64' then do;
+MPRINT(EM_DIAGRAM):   _0_3 = 1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else if _dm19 = '85+' then do;
 MPRINT(EM_DIAGRAM):   _0_0 = -1;
@@ -423,11 +424,14 @@ MPRINT(EM_DIAGRAM):   _0_2 = -1;
 MPRINT(EM_DIAGRAM):   _0_3 = -1;
 MPRINT(EM_DIAGRAM):   _0_4 = -1;
 MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '25-44' then do;
-MPRINT(EM_DIAGRAM):   _0_2 = 1;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '65-84' then do;
+MPRINT(EM_DIAGRAM):   _0_4 = 1;
 MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '45-64' then do;
-MPRINT(EM_DIAGRAM):   _0_3 = 1;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '18-24' then do;
+MPRINT(EM_DIAGRAM):   _0_1 = 1;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '0-17' then do;
+MPRINT(EM_DIAGRAM):   _0_0 = 1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else do;
 MPRINT(EM_DIAGRAM):   _0_0 = .;
@@ -460,16 +464,7 @@ MPRINT(EM_DIAGRAM):   drop _dm32 ;
 MPRINT(DMNORMCP):   _dm32=dmnorm(Disease,
 MPRINT(DMNORLEN):  32
 MPRINT(DMNORMCP):  );
-MPRINT(EM_DIAGRAM):   if _dm32 = 'CANCER, ALL' then do;
-MPRINT(EM_DIAGRAM):   _1_1 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm32 = 'ASTHMA' then do;
-MPRINT(EM_DIAGRAM):   _1_0 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm32 = 'OSTEOARTHRITIS' then do;
-MPRINT(EM_DIAGRAM):   _1_3 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm32 = 'DEMENTIA AND ALZHEIMER''S DISEASE' then do;
+MPRINT(EM_DIAGRAM):   if _dm32 = 'DEMENTIA AND ALZHEIMER''S DISEASE' then do;
 MPRINT(EM_DIAGRAM):   _1_2 = 1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else if _dm32 = 'SEPTICEMIA' then do;
@@ -477,6 +472,15 @@ MPRINT(EM_DIAGRAM):   _1_0 = -1;
 MPRINT(EM_DIAGRAM):   _1_1 = -1;
 MPRINT(EM_DIAGRAM):   _1_2 = -1;
 MPRINT(EM_DIAGRAM):   _1_3 = -1;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'CANCER, ALL' then do;
+MPRINT(EM_DIAGRAM):   _1_1 = 1;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'OSTEOARTHRITIS' then do;
+MPRINT(EM_DIAGRAM):   _1_3 = 1;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'ASTHMA' then do;
+MPRINT(EM_DIAGRAM):   _1_0 = 1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else do;
 MPRINT(EM_DIAGRAM):   _1_0 = .;
@@ -488,10 +492,9 @@ MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Gender ;
-MPRINT(EM_DIAGRAM):   drop _2_0 _2_1 ;
+MPRINT(EM_DIAGRAM):   drop _2_0 ;
 MPRINT(EM_DIAGRAM):   if missing( Gender ) then do;
 MPRINT(EM_DIAGRAM):   _2_0 = .;
-MPRINT(EM_DIAGRAM):   _2_1 = .;
 MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
 MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
 MPRINT(EM_DIAGRAM):   end;
@@ -502,28 +505,21 @@ MPRINT(EM_DIAGRAM):   _dm10 = put( Gender , $CHAR10. );
 MPRINT(DMNORMIP):   call dmnorm(_dm10,
 MPRINT(DMNORLEN):  32
 MPRINT(DMNORMIP):  );
-MPRINT(EM_DIAGRAM):   if _dm10 = 'ALL' then do;
+MPRINT(EM_DIAGRAM):   if _dm10 = 'FEMALE' then do;
 MPRINT(EM_DIAGRAM):   _2_0 = 1;
-MPRINT(EM_DIAGRAM):   _2_1 = 0;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else if _dm10 = 'MALE' then do;
 MPRINT(EM_DIAGRAM):   _2_0 = -1;
-MPRINT(EM_DIAGRAM):   _2_1 = -1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm10 = 'FEMALE' then do;
-MPRINT(EM_DIAGRAM):   _2_0 = 0;
-MPRINT(EM_DIAGRAM):   _2_1 = 1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   else do;
 MPRINT(EM_DIAGRAM):   _2_0 = .;
-MPRINT(EM_DIAGRAM):   _2_1 = .;
 MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
 MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   *** If missing inputs, use averages;
 MPRINT(EM_DIAGRAM):   if _DM_BAD > 0 then do;
-MPRINT(EM_DIAGRAM):   _LP0 = 71.1668909825033;
+MPRINT(EM_DIAGRAM):   _LP0 = 49.9179190751445;
 MPRINT(EM_DIAGRAM):   goto REG4DR1;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   *** Compute Linear Predictor;
@@ -532,23 +528,25 @@ MPRINT(EM_DIAGRAM):   drop _LP0;
 MPRINT(EM_DIAGRAM):   _LP0 = 0;
 MPRINT(EM_DIAGRAM):   *** Effect: Age_group ;
 MPRINT(EM_DIAGRAM):   _TEMP = 1;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -43.8056890607145) * _TEMP * _0_0;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -64.2613986008538) * _TEMP * _0_1;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -31.6108040350378) * _TEMP * _0_2;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 51.3319121658971) * _TEMP * _0_3;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 120.289837755199) * _TEMP * _0_4;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -69.3396746404147) * _TEMP * _0_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -11.7515619691173) * _TEMP * _0_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -83.4533761301505) * _TEMP * _0_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 14.2942198480921) * _TEMP * _0_3;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 102.626046897887) * _TEMP * _0_4;
 MPRINT(EM_DIAGRAM):   *** Effect: Disease ;
 MPRINT(EM_DIAGRAM):   _TEMP = 1;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -14.3934266242964) * _TEMP * _1_0;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 88.0560967443537) * _TEMP * _1_1;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -50.1961812920124) * _TEMP * _1_2;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 2.53879969767984) * _TEMP * _1_3;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -10.1199253894713) * _TEMP * _1_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 65.7796898433449) * _TEMP * _1_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -41.5190017581615) * _TEMP * _1_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 2.28001752647267) * _TEMP * _1_3;
 MPRINT(EM_DIAGRAM):   *** Effect: Gender ;
 MPRINT(EM_DIAGRAM):   _TEMP = 1;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 36.1777425477028) * _TEMP * _2_0;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -10.7483953124386) * _TEMP * _2_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 3.46953708818157) * _TEMP * _2_0;
+MPRINT(EM_DIAGRAM):   *** Effect: Population_in_thousands ;
+MPRINT(EM_DIAGRAM):   _TEMP = Population_in_thousands ;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.00335241400954 * _TEMP);
 MPRINT(EM_DIAGRAM):   *--- Intercept ---*;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 68.4345277089545);
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -29.8684689808885);
 MPRINT(EM_DIAGRAM):   REG4DR1: *** Predicted Value, Error, and Residual;
 MPRINT(EM_DIAGRAM):   label P_Cases_in_1000s = 'Predicted: Cases_in_1000s' ;
 MPRINT(EM_DIAGRAM):   P_Cases_in_1000s = _LP0;
@@ -564,246 +562,26 @@ MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   *************************************;
 MPRINT(EM_DIAGRAM):   ***** end scoring code for regression;
 MPRINT(EM_DIAGRAM):   *************************************;
-82127      run;
+28897      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: DATA STEP view saved on file EMWS2.REG4_VALIDATE.
 NOTE: A stored DATA STEP view cannot run under a different operating system.
 NOTE: DATA statement used (Total process time):
-      real time           0.00 seconds
+      real time           0.01 seconds
       cpu time            0.01 seconds
       
 
 MPRINT(EM_DIAGRAM):   quit;
-82128      quit;
-82129      filename emflow;
+28898      quit;
+28899      filename emflow;
 MPRINT(EM_DIAGRAM):   filename emflow;
 NOTE: Fileref EMFLOW has been deassigned.
-82130      filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Reg4\EMFLOWSCORE.sas";
-MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Reg4\EMFLOWSCORE.sas";
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   * Reg4: Scoring TEST data;
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-82131      *------------------------------------------------------------*;
-82132      * Reg4: Scoring TEST data;
-82133      *------------------------------------------------------------*;
-82134      data EMWS2.Reg4_TEST
-82135      / view=EMWS2.Reg4_TEST
-82136      ;
-MPRINT(EM_DIAGRAM):   data EMWS2.Reg4_TEST / view=EMWS2.Reg4_TEST ;
-82137      set EMWS2.Part_TEST
-82138      ;
-MPRINT(EM_DIAGRAM):   set EMWS2.Part_TEST ;
-82139      %inc emflow;
-MPRINT(EM_DIAGRAM):   *************************************;
-MPRINT(EM_DIAGRAM):   *** begin scoring code for regression;
-MPRINT(EM_DIAGRAM):   *************************************;
-MPRINT(EM_DIAGRAM):   length _WARN_ $4;
-MPRINT(EM_DIAGRAM):   label _WARN_ = 'Warnings' ;
-MPRINT(EM_DIAGRAM):   drop _Y;
-MPRINT(EM_DIAGRAM):   _Y = Cases_in_1000s ;
-MPRINT(EM_DIAGRAM):   drop _DM_BAD;
-MPRINT(EM_DIAGRAM):   _DM_BAD=0;
-MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Age_group ;
-MPRINT(EM_DIAGRAM):   drop _0_0 _0_1 _0_2 _0_3 _0_4 ;
-MPRINT(EM_DIAGRAM):   *** encoding is sparse, initialize to zero;
-MPRINT(EM_DIAGRAM):   _0_0 = 0;
-MPRINT(EM_DIAGRAM):   _0_1 = 0;
-MPRINT(EM_DIAGRAM):   _0_2 = 0;
-MPRINT(EM_DIAGRAM):   _0_3 = 0;
-MPRINT(EM_DIAGRAM):   _0_4 = 0;
-MPRINT(EM_DIAGRAM):   if missing( Age_group ) then do;
-MPRINT(EM_DIAGRAM):   _0_0 = .;
-MPRINT(EM_DIAGRAM):   _0_1 = .;
-MPRINT(EM_DIAGRAM):   _0_2 = .;
-MPRINT(EM_DIAGRAM):   _0_3 = .;
-MPRINT(EM_DIAGRAM):   _0_4 = .;
-MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
-MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else do;
-MPRINT(EM_DIAGRAM):   length _dm19 $ 19;
-MPRINT(EM_DIAGRAM):   drop _dm19 ;
-MPRINT(DMNORMCP):   _dm19=dmnorm(Age_group,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMCP):  );
-MPRINT(EM_DIAGRAM):   if _dm19 = '65-84' then do;
-MPRINT(EM_DIAGRAM):   _0_4 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '18-24' then do;
-MPRINT(EM_DIAGRAM):   _0_1 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '0-17' then do;
-MPRINT(EM_DIAGRAM):   _0_0 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '85+' then do;
-MPRINT(EM_DIAGRAM):   _0_0 = -1;
-MPRINT(EM_DIAGRAM):   _0_1 = -1;
-MPRINT(EM_DIAGRAM):   _0_2 = -1;
-MPRINT(EM_DIAGRAM):   _0_3 = -1;
-MPRINT(EM_DIAGRAM):   _0_4 = -1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '25-44' then do;
-MPRINT(EM_DIAGRAM):   _0_2 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '45-64' then do;
-MPRINT(EM_DIAGRAM):   _0_3 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else do;
-MPRINT(EM_DIAGRAM):   _0_0 = .;
-MPRINT(EM_DIAGRAM):   _0_1 = .;
-MPRINT(EM_DIAGRAM):   _0_2 = .;
-MPRINT(EM_DIAGRAM):   _0_3 = .;
-MPRINT(EM_DIAGRAM):   _0_4 = .;
-MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
-MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Disease ;
-MPRINT(EM_DIAGRAM):   drop _1_0 _1_1 _1_2 _1_3 ;
-MPRINT(EM_DIAGRAM):   *** encoding is sparse, initialize to zero;
-MPRINT(EM_DIAGRAM):   _1_0 = 0;
-MPRINT(EM_DIAGRAM):   _1_1 = 0;
-MPRINT(EM_DIAGRAM):   _1_2 = 0;
-MPRINT(EM_DIAGRAM):   _1_3 = 0;
-MPRINT(EM_DIAGRAM):   if missing( Disease ) then do;
-MPRINT(EM_DIAGRAM):   _1_0 = .;
-MPRINT(EM_DIAGRAM):   _1_1 = .;
-MPRINT(EM_DIAGRAM):   _1_2 = .;
-MPRINT(EM_DIAGRAM):   _1_3 = .;
-MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
-MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else do;
-MPRINT(EM_DIAGRAM):   length _dm32 $ 32;
-MPRINT(EM_DIAGRAM):   drop _dm32 ;
-MPRINT(DMNORMCP):   _dm32=dmnorm(Disease,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMCP):  );
-MPRINT(EM_DIAGRAM):   if _dm32 = 'CANCER, ALL' then do;
-MPRINT(EM_DIAGRAM):   _1_1 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm32 = 'ASTHMA' then do;
-MPRINT(EM_DIAGRAM):   _1_0 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm32 = 'OSTEOARTHRITIS' then do;
-MPRINT(EM_DIAGRAM):   _1_3 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm32 = 'DEMENTIA AND ALZHEIMER''S DISEASE' then do;
-MPRINT(EM_DIAGRAM):   _1_2 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm32 = 'SEPTICEMIA' then do;
-MPRINT(EM_DIAGRAM):   _1_0 = -1;
-MPRINT(EM_DIAGRAM):   _1_1 = -1;
-MPRINT(EM_DIAGRAM):   _1_2 = -1;
-MPRINT(EM_DIAGRAM):   _1_3 = -1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else do;
-MPRINT(EM_DIAGRAM):   _1_0 = .;
-MPRINT(EM_DIAGRAM):   _1_1 = .;
-MPRINT(EM_DIAGRAM):   _1_2 = .;
-MPRINT(EM_DIAGRAM):   _1_3 = .;
-MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
-MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Gender ;
-MPRINT(EM_DIAGRAM):   drop _2_0 _2_1 ;
-MPRINT(EM_DIAGRAM):   if missing( Gender ) then do;
-MPRINT(EM_DIAGRAM):   _2_0 = .;
-MPRINT(EM_DIAGRAM):   _2_1 = .;
-MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
-MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else do;
-MPRINT(EM_DIAGRAM):   length _dm10 $ 10;
-MPRINT(EM_DIAGRAM):   drop _dm10 ;
-MPRINT(EM_DIAGRAM):   _dm10 = put( Gender , $CHAR10. );
-MPRINT(DMNORMIP):   call dmnorm(_dm10,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMIP):  );
-MPRINT(EM_DIAGRAM):   if _dm10 = 'ALL' then do;
-MPRINT(EM_DIAGRAM):   _2_0 = 1;
-MPRINT(EM_DIAGRAM):   _2_1 = 0;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm10 = 'MALE' then do;
-MPRINT(EM_DIAGRAM):   _2_0 = -1;
-MPRINT(EM_DIAGRAM):   _2_1 = -1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else if _dm10 = 'FEMALE' then do;
-MPRINT(EM_DIAGRAM):   _2_0 = 0;
-MPRINT(EM_DIAGRAM):   _2_1 = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else do;
-MPRINT(EM_DIAGRAM):   _2_0 = .;
-MPRINT(EM_DIAGRAM):   _2_1 = .;
-MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
-MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   *** If missing inputs, use averages;
-MPRINT(EM_DIAGRAM):   if _DM_BAD > 0 then do;
-MPRINT(EM_DIAGRAM):   _LP0 = 71.1668909825033;
-MPRINT(EM_DIAGRAM):   goto REG4DR1;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   *** Compute Linear Predictor;
-MPRINT(EM_DIAGRAM):   drop _TEMP;
-MPRINT(EM_DIAGRAM):   drop _LP0;
-MPRINT(EM_DIAGRAM):   _LP0 = 0;
-MPRINT(EM_DIAGRAM):   *** Effect: Age_group ;
-MPRINT(EM_DIAGRAM):   _TEMP = 1;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -43.8056890607145) * _TEMP * _0_0;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -64.2613986008538) * _TEMP * _0_1;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -31.6108040350378) * _TEMP * _0_2;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 51.3319121658971) * _TEMP * _0_3;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 120.289837755199) * _TEMP * _0_4;
-MPRINT(EM_DIAGRAM):   *** Effect: Disease ;
-MPRINT(EM_DIAGRAM):   _TEMP = 1;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -14.3934266242964) * _TEMP * _1_0;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 88.0560967443537) * _TEMP * _1_1;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -50.1961812920124) * _TEMP * _1_2;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 2.53879969767984) * _TEMP * _1_3;
-MPRINT(EM_DIAGRAM):   *** Effect: Gender ;
-MPRINT(EM_DIAGRAM):   _TEMP = 1;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 36.1777425477028) * _TEMP * _2_0;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -10.7483953124386) * _TEMP * _2_1;
-MPRINT(EM_DIAGRAM):   *--- Intercept ---*;
-MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 68.4345277089545);
-MPRINT(EM_DIAGRAM):   REG4DR1: *** Predicted Value, Error, and Residual;
-MPRINT(EM_DIAGRAM):   label P_Cases_in_1000s = 'Predicted: Cases_in_1000s' ;
-MPRINT(EM_DIAGRAM):   P_Cases_in_1000s = _LP0;
-MPRINT(EM_DIAGRAM):   drop _R;
-MPRINT(EM_DIAGRAM):   if _Y = . then do;
-MPRINT(EM_DIAGRAM):   R_Cases_in_1000s = .;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   else do;
-MPRINT(EM_DIAGRAM):   _R = _Y - _LP0;
-MPRINT(EM_DIAGRAM):   label R_Cases_in_1000s = 'Residual: Cases_in_1000s' ;
-MPRINT(EM_DIAGRAM):   R_Cases_in_1000s = _R;
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   *************************************;
-MPRINT(EM_DIAGRAM):   ***** end scoring code for regression;
-MPRINT(EM_DIAGRAM):   *************************************;
-82336      run;
-MPRINT(EM_DIAGRAM):   run;
-
-NOTE: DATA STEP view saved on file EMWS2.REG4_TEST.
-NOTE: A stored DATA STEP view cannot run under a different operating system.
-NOTE: DATA statement used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.01 seconds
-      
-
-MPRINT(EM_DIAGRAM):   quit;
-82337      quit;
-82338      filename emflow;
-MPRINT(EM_DIAGRAM):   filename emflow;
-NOTE: Fileref EMFLOW has been deassigned.
-82339      *------------------------------------------------------------*;
+28900      *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
-82340      * Reg4: Computing metadata for TRAIN data;
+28901      * Reg4: Computing metadata for TRAIN data;
 MPRINT(EM_DIAGRAM):   * Reg4: Computing metadata for TRAIN data;
-82341      *------------------------------------------------------------*;
+28902      *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
 
 NOTE: View EMWS2.REG4_TRAIN.VIEW used (Total process time):
@@ -828,12 +606,12 @@ MPRINT(EMADVISECOLUMNS):   call symput('_engineTable', attrc(dsid, 'ENGINE'));
 MPRINT(EMADVISECOLUMNS):   dsid = close(dsid);
 MPRINT(EMADVISECOLUMNS):   end;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    proc contents data=EMWS2.Reg4_TRAIN out=WORK.M0CA1QQK noprint;
+MPRINT(EMADVISECOLUMNS):    proc contents data=EMWS2.Reg4_TRAIN out=WORK.M0LNMH_8 noprint;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M0CA1QQK;
+MPRINT(EMADVISECOLUMNS):    data WORK.M0LNMH_8;
 MPRINT(EMADVISECOLUMNS):   length NAME $ 64 TYPE $ 1 LABEL $ 200 FORMAT $ 36 INFORMAT $36 INDEX $ 1 INDEXTYPE $ 9;
 MPRINT(EMADVISECOLUMNS):   label NAME =;
-MPRINT(EMADVISECOLUMNS):   set WORK.M0CA1QQK(keep=name type length label format formatl formatd informat informl informd idxusage rename=(type=itype));
+MPRINT(EMADVISECOLUMNS):   set WORK.M0LNMH_8(keep=name type length label format formatl formatd informat informl informd idxusage rename=(type=itype));
 MPRINT(EMADVISECOLUMNS):   if itype = 1 then type = 'N';
 MPRINT(EMADVISECOLUMNS):   else type = 'C';
 MPRINT(EMADVISECOLUMNS):   if formatl > 0 then do;
@@ -857,21 +635,21 @@ MPRINT(EMADVISECOLUMNS):   else index = "Y";
 MPRINT(EMADVISECOLUMNS):   indextype = idxusage;
 MPRINT(EMADVISECOLUMNS):   drop idxusage itype formatl formatd informl informd;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M0CA1QQK;
+MPRINT(EMADVISECOLUMNS):    data WORK.M0LNMH_8;
 MPRINT(EMADVISECOLUMNS):   length UNAME $64;
-MPRINT(EMADVISECOLUMNS):   set WORK.M0CA1QQK;
+MPRINT(EMADVISECOLUMNS):   set WORK.M0LNMH_8;
 MPRINT(EMADVISECOLUMNS):   UNAME = upcase(NAME);
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    proc sort data=WORK.M1A5GXLV NOTHREADS;
+MPRINT(EMADVISECOLUMNS):    proc sort data=WORK.M0RGA7IG NOTHREADS;
 MPRINT(EMADVISECOLUMNS):   by UNAME;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M1A5GXLV;
+MPRINT(EMADVISECOLUMNS):    data WORK.M0RGA7IG;
 MPRINT(EMADVISECOLUMNS):   drop UNAME;
-MPRINT(EMADVISECOLUMNS):   set WORK.M1A5GXLV;
+MPRINT(EMADVISECOLUMNS):   set WORK.M0RGA7IG;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M281NGCM(keep=NAME ATTR);
+MPRINT(EMADVISECOLUMNS):    data WORK.M1ZYATNJ(keep=NAME ATTR);
 MPRINT(EMADVISECOLUMNS):   length ATTR $ 20;
-MPRINT(EMADVISECOLUMNS):   set WORK.M1A5GXLV;
+MPRINT(EMADVISECOLUMNS):   set WORK.M0RGA7IG;
 MPRINT(EMADVISECOLUMNS):   if level ne "INTERVAL" then do;
 MPRINT(EMADVISECOLUMNS):   if order = ' ' then do;
 MPRINT(EMADVISECOLUMNS):   attr = 'ORDER';
@@ -906,10 +684,10 @@ MPRINT(EMADVISECOLUMNS):   run;
 MPRINT(EMADVISECOLUMNS):   proc sort NOTHREADS;
 MPRINT(EMADVISECOLUMNS):   by attr;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M1A5GXLV;
+MPRINT(EMADVISECOLUMNS):    data WORK.M0RGA7IG;
 MPRINT(EMADVISECOLUMNS):   length NAME $64 ROLE $ 32 LEVEL $ 10 ORDER $ 8 CREATOR $32 FORMATTYPE $ 10 FAMILY $ 10 LOWERLIMIT 8 UPPERLIMIT 8 REPORT $1 DISTRIBUTION $ 20 COMMENT $64;
 MPRINT(EMADVISECOLUMNS):   length levelAssigned 8 roleAssigned 8 PRICE 8;
-MPRINT(EMADVISECOLUMNS):   set WORK.M1A5GXLV;
+MPRINT(EMADVISECOLUMNS):   set WORK.M0RGA7IG;
 MPRINT(EMADVISECOLUMNS):   if formattype = ' ' then do;
 MPRINT(EMADVISECOLUMNS):   if format ne ' ' then do;
 MPRINT(EMADVISECOLUMNS):   if type = 'N' then do;
@@ -1070,8 +848,8 @@ MPRINT(EMADVISECOLUMNS):   if ROLE ^in('INPUT', 'TARGET', 'REJECTED', 'SEGMENT',
 MPRINT(EMADVISECOLUMNS):   end;
 MPRINT(EMADVISECOLUMNS):   end;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M1A5GXLV;
-MPRINT(EMADVISECOLUMNS):   set WORK.M1A5GXLV;
+MPRINT(EMADVISECOLUMNS):    data WORK.M0RGA7IG;
+MPRINT(EMADVISECOLUMNS):   set WORK.M0RGA7IG;
 MPRINT(EMADVISECOLUMNS):   label NAME = "Variable Name" TYPE = "Type" ROLE = "Role" LEVEL= "Measurement Level" ORDER= "Order" CREATOR= "Creator" FORMATTYPE= "Format Type" FAMILY= "Family" DISTRIBUTION= "Distribution" PRICE= "Price" LOWERLIMIT= "Lower 
 limit" UPPERLIMIT= "Upper Limit" REPORT= "Report" COMMENT= "Comment" INDEX= "Index" INDEXTYPE= "IndexType" LABEL= "Label" LENGTH= "Length";
 MPRINT(EMADVISECOLUMNS):   drop levelAssigned roleAssigned;
@@ -1111,7 +889,7 @@ MPRINT(EM_DIAGRAM):   *---------------------------------------------------------
 MPRINT(EM_DIAGRAM):   * Reg4: Apply Delta Code;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   if ROLE in('INPUT', 'REJECTED') then do;
-MPRINT(EM_DIAGRAM):   if upcase(NAME) in( 'AGE_GROUP' 'DISEASE' 'GENDER' ) then ROLE='INPUT';
+MPRINT(EM_DIAGRAM):   if upcase(NAME) in( 'AGE_GROUP' 'DISEASE' 'GENDER' 'POPULATION_IN_THOUSANDS' ) then ROLE='INPUT';
 MPRINT(EM_DIAGRAM):   else do;
 MPRINT(EM_DIAGRAM):   ROLE='REJECTED';
 MPRINT(EM_DIAGRAM):   COMMENT = "Reg4: Rejected using backward selection";
@@ -1119,13 +897,13 @@ MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   end;
 MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   filename _delta;
-82700      data WORK.MODELTEMP_INFO;
+29262      data WORK.MODELTEMP_INFO;
 MPRINT(EM_DIAGRAM):    data WORK.MODELTEMP_INFO;
-82701      set EMWS2.Reg4_EMINFO;
+29263      set EMWS2.Reg4_EMINFO;
 MPRINT(EM_DIAGRAM):   set EMWS2.Reg4_EMINFO;
-82702      where DATA='Reg4' and KEY ^in('DECDATA', 'DECMETA', 'IMPORTANCE', 'MODEL');
+29264      where DATA='Reg4' and KEY ^in('DECDATA', 'DECMETA', 'IMPORTANCE', 'MODEL');
 MPRINT(EM_DIAGRAM):   where DATA='Reg4' and KEY ^in('DECDATA', 'DECMETA', 'IMPORTANCE', 'MODEL');
-82703      run;
+29265      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 0 observations read from the data set EMWS2.REG4_EMINFO.
@@ -1136,13 +914,13 @@ NOTE: DATA statement used (Total process time):
       cpu time            0.00 seconds
       
 
-82704      data EMWS2.Reg4_EMINFO;
+29266      data EMWS2.Reg4_EMINFO;
 MPRINT(EM_DIAGRAM):    data EMWS2.Reg4_EMINFO;
-82705      length TARGET KEY $32 DATA $43;
+29267      length TARGET KEY $32 DATA $43;
 MPRINT(EM_DIAGRAM):   length TARGET KEY $32 DATA $43;
-82706      input TARGET KEY DATA $;
+29268      input TARGET KEY DATA $;
 MPRINT(EM_DIAGRAM):   input TARGET KEY DATA $;
-82707      cards;
+29269      cards;
 MPRINT(EM_DIAGRAM):   cards;
 
 NOTE: The data set EMWS2.REG4_EMINFO has 3 observations and 3 variables.
@@ -1152,27 +930,27 @@ NOTE: DATA statement used (Total process time):
       
 
 MPRINT(EM_DIAGRAM):   run;
-82711      run;
-82712      data EMWS2.Reg4_EMINFO;
+29273      run;
+29274      data EMWS2.Reg4_EMINFO;
 MPRINT(EM_DIAGRAM):   data EMWS2.Reg4_EMINFO;
-82713      set EMWS2.Reg4_EMINFO WORK.MODELTEMP_INFO;
+29275      set EMWS2.Reg4_EMINFO WORK.MODELTEMP_INFO;
 MPRINT(EM_DIAGRAM):   set EMWS2.Reg4_EMINFO WORK.MODELTEMP_INFO;
-82714      run;
+29276      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 3 observations read from the data set EMWS2.REG4_EMINFO.
 NOTE: There were 0 observations read from the data set WORK.MODELTEMP_INFO.
 NOTE: The data set EMWS2.REG4_EMINFO has 3 observations and 3 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.01 seconds
-      cpu time            0.01 seconds
+      real time           0.00 seconds
+      cpu time            0.00 seconds
       
 
-82715      proc sort data = EMWS2.Reg4_EMINFO NOTHREADS;
+29277      proc sort data = EMWS2.Reg4_EMINFO NOTHREADS;
 MPRINT(EM_DIAGRAM):    proc sort data = EMWS2.Reg4_EMINFO NOTHREADS;
-82716      by TARGET KEY;
+29278      by TARGET KEY;
 MPRINT(EM_DIAGRAM):   by TARGET KEY;
-82717      run;
+29279      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 3 observations read from the data set EMWS2.REG4_EMINFO.
@@ -1182,25 +960,25 @@ NOTE: PROCEDURE SORT used (Total process time):
       cpu time            0.01 seconds
       
 
-82718      proc sort data = EMWS2.Ids2_EMINFO OUT=WORK.SORTEDEMINFO NOTHREADS;
+29280      proc sort data = EMWS2.Ids2_EMINFO OUT=WORK.SORTEDEMINFO NOTHREADS;
 MPRINT(EM_DIAGRAM):    proc sort data = EMWS2.Ids2_EMINFO OUT=WORK.SORTEDEMINFO NOTHREADS;
-82719      by TARGET KEY;
+29281      by TARGET KEY;
 MPRINT(EM_DIAGRAM):   by TARGET KEY;
-82720      run;
+29282      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 3 observations read from the data set EMWS2.IDS2_EMINFO.
 NOTE: The data set WORK.SORTEDEMINFO has 3 observations and 3 variables.
 NOTE: PROCEDURE SORT used (Total process time):
       real time           0.00 seconds
-      cpu time            0.00 seconds
+      cpu time            0.01 seconds
       
 
-82721      proc sort data = EMWS2.Reg4_EMINFO OUT=WORK.TEMP_INFO NOTHREADS;
+29283      proc sort data = EMWS2.Reg4_EMINFO OUT=WORK.TEMP_INFO NOTHREADS;
 MPRINT(EM_DIAGRAM):   proc sort data = EMWS2.Reg4_EMINFO OUT=WORK.TEMP_INFO NOTHREADS;
-82722      by TARGET KEY;
+29284      by TARGET KEY;
 MPRINT(EM_DIAGRAM):   by TARGET KEY;
-82723      run;
+29285      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: Input data set is already sorted; it has been copied to the output data set.
@@ -1211,13 +989,13 @@ NOTE: PROCEDURE SORT used (Total process time):
       cpu time            0.00 seconds
       
 
-82724      data EMWS2.Reg4_EMINFO;
+29286      data EMWS2.Reg4_EMINFO;
 MPRINT(EM_DIAGRAM):   data EMWS2.Reg4_EMINFO;
-82725      merge WORK.SORTEDEMINFO WORK.TEMP_INFO;
+29287      merge WORK.SORTEDEMINFO WORK.TEMP_INFO;
 MPRINT(EM_DIAGRAM):   merge WORK.SORTEDEMINFO WORK.TEMP_INFO;
-82726      by TARGET KEY;
+29288      by TARGET KEY;
 MPRINT(EM_DIAGRAM):   by TARGET KEY;
-82727      run;
+29289      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 3 observations read from the data set WORK.SORTEDEMINFO.
@@ -1225,24 +1003,24 @@ NOTE: There were 3 observations read from the data set WORK.TEMP_INFO.
 NOTE: The data set EMWS2.REG4_EMINFO has 4 observations and 3 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.00 seconds
-      cpu time            0.01 seconds
+      cpu time            0.00 seconds
       
 
-82728      proc datasets lib=work nolist;
+29290      proc datasets lib=work nolist;
 MPRINT(EM_DIAGRAM):   proc datasets lib=work nolist;
-82729      delete TEMP_INFO SORTEDEMINFO;
+29291      delete TEMP_INFO SORTEDEMINFO;
 MPRINT(EM_DIAGRAM):   delete TEMP_INFO SORTEDEMINFO;
-82730      run;
+29292      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: Deleting WORK.TEMP_INFO (memtype=DATA).
 NOTE: Deleting WORK.SORTEDEMINFO (memtype=DATA).
-82731      quit;
+29293      quit;
 MPRINT(EM_DIAGRAM):   quit;
 
 NOTE: PROCEDURE DATASETS used (Total process time):
-      real time           0.01 seconds
-      cpu time            0.01 seconds
+      real time           0.00 seconds
+      cpu time            0.00 seconds
       
 
 NOTE: View EMWS2.REG4_TRAIN.VIEW used (Total process time):
@@ -1251,11 +1029,7 @@ NOTE: View EMWS2.REG4_TRAIN.VIEW used (Total process time):
       
 NOTE: View EMWS2.REG4_VALIDATE.VIEW used (Total process time):
       real time           0.03 seconds
-      cpu time            0.01 seconds
-      
-NOTE: View EMWS2.REG4_TEST.VIEW used (Total process time):
-      real time           0.02 seconds
-      cpu time            0.01 seconds
+      cpu time            0.03 seconds
       
 MPRINT(EM_DIAGRAM):    proc printto;
 MPRINT(EM_DIAGRAM):   run;

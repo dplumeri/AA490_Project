@@ -1,37 +1,39 @@
 *------------------------------------------------------------*;
 * Reg2: Create decision matrix;
 *------------------------------------------------------------*;
-data WORK.Cases_in_1000s(label="Cases_in_1000s");
-  length   Cases_in_1000s                       8
+data WORK.LG10_Cases_in_1000s(label="LG10_Cases_in_1000s");
+  length   LG10_Cases_in_1000s                  8
            ;
 
- Cases_in_1000s=0;
+  label    LG10_Cases_in_1000s="Transformed Cases_in_1000s"
+           ;
+ LG10_Cases_in_1000s=0;
 output;
- Cases_in_1000s=801;
+ LG10_Cases_in_1000s=2.62013605497375;
 output;
- Cases_in_1000s=400.5;
+ LG10_Cases_in_1000s=1.17971457004206;
 output;
 ;
 run;
 proc datasets lib=work nolist;
-modify Cases_in_1000s(type=PROFIT label=Cases_in_1000s);
+modify LG10_Cases_in_1000s(type=PROFIT label=LG10_Cases_in_1000s);
 run;
 quit;
 data EM_DMREG / view=EM_DMREG;
 set EMWS2.Trans_TRAIN(keep=
-Age_group Cases_in_1000s Disease Gender OPT_Population_in_thousands);
+Age_group Disease Gender LG10_Cases_in_1000s LG10_Population_in_thousands);
 run;
 *------------------------------------------------------------* ;
 * Reg2: DMDBClass Macro ;
 *------------------------------------------------------------* ;
 %macro DMDBClass;
-    Age_group(ASC) Disease(ASC) Gender(ASC) OPT_Population_in_thousands(ASC)
+    Age_group(ASC) Disease(ASC) Gender(ASC)
 %mend DMDBClass;
 *------------------------------------------------------------* ;
 * Reg2: DMDBVar Macro ;
 *------------------------------------------------------------* ;
 %macro DMDBVar;
-    Cases_in_1000s
+    LG10_Cases_in_1000s LG10_Population_in_thousands
 %mend DMDBVar;
 *------------------------------------------------------------*;
 * Reg2: Create DMDB;
@@ -43,7 +45,7 @@ maxlevel = 513
 class %DMDBClass;
 var %DMDBVar;
 target
-Cases_in_1000s
+LG10_Cases_in_1000s
 ;
 run;
 quit;
@@ -60,22 +62,16 @@ class
 Age_group
 Disease
 Gender
-OPT_Population_in_thousands
 ;
-model Cases_in_1000s =
+model LG10_Cases_in_1000s =
 Age_group
 Disease
 Gender
-OPT_Population_in_thousands
+LG10_Population_in_thousands
 /error=normal
 coding=DEVIATION
 nodesignprint
 ;
-;
-score data=EMWS2.Trans_TEST
-out=_null_
-outfit=EMWS2.Reg2_FITTEST
-role = TEST
 ;
 code file="C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Reg2\EMPUBLISHSCORE.sas"
 group=Reg2

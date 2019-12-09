@@ -7,9 +7,9 @@ data WORK.Cases_in_1000s(label="Cases_in_1000s");
 
  Cases_in_1000s=0;
 output;
- Cases_in_1000s=801;
+ Cases_in_1000s=416;
 output;
- Cases_in_1000s=400.5;
+ Cases_in_1000s=208;
 output;
 ;
 run;
@@ -73,11 +73,6 @@ selection=BACKWARD choose=NONE
 Hierarchy=CLASS
 Rule=NONE
 ;
-;
-score data=EMWS2.Part_TEST
-out=_null_
-outfit=EMWS2.Reg4_FITTEST
-role = TEST
 ;
 code file="C:\Users\student\Desktop\AA 490\Final Project\AA490_Project\Base Model\Workspaces\EMWS2\Reg4\EMPUBLISHSCORE.sas"
 group=Reg4

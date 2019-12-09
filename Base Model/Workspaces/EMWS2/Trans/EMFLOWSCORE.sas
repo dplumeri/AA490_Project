@@ -2,20 +2,22 @@
 * Computed Code;
 *------------------------------------------------------------*;
 *------------------------------------------------------------*;
-* TRANSFORM: Population_in_thousands , Optimal Binning(4);
+* TRANSFORM: Cases_in_1000s , log10(Cases_in_1000s + 1);
 *------------------------------------------------------------*;
-label OPT_Population_in_thousands = 'Transformed Population_in_thousands';
-length OPT_Population_in_thousands $36;
-if (Population_in_thousands eq .) then OPT_Population_in_thousands="04:35431.169-high, MISSING";
-else
-if (Population_in_thousands < 16090.6415) then
-OPT_Population_in_thousands = "01:low-16090.642";
-else
-if (Population_in_thousands >= 16090.6415 and Population_in_thousands < 28948.373) then
-OPT_Population_in_thousands = "02:16090.642-28948.373";
-else
-if (Population_in_thousands >= 28948.373 and Population_in_thousands < 35431.169) then
-OPT_Population_in_thousands = "03:28948.373-35431.169";
-else
-if (Population_in_thousands >= 35431.169) then
-OPT_Population_in_thousands = "04:35431.169-high, MISSING";
+label LG10_Cases_in_1000s = 'Transformed Cases_in_1000s';
+length LG10_Cases_in_1000s 8;
+if Cases_in_1000s eq . then LG10_Cases_in_1000s = .;
+else do;
+if Cases_in_1000s + 1 > 0 then LG10_Cases_in_1000s = log10(Cases_in_1000s + 1);
+else LG10_Cases_in_1000s = .;
+end;
+*------------------------------------------------------------*;
+* TRANSFORM: Population_in_thousands , log10(Population_in_thousands + 1);
+*------------------------------------------------------------*;
+label LG10_Population_in_thousands = 'Transformed Population_in_thousands';
+length LG10_Population_in_thousands 8;
+if Population_in_thousands eq . then LG10_Population_in_thousands = .;
+else do;
+if Population_in_thousands + 1 > 0 then LG10_Population_in_thousands = log10(Population_in_thousands + 1);
+else LG10_Population_in_thousands = .;
+end;
