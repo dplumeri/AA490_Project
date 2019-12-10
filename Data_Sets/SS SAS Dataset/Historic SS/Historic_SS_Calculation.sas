@@ -1,161 +1,56 @@
 options user = SSdata;
 libname SSData "C:\Users\student\Desktop\AA Capstone\Project\GitRepository\aa490_project\Data_Sets\SS SAS Dataset\Historic SS";
-/* Creating an "active_contributors" column (percent employment * segment population) */
-data work.temp1;
+
+data ssdata.his_ss_step_1;
 set ssdata.ss_pay_past;
 active_contributors = (percent_employment * sum_labor_force_pop);
 run;
 
-/* Calculating total_taxable income for the year 2000 */ 
-data work.temp2;
-set work.temp1;
-if year_char = 2000
-	and (annual_mean_wage lt 76201) 
-	then total_taxable_income = (active_contributors * annual_mean_wage);
-if year_char = 2000 
-	and (annual_mean_wage gt 76200)
-	then total_taxable_income = (active_contributors * 76200);
+data ssdata.his_ss_step_2(drop = employee_ss_rate employer_ss_rate);
+set ssdata.his_ss_step_1;;
+if (annual_mean_wage lt ss_wage_limit) then  
+total_taxable_income = (active_contributors * annual_mean_wage);
+else total_taxable_income = (active_contributors * ss_wage_limit);
+new_employee_ss_rate = (employee_ss_rate/100);
+new_employer_ss_rate = (employer_ss_rate/100);
+total_ss_rate = (new_employer_ss_rate + new_employee_ss_rate);
 run;
 
-/* Calculating "total taxable_income" for the year 2001 */
-
-data work.temp3;
-set work.temp2;
-if year_char = 2001
-	and (annual_mean_wage lt 80401) 
-	then total_taxable_income = (active_contributors * annual_mean_wage);
-if year_char = 2001 
-	and (annual_mean_wage gt 80400)
-	then total_taxable_income = (active_contributors * 80400);
+data ssdata.his_ss_step_3;
+set ssdata.his_ss_step_2;
+if (annual_mean_wage lt ss_wage_limit) then
+combined_ss_contribution = (annual_mean_wage * total_ss_rate);
+if (annual_mean_wage gt ss_wage_limit) then 
+combined_ss_contribution = (ss_wage_limit * total_ss_rate);
+total_ss_contribution = (active_contributors * combined_ss_contribution);
+total_ss_contribution_2 = (total_taxable_income * total_ss_rate);
 run;
 
-/* Calculating total taxable income for the year 2002 */
+proc sql;
+create table total_contributions as
+select year_char, sum(total_ss_contribution) as total_ss_contribution
+from ssdata.his_ss_step_3
+group by year_char;
 
-data work.temp4;
-set work.temp3;
-if year_char = 2002
-	and (annual_mean_wage lt 84901) 
-	then total_taxable_income = (active_contributors * annual_mean_wage);
-if year_char = 2002
-	and (annual_mean_wage gt 84900)
-	then total_taxable_income = (active_contributors * 84900);
-run;
+data his_ss_step_4 (drop = year);
+set ssdata.census_population;
+if age_group = "65_years_and_over" and gender = "both sexes" then
+output;
 
-/* Calculating total taxable income for the year 2003-2004 */
+data his_ss_step_5;
+set ssdata.his_ss_step_4;
+if date in ("1990", "1991", "1992", "1993", "1994", "1995", "1996", 
+			"1997", "1998", "1999") then 
+delete;
 
-data work.temp5;
-set work.temp4;
-if year_char = 2003 or year_char = 2004
-	and (annual_mean_wage lt 87901) 
-	then total_taxable_income = (active_contributors * annual_mean_wage);
-if year_char = 2003 or year_char = 2004
-	and (annual_mean_wage gt 87900)
-	then total_taxable_income = (active_contributors * 87900);
-run;
+data ss_payout (drop = gender age_group population_in_thousands population);
+set ssdata.his_ss_step_5;
+Population = (population_in_thousands * 1000);
+ss_payout = (population * 1503 * 12);
 
-/* Calculating total taxable income for the year 2005 */
 
-data work.temp6;
-set work.temp5;
-if year_char = 2005 
-	and (annual_mean_wage lt 90001) 
-	then total_taxable_income = (active_contributors * annual_mean_wage);
-if year_char = 2005
-	and (annual_mean_wage gt 90000)
-	then total_taxable_income = (active_contributors * 90000);
-run;
-
-/* Calculating total taxable income for the year 2006 */
-data work.temp7;
-set work.temp6;
-if year_char = 2006 
-	and (annual_mean_wage lt 94201) 
-	then total_taxable_income = (active_contributors * annual_mean_wage);
-if year_char = 2006
-	and (annual_mean_wage gt 94200)
-	then total_taxable_income = (active_contributors * 94200);
-run;
-
-/* Calculating total taxable income for the year 2007 */
-
-data work.temp8;
-set work.temp7;
-if year_char = 2007 
-	and (annual_mean_wage lt 97501) 
-	then total_taxable_income = (active_contributors * annual_mean_wage);
-if year_char = 2007
-	and (annual_mean_wage gt 97500)
-	then total_taxable_income = (active_contributors * 97500);
-run;
-
-/* Calculating total taxable income for the year 2008 */
-
-data work.temp9;
-set work.temp8;
-if year_char = 2008 
-	and (annual_mean_wage lt 102001) 
-	then total_taxable_income = (active_contributors * annual_mean_wage);
-if year_char = 2008
-	and (annual_mean_wage gt 102000)
-	then total_taxable_income = (active_contributors * 102000);
-run;
-
-/* Calculating total taxable income for the year 2009-2011 */
-
-data work.temp10;
-set work.temp9;
-if year_char = 2009 or year_char = 2010 or year_char = 2011 
-	and (annual_mean_wage lt 106801) 
-	then total_taxable_income = (active_contributors * annual_mean_wage);
-if year_char = 2009 or year_char = 2010 or year_char = 2011
-	and (annual_mean_wage gt 106800)
-	then total_taxable_income = (active_contributors * 106800);
-run;
-
-/* Calculating total taxable income for the year 2012 */
-
-data work.temp11;
-set work.temp10;
-if year_char = 2012
-	and (annual_mean_wage lt 110101) 
-	then total_taxable_income = (active_contributors * annual_mean_wage);
-if year_char = 2012
-and (annual_mean_wage gt 110100)
-	then total_taxable_income = (active_contributors * 110100);
-run;
-
-/* FINALLY calculating total taxable income for the year 2013 */
-
-data work.temp12;
-set work.temp11;
-if year_char = 2013
-	and (annual_mean_wage lt 113701)
-	then total_taxable_income = (active_contributors * annual_mean_wage);
-if year_char = 2013
-and (annual_mean_wage gt 113700)
-	then total_taxable_income = (active_contributors * 113700);
-run;
-
-/* Dividing employee_ss_rate & employer_ss_rate by 100 to get correct percent value */
-
-data work.temp13;
-set work.temp12;
-new_employee_ss_rate = (employee_ss_rate / 100);
-new_employer_ss_rate = (employer_ss_rate / 100);
-run;
-
-/* Computing "Employee_Contribution", "Employeer_Contribution", and "Combined_Contributions" columns */
-
-data SSdata.historic_ss_calculation_final;
-set work.temp13;
-employee_contribution = (total_taxable_income * new_employee_ss_rate);
-employer_contribution = (total_taxable_income * new_employer_ss_rate);
-combined_contribution = (employer_contribution + employer_contribution);
-run;
-
-libname labor "C:\Users\student\Desktop\AA Capstone\Project\GitRepository\aa490_project\Data_Sets\labor_force_pop";
-
-data labor.cross_join_labor_2;
-set labor.cross_join_labor;
-rename population_in_thousands=Population;
-run;
+proc sql;
+create table historic_ss_final as
+select a.date, b.total_ss_contribution, a.ss_payout
+from ss_payout a join total_contributions b on a.date = b.year_char;
+quit;
