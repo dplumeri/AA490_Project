@@ -7,6 +7,7 @@ data work.temp1;
 set proj_disease_final;
 
 if gender = "All" then delete;
+if gender = "both sexes" then delete;
 run;
 proc sql;
 create table Disease_Future_Join_1 as
