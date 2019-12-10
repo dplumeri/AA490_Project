@@ -9,7 +9,10 @@ data PopRecodeFINAL;
 
 	if age_group = "18_to_24_years" then age_group = "18-24";
 
-	if age_group = "25_to_44_years" then age_group = "25-44";
+	if age_group = "25_to_29_years" then age_group = "25-44";
+	if age_group = "30_to_34_years" then age_group = "25-44";
+	if age_group = "35_to_39_years" then age_group = "25-44";
+	if age_group = "40_to_44_years" then age_group = "25-44";
 
 	if age_group = "45_to_49_years" then age_group = "45-64";
 	if age_group = "50_to_54_years" then age_group = "45-64";
@@ -20,11 +23,11 @@ data PopRecodeFINAL;
 	if age_group = "55_to_59_years" then age_group = "45-64";
 	if age_group = "60_to_64_years" then age_group = "45-64";
 
-	if age_group = "65_to_69_years" then age_group = "65-74";
-	if age_group = "70_to_74_years" then age_group = "65-74";
+	if age_group = "65_to_69_years" then age_group = "65-84";
+	if age_group = "70_to_74_years" then age_group = "65-84";
 
-	if age_group = "75_to_79_years" then age_group = "75-84";
-	if age_group = "80_to_84_years" then age_group = "75-84";
+	if age_group = "75_to_79_years" then age_group = "65-84";
+	if age_group = "80_to_84_years" then age_group = "65-84";
 
 	if age_group = "85_to_89_years" then age_group = "85+";
 	if age_group = "90_to_94_years" then age_group = "85+";

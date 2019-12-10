@@ -5,8 +5,8 @@ create table Disease_List as
 quit;
 data work.temp1;
 set proj_disease_final;
-/*if gender = "male" then delete;
-if gender = "female" then delete;*/
+
+if gender = "All" then delete;
 run;
 proc sql;
 create table Disease_Future_Join_1 as

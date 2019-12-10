@@ -1,10 +1,10 @@
 Libname Step_1 "C:\Users\student\OneDrive - Bryant University\College\Senior\Semester I\AA490\Final Project\Git_Repository\AA490_Project\Data_Sets\_Final_Data_Package";
-options user = Step_1;
+options user = Work;
 
 /* Historic recode step 1*/
 /*Recoding Historical Data to Fit Buckets*/
 data PopRecode;
-set census_population;
+set Step_1.census_population;
 
 	if age_group = "18_to_24_years" then 
 	age_group = "16 to 24";
@@ -53,7 +53,7 @@ run;
 
 /*Recoding future data to fit buckets*/
 data LaborForceProjectedRecode;
-set Projected_Population;
+set Step_1.Projected_Population;
 	if age_group = "18 to 24 years" then
 	age_group = "16 to 24";
 	if age_group = "65 years and over" then
@@ -66,7 +66,7 @@ set Projected_Population;
 /* Creating table with age_group (16-17 records) for Historic Labor Force Population */ 
 
 data His_16_to_17_Step_one;
-set census_population;
+set Step_1.census_population;
 if Age_group not in("16_years_and_over","18_years_and_over") then 
 delete;
 run;
@@ -94,7 +94,7 @@ run;
 /* Now doing the same for projected labor force popuation */
 
 data Proj_16_to_17_Step_one;
-set projected_population;
+set Step_1.projected_population;
 if Age_group not in("16 years and over","18 years and over") then 
 delete;
 run;
@@ -165,7 +165,7 @@ order by Date, Age_Group, Gender;
 /* Recoding Labor_Force_Population age buckets to match his/proj population */
 	
 data labor_force_population_recode_1;
-set labor_force_population;
+set Step_1.labor_force_population;
 	if age_group in ("16-19years", "20-24years") then
 	age_group = "16 to 24";
 	if age_group in ("25-34years", "35-44years") then
@@ -187,7 +187,7 @@ order by Industry, Year, Age_Group;
 
 /* Joining labor_historic_final to labor_force_population_final to create final table for modeling future laborforce */
 data labor_force_population_formated;
-	set labor_force_population;
+	set Step_1.labor_force_population;
 	if Age_Group = "16-19years" then Age_Group = "16 to 24";
 	if Age_Group = "20-24years" then Age_Group = "16 to 24";
 	if Age_Group = "25-34years" then Age_Group = "25 to 44";
@@ -217,3 +217,50 @@ PROC SQL;
            RIGHT JOIN labor_projected_final t1 ON (t2.Age_Group = t1.Age_group) AND (t1.Date = t2.Year_char);
 QUIT;
 	
+PROC SQL;
+   CREATE TABLE OG_Labor_Join AS 
+   SELECT t1.Date, 
+          t1.Gender, 
+          t1.Age_group, 
+          t1.Population_in_thousands, 
+          t2.Industry, 
+          t2.Sum_Labor_Force_Pop
+      FROM labor_historic_final t1, labor_force_final t2
+      WHERE (t1.Age_group = t2.Age_Group AND t1.Date = t2.Year_char);
+QUIT;
+proc sql;
+create table OG_Labor_Join_1 as
+select *, population_in_thousands * 1000 as Population from OG_Labor_Join;
+data OG_Labor_Join;
+set OG_Labor_Join_1;
+drop Population_in_thousands;
+run;
+data OG_labor_Join_2;
+set OG_labor_join;
+if gender = "male" then delete;
+if gender = "female" then delete;
+run;
+data Step_1.og_labor_join (drop = Gender);
+set og_labor_join_2;
+label 	Population = "Overal_Population"
+		Sum_Labor_Force_Pop = "Industry_Population";
+run;
+
+proc sql;
+create table Industry_List as 
+	select distinct Industry from Labor_force_final;
+quit;
+data temp1;
+set Labor_projected_final;
+
+if gender = "female" then delete;
+if gender = "male" then delete;
+run;
+proc sql;
+create table Step_1.cross_join_labor_2 as
+	select a.*, b.* from Industry_list a cross join temp1 b;
+quit; 
+Proc sql;
+create table Step_1.cross_join_labor_2 as 
+select Industry, Date, Age_Group, Population_in_thousands * 1000 as Population from Step_1.cross_join_labor_2;
+quit;
