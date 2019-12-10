@@ -1,4 +1,4 @@
-Libname Step_1 "C:\Users\student\OneDrive - Bryant University\College\Senior\Semester I\AA490\Final Project\Git_Repository\AA490_Project\Data_Sets\_Final_Data_Package\Labor";
+Libname Step_1 "C:\Users\student\OneDrive - Bryant University\College\Senior\Semester I\AA490\Final Project\Git_Repository\AA490_Project\Data_Sets\_Final_Data_Package";
 options user = Work;
 
 /* Historic recode step 1*/
@@ -216,7 +216,7 @@ PROC SQL;
       FROM labor_force_final t2
            RIGHT JOIN labor_projected_final t1 ON (t2.Age_Group = t1.Age_group) AND (t1.Date = t2.Year_char);
 QUIT;
-/* Joining Census Date and Labor Data */
+	
 PROC SQL;
    CREATE TABLE OG_Labor_Join AS 
    SELECT t1.Date, 
@@ -245,7 +245,7 @@ set og_labor_join_2;
 label 	Population = "Overal_Population"
 		Sum_Labor_Force_Pop = "Industry_Population";
 run;
-/* Creating the Scoring File */
+
 proc sql;
 create table Industry_List as 
 	select distinct Industry from Labor_force_final;
