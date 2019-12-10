@@ -5,6 +5,8 @@ data WORK.Sum_Labor_Force_Pop(label="Sum_Labor_Force_Pop");
   length   Sum_Labor_Force_Pop                  8
            ;
 
+  label    Sum_Labor_Force_Pop="Industry_Population"
+           ;
  Sum_Labor_Force_Pop=225000;
 output;
  Sum_Labor_Force_Pop=25077000;
@@ -19,19 +21,19 @@ run;
 quit;
 data EM_Neural;
 set EMWS1.Varsel_TRAIN(keep=
-Age_group G_Date OPT_Population_in_thousands Sum_Labor_Force_Pop);
+Age_group Industry Population Sum_Labor_Force_Pop);
 run;
 *------------------------------------------------------------* ;
 * Neural: DMDBClass Macro ;
 *------------------------------------------------------------* ;
 %macro DMDBClass;
-    Age_group(ASC) G_Date(ASC) OPT_Population_in_thousands(ASC)
+    Age_group(ASC) Industry(ASC)
 %mend DMDBClass;
 *------------------------------------------------------------* ;
 * Neural: DMDBVar Macro ;
 *------------------------------------------------------------* ;
 %macro DMDBVar;
-    Sum_Labor_Force_Pop
+    Population Sum_Labor_Force_Pop
 %mend DMDBVar;
 *------------------------------------------------------------*;
 * Neural: Create DMDB;
@@ -51,7 +53,7 @@ quit;
 * Neural: Interval Input Variables Macro ;
 *------------------------------------------------------------* ;
 %macro INTINPUTS;
-
+    Population
 %mend INTINPUTS;
 *------------------------------------------------------------* ;
 * Neural: Binary Inputs Macro ;
@@ -63,7 +65,7 @@ quit;
 * Neural: Nominal Inputs Macro ;
 *------------------------------------------------------------* ;
 %macro NOMINPUTS;
-    Age_group G_Date OPT_Population_in_thousands
+    Age_group Industry
 %mend NOMINPUTS;
 *------------------------------------------------------------* ;
 * Neural: Ordinal Inputs Macro ;
@@ -84,6 +86,8 @@ nloptions
 performance alldetails noutilfile;
 netopts
 decay=0;
+input %INTINPUTS / level=interval id=intvl
+;
 input %NOMINPUTS / level=nominal id=nom
 ;
 target
@@ -147,10 +151,14 @@ score data=EMWS1.Varsel_VALIDATE out=_NULL_
 outfit=WORK.FIT2
 role=VALID
 outkey=EMWS1.Neural_OUTKEY;
+score data=EMWS1.Varsel_TEST out=_NULL_
+outfit=WORK.FIT3
+role=TEST
+outkey=EMWS1.Neural_OUTKEY;
 run;
 quit;
 data EMWS1.Neural_OUTFIT;
-merge WORK.FIT1 WORK.FIT2;
+merge WORK.FIT1 WORK.FIT2 WORK.FIT3;
 run;
 data EMWS1.Neural_EMESTIMATE;
 set EMWS1.Neural_outest;

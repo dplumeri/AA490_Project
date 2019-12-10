@@ -1,0 +1,3625 @@
+*------------------------------------------------------------*
+User:                student
+Date:                December 10, 2019
+Time:                15:48:40
+Site:                70082322
+Platform:            X64_10PRO
+Maintenance Release: 9.04.01M4P110916
+EM Version:          14.2
+* 
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "December 10, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:48:34" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Training Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Training Log
+Date:                December 10, 2019
+Time:                15:48:34
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O3GPUYH8 "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMTRAIN.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O3GPUYH8 new;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOG "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMLOG.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "December 10, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:48:35" );
+MPRINT(EM_DIAGRAM):   file _LOG;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "User:                student";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "Site:                70082322";
+MPRINT(EM_DIAGRAM):   put "Platform:            X64_10PRO";
+MPRINT(EM_DIAGRAM):   put "Maintenance Release: 9.04.01M4P110916";
+MPRINT(EM_DIAGRAM):   put "EM Version:          14.2";
+MPRINT(EM_DIAGRAM):   put "* ";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMTRAIN.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _LOG MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_LOGIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename _LOGIN "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMSCORE.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMREPORT.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    filename _LOG;
+MPRINT(EM_DIAGRAM):    filename _OUT "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMOUTPUT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "December 10, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:48:35" );
+MPRINT(EM_DIAGRAM):   file _OUT;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "User:                student";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Training Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMTRAIN.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   ;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _OUT MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_OUTIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Report Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMREPORT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    filename _OUT;
+MPRINT(EM_DIAGRAM):    filename _emtool_ 'C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMRUNSTATUS.xml' encoding="UTF-8" NOBOM;
+22706      proc freq data=EMWS1.Reg2_VariableSet noprint;
+MPRINT(EM_DIAGRAM):    proc freq data=EMWS1.Reg2_VariableSet noprint;
+22707      table ROLE*LEVEL/out=WORK.Reg2META;
+MPRINT(EM_DIAGRAM):   table ROLE*LEVEL/out=WORK.Reg2META;
+22708      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 4 observations read from the data set EMWS1.REG2_VARIABLESET.
+NOTE: The data set WORK.REG2META has 3 observations and 4 variables.
+NOTE: PROCEDURE FREQ used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.04 seconds
+ 
+ 
+22709      proc print data=WORK.Reg2META label noobs;
+MPRINT(EM_DIAGRAM):   proc print data=WORK.Reg2META label noobs;
+22710      var ROLE LEVEL COUNT;
+MPRINT(EM_DIAGRAM):   var ROLE LEVEL COUNT;
+22711      label ROLE = "%sysfunc(sasmsg(sashelp.dmine, meta_role_vlabel, NOQUOTE))" LEVEL = "%sysfunc(sasmsg(sashelp.dmine, meta_level_vlabel, NOQUOTE))" COUNT = "%sysfunc(sasmsg(sashelp.dmine, rpt_count_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label ROLE = "Role" LEVEL = "Measurement Level" COUNT = "Frequency Count";
+22712      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+22713      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_varSummary_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Variable Summary";
+MPRINT(EM_DIAGRAM):   run;
+22714      run;
+ 
+NOTE: There were 3 observations read from the data set WORK.REG2META.
+NOTE: The PROCEDURE PRINT printed page 1.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.03 seconds
+ 
+ 
+22715      title10;
+MPRINT(EM_DIAGRAM):   title10;
+22716      %let EMNORLEN = %DMNORLEN;
+MPRINT(EM_DIAGRAM):
+EMWS1.Trans_TRAIN EMWS1.Trans_TRAIN
+EMWS1.Trans_TRAIN EMWS1.Trans_TRAIN EMWS1 Trans_TRAIN
+EMWS1.Trans_TRAIN EMWS1.Trans_TRAIN
+EMWS1.Trans_TRAIN EMWS1.Trans_TRAIN EMWS1 Trans_TRAIN
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _INIT >>
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL setMetaData >>
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >>
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >>
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL setMetaData >>
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >>
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL next >>
+Executing  SASHELP.EMCORE.EMINFOITERATOR.SCL _term >>
+"No decisions defined for target "Sum_Labor_Force_Pop"."
+22717      proc print data = EMWS1.Ids_Sum_Labor_Force__DM noobs label;
+MPRINT(EM_DIAGRAM):    proc print data = EMWS1.Ids_Sum_Labor_Force__DM noobs label;
+22718      var _type_ variable label;
+MPRINT(EM_DIAGRAM):   var _type_ variable label;
+22719      where _type_ ^in('MATRIX', 'DECISION', 'TRAINPRIOR', 'DATAPRIOR', 'DECPRIOR');
+MPRINT(EM_DIAGRAM):   where _type_ ^in('MATRIX', 'DECISION', 'TRAINPRIOR', 'DATAPRIOR', 'DECPRIOR');
+22720      label _TYPE_ = "%sysfunc(sasmsg(sashelp.dmine, rpt_type_vlabel,     NOQUOTE))" VARIABLE = "%sysfunc(sasmsg(sashelp.dmine, rpt_variable_vlabel, NOQUOTE))" LABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_label_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label _TYPE_ = "Type" VARIABLE = "Variable" LABEL = "Label";
+22721      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+22722      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_predDecVars_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Predicted and decision variables";
+MPRINT(EM_DIAGRAM):   run;
+22723      run;
+ 
+NOTE: There were 3 observations read from the data set EMWS1.IDS_SUM_LABOR_FORCE__DM.
+      WHERE _type_ not in ('DATAPRIOR', 'DECISION', 'DECPRIOR', 'MATRIX', 'TRAINPRIOR');
+NOTE: The PROCEDURE PRINT printed page 2.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.03 seconds
+ 
+ 
+22724      title10;
+MPRINT(EM_DIAGRAM):   title10;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Reg2: Update the Interaction data set;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.M33S4KAN out=WORK.Reg2_TEMP(keep=NAME);
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   where ROLE in("INPUT", "REJECTED");
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Reg2_Sum_Labor_FoINTERAC out=WORK.Reg2_TEMP2(rename=(VARIABLE=NAME));
+MPRINT(EM_DIAGRAM):   by VARIABLE;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data WORK.Reg2_DELETED;
+MPRINT(EM_DIAGRAM):   merge WORK.Reg2_TEMP(in=_a)WORK.Reg2_TEMP2(in=_b);
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   if _b and ^_a then output;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Reg2: Preparing metadata for Training *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   data WORK.M0BQGJVA;
+MPRINT(EM_DIAGRAM):   set WORK.M0BQGJVA;
+MPRINT(EM_DIAGRAM):   where use = 'Y' or (role = 'INPUT' and use = 'D') or NAME in( "Age_group" "Industry" "Population" ) ;
+MPRINT(EM_DIAGRAM):   if (role = 'REJECTED') then role = 'INPUT';
+MPRINT(EM_DIAGRAM):   if use = 'D' then use = 'Y';
+MPRINT(EM_DIAGRAM):   run;
+22754      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+22755      * Reg2: Prepare term data set;
+MPRINT(EM_DIAGRAM):   * Reg2: Prepare term data set;
+22756      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+22757      data WORK.Reg2_TERM;
+MPRINT(EM_DIAGRAM):   data WORK.Reg2_TERM;
+22758      retain order 1;
+MPRINT(EM_DIAGRAM):   retain order 1;
+22759      retain prevkey .;
+MPRINT(EM_DIAGRAM):   retain prevkey .;
+22760      set EMWS1.Reg2_Sum_Labor_FoINTERAC end=eof;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_Sum_Labor_FoINTERAC end=eof;
+22761      if ^(key eq prevkey or prevkey = .) then order + 1;
+MPRINT(EM_DIAGRAM):   if ^(key eq prevkey or prevkey = .) then order + 1;
+22762      prevkey = key;
+MPRINT(EM_DIAGRAM):   prevkey = key;
+22763      if eof then call symput('REG_ORDER',strip(put(order,BEST.)));
+MPRINT(EM_DIAGRAM):   if eof then call symput('REG_ORDER',strip(put(order,BEST.)));
+22764      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 3 observations read from the data set EMWS1.REG2_SUM_LABOR_FOINTERAC.
+NOTE: The data set WORK.REG2_TERM has 3 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+22765      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+22766      * Reg2: Create effect data set;
+MPRINT(EM_DIAGRAM):   * Reg2: Create effect data set;
+22767      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+22768      data WORK.Reg2_EFFECT;
+MPRINT(EM_DIAGRAM):   data WORK.Reg2_EFFECT;
+22769      length ORDER 8 variable $32;
+MPRINT(EM_DIAGRAM):   length ORDER 8 variable $32;
+22770      ORDER=2;
+MPRINT(EM_DIAGRAM):   ORDER=2;
+22771      VARIABLE="Age_group";
+MPRINT(EM_DIAGRAM):   VARIABLE="Age_group";
+22772      output;
+MPRINT(EM_DIAGRAM):   output;
+22773      ORDER=3;
+MPRINT(EM_DIAGRAM):   ORDER=3;
+22774      VARIABLE="Industry";
+MPRINT(EM_DIAGRAM):   VARIABLE="Industry";
+22775      output;
+MPRINT(EM_DIAGRAM):   output;
+22776      ORDER=4;
+MPRINT(EM_DIAGRAM):   ORDER=4;
+22777      VARIABLE="Population";
+MPRINT(EM_DIAGRAM):   VARIABLE="Population";
+22778      output;
+MPRINT(EM_DIAGRAM):   output;
+22779      ;
+MPRINT(EM_DIAGRAM):   ;
+22780      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: The data set WORK.REG2_EFFECT has 3 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+ 
+ 
+22781      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+22782      * Reg2: Prepare equation data set;
+MPRINT(EM_DIAGRAM):   * Reg2: Prepare equation data set;
+22783      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+22784      data WORK.Reg2_EQUATION;
+MPRINT(EM_DIAGRAM):   data WORK.Reg2_EQUATION;
+22785      set
+22786      WORK.Reg2_EFFECT
+22787      WORK.Reg2_TERM(keep=order variable)
+22788      ;
+MPRINT(EM_DIAGRAM):   set WORK.Reg2_EFFECT WORK.Reg2_TERM(keep=order variable) ;
+22789      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 3 observations read from the data set WORK.REG2_EFFECT.
+NOTE: There were 3 observations read from the data set WORK.REG2_TERM.
+NOTE: The data set WORK.REG2_EQUATION has 6 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+22790      proc sort data=WORK.Reg2_EQUATION out=WORK.Reg2_CLASS(rename=(VARIABLE=NAME)) nodupkey;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.Reg2_EQUATION out=WORK.Reg2_CLASS(rename=(VARIABLE=NAME)) nodupkey;
+22791      by VARIABLE;
+MPRINT(EM_DIAGRAM):   by VARIABLE;
+22792      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 6 observations read from the data set WORK.REG2_EQUATION.
+NOTE: 3 observations with duplicate key values were deleted.
+NOTE: The data set WORK.REG2_CLASS has 3 observations and 2 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+ 
+ 
+22793      proc sort data=WORK.Reg2_EQUATION;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.Reg2_EQUATION;
+22794      by ORDER VARIABLE;
+MPRINT(EM_DIAGRAM):   by ORDER VARIABLE;
+22795      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 6 observations read from the data set WORK.REG2_EQUATION.
+NOTE: The data set WORK.REG2_EQUATION has 6 observations and 2 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+22796      data WORK.Reg2_EQUATION(keep=order term);
+MPRINT(EM_DIAGRAM):   data WORK.Reg2_EQUATION(keep=order term);
+22797      length term $350;
+MPRINT(EM_DIAGRAM):   length term $350;
+22798      retain term '';
+MPRINT(EM_DIAGRAM):   retain term '';
+22799      set WORK.Reg2_EQUATION end=eof;
+MPRINT(EM_DIAGRAM):   set WORK.Reg2_EQUATION end=eof;
+22800      by order;
+MPRINT(EM_DIAGRAM):   by order;
+22801      if first.order then do;
+MPRINT(EM_DIAGRAM):   if first.order then do;
+22802      term = variable;
+MPRINT(EM_DIAGRAM):   term = variable;
+22803      end;
+MPRINT(EM_DIAGRAM):   end;
+22804      else do;
+MPRINT(EM_DIAGRAM):   else do;
+22805      if variable ne '' then do;
+MPRINT(EM_DIAGRAM):   if variable ne '' then do;
+22806      if term ne '' then term = trim(term)!!'*'!!variable;
+MPRINT(EM_DIAGRAM):   if term ne '' then term = trim(term)!!'*'!!variable;
+22807      else term = variable;
+MPRINT(EM_DIAGRAM):   else term = variable;
+22808      end;
+MPRINT(EM_DIAGRAM):   end;
+22809      end;
+MPRINT(EM_DIAGRAM):   end;
+22810      if last.order then output;
+MPRINT(EM_DIAGRAM):   if last.order then output;
+22811      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 6 observations read from the data set WORK.REG2_EQUATION.
+NOTE: The data set WORK.REG2_EQUATION has 4 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+ 
+ 
+22812      proc sort data=WORK.Reg2_EQUATION nodupkey;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.Reg2_EQUATION nodupkey;
+22813      by term;
+MPRINT(EM_DIAGRAM):   by term;
+22814      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 4 observations read from the data set WORK.REG2_EQUATION.
+NOTE: 0 observations with duplicate key values were deleted.
+NOTE: The data set WORK.REG2_EQUATION has 4 observations and 2 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+22815      proc sort data=WORK.Reg2_EQUATION;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.Reg2_EQUATION;
+22816      by order;
+MPRINT(EM_DIAGRAM):   by order;
+22817      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 4 observations read from the data set WORK.REG2_EQUATION.
+NOTE: The data set WORK.REG2_EQUATION has 4 observations and 2 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+ 
+ 
+22818      data WORK.Reg2_CLASS;
+MPRINT(EM_DIAGRAM):    data WORK.Reg2_CLASS;
+22819      merge WORK.Reg2_CLASS(in=_a) WORK.METASET1U5ECW0(in=_b KEEP=NAME);
+MPRINT(EM_DIAGRAM):   merge WORK.Reg2_CLASS(in=_a) WORK.METASET1U5ECW0(in=_b KEEP=NAME);
+22820      if _a and _b then output;
+MPRINT(EM_DIAGRAM):   if _a and _b then output;
+22821      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 3 observations read from the data set WORK.REG2_CLASS.
+NOTE: There were 2 observations read from the data set WORK.METASET1U5ECW0.
+NOTE: The data set WORK.REG2_CLASS has 2 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+NOTE: There were 3 observations read from the data set EMWS1.IDS_SUM_LABOR_FORCE__DD.
+NOTE: The data set WORK.SUM_LABOR_FORCE_POP has 3 observations and 1 variables.
+NOTE: There were 3 observations read from the data set EMWS1.IDS_SUM_LABOR_FORCE__DD.
+NOTE: The data set WORK.SUM_LABOR_FORCE_POP has 3 observations and 1 variables.
+22822      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+22823      * Reg2: Create decision matrix;
+MPRINT(EM_DIAGRAM):   * Reg2: Create decision matrix;
+22824      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+22825      data WORK.Sum_Labor_Force_Pop(label="Sum_Labor_Force_Pop");
+MPRINT(EM_DIAGRAM):   data WORK.Sum_Labor_Force_Pop(label="Sum_Labor_Force_Pop");
+22826        length   Sum_Labor_Force_Pop                  8
+22827                 ;
+MPRINT(EM_DIAGRAM):   length Sum_Labor_Force_Pop 8 ;
+22828
+22829        label    Sum_Labor_Force_Pop="Industry_Population"
+22830                 ;
+MPRINT(EM_DIAGRAM):   label Sum_Labor_Force_Pop= "Industry_Population" ;
+22831       Sum_Labor_Force_Pop=225000;
+MPRINT(EM_DIAGRAM):   Sum_Labor_Force_Pop=225000;
+22832      output;
+MPRINT(EM_DIAGRAM):   output;
+22833       Sum_Labor_Force_Pop=25077000;
+MPRINT(EM_DIAGRAM):   Sum_Labor_Force_Pop=25077000;
+22834      output;
+MPRINT(EM_DIAGRAM):   output;
+22835       Sum_Labor_Force_Pop=12651000;
+MPRINT(EM_DIAGRAM):   Sum_Labor_Force_Pop=12651000;
+22836      output;
+MPRINT(EM_DIAGRAM):   output;
+22837      ;
+MPRINT(EM_DIAGRAM):   ;
+22838      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: The data set WORK.SUM_LABOR_FORCE_POP has 3 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+22839      proc datasets lib=work nolist;
+MPRINT(EM_DIAGRAM):   proc datasets lib=work nolist;
+22840      modify Sum_Labor_Force_Pop(type=PROFIT label=Sum_Labor_Force_Pop);
+MPRINT(EM_DIAGRAM):   modify Sum_Labor_Force_Pop(type=PROFIT label= Sum_Labor_Force_Pop);
+MPRINT(EM_DIAGRAM):   run;
+22841      run;
+ 
+NOTE: MODIFY was successful for WORK.SUM_LABOR_FORCE_POP.DATA.
+22842      quit;
+MPRINT(EM_DIAGRAM):   quit;
+ 
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+22843      data EM_DMREG / view=EM_DMREG;
+MPRINT(EM_DIAGRAM):   data EM_DMREG / view=EM_DMREG;
+22844      set EMWS1.Trans_TRAIN(keep=
+22845      Age_group Industry Population Sum_Labor_Force_Pop);
+MPRINT(EM_DIAGRAM):   set EMWS1.Trans_TRAIN(keep= Age_group Industry Population Sum_Labor_Force_Pop);
+22846      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: DATA STEP view saved on file WORK.EM_DMREG.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.TRANS_TRAIN.VIEW used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+ 
+NOTE: DATA statement used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.06 seconds
+ 
+ 
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   * Reg2: DMDBClass Macro ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+22847      *------------------------------------------------------------* ;
+22848      * Reg2: DMDBClass Macro ;
+22849      *------------------------------------------------------------* ;
+22850      %macro DMDBClass;
+22851          Age_group(ASC) Industry(ASC)
+22852      %mend DMDBClass;
+22853      *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+22854      * Reg2: DMDBVar Macro ;
+MPRINT(EM_DIAGRAM):   * Reg2: DMDBVar Macro ;
+22855      *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+22856      %macro DMDBVar;
+22857          Population Sum_Labor_Force_Pop
+22858      %mend DMDBVar;
+22859      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+22860      * Reg2: Create DMDB;
+MPRINT(EM_DIAGRAM):   * Reg2: Create DMDB;
+22861      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+22862      proc dmdb batch data=WORK.EM_DMREG
+22863      dmdbcat=WORK.Reg2_DMDB
+22864      maxlevel = 513
+22865      ;
+MPRINT(EM_DIAGRAM):   proc dmdb batch data=WORK.EM_DMREG dmdbcat=WORK.Reg2_DMDB maxlevel = 513 ;
+MPRINT(EM_DIAGRAM):   class
+22866      class %DMDBClass;
+MPRINT(DMDBCLASS):   Age_group(ASC) Industry(ASC)
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   var
+22867      var %DMDBVar;
+MPRINT(DMDBVAR):   Population Sum_Labor_Force_Pop
+MPRINT(EM_DIAGRAM):  ;
+22868      target
+22869      Sum_Labor_Force_Pop
+22870      ;
+MPRINT(EM_DIAGRAM):   target Sum_Labor_Force_Pop ;
+22871      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: Records processed = 112   Memory used = 511K.
+NOTE: There were 112 observations read from the data set EMWS1.PART_TRAIN.
+NOTE: View WORK.EM_DMREG.VIEW used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.06 seconds
+ 
+NOTE: There were 112 observations read from the data set EMWS1.TRANS_TRAIN.
+NOTE: There were 112 observations read from the data set WORK.EM_DMREG.
+NOTE: PROCEDURE DMDB used (Total process time):
+      real time           0.09 seconds
+      cpu time            0.07 seconds
+ 
+ 
+MPRINT(EM_DIAGRAM):   quit;
+MPRINT(EM_DIAGRAM):   *--- end code ---*;
+22872      quit;
+22873      *--- end code ---*;
+ 
+22874      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+22875      * Reg2: Run DMREG procedure;
+MPRINT(EM_DIAGRAM):   * Reg2: Run DMREG procedure;
+22876      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+22877      proc dmreg data=EM_DMREG dmdbcat=WORK.Reg2_DMDB
+22878      validata = EMWS1.Trans_VALIDATE
+22879      outest = EMWS1.Reg2_EMESTIMATE
+22880      outterms = EMWS1.Reg2_OUTTERMS
+22881      outmap= EMWS1.Reg2_MAPDS namelen=200
+22882      ;
+MPRINT(EM_DIAGRAM):   proc dmreg data=EM_DMREG dmdbcat=WORK.Reg2_DMDB validata = EMWS1.Trans_VALIDATE outest = EMWS1.Reg2_EMESTIMATE outterms = EMWS1.Reg2_OUTTERMS outmap= EMWS1.Reg2_MAPDS namelen=200 ;
+22883      class
+22884      Age_group
+22885      Industry
+22886      ;
+MPRINT(EM_DIAGRAM):   class Age_group Industry ;
+22887      model Sum_Labor_Force_Pop =
+22888      Age_group*Industry*Population
+22889      Age_group
+22890      Industry
+22891      Population
+22892      /error=normal
+22893      coding=DEVIATION
+22894      nodesignprint
+22895      ;
+MPRINT(EM_DIAGRAM):   model Sum_Labor_Force_Pop = Age_group*Industry*Population Age_group Industry Population /error=normal coding=DEVIATION nodesignprint ;
+22896      ;
+MPRINT(EM_DIAGRAM):   ;
+22897      score data=EMWS1.Trans_TEST
+22898      out=_null_
+22899      outfit=EMWS1.Reg2_FITTEST
+22900      role = TEST
+22901      ;
+MPRINT(EM_DIAGRAM):   score data=EMWS1.Trans_TEST out=_null_ outfit=EMWS1.Reg2_FITTEST role = TEST ;
+22902      code file="C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMPUBLISHSCORE.sas"
+22903      group=Reg2
+22904      ;
+MPRINT(EM_DIAGRAM):   code file="C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMPUBLISHSCORE.sas" group=Reg2 ;
+22905      code file="C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMFLOWSCORE.sas"
+22906      group=Reg2
+22907      residual
+22908      ;
+MPRINT(EM_DIAGRAM):   code file="C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMFLOWSCORE.sas" group=Reg2 residual ;
+22909      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: External file C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMPUBLISHSCORE.sas opened.
+NOTE: External file C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMFLOWSCORE.sas opened.
+NOTE: View EMWS1.TRANS_TEST.VIEW used (Total process time):
+      real time           0.12 seconds
+      cpu time            0.12 seconds
+ 
+NOTE: There were 84 observations read from the data set EMWS1.PART_TEST.
+NOTE: View EMWS1.TRANS_VALIDATE.VIEW used (Total process time):
+      real time           0.15 seconds
+      cpu time            0.15 seconds
+ 
+NOTE: There were 84 observations read from the data set EMWS1.PART_VALIDATE.
+NOTE: There were 112 observations read from the data set EMWS1.PART_TRAIN.
+NOTE: View WORK.EM_DMREG.VIEW used (Total process time):
+      real time           0.24 seconds
+      cpu time            0.24 seconds
+ 
+NOTE: There were 112 observations read from the data set EMWS1.TRANS_TRAIN.
+NOTE: There were 112 observations read from the data set WORK.EM_DMREG.
+NOTE: There were 84 observations read from the data set EMWS1.TRANS_VALIDATE.
+NOTE: There were 84 observations read from the data set EMWS1.TRANS_TEST.
+NOTE: The data set EMWS1.REG2_EMESTIMATE has 3 observations and 53 variables.
+NOTE: The data set EMWS1.REG2_OUTTERMS has 45 observations and 6 variables.
+NOTE: The data set EMWS1.REG2_MAPDS has 2 observations and 22 variables.
+NOTE: The data set EMWS1.REG2_FITTEST has 1 observations and 13 variables.
+NOTE: The PROCEDURE DMREG printed page 3.
+NOTE: PROCEDURE DMREG used (Total process time):
+      real time           0.32 seconds
+      cpu time            0.29 seconds
+ 
+ 
+MPRINT(EM_DIAGRAM):   quit;
+22910      quit;
+ 
+22911      proc datasets lib=WORK nolist;
+MPRINT(EM_DIAGRAM):    proc datasets lib=WORK nolist;
+22912      delete Reg2_DMDB;
+MPRINT(EM_DIAGRAM):   delete Reg2_DMDB;
+22913      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: The file WORK.REG2_DMDB (memtype=DATA) was not found, but appears on a DELETE statement.
+22914      quit;
+MPRINT(EM_DIAGRAM):   quit;
+ 
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+22915      proc datasets lib=WORK nolist;
+MPRINT(EM_DIAGRAM):    proc datasets lib=WORK nolist;
+22916      delete Reg2_DMDB / memtype=catalog;
+MPRINT(EM_DIAGRAM):   delete Reg2_DMDB / memtype=catalog;
+22917      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: Deleting WORK.REG2_DMDB (memtype=CATALOG).
+22918      quit;
+MPRINT(EM_DIAGRAM):   quit;
+ 
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+22919      data WORK.ESTIMATE;
+MPRINT(EM_DIAGRAM):    data WORK.ESTIMATE;
+22920      length _NAME_ $32;
+MPRINT(EM_DIAGRAM):   length _NAME_ $32;
+22921      set EMWS1.Reg2_EMESTIMATE;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_EMESTIMATE;
+22922      drop _AIC_--_VSUMW_
+22923      ;
+MPRINT(EM_DIAGRAM):   drop _AIC_--_VSUMW_ ;
+22924      where _TYPE_ in('PARMS', 'T', 'P');
+MPRINT(EM_DIAGRAM):   where _TYPE_ in('PARMS', 'T', 'P');
+22925      select(_TYPE_);
+MPRINT(EM_DIAGRAM):   select(_TYPE_);
+22926      when('PARMS') _NAME_='Coefficient';
+MPRINT(EM_DIAGRAM):   when('PARMS') _NAME_='Coefficient';
+22927      when('T') _NAME_='tValue';
+MPRINT(EM_DIAGRAM):   when('T') _NAME_='tValue';
+22928      when('P') _NAME_='PValue';
+MPRINT(EM_DIAGRAM):   when('P') _NAME_='PValue';
+22929      otherwise;
+MPRINT(EM_DIAGRAM):   otherwise;
+22930      end;
+MPRINT(EM_DIAGRAM):   end;
+22931      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 3 observations read from the data set EMWS1.REG2_EMESTIMATE.
+      WHERE _TYPE_ in ('P', 'PARMS', 'T');
+NOTE: The data set WORK.ESTIMATE has 3 observations and 23 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+ 
+ 
+22932      proc transpose data=WORK.ESTIMATE out=WORK.ESTIMATE(rename=(_NAME_=Effect));
+MPRINT(EM_DIAGRAM):   proc transpose data=WORK.ESTIMATE out=WORK.ESTIMATE(rename=(_NAME_=Effect));
+22933      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 3 observations read from the data set WORK.ESTIMATE.
+NOTE: The data set WORK.ESTIMATE has 21 observations and 5 variables.
+NOTE: PROCEDURE TRANSPOSE used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.03 seconds
+ 
+ 
+22934      proc transpose data=EMWS1.Reg2_MAPDS out=WORK.MAP(rename=(_NAME_=Effect INPUT=Variable
+22935      ));
+MPRINT(EM_DIAGRAM):   proc transpose data=EMWS1.Reg2_MAPDS out=WORK.MAP(rename=(_NAME_=Effect INPUT=Variable ));
+22936      var 'Age_group16_TO_24MANAGEMENT__PRO'n--'Population'n;
+MPRINT(EM_DIAGRAM):   var 'Age_group16_TO_24MANAGEMENT__PRO'n--'Population'n;
+22937      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 2 observations read from the data set EMWS1.REG2_MAPDS.
+NOTE: The data set WORK.MAP has 20 observations and 4 variables.
+NOTE: PROCEDURE TRANSPOSE used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.01 seconds
+ 
+ 
+22938      proc sort data=WORK.MAP;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.MAP;
+22939      by Effect;
+MPRINT(EM_DIAGRAM):   by Effect;
+22940      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 20 observations read from the data set WORK.MAP.
+NOTE: The data set WORK.MAP has 20 observations and 4 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+22941      proc sort data=WORK.ESTIMATE;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.ESTIMATE;
+22942      by Effect;
+MPRINT(EM_DIAGRAM):   by Effect;
+22943      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 21 observations read from the data set WORK.ESTIMATE.
+NOTE: The data set WORK.ESTIMATE has 21 observations and 5 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+22944      data EMWS1.Reg2_EFFECTS(rename=(_LABEL_=EffectLabel));
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg2_EFFECTS(rename=(_LABEL_=EffectLabel));
+22945      length Variable ClassLevel $32;
+MPRINT(EM_DIAGRAM):   length Variable ClassLevel $32;
+22946      merge WORK.ESTIMATE WORK.MAP;
+MPRINT(EM_DIAGRAM):   merge WORK.ESTIMATE WORK.MAP;
+22947      by Effect;
+MPRINT(EM_DIAGRAM):   by Effect;
+22948      label Effect = "%sysfunc(sasmsg(sashelp.dmine, rpt_effect_vlabel, NOQUOTE))" Variable = "%sysfunc(sasmsg(sashelp.dmine, rpt_variable_vlabel, NOQUOTE))" Sign = "%sysfunc(sasmsg(sashelp.dmine, rpt_sign_vlabel, NOQUOTE))" ClassLevel =
+22949         "%sysfunc(sasmsg(sashelp.dmine, rpt_level_vlabel, NOQUOTE))" Abscoefficient = "%sysfunc(sasmsg(sashelp.dmine, rpt_abscoefficient_vlabel, NOQUOTE))" Coefficient = "%sysfunc(sasmsg(sashelp.dmine, rpt_coefficient_vlabel, NOQUOTE))" _LABEL_ =
+22950         "%sysfunc(sasmsg(sashelp.dmine, rpt_effectLabel_vlabel, NOQUOTE))" CODE = "%sysfunc(sasmsg(sashelp.dmine, rpt_scorecodevar_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label Effect = "Effect" Variable = "Variable" Sign = "Sign" ClassLevel = "Level" Abscoefficient = "Absolute Coefficient" Coefficient = "Coefficient" _LABEL_ = "Effect Label" CODE = "Score Code Variable";
+22951      label tvalue = "%sysfunc(sasmsg(sashelp.dmine, rpt_tvalue_vlabel,         NOQUOTE))" abstvalue = "%sysfunc(sasmsg(sashelp.dmine, rpt_absoluteTvalue_vlabel, NOQUOTE))" PValue = "%sysfunc(sasmsg(sashelp.dmine, rpt_pvalue_vlabel,         NOQUOTE))"
+22951    ! ;
+MPRINT(EM_DIAGRAM):   label tvalue = "T-value" abstvalue = "Absolute T-value" PValue = "P Value";
+22952      abstvalue = abs(tValue);
+MPRINT(EM_DIAGRAM):   abstvalue = abs(tValue);
+22953      if index(Effect, 'Intercept') then do;
+MPRINT(EM_DIAGRAM):   if index(Effect, 'Intercept') then do;
+22954      variable = 'Intercept';
+MPRINT(EM_DIAGRAM):   variable = 'Intercept';
+22955      classLevel = scan(_LABEL_, 2, '=');
+MPRINT(EM_DIAGRAM):   classLevel = scan(_LABEL_, 2, '=');
+22956      end;
+MPRINT(EM_DIAGRAM):   end;
+22957      if ^indexc(variable, '*') then do;
+MPRINT(EM_DIAGRAM):   if ^indexc(variable, '*') then do;
+22958      if length(effect)>length(variable) then classlevel = substr(Effect, length(variable)+1);
+MPRINT(EM_DIAGRAM):   if length(effect)>length(variable) then classlevel = substr(Effect, length(variable)+1);
+22959      end;
+MPRINT(EM_DIAGRAM):   end;
+22960      if Effect eq '' then Effect = Variable;
+MPRINT(EM_DIAGRAM):   if Effect eq '' then Effect = Variable;
+22961      if coefficient < 0 then sign = '-';
+MPRINT(EM_DIAGRAM):   if coefficient < 0 then sign = '-';
+22962      else sign = '+';
+MPRINT(EM_DIAGRAM):   else sign = '+';
+22963      abscoefficient = abs(coefficient);
+MPRINT(EM_DIAGRAM):   abscoefficient = abs(coefficient);
+22964      if _LABEL_ = '' then _LABEL_ = Effect;
+MPRINT(EM_DIAGRAM):   if _LABEL_ = '' then _LABEL_ = Effect;
+22965      if coefficient ne . then output;
+MPRINT(EM_DIAGRAM):   if coefficient ne . then output;
+22966      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 21 observations read from the data set WORK.ESTIMATE.
+NOTE: There were 20 observations read from the data set WORK.MAP.
+NOTE: The data set EMWS1.REG2_EFFECTS has 21 observations and 11 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+ 
+ 
+22967      proc sort data =EMWS1.Reg2_EFFECTS;
+MPRINT(EM_DIAGRAM):    proc sort data =EMWS1.Reg2_EFFECTS;
+22968      by
+22969      descending abstvalue;
+MPRINT(EM_DIAGRAM):   by descending abstvalue;
+22970      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 21 observations read from the data set EMWS1.REG2_EFFECTS.
+NOTE: The data set EMWS1.REG2_EFFECTS has 21 observations and 11 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+ 
+ 
+22971      data EMWS1.Reg2_EFFECTS;
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg2_EFFECTS;
+22972      set EMWS1.Reg2_EFFECTS;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_EFFECTS;
+22973      format TEffectNum 3.;
+MPRINT(EM_DIAGRAM):   format TEffectNum 3.;
+22974      label TEffectNum = "%sysfunc(sasmsg(sashelp.dmine, rpt_teffectnum_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label TEffectNum = "TScore Number";
+22975      retain TEffectNum;
+MPRINT(EM_DIAGRAM):   retain TEffectNum;
+22976      TEffectNum = _N_;
+MPRINT(EM_DIAGRAM):   TEffectNum = _N_;
+22977      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 21 observations read from the data set EMWS1.REG2_EFFECTS.
+NOTE: The data set EMWS1.REG2_EFFECTS has 21 observations and 12 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+22978      proc sort data =EMWS1.Reg2_EFFECTS;
+MPRINT(EM_DIAGRAM):    proc sort data =EMWS1.Reg2_EFFECTS;
+22979      by
+22980      descending absCoefficient;
+MPRINT(EM_DIAGRAM):   by descending absCoefficient;
+22981      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 21 observations read from the data set EMWS1.REG2_EFFECTS.
+NOTE: The data set EMWS1.REG2_EFFECTS has 21 observations and 12 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+22982      data EMWS1.Reg2_EFFECTS;
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg2_EFFECTS;
+22983      set EMWS1.Reg2_EFFECTS;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_EFFECTS;
+22984      format EffectNum 3.;
+MPRINT(EM_DIAGRAM):   format EffectNum 3.;
+22985      label EffectNum = "%sysfunc(sasmsg(sashelp.dmine, rpt_effectnum_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label EffectNum = "Effect Number";
+22986      retain EffectNum;
+MPRINT(EM_DIAGRAM):   retain EffectNum;
+22987      EffectNum = _N_;
+MPRINT(EM_DIAGRAM):   EffectNum = _N_;
+22988      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 21 observations read from the data set EMWS1.REG2_EFFECTS.
+NOTE: The data set EMWS1.REG2_EFFECTS has 21 observations and 13 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "December 10, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:48:37" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Score Log
+Date:                December 10, 2019
+Time:                15:48:37
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O3THGUIX "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O3THGUIX new;
+MPRINT(EM_DIAGRAM):   run;
+23090      filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Reg2: Scoring DATA data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+23091      *------------------------------------------------------------*;
+23092      * Reg2: Scoring DATA data;
+23093      *------------------------------------------------------------*;
+23094      data EMWS1.Reg2_TRAIN
+23095      / view=EMWS1.Reg2_TRAIN
+23096      ;
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg2_TRAIN / view=EMWS1.Reg2_TRAIN ;
+23097      set EMWS1.Trans_TRAIN
+23098      ;
+MPRINT(EM_DIAGRAM):   set EMWS1.Trans_TRAIN ;
+23099      %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMFLOWSCORE.sas.
+23100     +*************************************;
+MPRINT(EM_DIAGRAM):   *************************************;
+23101     +*** begin scoring code for regression;
+MPRINT(EM_DIAGRAM):   *** begin scoring code for regression;
+23102     +*************************************;
+MPRINT(EM_DIAGRAM):   *************************************;
+23103     +
+23104     +length _WARN_ $4;
+MPRINT(EM_DIAGRAM):   length _WARN_ $4;
+23105     +label _WARN_ = 'Warnings' ;
+MPRINT(EM_DIAGRAM):   label _WARN_ = 'Warnings' ;
+23106     +
+23107     +drop _Y;
+MPRINT(EM_DIAGRAM):   drop _Y;
+23108     +_Y = Sum_Labor_Force_Pop ;
+MPRINT(EM_DIAGRAM):   _Y = Sum_Labor_Force_Pop ;
+23109     +
+23110     +drop _DM_BAD;
+MPRINT(EM_DIAGRAM):   drop _DM_BAD;
+23111     +_DM_BAD=0;
+MPRINT(EM_DIAGRAM):   _DM_BAD=0;
+23112     +
+23113     +*** Check Population for missing values ;
+MPRINT(EM_DIAGRAM):   *** Check Population for missing values ;
+23114     +if missing( Population ) then do;
+MPRINT(EM_DIAGRAM):   if missing( Population ) then do;
+23115     +   substr(_warn_,1,1) = 'M';
+MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
+23116     +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+23117     +end;
+MPRINT(EM_DIAGRAM):   end;
+23118     +
+23119     +*** Generate dummy variables for Age_group ;
+MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Age_group ;
+23120     +drop _0_0 _0_1 _0_2 ;
+MPRINT(EM_DIAGRAM):   drop _0_0 _0_1 _0_2 ;
+23121     +if missing( Age_group ) then do;
+MPRINT(EM_DIAGRAM):   if missing( Age_group ) then do;
+23122     +   _0_0 = .;
+MPRINT(EM_DIAGRAM):   _0_0 = .;
+23123     +   _0_1 = .;
+MPRINT(EM_DIAGRAM):   _0_1 = .;
+23124     +   _0_2 = .;
+MPRINT(EM_DIAGRAM):   _0_2 = .;
+23125     +   substr(_warn_,1,1) = 'M';
+MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
+23126     +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+23127     +end;
+MPRINT(EM_DIAGRAM):   end;
+23128     +else do;
+MPRINT(EM_DIAGRAM):   else do;
+23129     +   length _dm19 $ 19; drop _dm19 ;
+MPRINT(EM_DIAGRAM):   length _dm19 $ 19;
+MPRINT(EM_DIAGRAM):   drop _dm19 ;
+23130     +   %DMNORMCP( Age_group , _dm19 )
+MPRINT(DMNORMCP):   _dm19=dmnorm(Age_group,
+MPRINT(DMNORLEN):  32
+MPRINT(DMNORMCP):  );
+MPRINT(EM_DIAGRAM):   if _dm19 = '45 TO 64' then do;
+MPRINT(EM_DIAGRAM):   _0_0 = 0;
+MPRINT(EM_DIAGRAM):   _0_1 = 0;
+MPRINT(EM_DIAGRAM):   _0_2 = 1;
+MPRINT(EM_DIAGRAM):   end;
+23131     +   if _dm19 = '45 TO 64'  then do;
+23132     +      _0_0 = 0;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '65+' then do;
+23133     +      _0_1 = 0;
+MPRINT(EM_DIAGRAM):   _0_0 = -1;
+23134     +      _0_2 = 1;
+MPRINT(EM_DIAGRAM):   _0_1 = -1;
+23135     +   end;
+MPRINT(EM_DIAGRAM):   _0_2 = -1;
+23136     +   else if _dm19 = '65+'  then do;
+MPRINT(EM_DIAGRAM):   end;
+23137     +      _0_0 = -1;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '16 TO 24' then do;
+23138     +      _0_1 = -1;
+MPRINT(EM_DIAGRAM):   _0_0 = 1;
+23139     +      _0_2 = -1;
+MPRINT(EM_DIAGRAM):   _0_1 = 0;
+23140     +   end;
+MPRINT(EM_DIAGRAM):   _0_2 = 0;
+23141     +   else if _dm19 = '16 TO 24'  then do;
+MPRINT(EM_DIAGRAM):   end;
+23142     +      _0_0 = 1;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '25 TO 44' then do;
+23143     +      _0_1 = 0;
+MPRINT(EM_DIAGRAM):   _0_0 = 0;
+23144     +      _0_2 = 0;
+MPRINT(EM_DIAGRAM):   _0_1 = 1;
+23145     +   end;
+MPRINT(EM_DIAGRAM):   _0_2 = 0;
+23146     +   else if _dm19 = '25 TO 44'  then do;
+MPRINT(EM_DIAGRAM):   end;
+23147     +      _0_0 = 0;
+MPRINT(EM_DIAGRAM):   else do;
+23148     +      _0_1 = 1;
+MPRINT(EM_DIAGRAM):   _0_0 = .;
+23149     +      _0_2 = 0;
+MPRINT(EM_DIAGRAM):   _0_1 = .;
+23150     +   end;
+MPRINT(EM_DIAGRAM):   _0_2 = .;
+23151     +   else do;
+MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+23152     +      _0_0 = .;
+MPRINT(EM_DIAGRAM):   end;
+23153     +      _0_1 = .;
+MPRINT(EM_DIAGRAM):   end;
+23154     +      _0_2 = .;
+23155     +      substr(_warn_,2,1) = 'U';
+MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Industry ;
+23156     +      _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   drop _1_0 _1_1 _1_2 _1_3 ;
+23157     +   end;
+MPRINT(EM_DIAGRAM):   *** encoding is sparse, initialize to zero;
+23158     +end;
+MPRINT(EM_DIAGRAM):   _1_0 = 0;
+23159     +
+MPRINT(EM_DIAGRAM):   _1_1 = 0;
+23160     +*** Generate dummy variables for Industry ;
+MPRINT(EM_DIAGRAM):   _1_2 = 0;
+23161     +drop _1_0 _1_1 _1_2 _1_3 ;
+MPRINT(EM_DIAGRAM):   _1_3 = 0;
+23162     +*** encoding is sparse, initialize to zero;
+MPRINT(EM_DIAGRAM):   if missing( Industry ) then do;
+23163     +_1_0 = 0;
+MPRINT(EM_DIAGRAM):   _1_0 = .;
+23164     +_1_1 = 0;
+MPRINT(EM_DIAGRAM):   _1_1 = .;
+23165     +_1_2 = 0;
+MPRINT(EM_DIAGRAM):   _1_2 = .;
+23166     +_1_3 = 0;
+MPRINT(EM_DIAGRAM):   _1_3 = .;
+23167     +if missing( Industry ) then do;
+MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
+23168     +   _1_0 = .;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+23169     +   _1_1 = .;
+MPRINT(EM_DIAGRAM):   end;
+23170     +   _1_2 = .;
+23171     +   _1_3 = .;
+MPRINT(EM_DIAGRAM):   else do;
+23172     +   substr(_warn_,1,1) = 'M';
+MPRINT(EM_DIAGRAM):   length _dm32 $ 32;
+23173     +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   drop _dm32 ;
+23174     +end;
+MPRINT(EM_DIAGRAM):   length _dm111 $ 111;
+23175     +else do;
+MPRINT(EM_DIAGRAM):   drop _dm111;
+MPRINT(EM_DIAGRAM):   _dm111 = put( Industry , $CHAR111. );
+23176     +   length _dm32 $ 32; drop _dm32 ;
+23177     +   length _dm111 $ 111; drop _dm111;
+23178     +   _dm111 = put( Industry , $CHAR111. );
+MPRINT(DMNORMCP):   _dm32=dmnorm(_dm111,
+23179     +   %DMNORMCP( _dm111, _dm32 )
+MPRINT(DMNORLEN):  32
+MPRINT(DMNORMCP):  );
+MPRINT(EM_DIAGRAM):   if _dm32 = 'SERVICE OCCUPATIONS' then do;
+MPRINT(EM_DIAGRAM):   _1_0 = -1;
+MPRINT(EM_DIAGRAM):   _1_1 = -1;
+MPRINT(EM_DIAGRAM):   _1_2 = -1;
+MPRINT(EM_DIAGRAM):   _1_3 = -1;
+23180     +   if _dm32 = 'SERVICE OCCUPATIONS'  then do;
+MPRINT(EM_DIAGRAM):   end;
+23181     +      _1_0 = -1;
+23182     +      _1_1 = -1;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'SALES AND OFFICE OCCUPATIONS' then do;
+23183     +      _1_2 = -1;
+MPRINT(EM_DIAGRAM):   _1_3 = 1;
+23184     +      _1_3 = -1;
+MPRINT(EM_DIAGRAM):   end;
+23185     +   end;
+23186     +   else if _dm32 = 'SALES AND OFFICE OCCUPATIONS'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'PRODUCTION, TRANSPORTATION, AND' then do;
+MPRINT(EM_DIAGRAM):   _1_2 = 1;
+23187     +      _1_3 = 1;
+MPRINT(EM_DIAGRAM):   end;
+23188     +   end;
+23189     +   else if _dm32 = 'PRODUCTION, TRANSPORTATION, AND'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'NATURAL RESOURCES, CONSTRUCTION,' then do;
+MPRINT(EM_DIAGRAM):   _1_1 = 1;
+23190     +      _1_2 = 1;
+MPRINT(EM_DIAGRAM):   end;
+23191     +   end;
+23192     +   else if _dm32 = 'NATURAL RESOURCES, CONSTRUCTION,'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'MANAGEMENT, PROFESSIONAL, AND RE' then do;
+MPRINT(EM_DIAGRAM):   _1_0 = 1;
+23193     +      _1_1 = 1;
+MPRINT(EM_DIAGRAM):   end;
+23194     +   end;
+23195     +   else if _dm32 = 'MANAGEMENT, PROFESSIONAL, AND RE'  then do;
+MPRINT(EM_DIAGRAM):   else do;
+MPRINT(EM_DIAGRAM):   _1_0 = .;
+23196     +      _1_0 = 1;
+MPRINT(EM_DIAGRAM):   _1_1 = .;
+23197     +   end;
+MPRINT(EM_DIAGRAM):   _1_2 = .;
+23198     +   else do;
+MPRINT(EM_DIAGRAM):   _1_3 = .;
+MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
+23199     +      _1_0 = .;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+23200     +      _1_1 = .;
+MPRINT(EM_DIAGRAM):   end;
+23201     +      _1_2 = .;
+MPRINT(EM_DIAGRAM):   end;
+23202     +      _1_3 = .;
+23203     +      substr(_warn_,2,1) = 'U';
+MPRINT(EM_DIAGRAM):   *** If missing inputs, use averages;
+23204     +      _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   if _DM_BAD > 0 then do;
+23205     +   end;
+MPRINT(EM_DIAGRAM):   _LP0 = 6470696.42857143;
+23206     +end;
+MPRINT(EM_DIAGRAM):   goto REG2DR1;
+23207     +
+MPRINT(EM_DIAGRAM):   end;
+23208     +*** If missing inputs, use averages;
+23209     +if _DM_BAD > 0 then do;
+MPRINT(EM_DIAGRAM):   *** Compute Linear Predictor;
+23210     +   _LP0 =     6470696.42857143;
+MPRINT(EM_DIAGRAM):   drop _TEMP;
+23211     +   goto REG2DR1;
+MPRINT(EM_DIAGRAM):   drop _LP0;
+23212     +end;
+MPRINT(EM_DIAGRAM):   _LP0 = 0;
+23213     +
+23214     +*** Compute Linear Predictor;
+MPRINT(EM_DIAGRAM):   *** Effect: Population*Age_group*Industry ;
+23215     +drop _TEMP;
+MPRINT(EM_DIAGRAM):   _TEMP = Population ;
+23216     +drop _LP0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -0.11715613953136) * _TEMP * _0_0 * _1_0;
+23217     +_LP0 = 0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.02700341050736) * _TEMP * _0_0 * _1_1;
+23218     +
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.01251898117875) * _TEMP * _0_0 * _1_2;
+23219     +***  Effect: Population*Age_group*Industry ;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.01863889821193) * _TEMP * _0_0 * _1_3;
+23220     +_TEMP = Population ;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.09663568488618) * _TEMP * _0_1 * _1_0;
+23221     +_LP0 = _LP0 + (   -0.11715613953136) * _TEMP * _0_0 * _1_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -0.03979851587655) * _TEMP * _0_1 * _1_1;
+23222     +_LP0 = _LP0 + (    0.02700341050736) * _TEMP * _0_0 * _1_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -0.03370616598682) * _TEMP * _0_1 * _1_2;
+23223     +_LP0 = _LP0 + (    0.01251898117875) * _TEMP * _0_0 * _1_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.00628489271812) * _TEMP * _0_1 * _1_3;
+23224     +_LP0 = _LP0 + (    0.01863889821193) * _TEMP * _0_0 * _1_3;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.09152611804654) * _TEMP * _0_2 * _1_0;
+23225     +_LP0 = _LP0 + (    0.09663568488618) * _TEMP * _0_1 * _1_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -0.03738941285564) * _TEMP * _0_2 * _1_1;
+23226     +_LP0 = _LP0 + (   -0.03979851587655) * _TEMP * _0_1 * _1_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -0.02229371492902) * _TEMP * _0_2 * _1_2;
+23227     +_LP0 = _LP0 + (   -0.03370616598682) * _TEMP * _0_1 * _1_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.00483071597825) * _TEMP * _0_2 * _1_3;
+23228     +_LP0 = _LP0 + (    0.00628489271812) * _TEMP * _0_1 * _1_3;
+23229     +_LP0 = _LP0 + (    0.09152611804654) * _TEMP * _0_2 * _1_0;
+MPRINT(EM_DIAGRAM):   *** Effect: Age_group ;
+23230     +_LP0 = _LP0 + (   -0.03738941285564) * _TEMP * _0_2 * _1_1;
+MPRINT(EM_DIAGRAM):   _TEMP = 1;
+23231     +_LP0 = _LP0 + (   -0.02229371492902) * _TEMP * _0_2 * _1_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -1151827.58078611) * _TEMP * _0_0;
+23232     +_LP0 = _LP0 + (    0.00483071597825) * _TEMP * _0_2 * _1_3;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 3344383.07340614) * _TEMP * _0_1;
+23233     +
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 1719019.78617864) * _TEMP * _0_2;
+23234     +***  Effect: Age_group ;
+23235     +_TEMP = 1;
+MPRINT(EM_DIAGRAM):   *** Effect: Industry ;
+23236     +_LP0 = _LP0 + (   -1151827.58078611) * _TEMP * _0_0;
+MPRINT(EM_DIAGRAM):   _TEMP = 1;
+23237     +_LP0 = _LP0 + (    3344383.07340614) * _TEMP * _0_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 3665917.37954249) * _TEMP * _1_0;
+23238     +_LP0 = _LP0 + (    1719019.78617864) * _TEMP * _0_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -2802842.40028867) * _TEMP * _1_1;
+23239     +
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -2038406.8909291) * _TEMP * _1_2;
+23240     +***  Effect: Industry ;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 1644635.92898508) * _TEMP * _1_3;
+23241     +_TEMP = 1;
+23242     +_LP0 = _LP0 + (    3665917.37954249) * _TEMP * _1_0;
+MPRINT(EM_DIAGRAM):   *** Effect: Population ;
+23243     +_LP0 = _LP0 + (   -2802842.40028867) * _TEMP * _1_1;
+MPRINT(EM_DIAGRAM):   _TEMP = Population ;
+23244     +_LP0 = _LP0 + (    -2038406.8909291) * _TEMP * _1_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.10026222163702 * _TEMP);
+23245     +_LP0 = _LP0 + (    1644635.92898508) * _TEMP * _1_3;
+MPRINT(EM_DIAGRAM):   *--- Intercept ---*;
+23246     +
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 1131306.73108067);
+23247     +***  Effect: Population ;
+23248     +_TEMP = Population ;
+23249     +_LP0 = _LP0 + (    0.10026222163702 * _TEMP);
+23250     +*--- Intercept ---*;
+23251     +_LP0 = _LP0 + (    1131306.73108067);
+MPRINT(EM_DIAGRAM):   REG2DR1: *** Predicted Value, Error, and Residual;
+23252     +
+MPRINT(EM_DIAGRAM):   label P_Sum_Labor_Force_Pop = 'Predicted: Sum_Labor_Force_Pop' ;
+23253     +REG2DR1:
+MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = _LP0;
+23254     +
+23255     +*** Predicted Value, Error, and Residual;
+MPRINT(EM_DIAGRAM):   drop _R;
+23256     +label P_Sum_Labor_Force_Pop = 'Predicted: Sum_Labor_Force_Pop' ;
+MPRINT(EM_DIAGRAM):   if _Y = . then do;
+MPRINT(EM_DIAGRAM):   R_Sum_Labor_Force_Pop = .;
+23257     +P_Sum_Labor_Force_Pop = _LP0;
+MPRINT(EM_DIAGRAM):   end;
+23258     +
+23259     +drop _R;
+MPRINT(EM_DIAGRAM):   else do;
+23260     +if _Y = . then do;
+MPRINT(EM_DIAGRAM):   _R = _Y - _LP0;
+23261     +   R_Sum_Labor_Force_Pop = .;
+MPRINT(EM_DIAGRAM):   label R_Sum_Labor_Force_Pop = 'Residual: Sum_Labor_Force_Pop' ;
+23262     +end;
+23263     +else do;
+MPRINT(EM_DIAGRAM):   R_Sum_Labor_Force_Pop = _R;
+MPRINT(EM_DIAGRAM):   end;
+23264     +   _R = _Y - _LP0;
+23265     +    label R_Sum_Labor_Force_Pop = 'Residual: Sum_Labor_Force_Pop' ;
+MPRINT(EM_DIAGRAM):   *************************************;
+MPRINT(EM_DIAGRAM):   ***** end scoring code for regression;
+23266     +   R_Sum_Labor_Force_Pop = _R;
+MPRINT(EM_DIAGRAM):   *************************************;
+23267     +end;
+23268     +
+23269     +*************************************;
+23270     +***** end scoring code for regression;
+23271     +*************************************;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+23272      run;
+ 
+NOTE: DATA STEP view saved on file EMWS1.REG2_TRAIN.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.TRANS_TRAIN.VIEW used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+ 
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+ 
+ 
+MPRINT(EM_DIAGRAM):   quit;
+23273      quit;
+23274      filename emflow;
+MPRINT(EM_DIAGRAM):   filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+23275      filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Reg2: Scoring VALIDATE data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+23276      *------------------------------------------------------------*;
+23277      * Reg2: Scoring VALIDATE data;
+23278      *------------------------------------------------------------*;
+23279      data EMWS1.Reg2_VALIDATE
+23280      / view=EMWS1.Reg2_VALIDATE
+23281      ;
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg2_VALIDATE / view=EMWS1.Reg2_VALIDATE ;
+23282      set EMWS1.Trans_VALIDATE
+23283      ;
+MPRINT(EM_DIAGRAM):   set EMWS1.Trans_VALIDATE ;
+23284      %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMFLOWSCORE.sas.
+23285     +*************************************;
+MPRINT(EM_DIAGRAM):   *************************************;
+23286     +*** begin scoring code for regression;
+MPRINT(EM_DIAGRAM):   *** begin scoring code for regression;
+23287     +*************************************;
+MPRINT(EM_DIAGRAM):   *************************************;
+23288     +
+23289     +length _WARN_ $4;
+MPRINT(EM_DIAGRAM):   length _WARN_ $4;
+23290     +label _WARN_ = 'Warnings' ;
+MPRINT(EM_DIAGRAM):   label _WARN_ = 'Warnings' ;
+23291     +
+23292     +drop _Y;
+MPRINT(EM_DIAGRAM):   drop _Y;
+23293     +_Y = Sum_Labor_Force_Pop ;
+MPRINT(EM_DIAGRAM):   _Y = Sum_Labor_Force_Pop ;
+23294     +
+23295     +drop _DM_BAD;
+MPRINT(EM_DIAGRAM):   drop _DM_BAD;
+23296     +_DM_BAD=0;
+MPRINT(EM_DIAGRAM):   _DM_BAD=0;
+23297     +
+23298     +*** Check Population for missing values ;
+MPRINT(EM_DIAGRAM):   *** Check Population for missing values ;
+23299     +if missing( Population ) then do;
+MPRINT(EM_DIAGRAM):   if missing( Population ) then do;
+23300     +   substr(_warn_,1,1) = 'M';
+MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
+23301     +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+23302     +end;
+MPRINT(EM_DIAGRAM):   end;
+23303     +
+23304     +*** Generate dummy variables for Age_group ;
+MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Age_group ;
+23305     +drop _0_0 _0_1 _0_2 ;
+MPRINT(EM_DIAGRAM):   drop _0_0 _0_1 _0_2 ;
+23306     +if missing( Age_group ) then do;
+MPRINT(EM_DIAGRAM):   if missing( Age_group ) then do;
+23307     +   _0_0 = .;
+MPRINT(EM_DIAGRAM):   _0_0 = .;
+23308     +   _0_1 = .;
+MPRINT(EM_DIAGRAM):   _0_1 = .;
+23309     +   _0_2 = .;
+MPRINT(EM_DIAGRAM):   _0_2 = .;
+23310     +   substr(_warn_,1,1) = 'M';
+MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
+23311     +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+23312     +end;
+MPRINT(EM_DIAGRAM):   end;
+23313     +else do;
+MPRINT(EM_DIAGRAM):   else do;
+23314     +   length _dm19 $ 19; drop _dm19 ;
+MPRINT(EM_DIAGRAM):   length _dm19 $ 19;
+MPRINT(EM_DIAGRAM):   drop _dm19 ;
+23315     +   %DMNORMCP( Age_group , _dm19 )
+MPRINT(DMNORMCP):   _dm19=dmnorm(Age_group,
+MPRINT(DMNORLEN):  32
+MPRINT(DMNORMCP):  );
+23316     +   if _dm19 = '45 TO 64'  then do;
+MPRINT(EM_DIAGRAM):   if _dm19 = '45 TO 64' then do;
+23317     +      _0_0 = 0;
+MPRINT(EM_DIAGRAM):   _0_0 = 0;
+23318     +      _0_1 = 0;
+MPRINT(EM_DIAGRAM):   _0_1 = 0;
+23319     +      _0_2 = 1;
+MPRINT(EM_DIAGRAM):   _0_2 = 1;
+23320     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23321     +   else if _dm19 = '65+'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '65+' then do;
+23322     +      _0_0 = -1;
+MPRINT(EM_DIAGRAM):   _0_0 = -1;
+23323     +      _0_1 = -1;
+MPRINT(EM_DIAGRAM):   _0_1 = -1;
+23324     +      _0_2 = -1;
+MPRINT(EM_DIAGRAM):   _0_2 = -1;
+23325     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23326     +   else if _dm19 = '16 TO 24'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '16 TO 24' then do;
+23327     +      _0_0 = 1;
+MPRINT(EM_DIAGRAM):   _0_0 = 1;
+23328     +      _0_1 = 0;
+MPRINT(EM_DIAGRAM):   _0_1 = 0;
+23329     +      _0_2 = 0;
+MPRINT(EM_DIAGRAM):   _0_2 = 0;
+23330     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23331     +   else if _dm19 = '25 TO 44'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '25 TO 44' then do;
+23332     +      _0_0 = 0;
+MPRINT(EM_DIAGRAM):   _0_0 = 0;
+23333     +      _0_1 = 1;
+MPRINT(EM_DIAGRAM):   _0_1 = 1;
+23334     +      _0_2 = 0;
+MPRINT(EM_DIAGRAM):   _0_2 = 0;
+23335     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23336     +   else do;
+MPRINT(EM_DIAGRAM):   else do;
+23337     +      _0_0 = .;
+MPRINT(EM_DIAGRAM):   _0_0 = .;
+23338     +      _0_1 = .;
+MPRINT(EM_DIAGRAM):   _0_1 = .;
+23339     +      _0_2 = .;
+MPRINT(EM_DIAGRAM):   _0_2 = .;
+23340     +      substr(_warn_,2,1) = 'U';
+MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
+23341     +      _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+23342     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23343     +end;
+MPRINT(EM_DIAGRAM):   end;
+23344     +
+23345     +*** Generate dummy variables for Industry ;
+MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Industry ;
+23346     +drop _1_0 _1_1 _1_2 _1_3 ;
+MPRINT(EM_DIAGRAM):   drop _1_0 _1_1 _1_2 _1_3 ;
+23347     +*** encoding is sparse, initialize to zero;
+MPRINT(EM_DIAGRAM):   *** encoding is sparse, initialize to zero;
+23348     +_1_0 = 0;
+MPRINT(EM_DIAGRAM):   _1_0 = 0;
+23349     +_1_1 = 0;
+MPRINT(EM_DIAGRAM):   _1_1 = 0;
+23350     +_1_2 = 0;
+MPRINT(EM_DIAGRAM):   _1_2 = 0;
+23351     +_1_3 = 0;
+MPRINT(EM_DIAGRAM):   _1_3 = 0;
+23352     +if missing( Industry ) then do;
+MPRINT(EM_DIAGRAM):   if missing( Industry ) then do;
+23353     +   _1_0 = .;
+MPRINT(EM_DIAGRAM):   _1_0 = .;
+23354     +   _1_1 = .;
+MPRINT(EM_DIAGRAM):   _1_1 = .;
+23355     +   _1_2 = .;
+MPRINT(EM_DIAGRAM):   _1_2 = .;
+23356     +   _1_3 = .;
+MPRINT(EM_DIAGRAM):   _1_3 = .;
+23357     +   substr(_warn_,1,1) = 'M';
+MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
+23358     +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+23359     +end;
+MPRINT(EM_DIAGRAM):   end;
+23360     +else do;
+MPRINT(EM_DIAGRAM):   else do;
+23361     +   length _dm32 $ 32; drop _dm32 ;
+MPRINT(EM_DIAGRAM):   length _dm32 $ 32;
+MPRINT(EM_DIAGRAM):   drop _dm32 ;
+23362     +   length _dm111 $ 111; drop _dm111;
+MPRINT(EM_DIAGRAM):   length _dm111 $ 111;
+MPRINT(EM_DIAGRAM):   drop _dm111;
+23363     +   _dm111 = put( Industry , $CHAR111. );
+MPRINT(EM_DIAGRAM):   _dm111 = put( Industry , $CHAR111. );
+23364     +   %DMNORMCP( _dm111, _dm32 )
+MPRINT(DMNORMCP):   _dm32=dmnorm(_dm111,
+MPRINT(DMNORLEN):  32
+MPRINT(DMNORMCP):  );
+23365     +   if _dm32 = 'SERVICE OCCUPATIONS'  then do;
+MPRINT(EM_DIAGRAM):   if _dm32 = 'SERVICE OCCUPATIONS' then do;
+23366     +      _1_0 = -1;
+MPRINT(EM_DIAGRAM):   _1_0 = -1;
+23367     +      _1_1 = -1;
+MPRINT(EM_DIAGRAM):   _1_1 = -1;
+23368     +      _1_2 = -1;
+MPRINT(EM_DIAGRAM):   _1_2 = -1;
+23369     +      _1_3 = -1;
+MPRINT(EM_DIAGRAM):   _1_3 = -1;
+23370     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23371     +   else if _dm32 = 'SALES AND OFFICE OCCUPATIONS'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'SALES AND OFFICE OCCUPATIONS' then do;
+23372     +      _1_3 = 1;
+MPRINT(EM_DIAGRAM):   _1_3 = 1;
+23373     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23374     +   else if _dm32 = 'PRODUCTION, TRANSPORTATION, AND'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'PRODUCTION, TRANSPORTATION, AND' then do;
+23375     +      _1_2 = 1;
+MPRINT(EM_DIAGRAM):   _1_2 = 1;
+23376     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23377     +   else if _dm32 = 'NATURAL RESOURCES, CONSTRUCTION,'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'NATURAL RESOURCES, CONSTRUCTION,' then do;
+23378     +      _1_1 = 1;
+MPRINT(EM_DIAGRAM):   _1_1 = 1;
+23379     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23380     +   else if _dm32 = 'MANAGEMENT, PROFESSIONAL, AND RE'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'MANAGEMENT, PROFESSIONAL, AND RE' then do;
+23381     +      _1_0 = 1;
+MPRINT(EM_DIAGRAM):   _1_0 = 1;
+23382     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23383     +   else do;
+MPRINT(EM_DIAGRAM):   else do;
+23384     +      _1_0 = .;
+MPRINT(EM_DIAGRAM):   _1_0 = .;
+23385     +      _1_1 = .;
+MPRINT(EM_DIAGRAM):   _1_1 = .;
+23386     +      _1_2 = .;
+MPRINT(EM_DIAGRAM):   _1_2 = .;
+23387     +      _1_3 = .;
+MPRINT(EM_DIAGRAM):   _1_3 = .;
+23388     +      substr(_warn_,2,1) = 'U';
+MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
+23389     +      _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+23390     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23391     +end;
+MPRINT(EM_DIAGRAM):   end;
+23392     +
+23393     +*** If missing inputs, use averages;
+MPRINT(EM_DIAGRAM):   *** If missing inputs, use averages;
+23394     +if _DM_BAD > 0 then do;
+MPRINT(EM_DIAGRAM):   if _DM_BAD > 0 then do;
+23395     +   _LP0 =     6470696.42857143;
+MPRINT(EM_DIAGRAM):   _LP0 = 6470696.42857143;
+23396     +   goto REG2DR1;
+MPRINT(EM_DIAGRAM):   goto REG2DR1;
+23397     +end;
+MPRINT(EM_DIAGRAM):   end;
+23398     +
+23399     +*** Compute Linear Predictor;
+MPRINT(EM_DIAGRAM):   *** Compute Linear Predictor;
+23400     +drop _TEMP;
+MPRINT(EM_DIAGRAM):   drop _TEMP;
+23401     +drop _LP0;
+MPRINT(EM_DIAGRAM):   drop _LP0;
+23402     +_LP0 = 0;
+MPRINT(EM_DIAGRAM):   _LP0 = 0;
+23403     +
+23404     +***  Effect: Population*Age_group*Industry ;
+MPRINT(EM_DIAGRAM):   *** Effect: Population*Age_group*Industry ;
+23405     +_TEMP = Population ;
+MPRINT(EM_DIAGRAM):   _TEMP = Population ;
+23406     +_LP0 = _LP0 + (   -0.11715613953136) * _TEMP * _0_0 * _1_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -0.11715613953136) * _TEMP * _0_0 * _1_0;
+23407     +_LP0 = _LP0 + (    0.02700341050736) * _TEMP * _0_0 * _1_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.02700341050736) * _TEMP * _0_0 * _1_1;
+23408     +_LP0 = _LP0 + (    0.01251898117875) * _TEMP * _0_0 * _1_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.01251898117875) * _TEMP * _0_0 * _1_2;
+23409     +_LP0 = _LP0 + (    0.01863889821193) * _TEMP * _0_0 * _1_3;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.01863889821193) * _TEMP * _0_0 * _1_3;
+23410     +_LP0 = _LP0 + (    0.09663568488618) * _TEMP * _0_1 * _1_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.09663568488618) * _TEMP * _0_1 * _1_0;
+23411     +_LP0 = _LP0 + (   -0.03979851587655) * _TEMP * _0_1 * _1_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -0.03979851587655) * _TEMP * _0_1 * _1_1;
+23412     +_LP0 = _LP0 + (   -0.03370616598682) * _TEMP * _0_1 * _1_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -0.03370616598682) * _TEMP * _0_1 * _1_2;
+23413     +_LP0 = _LP0 + (    0.00628489271812) * _TEMP * _0_1 * _1_3;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.00628489271812) * _TEMP * _0_1 * _1_3;
+23414     +_LP0 = _LP0 + (    0.09152611804654) * _TEMP * _0_2 * _1_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.09152611804654) * _TEMP * _0_2 * _1_0;
+23415     +_LP0 = _LP0 + (   -0.03738941285564) * _TEMP * _0_2 * _1_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -0.03738941285564) * _TEMP * _0_2 * _1_1;
+23416     +_LP0 = _LP0 + (   -0.02229371492902) * _TEMP * _0_2 * _1_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -0.02229371492902) * _TEMP * _0_2 * _1_2;
+23417     +_LP0 = _LP0 + (    0.00483071597825) * _TEMP * _0_2 * _1_3;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.00483071597825) * _TEMP * _0_2 * _1_3;
+23418     +
+23419     +***  Effect: Age_group ;
+MPRINT(EM_DIAGRAM):   *** Effect: Age_group ;
+23420     +_TEMP = 1;
+MPRINT(EM_DIAGRAM):   _TEMP = 1;
+23421     +_LP0 = _LP0 + (   -1151827.58078611) * _TEMP * _0_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -1151827.58078611) * _TEMP * _0_0;
+23422     +_LP0 = _LP0 + (    3344383.07340614) * _TEMP * _0_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 3344383.07340614) * _TEMP * _0_1;
+23423     +_LP0 = _LP0 + (    1719019.78617864) * _TEMP * _0_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 1719019.78617864) * _TEMP * _0_2;
+23424     +
+23425     +***  Effect: Industry ;
+MPRINT(EM_DIAGRAM):   *** Effect: Industry ;
+23426     +_TEMP = 1;
+MPRINT(EM_DIAGRAM):   _TEMP = 1;
+23427     +_LP0 = _LP0 + (    3665917.37954249) * _TEMP * _1_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 3665917.37954249) * _TEMP * _1_0;
+23428     +_LP0 = _LP0 + (   -2802842.40028867) * _TEMP * _1_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -2802842.40028867) * _TEMP * _1_1;
+23429     +_LP0 = _LP0 + (    -2038406.8909291) * _TEMP * _1_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -2038406.8909291) * _TEMP * _1_2;
+23430     +_LP0 = _LP0 + (    1644635.92898508) * _TEMP * _1_3;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 1644635.92898508) * _TEMP * _1_3;
+23431     +
+23432     +***  Effect: Population ;
+MPRINT(EM_DIAGRAM):   *** Effect: Population ;
+23433     +_TEMP = Population ;
+MPRINT(EM_DIAGRAM):   _TEMP = Population ;
+23434     +_LP0 = _LP0 + (    0.10026222163702 * _TEMP);
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.10026222163702 * _TEMP);
+23435     +*--- Intercept ---*;
+MPRINT(EM_DIAGRAM):   *--- Intercept ---*;
+23436     +_LP0 = _LP0 + (    1131306.73108067);
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 1131306.73108067);
+23437     +
+23438     +REG2DR1:
+23439     +
+23440     +*** Predicted Value, Error, and Residual;
+MPRINT(EM_DIAGRAM):   REG2DR1: *** Predicted Value, Error, and Residual;
+23441     +label P_Sum_Labor_Force_Pop = 'Predicted: Sum_Labor_Force_Pop' ;
+MPRINT(EM_DIAGRAM):   label P_Sum_Labor_Force_Pop = 'Predicted: Sum_Labor_Force_Pop' ;
+23442     +P_Sum_Labor_Force_Pop = _LP0;
+MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = _LP0;
+23443     +
+23444     +drop _R;
+MPRINT(EM_DIAGRAM):   drop _R;
+23445     +if _Y = . then do;
+MPRINT(EM_DIAGRAM):   if _Y = . then do;
+23446     +   R_Sum_Labor_Force_Pop = .;
+MPRINT(EM_DIAGRAM):   R_Sum_Labor_Force_Pop = .;
+23447     +end;
+MPRINT(EM_DIAGRAM):   end;
+23448     +else do;
+MPRINT(EM_DIAGRAM):   else do;
+23449     +   _R = _Y - _LP0;
+MPRINT(EM_DIAGRAM):   _R = _Y - _LP0;
+23450     +    label R_Sum_Labor_Force_Pop = 'Residual: Sum_Labor_Force_Pop' ;
+MPRINT(EM_DIAGRAM):   label R_Sum_Labor_Force_Pop = 'Residual: Sum_Labor_Force_Pop' ;
+23451     +   R_Sum_Labor_Force_Pop = _R;
+MPRINT(EM_DIAGRAM):   R_Sum_Labor_Force_Pop = _R;
+23452     +end;
+MPRINT(EM_DIAGRAM):   end;
+23453     +
+23454     +*************************************;
+MPRINT(EM_DIAGRAM):   *************************************;
+23455     +***** end scoring code for regression;
+MPRINT(EM_DIAGRAM):   ***** end scoring code for regression;
+23456     +*************************************;
+MPRINT(EM_DIAGRAM):   *************************************;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+23457      run;
+ 
+NOTE: DATA STEP view saved on file EMWS1.REG2_VALIDATE.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.TRANS_VALIDATE.VIEW used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.04 seconds
+ 
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+ 
+ 
+MPRINT(EM_DIAGRAM):   quit;
+23458      quit;
+23459      filename emflow;
+MPRINT(EM_DIAGRAM):   filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+23460      filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Reg2: Scoring TEST data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+23461      *------------------------------------------------------------*;
+23462      * Reg2: Scoring TEST data;
+23463      *------------------------------------------------------------*;
+23464      data EMWS1.Reg2_TEST
+23465      / view=EMWS1.Reg2_TEST
+23466      ;
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg2_TEST / view=EMWS1.Reg2_TEST ;
+23467      set EMWS1.Trans_TEST
+23468      ;
+MPRINT(EM_DIAGRAM):   set EMWS1.Trans_TEST ;
+23469      %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMFLOWSCORE.sas.
+23470     +*************************************;
+MPRINT(EM_DIAGRAM):   *************************************;
+23471     +*** begin scoring code for regression;
+MPRINT(EM_DIAGRAM):   *** begin scoring code for regression;
+23472     +*************************************;
+MPRINT(EM_DIAGRAM):   *************************************;
+23473     +
+23474     +length _WARN_ $4;
+MPRINT(EM_DIAGRAM):   length _WARN_ $4;
+23475     +label _WARN_ = 'Warnings' ;
+MPRINT(EM_DIAGRAM):   label _WARN_ = 'Warnings' ;
+23476     +
+23477     +drop _Y;
+MPRINT(EM_DIAGRAM):   drop _Y;
+23478     +_Y = Sum_Labor_Force_Pop ;
+MPRINT(EM_DIAGRAM):   _Y = Sum_Labor_Force_Pop ;
+23479     +
+23480     +drop _DM_BAD;
+MPRINT(EM_DIAGRAM):   drop _DM_BAD;
+23481     +_DM_BAD=0;
+MPRINT(EM_DIAGRAM):   _DM_BAD=0;
+23482     +
+23483     +*** Check Population for missing values ;
+MPRINT(EM_DIAGRAM):   *** Check Population for missing values ;
+23484     +if missing( Population ) then do;
+MPRINT(EM_DIAGRAM):   if missing( Population ) then do;
+23485     +   substr(_warn_,1,1) = 'M';
+MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
+23486     +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+23487     +end;
+MPRINT(EM_DIAGRAM):   end;
+23488     +
+23489     +*** Generate dummy variables for Age_group ;
+MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Age_group ;
+23490     +drop _0_0 _0_1 _0_2 ;
+MPRINT(EM_DIAGRAM):   drop _0_0 _0_1 _0_2 ;
+23491     +if missing( Age_group ) then do;
+MPRINT(EM_DIAGRAM):   if missing( Age_group ) then do;
+23492     +   _0_0 = .;
+MPRINT(EM_DIAGRAM):   _0_0 = .;
+23493     +   _0_1 = .;
+MPRINT(EM_DIAGRAM):   _0_1 = .;
+23494     +   _0_2 = .;
+MPRINT(EM_DIAGRAM):   _0_2 = .;
+23495     +   substr(_warn_,1,1) = 'M';
+MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
+23496     +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+23497     +end;
+MPRINT(EM_DIAGRAM):   end;
+23498     +else do;
+MPRINT(EM_DIAGRAM):   else do;
+23499     +   length _dm19 $ 19; drop _dm19 ;
+MPRINT(EM_DIAGRAM):   length _dm19 $ 19;
+MPRINT(EM_DIAGRAM):   drop _dm19 ;
+23500     +   %DMNORMCP( Age_group , _dm19 )
+MPRINT(DMNORMCP):   _dm19=dmnorm(Age_group,
+MPRINT(DMNORLEN):  32
+MPRINT(DMNORMCP):  );
+23501     +   if _dm19 = '45 TO 64'  then do;
+MPRINT(EM_DIAGRAM):   if _dm19 = '45 TO 64' then do;
+23502     +      _0_0 = 0;
+MPRINT(EM_DIAGRAM):   _0_0 = 0;
+23503     +      _0_1 = 0;
+MPRINT(EM_DIAGRAM):   _0_1 = 0;
+23504     +      _0_2 = 1;
+MPRINT(EM_DIAGRAM):   _0_2 = 1;
+23505     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23506     +   else if _dm19 = '65+'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '65+' then do;
+23507     +      _0_0 = -1;
+MPRINT(EM_DIAGRAM):   _0_0 = -1;
+23508     +      _0_1 = -1;
+MPRINT(EM_DIAGRAM):   _0_1 = -1;
+23509     +      _0_2 = -1;
+MPRINT(EM_DIAGRAM):   _0_2 = -1;
+23510     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23511     +   else if _dm19 = '16 TO 24'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '16 TO 24' then do;
+23512     +      _0_0 = 1;
+MPRINT(EM_DIAGRAM):   _0_0 = 1;
+23513     +      _0_1 = 0;
+MPRINT(EM_DIAGRAM):   _0_1 = 0;
+23514     +      _0_2 = 0;
+MPRINT(EM_DIAGRAM):   _0_2 = 0;
+23515     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23516     +   else if _dm19 = '25 TO 44'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '25 TO 44' then do;
+23517     +      _0_0 = 0;
+MPRINT(EM_DIAGRAM):   _0_0 = 0;
+23518     +      _0_1 = 1;
+MPRINT(EM_DIAGRAM):   _0_1 = 1;
+23519     +      _0_2 = 0;
+MPRINT(EM_DIAGRAM):   _0_2 = 0;
+23520     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23521     +   else do;
+MPRINT(EM_DIAGRAM):   else do;
+23522     +      _0_0 = .;
+MPRINT(EM_DIAGRAM):   _0_0 = .;
+23523     +      _0_1 = .;
+MPRINT(EM_DIAGRAM):   _0_1 = .;
+23524     +      _0_2 = .;
+MPRINT(EM_DIAGRAM):   _0_2 = .;
+23525     +      substr(_warn_,2,1) = 'U';
+MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
+23526     +      _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+23527     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23528     +end;
+MPRINT(EM_DIAGRAM):   end;
+23529     +
+23530     +*** Generate dummy variables for Industry ;
+MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Industry ;
+23531     +drop _1_0 _1_1 _1_2 _1_3 ;
+MPRINT(EM_DIAGRAM):   drop _1_0 _1_1 _1_2 _1_3 ;
+23532     +*** encoding is sparse, initialize to zero;
+MPRINT(EM_DIAGRAM):   *** encoding is sparse, initialize to zero;
+23533     +_1_0 = 0;
+MPRINT(EM_DIAGRAM):   _1_0 = 0;
+23534     +_1_1 = 0;
+MPRINT(EM_DIAGRAM):   _1_1 = 0;
+23535     +_1_2 = 0;
+MPRINT(EM_DIAGRAM):   _1_2 = 0;
+23536     +_1_3 = 0;
+MPRINT(EM_DIAGRAM):   _1_3 = 0;
+23537     +if missing( Industry ) then do;
+MPRINT(EM_DIAGRAM):   if missing( Industry ) then do;
+23538     +   _1_0 = .;
+MPRINT(EM_DIAGRAM):   _1_0 = .;
+23539     +   _1_1 = .;
+MPRINT(EM_DIAGRAM):   _1_1 = .;
+23540     +   _1_2 = .;
+MPRINT(EM_DIAGRAM):   _1_2 = .;
+23541     +   _1_3 = .;
+MPRINT(EM_DIAGRAM):   _1_3 = .;
+23542     +   substr(_warn_,1,1) = 'M';
+MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
+23543     +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+23544     +end;
+MPRINT(EM_DIAGRAM):   end;
+23545     +else do;
+MPRINT(EM_DIAGRAM):   else do;
+23546     +   length _dm32 $ 32; drop _dm32 ;
+MPRINT(EM_DIAGRAM):   length _dm32 $ 32;
+MPRINT(EM_DIAGRAM):   drop _dm32 ;
+23547     +   length _dm111 $ 111; drop _dm111;
+MPRINT(EM_DIAGRAM):   length _dm111 $ 111;
+MPRINT(EM_DIAGRAM):   drop _dm111;
+23548     +   _dm111 = put( Industry , $CHAR111. );
+MPRINT(EM_DIAGRAM):   _dm111 = put( Industry , $CHAR111. );
+23549     +   %DMNORMCP( _dm111, _dm32 )
+MPRINT(DMNORMCP):   _dm32=dmnorm(_dm111,
+MPRINT(DMNORLEN):  32
+MPRINT(DMNORMCP):  );
+23550     +   if _dm32 = 'SERVICE OCCUPATIONS'  then do;
+MPRINT(EM_DIAGRAM):   if _dm32 = 'SERVICE OCCUPATIONS' then do;
+23551     +      _1_0 = -1;
+MPRINT(EM_DIAGRAM):   _1_0 = -1;
+23552     +      _1_1 = -1;
+MPRINT(EM_DIAGRAM):   _1_1 = -1;
+23553     +      _1_2 = -1;
+MPRINT(EM_DIAGRAM):   _1_2 = -1;
+23554     +      _1_3 = -1;
+MPRINT(EM_DIAGRAM):   _1_3 = -1;
+23555     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23556     +   else if _dm32 = 'SALES AND OFFICE OCCUPATIONS'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'SALES AND OFFICE OCCUPATIONS' then do;
+23557     +      _1_3 = 1;
+MPRINT(EM_DIAGRAM):   _1_3 = 1;
+23558     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23559     +   else if _dm32 = 'PRODUCTION, TRANSPORTATION, AND'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'PRODUCTION, TRANSPORTATION, AND' then do;
+23560     +      _1_2 = 1;
+MPRINT(EM_DIAGRAM):   _1_2 = 1;
+23561     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23562     +   else if _dm32 = 'NATURAL RESOURCES, CONSTRUCTION,'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'NATURAL RESOURCES, CONSTRUCTION,' then do;
+23563     +      _1_1 = 1;
+MPRINT(EM_DIAGRAM):   _1_1 = 1;
+23564     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23565     +   else if _dm32 = 'MANAGEMENT, PROFESSIONAL, AND RE'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'MANAGEMENT, PROFESSIONAL, AND RE' then do;
+23566     +      _1_0 = 1;
+MPRINT(EM_DIAGRAM):   _1_0 = 1;
+23567     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23568     +   else do;
+MPRINT(EM_DIAGRAM):   else do;
+23569     +      _1_0 = .;
+MPRINT(EM_DIAGRAM):   _1_0 = .;
+23570     +      _1_1 = .;
+MPRINT(EM_DIAGRAM):   _1_1 = .;
+23571     +      _1_2 = .;
+MPRINT(EM_DIAGRAM):   _1_2 = .;
+23572     +      _1_3 = .;
+MPRINT(EM_DIAGRAM):   _1_3 = .;
+23573     +      substr(_warn_,2,1) = 'U';
+MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
+23574     +      _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+23575     +   end;
+MPRINT(EM_DIAGRAM):   end;
+23576     +end;
+MPRINT(EM_DIAGRAM):   end;
+23577     +
+23578     +*** If missing inputs, use averages;
+MPRINT(EM_DIAGRAM):   *** If missing inputs, use averages;
+23579     +if _DM_BAD > 0 then do;
+MPRINT(EM_DIAGRAM):   if _DM_BAD > 0 then do;
+23580     +   _LP0 =     6470696.42857143;
+MPRINT(EM_DIAGRAM):   _LP0 = 6470696.42857143;
+23581     +   goto REG2DR1;
+MPRINT(EM_DIAGRAM):   goto REG2DR1;
+23582     +end;
+MPRINT(EM_DIAGRAM):   end;
+23583     +
+23584     +*** Compute Linear Predictor;
+MPRINT(EM_DIAGRAM):   *** Compute Linear Predictor;
+23585     +drop _TEMP;
+MPRINT(EM_DIAGRAM):   drop _TEMP;
+23586     +drop _LP0;
+MPRINT(EM_DIAGRAM):   drop _LP0;
+23587     +_LP0 = 0;
+MPRINT(EM_DIAGRAM):   _LP0 = 0;
+23588     +
+23589     +***  Effect: Population*Age_group*Industry ;
+MPRINT(EM_DIAGRAM):   *** Effect: Population*Age_group*Industry ;
+23590     +_TEMP = Population ;
+MPRINT(EM_DIAGRAM):   _TEMP = Population ;
+23591     +_LP0 = _LP0 + (   -0.11715613953136) * _TEMP * _0_0 * _1_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -0.11715613953136) * _TEMP * _0_0 * _1_0;
+23592     +_LP0 = _LP0 + (    0.02700341050736) * _TEMP * _0_0 * _1_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.02700341050736) * _TEMP * _0_0 * _1_1;
+23593     +_LP0 = _LP0 + (    0.01251898117875) * _TEMP * _0_0 * _1_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.01251898117875) * _TEMP * _0_0 * _1_2;
+23594     +_LP0 = _LP0 + (    0.01863889821193) * _TEMP * _0_0 * _1_3;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.01863889821193) * _TEMP * _0_0 * _1_3;
+23595     +_LP0 = _LP0 + (    0.09663568488618) * _TEMP * _0_1 * _1_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.09663568488618) * _TEMP * _0_1 * _1_0;
+23596     +_LP0 = _LP0 + (   -0.03979851587655) * _TEMP * _0_1 * _1_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -0.03979851587655) * _TEMP * _0_1 * _1_1;
+23597     +_LP0 = _LP0 + (   -0.03370616598682) * _TEMP * _0_1 * _1_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -0.03370616598682) * _TEMP * _0_1 * _1_2;
+23598     +_LP0 = _LP0 + (    0.00628489271812) * _TEMP * _0_1 * _1_3;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.00628489271812) * _TEMP * _0_1 * _1_3;
+23599     +_LP0 = _LP0 + (    0.09152611804654) * _TEMP * _0_2 * _1_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.09152611804654) * _TEMP * _0_2 * _1_0;
+23600     +_LP0 = _LP0 + (   -0.03738941285564) * _TEMP * _0_2 * _1_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -0.03738941285564) * _TEMP * _0_2 * _1_1;
+23601     +_LP0 = _LP0 + (   -0.02229371492902) * _TEMP * _0_2 * _1_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -0.02229371492902) * _TEMP * _0_2 * _1_2;
+23602     +_LP0 = _LP0 + (    0.00483071597825) * _TEMP * _0_2 * _1_3;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.00483071597825) * _TEMP * _0_2 * _1_3;
+23603     +
+23604     +***  Effect: Age_group ;
+MPRINT(EM_DIAGRAM):   *** Effect: Age_group ;
+23605     +_TEMP = 1;
+MPRINT(EM_DIAGRAM):   _TEMP = 1;
+23606     +_LP0 = _LP0 + (   -1151827.58078611) * _TEMP * _0_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -1151827.58078611) * _TEMP * _0_0;
+23607     +_LP0 = _LP0 + (    3344383.07340614) * _TEMP * _0_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 3344383.07340614) * _TEMP * _0_1;
+23608     +_LP0 = _LP0 + (    1719019.78617864) * _TEMP * _0_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 1719019.78617864) * _TEMP * _0_2;
+23609     +
+23610     +***  Effect: Industry ;
+MPRINT(EM_DIAGRAM):   *** Effect: Industry ;
+23611     +_TEMP = 1;
+MPRINT(EM_DIAGRAM):   _TEMP = 1;
+23612     +_LP0 = _LP0 + (    3665917.37954249) * _TEMP * _1_0;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 3665917.37954249) * _TEMP * _1_0;
+23613     +_LP0 = _LP0 + (   -2802842.40028867) * _TEMP * _1_1;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -2802842.40028867) * _TEMP * _1_1;
+23614     +_LP0 = _LP0 + (    -2038406.8909291) * _TEMP * _1_2;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( -2038406.8909291) * _TEMP * _1_2;
+23615     +_LP0 = _LP0 + (    1644635.92898508) * _TEMP * _1_3;
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 1644635.92898508) * _TEMP * _1_3;
+23616     +
+23617     +***  Effect: Population ;
+MPRINT(EM_DIAGRAM):   *** Effect: Population ;
+23618     +_TEMP = Population ;
+MPRINT(EM_DIAGRAM):   _TEMP = Population ;
+23619     +_LP0 = _LP0 + (    0.10026222163702 * _TEMP);
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 0.10026222163702 * _TEMP);
+23620     +*--- Intercept ---*;
+MPRINT(EM_DIAGRAM):   *--- Intercept ---*;
+23621     +_LP0 = _LP0 + (    1131306.73108067);
+MPRINT(EM_DIAGRAM):   _LP0 = _LP0 + ( 1131306.73108067);
+23622     +
+23623     +REG2DR1:
+23624     +
+23625     +*** Predicted Value, Error, and Residual;
+MPRINT(EM_DIAGRAM):   REG2DR1: *** Predicted Value, Error, and Residual;
+23626     +label P_Sum_Labor_Force_Pop = 'Predicted: Sum_Labor_Force_Pop' ;
+MPRINT(EM_DIAGRAM):   label P_Sum_Labor_Force_Pop = 'Predicted: Sum_Labor_Force_Pop' ;
+23627     +P_Sum_Labor_Force_Pop = _LP0;
+MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = _LP0;
+23628     +
+23629     +drop _R;
+MPRINT(EM_DIAGRAM):   drop _R;
+23630     +if _Y = . then do;
+MPRINT(EM_DIAGRAM):   if _Y = . then do;
+23631     +   R_Sum_Labor_Force_Pop = .;
+MPRINT(EM_DIAGRAM):   R_Sum_Labor_Force_Pop = .;
+23632     +end;
+MPRINT(EM_DIAGRAM):   end;
+23633     +else do;
+MPRINT(EM_DIAGRAM):   else do;
+23634     +   _R = _Y - _LP0;
+MPRINT(EM_DIAGRAM):   _R = _Y - _LP0;
+23635     +    label R_Sum_Labor_Force_Pop = 'Residual: Sum_Labor_Force_Pop' ;
+MPRINT(EM_DIAGRAM):   label R_Sum_Labor_Force_Pop = 'Residual: Sum_Labor_Force_Pop' ;
+23636     +   R_Sum_Labor_Force_Pop = _R;
+MPRINT(EM_DIAGRAM):   R_Sum_Labor_Force_Pop = _R;
+23637     +end;
+MPRINT(EM_DIAGRAM):   end;
+23638     +
+23639     +*************************************;
+MPRINT(EM_DIAGRAM):   *************************************;
+23640     +***** end scoring code for regression;
+MPRINT(EM_DIAGRAM):   ***** end scoring code for regression;
+23641     +*************************************;
+MPRINT(EM_DIAGRAM):   *************************************;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+23642      run;
+ 
+NOTE: DATA STEP view saved on file EMWS1.REG2_TEST.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.TRANS_TEST.VIEW used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+ 
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.06 seconds
+ 
+ 
+MPRINT(EM_DIAGRAM):   quit;
+23643      quit;
+23644      filename emflow;
+MPRINT(EM_DIAGRAM):   filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+23645      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+23646      * Reg2: Computing metadata for TRAIN data;
+MPRINT(EM_DIAGRAM):   * Reg2: Computing metadata for TRAIN data;
+23647      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+ 
+NOTE: View EMWS1.REG2_TRAIN.VIEW used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.06 seconds
+ 
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * &nodeid: Computing Metadata for TRAIN data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   filename _delta "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\CDELTA_TRAIN.sas";
+MPRINT(EMADVISECOLUMNS):   proc display c=sashelp.emmeta.advisecolumns.scl;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    options validvarname=any;
+MPRINT(EMADVISECOLUMNS):   proc contents data=EMWS1.Reg2_TRAIN out=_tempAdvisor noprint;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):   options validvarname=V7;
+MPRINT(EMADVISECOLUMNS):    data _null_;
+MPRINT(EMADVISECOLUMNS):   dsid = open('EMWS1.Reg2_TRAIN');
+MPRINT(EMADVISECOLUMNS):   call symput('_dsidTable', strip(put(dsid, best.)));
+MPRINT(EMADVISECOLUMNS):   if dsid then do;
+MPRINT(EMADVISECOLUMNS):   call symput('_engineTable', attrc(dsid, 'ENGINE'));
+MPRINT(EMADVISECOLUMNS):   dsid = close(dsid);
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    proc contents data=EMWS1.Reg2_TRAIN out=WORK.M2FSXDEP noprint;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2FSXDEP;
+MPRINT(EMADVISECOLUMNS):   length NAME $ 64 TYPE $ 1 LABEL $ 200 FORMAT $ 36 INFORMAT $36 INDEX $ 1 INDEXTYPE $ 9;
+MPRINT(EMADVISECOLUMNS):   label NAME =;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2FSXDEP(keep=name type length label format formatl formatd informat informl informd idxusage rename=(type=itype));
+MPRINT(EMADVISECOLUMNS):   if itype = 1 then type = 'N';
+MPRINT(EMADVISECOLUMNS):   else type = 'C';
+MPRINT(EMADVISECOLUMNS):   if formatl > 0 then do;
+MPRINT(EMADVISECOLUMNS):   if format ne '' then do;
+MPRINT(EMADVISECOLUMNS):   if type='N' then format = strip(format)!!strip(put(formatl, best12.))!!'.'!!strip(put(formatd, best12.));
+MPRINT(EMADVISECOLUMNS):   else format = strip(format)!!strip(put(formatl, best12.))!!'.';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else format = strip(put(formatl, best12.))!!'.'!!strip(put(formatd, best12.));
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if format ne '' then format = strip(format)!!'.';
+MPRINT(EMADVISECOLUMNS):   if informl > 0 then do;
+MPRINT(EMADVISECOLUMNS):   if informat ne ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if type='N' then informat = strip(informat)!!strip(put(informl, best12.))!!'.'!!strip(put(informd, best12.));
+MPRINT(EMADVISECOLUMNS):   else informat = strip(informat)!!strip(put(informl, best12.))!!'.';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else informat = strip(put(informl, best12.))!!'.'!!strip(put(informd, best12.));
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if informat ne '' then informat = strip(informat)!!'.';
+MPRINT(EMADVISECOLUMNS):   if idxusage = 'NONE' then index ="N";
+MPRINT(EMADVISECOLUMNS):   else index = "Y";
+MPRINT(EMADVISECOLUMNS):   indextype = idxusage;
+MPRINT(EMADVISECOLUMNS):   drop idxusage itype formatl formatd informl informd;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2FSXDEP;
+MPRINT(EMADVISECOLUMNS):   length UNAME $64;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2FSXDEP;
+MPRINT(EMADVISECOLUMNS):   UNAME = upcase(NAME);
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    proc sort data=WORK.M2TXOLP3 NOTHREADS;
+MPRINT(EMADVISECOLUMNS):   by UNAME;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2TXOLP3;
+MPRINT(EMADVISECOLUMNS):   drop UNAME;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2TXOLP3;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2KCF3R5(keep=NAME ATTR);
+MPRINT(EMADVISECOLUMNS):   length ATTR $ 20;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2TXOLP3;
+MPRINT(EMADVISECOLUMNS):   if level ne "INTERVAL" then do;
+MPRINT(EMADVISECOLUMNS):   if order = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'ORDER';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if format ne ' ' and formattype = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'FORMATTYPE';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if role = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'ROLE';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if level = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'LEVEL';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if type = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'TYPE';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if index = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'INDEX';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if report = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'REPORT';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):   proc sort NOTHREADS;
+MPRINT(EMADVISECOLUMNS):   by attr;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2TXOLP3;
+MPRINT(EMADVISECOLUMNS):   length NAME $64 ROLE $ 32 LEVEL $ 10 ORDER $ 8 CREATOR $32 FORMATTYPE $ 10 FAMILY $ 10 LOWERLIMIT 8 UPPERLIMIT 8 REPORT $1 DISTRIBUTION $ 20 COMMENT $64;
+MPRINT(EMADVISECOLUMNS):   length levelAssigned 8 roleAssigned 8 PRICE 8;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2TXOLP3;
+MPRINT(EMADVISECOLUMNS):   if formattype = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if format ne ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if type = 'N' then do;
+MPRINT(EMADVISECOLUMNS):   pos = indexc(format,'.1234567890');
+MPRINT(EMADVISECOLUMNS):   if pos > 1 then tempfmt = substr(format,1, pos-1);
+MPRINT(EMADVISECOLUMNS):   else tempfmt = ' ';
+MPRINT(EMADVISECOLUMNS):   flen = length(tempfmt);
+MPRINT(EMADVISECOLUMNS):   select;
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("DATE" "DAY" "DDMMYY" "DOWNAME" "JULDAY" "JULIAN" "MMDDYY" "MMDDYYD" "MMDDYYC" "MMDDYYN" "MMDDYYP" "MMDDYYS" "MONNAME" "MONTH" "MONYY" "NENGO" "QTR" "QTRR" "WEEKDATE" "WEEKDATX" "WEEKDAY" "WORDDATE" "WORDDATX"
+"YEAR" "YYMMDD" "YYMON" "YYMMDDC" "YYMMDDD" "YYMMDDN" "YYMMDDP" "YYMMDDS" "EURDFDE" "NJDATE" "NLDATE" "EURDFDD" "EURDFDWN" "EURDFMN" "EURDFMY" "EURDFWK" "EURDFWKX" "EURDFWDX" "EURDFDN" "EURDFDE" )) formattype = 'DATE';
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("DATETIME" "EURDFDT" "TOD" )) formattype = "DATETIME";
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("HHMM" "HOUR" "MMSS" "TIME" "TIMEAMPM" )) formattype = "TIME";
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("COMMA" "COMMAX" "DOLLAR" "DOLLARX" "E" "FRACT" "NEGPAREN" "PERCENT")) formattype="QUANTITY";
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("BINARY" "HEX" "IB" "OCTAL" "PD" "PIB" "PK" "RB" "SSN" "Z" "ZD")) formattype = "CODING";
+MPRINT(EMADVISECOLUMNS):   otherwise do;
+MPRINT(EMADVISECOLUMNS):   formattype = "USER";
+MPRINT(EMADVISECOLUMNS):   if compress(tempfmt, '0123456789.', '') = '' then formattype='NUM';
+MPRINT(EMADVISECOLUMNS):   else if substr(tempfmt, 1, 6)='NLDATE' then formattype = "DATE";
+MPRINT(EMADVISECOLUMNS):   else if substr(tempfmt, 1, 6)='NLDATM' then formattype = "DATETIME";
+MPRINT(EMADVISECOLUMNS):   else if substr(tempfmt, 1, 4)='NLTIM' then formattype = "TIME";
+MPRINT(EMADVISECOLUMNS):   else if flen >= 4 then do;
+MPRINT(EMADVISECOLUMNS):   str = substr(tempfmt,1,4);
+MPRINT(EMADVISECOLUMNS):   if str in ("MMYY" "YYMM" "YYQR") then formattype ="DATE";
+MPRINT(EMADVISECOLUMNS):   else if str = "S370" then formattype = "CODING";
+MPRINT(EMADVISECOLUMNS):   else if str = "BEST" then formattype = "NUM";
+MPRINT(EMADVISECOLUMNS):   drop str;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if flen >=3 and substr(tempfmt,1,3) = "YYQ" then formatType = "DATE";
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   drop flen tempfmt pos;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else do;
+MPRINT(EMADVISECOLUMNS):   formatType = "CATEGORY";
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if formatType = "NUM" then do;
+MPRINT(EMADVISECOLUMNS):   if index = "Y" then formatType = "DISCRETE";
+MPRINT(EMADVISECOLUMNS):   else formatType = "QUANTITY";
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if level = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if formatType in ("CATEGORY", "CODING", "ID") or type = "C" then level = "NOMINAL";
+MPRINT(EMADVISECOLUMNS):   else level = "INTERVAL";
+MPRINT(EMADVISECOLUMNS):   levelAssigned = 1;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else level = upcase(level);
+MPRINT(EMADVISECOLUMNS):   if role = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   length name_prefix $8 _uname $64;
+MPRINT(EMADVISECOLUMNS):   drop name_prefix _uname _freqflag;
+MPRINT(EMADVISECOLUMNS):   retain _freqflag;
+MPRINT(EMADVISECOLUMNS):   if LENGTH> 80 then ROLE = 'TEXT';
+MPRINT(EMADVISECOLUMNS):   _uname = upcase(NAME);
+MPRINT(EMADVISECOLUMNS):   select(_uname);
+MPRINT(EMADVISECOLUMNS):   when('_PARTIND_') do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'ID';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   when('_WARN_') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_SEGMENT') do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'SEGMENT';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   when('_NODE_') do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'SEGMENT';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   when('EM_CLASSTARGET') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_VALUETARGET') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_PREDICTION') ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   when('EM_PROBABILITY') ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   when('EM_EVENTPROBABILITY') ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   when('EM_CLASSIFICATION') ROLE = 'CLASSIFICATION';
+MPRINT(EMADVISECOLUMNS):   when('EM_DECISION') ROLE = 'DECISION';
+MPRINT(EMADVISECOLUMNS):   when('EM_PROFIT') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_LOSS') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_ROI') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('URI') ROLE = 'URL';
+MPRINT(EMADVISECOLUMNS):   when('FILTERED') ROLE = 'TEXTLOC';
+MPRINT(EMADVISECOLUMNS):   otherwise do;
+MPRINT(EMADVISECOLUMNS):   if upcase(NAME) =: 'ZIP' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'REJECTED';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   COMMENT = 'Rejected by: Exceed the maximum class level of %s';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if upcase(NAME) in('FREQ', 'FREQUENCY') then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'FREQ';
+MPRINT(EMADVISECOLUMNS):   if TYPE = 'C' then ROLE = 'INPUT';
+MPRINT(EMADVISECOLUMNS):   else if _freqflag =1 then ROLE='REJECTED';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else do;
+MPRINT(EMADVISECOLUMNS):   name_prefix = scan(_uname, 1, '_');
+MPRINT(EMADVISECOLUMNS):   if scan(_uname, 2, '_') = '' then name_prefix='';
+MPRINT(EMADVISECOLUMNS):   if name_prefix in('F', 'I', 'U') then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'CLASSIFICATION';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('Q') then ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('P', 'V') then ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('R', 'RS', 'RT', 'RD', 'RDS', 'RDT', 'RA', 'RAS', 'RAT') then ROLE = 'RESIDUAL';
+MPRINT(EMADVISECOLUMNS):   else if name_prefix ='D' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'DECISION';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if name_prefix ='B' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'SEGMENT';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('EP', 'BP', 'CP', 'EL', 'CL', 'BL', 'W', 'ROI', 'IC') then ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   else do;
+MPRINT(EMADVISECOLUMNS):   array _ROLE_ (19) $32 _TEMPORARY_ ('ASSESS','CLASSIFICATION','CENSOR', 'COST', 'CROSSID', 'DECISION', 'ID','INPUT', 'LABEL', 'MISSING','PREDICT','REFERRER','REJECTED', 'RESIDUAL','SEGMENT', 'SEQUENCE','TARGET', 'TEXT', 'TIMEID');
+MPRINT(EMADVISECOLUMNS):   drop _found_ i;
+MPRINT(EMADVISECOLUMNS):   _found_=0;
+MPRINT(EMADVISECOLUMNS):   do i=1 to 19 until(_found_=1);
+MPRINT(EMADVISECOLUMNS):   if index(_uname, trim(_ROLE_{i}))=1 then do;
+MPRINT(EMADVISECOLUMNS):   ROLE=_ROLE_{i};
+MPRINT(EMADVISECOLUMNS):   if ROLE = 'ID' then LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   else if ROLE = 'SEGMENT' then LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   else if ROLE = 'TIMEID' and TYPE='N' then LEVEL = 'INTERVAL';
+MPRINT(EMADVISECOLUMNS):   _found_=1;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if length(_uname)>2 then do;
+MPRINT(EMADVISECOLUMNS):   if substr(reverse(trim(_uname)), 1, 3) = 'DI_' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'ID';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if ROLE='FREQ' then _freqflag=1;
+MPRINT(EMADVISECOLUMNS):   else if ROLE = 'CLASSIFICATION' then LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   if symexist('RATEMKG_ROLE') then do;
+MPRINT(EMADVISECOLUMNS):   if upcase(symget('RATEMKG_ROLE')) in('Y', 'YES') then do;
+MPRINT(EMADVISECOLUMNS):   if _uname =: 'POLICY' then ROLE = 'POLICYID';
+MPRINT(EMADVISECOLUMNS):   else if _uname in ('PARTITION', '_PARTIND_') then ROLE = 'PARTITION';
+MPRINT(EMADVISECOLUMNS):   else if type = 'N' then do;
+MPRINT(EMADVISECOLUMNS):   if _uname = 'EXPOSURE' then ROLE = 'EXPOSURE';
+MPRINT(EMADVISECOLUMNS):   else if _uname = 'YEAR' then ROLE = 'YEAR';
+MPRINT(EMADVISECOLUMNS):   else if _uname = 'WEIGHT' then ROLE = 'WEIGHT';
+MPRINT(EMADVISECOLUMNS):   else if _uname = 'OFFSET' then ROLE = 'OFFSET';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if role = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if formattype in('DATE', 'DATETIME', 'TIME') then role = 'TIMEID';
+MPRINT(EMADVISECOLUMNS):   else role = 'INPUT';
+MPRINT(EMADVISECOLUMNS):   roleAssigned = 1;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else role = upcase(role);
+MPRINT(EMADVISECOLUMNS):   if REPORT = '' then REPORT = 'N';
+MPRINT(EMADVISECOLUMNS):   if symexist('dmwb_product') then do;
+MPRINT(EMADVISECOLUMNS):   if upcase(symget('dmwb_product')) = 'FACTORYMINER_DATASOURCE' then do;
+MPRINT(EMADVISECOLUMNS):   if ROLE ^in('INPUT', 'TARGET', 'REJECTED', 'SEGMENT', 'FREQ', 'ID', 'KEY') then ROLE='REJECTED';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2TXOLP3;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2TXOLP3;
+MPRINT(EMADVISECOLUMNS):   label NAME = "Variable Name" TYPE = "Type" ROLE = "Role" LEVEL= "Measurement Level" ORDER= "Order" CREATOR= "Creator" FORMATTYPE= "Format Type" FAMILY= "Family" DISTRIBUTION= "Distribution" PRICE= "Price" LOWERLIMIT= "Lower
+limit" UPPERLIMIT= "Upper Limit" REPORT= "Report" COMMENT= "Comment" INDEX= "Index" INDEXTYPE= "IndexType" LABEL= "Label" LENGTH= "Length";
+MPRINT(EMADVISECOLUMNS):   drop levelAssigned roleAssigned;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.COLUMNMETA;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * &nodeid: Merge incoming metadata;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   proc contents data=EMWS1.Trans_TRAIN noprint out=_temp2(keep=NAME);
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=_temp2;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Trans_CMeta_TRAIN out=_temp;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg2_CMeta_TRAIN;
+MPRINT(EM_DIAGRAM):   merge WORK.COLUMNMETA(in=_a) _temp2(in=_b) _temp(drop=FORMAT INFORMAT LENGTH INDEX INDEXTYPE in=_c) end=_eof_;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   if (^_a and _b) or (^_c and _a and _b) then delete;
+MPRINT(EM_DIAGRAM):   if ^_b then CREATOR = "Reg2";
+MPRINT(EM_DIAGRAM):   length model $200;
+MPRINT(EM_DIAGRAM):   label MODEL = "Model Node";
+MPRINT(EM_DIAGRAM):   select(upcase(name));
+MPRINT(EM_DIAGRAM):   when("P_SUM_LABOR_FORCE_POP") creator = "Reg2";
+MPRINT(EM_DIAGRAM):   when("R_SUM_LABOR_FORCE_POP") creator = "Reg2";
+MPRINT(EM_DIAGRAM):   when("_WARN_") creator = "Reg2";
+MPRINT(EM_DIAGRAM):   when("SUM_LABOR_FORCE_POP") model = "Reg2";
+MPRINT(EM_DIAGRAM):   when('');
+MPRINT(EM_DIAGRAM):   otherwise;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Reg2: Apply Delta Code;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename _delta;
+23995      data WORK.MODELTEMP_INFO;
+MPRINT(EM_DIAGRAM):    data WORK.MODELTEMP_INFO;
+23996      set EMWS1.Reg2_EMINFO;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_EMINFO;
+23997      where DATA='Reg2' and KEY ^in('DECDATA', 'DECMETA', 'IMPORTANCE', 'MODEL');
+MPRINT(EM_DIAGRAM):   where DATA='Reg2' and KEY ^in('DECDATA', 'DECMETA', 'IMPORTANCE', 'MODEL');
+23998      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 0 observations read from the data set EMWS1.REG2_EMINFO.
+      WHERE (DATA='Reg2') and KEY not in ('DECDATA', 'DECMETA', 'IMPORTANCE', 'MODEL');
+NOTE: The data set WORK.MODELTEMP_INFO has 0 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+23999      data EMWS1.Reg2_EMINFO;
+MPRINT(EM_DIAGRAM):    data EMWS1.Reg2_EMINFO;
+24000      length TARGET KEY $32 DATA $43;
+MPRINT(EM_DIAGRAM):   length TARGET KEY $32 DATA $43;
+24001      input TARGET KEY DATA $;
+MPRINT(EM_DIAGRAM):   input TARGET KEY DATA $;
+24002      cards;
+MPRINT(EM_DIAGRAM):   cards;
+ 
+NOTE: The data set EMWS1.REG2_EMINFO has 3 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+MPRINT(EM_DIAGRAM):   run;
+24006      run;
+24007      data EMWS1.Reg2_EMINFO;
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg2_EMINFO;
+24008      set EMWS1.Reg2_EMINFO WORK.MODELTEMP_INFO;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_EMINFO WORK.MODELTEMP_INFO;
+24009      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 3 observations read from the data set EMWS1.REG2_EMINFO.
+NOTE: There were 0 observations read from the data set WORK.MODELTEMP_INFO.
+NOTE: The data set EMWS1.REG2_EMINFO has 3 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+ 
+ 
+24010      proc sort data = EMWS1.Reg2_EMINFO NOTHREADS;
+MPRINT(EM_DIAGRAM):    proc sort data = EMWS1.Reg2_EMINFO NOTHREADS;
+24011      by TARGET KEY;
+MPRINT(EM_DIAGRAM):   by TARGET KEY;
+24012      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 3 observations read from the data set EMWS1.REG2_EMINFO.
+NOTE: The data set EMWS1.REG2_EMINFO has 3 observations and 3 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+24013      proc sort data = EMWS1.Ids_EMINFO OUT=WORK.SORTEDEMINFO NOTHREADS;
+MPRINT(EM_DIAGRAM):    proc sort data = EMWS1.Ids_EMINFO OUT=WORK.SORTEDEMINFO NOTHREADS;
+24014      by TARGET KEY;
+MPRINT(EM_DIAGRAM):   by TARGET KEY;
+24015      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 3 observations read from the data set EMWS1.IDS_EMINFO.
+NOTE: The data set WORK.SORTEDEMINFO has 3 observations and 3 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+ 
+ 
+24016      proc sort data = EMWS1.Reg2_EMINFO OUT=WORK.TEMP_INFO NOTHREADS;
+MPRINT(EM_DIAGRAM):   proc sort data = EMWS1.Reg2_EMINFO OUT=WORK.TEMP_INFO NOTHREADS;
+24017      by TARGET KEY;
+MPRINT(EM_DIAGRAM):   by TARGET KEY;
+24018      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: Input data set is already sorted; it has been copied to the output data set.
+NOTE: There were 3 observations read from the data set EMWS1.REG2_EMINFO.
+NOTE: The data set WORK.TEMP_INFO has 3 observations and 3 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+ 
+ 
+24019      data EMWS1.Reg2_EMINFO;
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg2_EMINFO;
+24020      merge WORK.SORTEDEMINFO WORK.TEMP_INFO;
+MPRINT(EM_DIAGRAM):   merge WORK.SORTEDEMINFO WORK.TEMP_INFO;
+24021      by TARGET KEY;
+MPRINT(EM_DIAGRAM):   by TARGET KEY;
+24022      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 3 observations read from the data set WORK.SORTEDEMINFO.
+NOTE: There were 3 observations read from the data set WORK.TEMP_INFO.
+NOTE: The data set EMWS1.REG2_EMINFO has 4 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+24023      proc datasets lib=work nolist;
+MPRINT(EM_DIAGRAM):   proc datasets lib=work nolist;
+24024      delete TEMP_INFO SORTEDEMINFO;
+MPRINT(EM_DIAGRAM):   delete TEMP_INFO SORTEDEMINFO;
+24025      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: Deleting WORK.TEMP_INFO (memtype=DATA).
+NOTE: Deleting WORK.SORTEDEMINFO (memtype=DATA).
+24026      quit;
+MPRINT(EM_DIAGRAM):   quit;
+ 
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+ 
+ 
+NOTE: View EMWS1.REG2_TRAIN.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.06 seconds
+ 
+NOTE: View EMWS1.REG2_VALIDATE.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.04 seconds
+ 
+NOTE: View EMWS1.REG2_TEST.VIEW used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+ 
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "December 10, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:48:38" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Report Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Report Log
+Date:                December 10, 2019
+Time:                15:48:38
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O26PTUNW "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Reg2\EMREPORT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O26PTUNW new;
+MPRINT(EM_DIAGRAM):   run;
+24050      data WORK.DMREGTEMP;
+MPRINT(EM_DIAGRAM):    data WORK.DMREGTEMP;
+24051      merge EMWS1.Reg2_EMESTIMATE EMWS1.Reg2_FITTEST;
+MPRINT(EM_DIAGRAM):   merge EMWS1.Reg2_EMESTIMATE EMWS1.Reg2_FITTEST;
+24052      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 3 observations read from the data set EMWS1.REG2_EMESTIMATE.
+NOTE: There were 1 observations read from the data set EMWS1.REG2_FITTEST.
+NOTE: The data set WORK.DMREGTEMP has 3 observations and 66 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+24053      data EMWS1.Reg2_EMOUTFIT;
+MPRINT(EM_DIAGRAM):    data EMWS1.Reg2_EMOUTFIT;
+24054      length TARGET $32;
+MPRINT(EM_DIAGRAM):   length TARGET $32;
+24055      set WORK.DMREGTEMP end=eof;
+MPRINT(EM_DIAGRAM):   set WORK.DMREGTEMP end=eof;
+24056      where (_TYPE_='PARMS');
+MPRINT(EM_DIAGRAM):   where (_TYPE_='PARMS');
+24057      drop _TYPE_--Population;
+MPRINT(EM_DIAGRAM):   drop _TYPE_--Population;
+24058      if eof then do;
+MPRINT(EM_DIAGRAM):   if eof then do;
+24059      TARGET = "Sum_Labor_Force_Pop";
+MPRINT(EM_DIAGRAM):   TARGET = "Sum_Labor_Force_Pop";
+24060      output;
+MPRINT(EM_DIAGRAM):   output;
+24061      end;
+MPRINT(EM_DIAGRAM):   end;
+24062      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 1 observations read from the data set WORK.DMREGTEMP.
+      WHERE _TYPE_='PARMS';
+NOTE: The data set EMWS1.REG2_EMOUTFIT has 1 observations and 44 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+ 
+ 
+24063      data EMWS1.Reg2_EMOUTFIT;
+MPRINT(EM_DIAGRAM):    data EMWS1.Reg2_EMOUTFIT;
+24064      set EMWS1.Reg2_EMOUTFIT;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_EMOUTFIT;
+24065      length TargetLabel $200;
+MPRINT(EM_DIAGRAM):   length TargetLabel $200;
+24066      label targetLabel = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label targetLabel = "Target Label";
+24067      if upcase(TARGET) eq "SUM_LABOR_FORCE_POP" then TargetLabel = 'Industry_Population';
+MPRINT(EM_DIAGRAM):   if upcase(TARGET) eq "SUM_LABOR_FORCE_POP" then TargetLabel = 'Industry_Population';
+24068      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 1 observations read from the data set EMWS1.REG2_EMOUTFIT.
+NOTE: The data set EMWS1.REG2_EMOUTFIT has 1 observations and 45 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+ 
+ 
+24069      proc sort data=EMWS1.Reg2_EMREPORTFIT nothreads;
+MPRINT(EM_DIAGRAM):    proc sort data=EMWS1.Reg2_EMREPORTFIT nothreads;
+24070      by TARGET;
+MPRINT(EM_DIAGRAM):   by TARGET;
+24071      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 19 observations read from the data set EMWS1.REG2_EMREPORTFIT.
+NOTE: The data set EMWS1.REG2_EMREPORTFIT has 19 observations and 7 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+ 
+ 
+24072      %let _EMwarndup = 0;
+24073      %let _EMtargetdup =;
+24074      %let _EMASEtargetdup =;
+24075      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+24076      set EMWS1.Reg2_EMOUTFIT;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_EMOUTFIT;
+24077      if .<_ASE_<0.000001 then do;
+MPRINT(EM_DIAGRAM):   if .<_ASE_<0.000001 then do;
+24078      call symput('_EMwarndup', '1');
+MPRINT(EM_DIAGRAM):   call symput('_EMwarndup', '1');
+24079      call symput('_EMtargetdup', target);
+MPRINT(EM_DIAGRAM):   call symput('_EMtargetdup', target);
+24080      call symput('_EMASEtargetdup', put(_ASE_, best.));
+MPRINT(EM_DIAGRAM):   call symput('_EMASEtargetdup', put(_ASE_, best.));
+24081      end;
+MPRINT(EM_DIAGRAM):   end;
+24082      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 1 observations read from the data set EMWS1.REG2_EMOUTFIT.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+24083      proc sort data=EMWS1.Trans_CMeta_TRAIN out=WORK.SUBSETINMETA;
+MPRINT(EM_DIAGRAM):    proc sort data=EMWS1.Trans_CMeta_TRAIN out=WORK.SUBSETINMETA;
+24084      by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+24085      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 5 observations read from the data set EMWS1.TRANS_CMETA_TRAIN.
+NOTE: The data set WORK.SUBSETINMETA has 5 observations and 20 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+24086      proc sort data=EMWS1.Reg2_VariableSet out=WORK.SUBSETVARSET(keep=NAME REPORT);
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Reg2_VariableSet out=WORK.SUBSETVARSET(keep=NAME REPORT);
+24087      by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+24088      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 4 observations read from the data set EMWS1.REG2_VARIABLESET.
+NOTE: The data set WORK.SUBSETVARSET has 4 observations and 2 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+24089      data WORK.ASSESS_META;
+MPRINT(EM_DIAGRAM):   data WORK.ASSESS_META;
+24090      merge WORK.SUBSETINMETA WORK.SUBSETVARSET;
+MPRINT(EM_DIAGRAM):   merge WORK.SUBSETINMETA WORK.SUBSETVARSET;
+24091      by NAME;
+MPRINT(EM_DIAGRAM):   by NAME;
+24092      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 5 observations read from the data set WORK.SUBSETINMETA.
+NOTE: There were 4 observations read from the data set WORK.SUBSETVARSET.
+NOTE: The data set WORK.ASSESS_META has 5 observations and 20 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+24093      data EM_temp_assessMeta;
+MPRINT(EM_DIAGRAM):    data EM_temp_assessMeta;
+24094      set EMWS1.Reg2_CMeta_TRAIN;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_CMeta_TRAIN;
+24095      where role in('DECISION', 'PREDICT', 'RESIDUAL', 'CLASSIFICATION', 'ASSESS', 'COST');
+MPRINT(EM_DIAGRAM):   where role in('DECISION', 'PREDICT', 'RESIDUAL', 'CLASSIFICATION', 'ASSESS', 'COST');
+24096      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 3 observations read from the data set EMWS1.REG2_CMETA_TRAIN.
+      WHERE role in ('ASSESS', 'CLASSIFICATION', 'COST', 'DECISION', 'PREDICT', 'RESIDUAL');
+NOTE: The data set WORK.EM_TEMP_ASSESSMETA has 3 observations and 21 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+ 
+ 
+24097      data EM_temp_assessdata;
+MPRINT(EM_DIAGRAM):    data EM_temp_assessdata;
+24098      set EMWS1.Reg2_TRAIN(keep=
+24099      P_Sum_Labor_Force_Pop
+24100      R_Sum_Labor_Force_Pop
+24101      _WARN_
+24102      Sum_Labor_Force_Pop
+24103      );
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_TRAIN(keep= P_Sum_Labor_Force_Pop R_Sum_Labor_Force_Pop _WARN_ Sum_Labor_Force_Pop );
+24104      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 112 observations read from the data set EMWS1.PART_TRAIN.
+NOTE: View EMWS1.REG2_TRAIN.VIEW used (Total process time):
+      real time           0.07 seconds
+      cpu time            0.07 seconds
+ 
+NOTE: There were 112 observations read from the data set EMWS1.TRANS_TRAIN.
+NOTE: There were 112 observations read from the data set EMWS1.REG2_TRAIN.
+NOTE: The data set WORK.EM_TEMP_ASSESSDATA has 112 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.09 seconds
+      cpu time            0.09 seconds
+ 
+ 
+MPRINT(EM_DIAGRAM):    data WORK._RESMETA;
+MPRINT(EM_DIAGRAM):   length NAME $32 LEVEL $8 ROLE $32 type $1;
+MPRINT(EM_DIAGRAM):   NAME="R_Sum_Labor_Force_Pop";
+MPRINT(EM_DIAGRAM):   ROLE='INPUT';
+MPRINT(EM_DIAGRAM):   LEVEL='INTERVAL';
+MPRINT(EM_DIAGRAM):   TYPE='N';
+MPRINT(EM_DIAGRAM):   output;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   * Reg2: STDIZE Variables Macro ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Reg2: Computing Summary Statistics;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   proc stdize data = EM_temp_assessdata out=_null_ outstat=WORK.Reg2_STAT add=0 fuzz=1E-14 initial=MAD vardef=df method=STD mult=1 pctlmtd=ORD_STAT pctldef=2 pctlpts=( 0 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100 ) ;
+MPRINT(EM_DIAGRAM):   var
+MPRINT(STDIZEVAR):   R_Sum_Labor_Force_Pop
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   quit;
+MPRINT(EM_DIAGRAM):    data WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   set WORK.Reg2_STAT;
+MPRINT(EM_DIAGRAM):   where _TYPE_ in('LOCATION', 'SCALE', 'P0', 'P5', 'P10', 'P15', 'P20' 'P25', 'P50', 'P75', 'P80', 'P85', 'P90', 'P95', 'P100');
+MPRINT(EM_DIAGRAM):   if _TYPE_ = 'LOCATION' then _TYPE_='MEAN';
+MPRINT(EM_DIAGRAM):   else if _TYPE_ = 'SCALE' then _TYPE_='STD';
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.Reg2BOXDATA NOTHREADS;
+MPRINT(EM_DIAGRAM):   by _TYPE_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc transpose data=WORK.Reg2BOXDATA out=WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   id _TYPE_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   set WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   UPPERWHISKER = P75 + 1.5*abs(P75 - P25);
+MPRINT(EM_DIAGRAM):   LOWERWHISKER = P25 - 1.5*abs(P75 - P25);
+MPRINT(EM_DIAGRAM):   if P100<=UPPERWHISKER then do;
+MPRINT(EM_DIAGRAM):   UPPERWHISKER=P100;
+MPRINT(EM_DIAGRAM):   P100=.;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   if P95<=UPPERWHISKER then P95=.;
+MPRINT(EM_DIAGRAM):   if P90<=UPPERWHISKER then P90=.;
+MPRINT(EM_DIAGRAM):   if P85<=UPPERWHISKER then P85=.;
+MPRINT(EM_DIAGRAM):   if P80<=UPPERWHISKER then P80=.;
+MPRINT(EM_DIAGRAM):   if LOWERWHISKER<=P0 then do;
+MPRINT(EM_DIAGRAM):   LOWERWHISKER=P0;
+MPRINT(EM_DIAGRAM):   P0=.;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   if LOWERWHISKER<=P20 then P20=.;
+MPRINT(EM_DIAGRAM):   if LOWERWHISKER<=P15 then P15=.;
+MPRINT(EM_DIAGRAM):   if LOWERWHISKER<=P10 then P10=.;
+MPRINT(EM_DIAGRAM):   if LOWERWHISKER<=P5 then P5=.;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc transpose data=WORK.Reg2BOXDATA out=WORK.Reg2BOXDATA(rename=(COL1=VALUE _name_=_VARIABLE_)) NAME=XLABEL;
+MPRINT(EM_DIAGRAM):   by _NAME_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   length XLABEL $12;
+MPRINT(EM_DIAGRAM):   set WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   label _VARIABLE_=;
+MPRINT(EM_DIAGRAM):   label XLABEL=;
+MPRINT(EM_DIAGRAM):   where VALUE ne .;
+MPRINT(EM_DIAGRAM):   if XLABEL in('P100', 'P95', 'P90', 'P85', 'P80', 'P20', 'P15', 'P10', 'P5', 'P0') then XLABEL = 'OUTLIER';
+MPRINT(EM_DIAGRAM):   else if XLABEL='P50' then XLABEL='MEDIAN';
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.Reg2BOXDATA NOTHREADS;
+MPRINT(EM_DIAGRAM):   by VALUE;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data EMWS1.Reg2_EMRESIDUAL;
+MPRINT(EM_DIAGRAM):   length TARGET $32 TARGETLABEL $200 DATAROLE $32;
+MPRINT(EM_DIAGRAM):   label target = "Target Variable";
+MPRINT(EM_DIAGRAM):   label targetlabel = "Target Label";
+MPRINT(EM_DIAGRAM):   label datarole = "Data Role";
+MPRINT(EM_DIAGRAM):   label VALUE = "Value";
+MPRINT(EM_DIAGRAM):   label XLABEL = "Box Plot Marker";
+MPRINT(EM_DIAGRAM):   label _VARIABLE_ = "Residual Variable";
+MPRINT(EM_DIAGRAM):   set WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   retain dataRole "TRAIN";
+MPRINT(EM_DIAGRAM):   TARGET = substr(_VARIABLE_, 3);
+MPRINT(EM_DIAGRAM):   if upcase(TARGET) eq "SUM_LABOR_FORCE_POP" then TARGETLABEL = 'Industry_Population';
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data ASSESS_REPORTMETA;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_VariableSet;
+MPRINT(EM_DIAGRAM):   where REPORT='Y';
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emassmt.em_assess.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   set EMWS1.Ids_Sum_Labor_Force__DM;
+MPRINT(EM_DIAGRAM):   where _TYPE_="TARGET";
+MPRINT(EM_DIAGRAM):   call symput('ASSMT_EVENT', strip(event));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):
+MPRINT(EM_ASSESS):   data _ea_tmpdata;
+MPRINT(EM_ASSESS):   set EM_temp_assessdata;
+MPRINT(EM_ASSESS):   _tmpfreqvar_=1;
+MPRINT(EM_ASSESS):   run;
+MPRINT(EM_CHECKEMSETINIT):   DATA _NULL_;
+MPRINT(EM_CHECKEMSETINIT):   EM_SETINIT = 'N';
+MPRINT(EM_CHECKEMSETINIT):   IF SYSPROD('PRODNUM50') THEN EM_SETINIT = 'Y';
+MPRINT(EM_CHECKEMSETINIT):   ELSE IF SYSPROD('PRODNUM448') THEN EM_SETINIT = 'Y';
+MPRINT(EM_CHECKEMSETINIT):   ELSE IF SYSPROD('PRODNUM102') THEN EM_SETINIT = 'Y';
+MPRINT(EM_CHECKEMSETINIT):   ELSE IF SYSPROD('PRODNUM103') THEN EM_SETINIT = 'Y';
+MPRINT(EM_CHECKEMSETINIT):   CALL SYMPUT('EM_SETINIT', EM_SETINIT);
+MPRINT(EM_CHECKEMSETINIT):   RUN;
+MPRINT(EM_ASSESS):  ;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ............ Reading in reporting data set;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   DATA _NULL_;
+MPRINT(EM_ASSESS):   SET ASSESS_REPORTMETA END = EOF;
+MPRINT(EM_ASSESS):   IF TYPE = "C" OR UPCASE (LEVEL) IN ("NOMINAL", "BINARY" , "ORDINAL") THEN DO;
+MPRINT(EM_ASSESS):   IF UPCASE (NAME) NE UPCASE ("Sum_Labor_Force_Pop") THEN DO;
+MPRINT(EM_ASSESS):   NUMCTOREPORT + 1;
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("REPORTC" || LEFT (PUT (NUMCTOREPORT, 5.)), NAME);
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   ELSE CALL SYMPUTX ("RPRT_TRGT", "C");
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   ELSE IF TYPE = "N" THEN DO;
+MPRINT(EM_ASSESS):   IF UPCASE(NAME) NE UPCASE ("Sum_Labor_Force_Pop") THEN DO;
+MPRINT(EM_ASSESS):   NUMNTOREPORT + 1;
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("REPORTN" || LEFT (PUT (NUMNTOREPORT, 5.)), NAME);
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   ELSE CALL SYMPUTX ("RPRT_TRGT", "N");
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   IF EOF THEN DO;
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("NUMNTOREPORT", NUMNTOREPORT);
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("NUMCTOREPORT", NUMCTOREPORT);
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("NUMTOREPORT", SUM (NUMNTOREPORT, NUMCTOREPORT));
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   PROC DMDB DATA = _ea_tmpdata VAROUT = VAROUT DMDBCAT = _D ;
+ 
+ 
+MPRINT(EM_ASSESS):   VAR P_Sum_Labor_Force_Pop _tmpfreqvar_ ;
+MPRINT(EM_ASSESS):   FREQ _tmpfreqvar_;
+MPRINT(EM_ASSESS):   RUN ;
+MPRINT(EM_ASSESS):   QUIT;
+MPRINT(EM_ASSESS):   DATA _NULL_ ;
+MPRINT(EM_ASSESS):   * ;
+MPRINT(EM_ASSESS):   * ...FLAG0_1 = ..... TARGET IS 0, 1 & EVENT = 1;
+ 
+MPRINT(EM_ASSESS):   ;
+MPRINT(EM_ASSESS):   length __event__ $ 32;
+MPRINT(EM_ASSESS):   RETAIN FLAG0_1 1 NUM1 . NUM0 . __event__ "_missing_" ;
+ 
+MPRINT(EM_ASSESS):   SET VAROUT END = EOF;
+ 
+MPRINT(EM_ASSESS):   RETAIN CUMFREQ 0;
+MPRINT(EM_ASSESS):   IF UPCASE(NAME) = UPCASE("P_Sum_Labor_Force_Pop") THEN CUMFREQ + N ;
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("D_TARGET", " " );
+MPRINT(EM_ASSESS):   IF EOF THEN DO;
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("NUMDECISIONS", 0 );
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("NUMOBS", CUMFREQ);
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("FLAG0_1", "INTERVAL");
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("TARGETTYPE", "N");
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   DATA _NULL_;
+MPRINT(EM_ASSESS):   SET VAROUT END = EOF;
+MPRINT(EM_ASSESS):   IF UPCASE (NAME) = UPCASE ("P_Sum_Labor_Force_Pop") THEN DO;
+MPRINT(EM_ASSESS):   IF N = 0 THEN DO;
+MPRINT(EM_ASSESS):   PUT //// "          Warning: All posterior probabilities are missing values ";
+MPRINT(EM_ASSESS):   PUT ///;
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("ALLMISS", 1);
+MPRINT(EM_ASSESS):   STOP;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   ELSE CALL SYMPUTX ("ALLMISS", 0);
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("MINPROB", MIN);
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("MAXPROB", MAX);
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("DIFF", MAX - MIN);
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("NMISSPROB", NMISS);
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   ELSE IF UPCASE (NAME) = UPCASE ("_tmpfreqvar_") THEN DO;
+MPRINT(EM_ASSESS):   AUXMIN = MIN - INT (MIN);
+MPRINT(EM_ASSESS):   AUXMAX = MAX - INT (MAX);
+MPRINT(EM_ASSESS):   IF AUXMIN > 0 OR AUXMAX > 0 THEN CALL SYMPUTX ("USEWEIGHT", "Y");
+MPRINT(EM_ASSESS):   ELSE CALL SYMPUTX ("USEWEIGHT", "N");
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *... Start of Interval Depvar Case;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ............. IF THERE IS FREQ VARIABLE OUTDIST INTERVAL;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   PROC SUMMARY DATA = _ea_tmpdata (KEEP = P_Sum_Labor_Force_Pop Sum_Labor_Force_Pop _tmpfreqvar_ WHERE = (Sum_Labor_Force_Pop > .)) NWAY;
+MPRINT(EM_ASSESS):   CLASS P_Sum_Labor_Force_Pop ;
+MPRINT(EM_ASSESS):   VAR Sum_Labor_Force_Pop ;
+MPRINT(EM_ASSESS):   FREQ _tmpfreqvar_ ;
+MPRINT(EM_ASSESS):   OUTPUT OUT = ANYSUM (DROP = _TYPE_) MEAN = _MEANTARGET MIN = _MINTARGET MAX = _MAXTARGET ;
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ...... ADD BINS TO DATA ;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ..... INTERVAL TARGET CASE ;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   DATA WORK._TEMPSCOREDIST ( KEEP = TARGET P_LABEL LOWP UPP SCORE N _TARGETMEAN_ BIN _TARGETMIN_ _TARGETMAX_ _MEANP_ _MINP_ _MAXP_ ) WORK._TEMPRANK (KEEP = BIN TARGET DATAROLE DECILE N _TARGETMEAN_ _TARGETMIN_ _TARGETMAX_ _MEANP_ _MINP_
+_MAXP_ ) ;
+MPRINT(EM_ASSESS):   SET ANYSUM END = EOF;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ................... START OF RETAIN AREA. CONTINOUS DEP VAR ;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   RETAIN TARGET "Sum_Labor_Force_Pop" DATAROLE "TRAIN" NUMOBS1 - NUMOBS20 0 MAXTGT1 - MAXTGT20 . MINTGT1 - MINTGT20 . MNTGT1 - MNTGT20 0 MAXPTGT1 - MAXPTGT20 . MINPTGT1 - MINPTGT20 . MNPTGT1 - MNPTGT20 0 RNUMOBS1 - RNUMOBS20 0 RMAXTGT1
+- RMAXTGT20 . RMINTGT1 - RMINTGT20 . RMNTGT1 - RMNTGT20 0 RMAXPTGT1 - RMAXPTGT20 . RMINPTGT1 - RMINPTGT20 . RMNPTGT1 - RMNPTGT20 0 ;
+MPRINT(EM_ASSESS):   DROP _FREQ_ N1 NUMOBS1 - NUMOBS20 MAXTGT1 - MAXTGT20 MINTGT1 - MINTGT20 MNTGT1 - MNTGT20 MAXPTGT1 - MAXPTGT20 MINPTGT1 - MINPTGT20 MNPTGT1 - MNPTGT20 RNUMOBS1 - RNUMOBS20 RMAXTGT1 - RMAXTGT20 RMINTGT1 - RMINTGT20 RMNTGT1 - RMNTGT20
+RMAXPTGT1 - RMAXPTGT20 RMINPTGT1 - RMINPTGT20 RMNPTGT1 - RMNPTGT20 ;
+MPRINT(EM_ASSESS):   ARRAY NUMOBSS (20) NUMOBS1 - NUMOBS20;
+MPRINT(EM_ASSESS):   ARRAY MAXTGTS (20) MAXTGT1 - MAXTGT20;
+MPRINT(EM_ASSESS):   ARRAY MINTGTS (20) MINTGT1 - MINTGT20;
+MPRINT(EM_ASSESS):   ARRAY MNTGTS (20) MNTGT1 - MNTGT20;
+MPRINT(EM_ASSESS):   ARRAY MAXPTGTS (20) MAXPTGT1 - MAXPTGT20;
+MPRINT(EM_ASSESS):   ARRAY MINPTGTS (20) MINPTGT1 - MINPTGT20;
+MPRINT(EM_ASSESS):   ARRAY MNPTGTS (20) MNPTGT1 - MNPTGT20;
+MPRINT(EM_ASSESS):   ARRAY RNUMOBSS (20) RNUMOBS1 - RNUMOBS20;
+MPRINT(EM_ASSESS):   ARRAY RMAXTGTS (20) RMAXTGT1 - RMAXTGT20;
+MPRINT(EM_ASSESS):   ARRAY RMINTGTS (20) RMINTGT1 - RMINTGT20;
+MPRINT(EM_ASSESS):   ARRAY RMNTGTS (20) RMNTGT1 - RMNTGT20;
+MPRINT(EM_ASSESS):   ARRAY RMAXPTGTS (20) RMAXPTGT1 - RMAXPTGT20;
+MPRINT(EM_ASSESS):   ARRAY RMINPTGTS (20) RMINPTGT1 - RMINPTGT20;
+MPRINT(EM_ASSESS):   ARRAY RMNPTGTS (20) RMNPTGT1 - RMNPTGT20;
+MPRINT(EM_ASSESS):   IF _MEANTARGET > . THEN Sum_Labor_Force_Pop = _MEANTARGET ;
+MPRINT(EM_ASSESS):   ;
+MPRINT(EM_ASSESS):   N1 + _FREQ_;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * .......... Outdist Processing For Interval Target;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   SCRBIN = MIN (CEIL (( P_Sum_Labor_Force_Pop - -273801.718280683) / 1236962.14191403), 20);
+MPRINT(EM_ASSESS):   IF SCRBIN <= 0 THEN SCRBIN = 1;
+MPRINT(EM_ASSESS):   SCRBIN = 20 + 1 - SCRBIN;
+MPRINT(EM_ASSESS):   NUMOBSS ( SCRBIN) = SUM (NUMOBSS ( SCRBIN) , _FREQ_ );
+MPRINT(EM_ASSESS):   MNTGTS ( SCRBIN) = SUM (MNTGTS ( SCRBIN), Sum_Labor_Force_Pop * _FREQ_);
+MPRINT(EM_ASSESS):   MAXTGTS ( SCRBIN) = MAX (MAXTGTS (SCRBIN), _MAXTARGET);
+MPRINT(EM_ASSESS):   MINTGTS ( SCRBIN) = MIN (MINTGTS (SCRBIN), _MINTARGET);
+MPRINT(EM_ASSESS):   MAXPTGTS ( SCRBIN) = MAX (MAXPTGTS ( SCRBIN), P_Sum_Labor_Force_Pop);
+MPRINT(EM_ASSESS):   MINPTGTS ( SCRBIN) = MIN (MINPTGTS ( SCRBIN), P_Sum_Labor_Force_Pop);
+MPRINT(EM_ASSESS):   MNPTGTS ( SCRBIN) = SUM (MNPTGTS ( SCRBIN), P_Sum_Labor_Force_Pop * _FREQ_);
+MPRINT(EM_ASSESS):   BIN = CEIL (N1 * 20 / 112);
+MPRINT(EM_ASSESS):   IF BIN <= 0 THEN BIN = 1;
+MPRINT(EM_ASSESS):   IF BIN > 20 THEN BIN = 20;
+MPRINT(EM_ASSESS):   IF BIN < 1 THEN BIN = 1;
+MPRINT(EM_ASSESS):   BIN = 21 - BIN;
+MPRINT(EM_ASSESS):   RNUMOBSS ( BIN) = SUM (RNUMOBSS ( BIN) , _FREQ_ );
+MPRINT(EM_ASSESS):   RMNTGTS ( BIN) = SUM (RMNTGTS ( BIN), Sum_Labor_Force_Pop * _FREQ_);
+MPRINT(EM_ASSESS):   RMAXTGTS ( BIN) = MAX (RMAXTGTS (BIN), _MAXTARGET);
+MPRINT(EM_ASSESS):   RMINTGTS ( BIN) = MIN (RMINTGTS (BIN), _MINTARGET);
+MPRINT(EM_ASSESS):   RMAXPTGTS ( BIN) = MAX (RMAXPTGTS ( BIN), P_Sum_Labor_Force_Pop);
+MPRINT(EM_ASSESS):   RMINPTGTS ( BIN) = MIN (RMINPTGTS ( BIN), P_Sum_Labor_Force_Pop);
+MPRINT(EM_ASSESS):   RMNPTGTS ( BIN) = SUM (RMNPTGTS ( BIN), P_Sum_Labor_Force_Pop * _FREQ_);
+MPRINT(EM_ASSESS):   IF EOF THEN DO;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * Start of Outdist Area, Continuous Dep Var;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   UPP = 24465441.12;
+MPRINT(EM_ASSESS):   DO SCRBIN = 1 TO 20;
+MPRINT(EM_ASSESS):   LOWP = UPP - 1236962.14191403;
+MPRINT(EM_ASSESS):   N = NUMOBSS (SCRBIN);
+MPRINT(EM_ASSESS):   IF N > 0 THEN DO;
+MPRINT(EM_ASSESS):   _TARGETMEAN_ = MNTGTS (SCRBIN) / N ;
+MPRINT(EM_ASSESS):   _MEANP_ = MNPTGTS (SCRBIN) / N ;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   ELSE DO;
+MPRINT(EM_ASSESS):   _TARGETMEAN_ = .;
+MPRINT(EM_ASSESS):   _MEANP_ = .;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   _TARGETMIN_ = MINTGTS (SCRBIN);
+MPRINT(EM_ASSESS):   _TARGETMAX_ = MAXTGTS (SCRBIN);
+MPRINT(EM_ASSESS):   _MINP_ = MINPTGTS (SCRBIN);
+MPRINT(EM_ASSESS):   _MAXP_ = MAXPTGTS (SCRBIN);
+MPRINT(EM_ASSESS):   SCORE = MEAN (UPP, LOWP);
+MPRINT(EM_ASSESS):   P_LABEL = COMPBL (PUT (LOWP, 12.3)) || " - " || COMPBL (PUT (UPP, 12.3));
+MPRINT(EM_ASSESS):   BIN = SCRBIN;
+MPRINT(EM_ASSESS):   OUTPUT WORK._TEMPSCOREDIST;
+MPRINT(EM_ASSESS):   UPP = LOWP;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   * ..... DO SCRBIN = .... ;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ...... Output Outranks Continuous Case ;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   DO BIN = 1 TO 20;
+MPRINT(EM_ASSESS):   N = RNUMOBSS (BIN);
+MPRINT(EM_ASSESS):   DECILE = BIN * 100 / 20;
+MPRINT(EM_ASSESS):   IF N > 0 THEN DO;
+MPRINT(EM_ASSESS):   _TARGETMEAN_ = RMNTGTS (BIN) / N ;
+MPRINT(EM_ASSESS):   _MEANP_ = RMNPTGTS (BIN) / N ;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   ELSE DO;
+MPRINT(EM_ASSESS):   _TARGETMEAN_ = .;
+MPRINT(EM_ASSESS):   _MEANP_ = .;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   _TARGETMIN_ = RMINTGTS (BIN);
+MPRINT(EM_ASSESS):   _TARGETMAX_ = RMAXTGTS (BIN);
+MPRINT(EM_ASSESS):   _MINP_ = RMINPTGTS (BIN);
+MPRINT(EM_ASSESS):   _MAXP_ = RMAXPTGTS (BIN);
+MPRINT(EM_ASSESS):   P_LABEL = COMPBL (PUT (_MINP_, 12.3)) || " - " || COMPBL (PUT (_MAXP_, 12.3));
+MPRINT(EM_ASSESS):   OUTPUT WORK._TEMPRANK;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   * ..... DO _K = 1 TO DECILEBIN ;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   * ..... IF EOF ;
+MPRINT(EM_ASSESS):   LABEL BIN = "Bin" _MEANP_ = "Mean Predicted" _MINP_ = "Min Predicted" _MAXP_ = "Max Predicted" _TARGETMAX_ = "Max Target" _TARGETMEAN_= "Mean Target" _TARGETMIN_ = "Min Target" DATAROLE = "Data Role" N = "Number of Observations"
+TARGET = "Target Variable" LOWP = "Lower Bound" UPP = "Upper Bound" score = "Model Score" scrbin = "Bin" DECILE = "Depth" ;
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ...................... End Of Interval Processing;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ...........Start OF Outdist Modification;
+MPRINT(EM_ASSESS):   *;
+ 
+MPRINT(EM_ASSESS):   PROC DATASETS NOLIST LIB = WORK;
+MPRINT(EM_ASSESS):   MODIFY _TEMPSCOREDIST;
+MPRINT(EM_ASSESS):   ;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * .................... OUTDIST MODIFICATION LABEL AREA;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   LABEL BIN = "Bin" N = "Number of Observations" P_LABEL = "Range for Predicted" _MEANP_ = "Mean Predicted" _MINP_ = "Min Predicted" _MAXP_ = "Max Predicted" SCORE = "Model Score" ;
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   QUIT;
+MPRINT(EM_ASSESS):   DATA WORK._TEMPSCOREDIST;
+MPRINT(EM_ASSESS):   SET WORK._TEMPSCOREDIST (WHERE = (_MEANP_ > .));
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ........... END OF OUTDIST MODIFICATION;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ...........Start of OUTRANKS Modification;
+MPRINT(EM_ASSESS):   *;
+ 
+MPRINT(EM_ASSESS):   PROC DATASETS NOLIST LIB = WORK;
+MPRINT(EM_ASSESS):   MODIFY _TEMPRANK;
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   QUIT;
+MPRINT(EM_ASSESS):   DATA WORK._TEMPRANK;
+MPRINT(EM_ASSESS):   SET WORK._TEMPRANK (WHERE = (_MEANP_ > .));
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   proc datasets lib=work nolist;
+MPRINT(EM_ASSESS):   delete _ea_tmpdata;
+MPRINT(EM_ASSESS):   run;
+MPRINT(EM_ASSESS):   quit;
+MPRINT(EM_ASSESS):  ;
+MPRINT(EM_ASSESS):   OPTION ERRORS = 20;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):    data WORK._TEMPRANK;
+MPRINT(EM_DIAGRAM):   length target $32 TARGETLABEL $200 dataRole $20;
+MPRINT(EM_DIAGRAM):   label TARGETLABEL = "Target Label";
+MPRINT(EM_DIAGRAM):   set WORK._TEMPRANK;
+MPRINT(EM_DIAGRAM):   retain target "Sum_Labor_Force_Pop";
+MPRINT(EM_DIAGRAM):   retain TARGETLABEL 'Industry_Population';
+MPRINT(EM_DIAGRAM):   retain dataRole "TRAIN";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg2_EMRANK;
+MPRINT(EM_DIAGRAM):   set WORK._TEMPRANK;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data WORK._TEMPSCOREDIST;
+MPRINT(EM_DIAGRAM):   length target $32 TARGETLABEL $200 dataRole $20;
+MPRINT(EM_DIAGRAM):   label TARGETLABEL = "Target Label";
+MPRINT(EM_DIAGRAM):   set WORK._TEMPSCOREDIST;
+MPRINT(EM_DIAGRAM):   retain target "Sum_Labor_Force_Pop";
+MPRINT(EM_DIAGRAM):   retain TARGETLABEL 'Industry_Population';
+MPRINT(EM_DIAGRAM):   retain dataRole "TRAIN";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg2_EMSCOREDIST;
+MPRINT(EM_DIAGRAM):   set WORK._TEMPSCOREDIST;
+MPRINT(EM_DIAGRAM):   run;
+28438      data EM_temp_assessMeta;
+MPRINT(EM_DIAGRAM):    data EM_temp_assessMeta;
+28439      set EMWS1.Reg2_CMeta_TRAIN;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_CMeta_TRAIN;
+28440      where role in('DECISION', 'PREDICT', 'RESIDUAL', 'CLASSIFICATION', 'ASSESS', 'COST');
+MPRINT(EM_DIAGRAM):   where role in('DECISION', 'PREDICT', 'RESIDUAL', 'CLASSIFICATION', 'ASSESS', 'COST');
+28441      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 3 observations read from the data set EMWS1.REG2_CMETA_TRAIN.
+      WHERE role in ('ASSESS', 'CLASSIFICATION', 'COST', 'DECISION', 'PREDICT', 'RESIDUAL');
+NOTE: The data set WORK.EM_TEMP_ASSESSMETA has 3 observations and 21 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+28442      data EM_temp_assessdata;
+MPRINT(EM_DIAGRAM):    data EM_temp_assessdata;
+28443      set EMWS1.Reg2_VALIDATE(keep=
+28444      P_Sum_Labor_Force_Pop
+28445      R_Sum_Labor_Force_Pop
+28446      _WARN_
+28447      Sum_Labor_Force_Pop
+28448      );
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_VALIDATE(keep= P_Sum_Labor_Force_Pop R_Sum_Labor_Force_Pop _WARN_ Sum_Labor_Force_Pop );
+28449      run;
+MPRINT(EM_DIAGRAM):   run;
+ 
+NOTE: There were 84 observations read from the data set EMWS1.PART_VALIDATE.
+NOTE: View EMWS1.REG2_VALIDATE.VIEW used (Total process time):
+      real time           0.07 seconds
+      cpu time            0.06 seconds
+ 
+NOTE: There were 84 observations read from the data set EMWS1.TRANS_VALIDATE.
+NOTE: There were 84 observations read from the data set EMWS1.REG2_VALIDATE.
+NOTE: The data set WORK.EM_TEMP_ASSESSDATA has 84 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.09 seconds
+      cpu time            0.07 seconds
+ 
+ 
+MPRINT(EM_DIAGRAM):    data WORK._RESMETA;
+MPRINT(EM_DIAGRAM):   length NAME $32 LEVEL $8 ROLE $32 type $1;
+MPRINT(EM_DIAGRAM):   NAME="R_Sum_Labor_Force_Pop";
+MPRINT(EM_DIAGRAM):   ROLE='INPUT';
+MPRINT(EM_DIAGRAM):   LEVEL='INTERVAL';
+MPRINT(EM_DIAGRAM):   TYPE='N';
+MPRINT(EM_DIAGRAM):   output;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   * Reg2: STDIZE Variables Macro ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Reg2: Computing Summary Statistics;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   proc stdize data = EM_temp_assessdata out=_null_ outstat=WORK.Reg2_STAT add=0 fuzz=1E-14 initial=MAD vardef=df method=STD mult=1 pctlmtd=ORD_STAT pctldef=2 pctlpts=( 0 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100 ) ;
+MPRINT(EM_DIAGRAM):   var
+MPRINT(STDIZEVAR):   R_Sum_Labor_Force_Pop
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   quit;
+MPRINT(EM_DIAGRAM):    data WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   set WORK.Reg2_STAT;
+MPRINT(EM_DIAGRAM):   where _TYPE_ in('LOCATION', 'SCALE', 'P0', 'P5', 'P10', 'P15', 'P20' 'P25', 'P50', 'P75', 'P80', 'P85', 'P90', 'P95', 'P100');
+MPRINT(EM_DIAGRAM):   if _TYPE_ = 'LOCATION' then _TYPE_='MEAN';
+MPRINT(EM_DIAGRAM):   else if _TYPE_ = 'SCALE' then _TYPE_='STD';
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.Reg2BOXDATA NOTHREADS;
+MPRINT(EM_DIAGRAM):   by _TYPE_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc transpose data=WORK.Reg2BOXDATA out=WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   id _TYPE_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   set WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   UPPERWHISKER = P75 + 1.5*abs(P75 - P25);
+MPRINT(EM_DIAGRAM):   LOWERWHISKER = P25 - 1.5*abs(P75 - P25);
+MPRINT(EM_DIAGRAM):   if P100<=UPPERWHISKER then do;
+MPRINT(EM_DIAGRAM):   UPPERWHISKER=P100;
+MPRINT(EM_DIAGRAM):   P100=.;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   if P95<=UPPERWHISKER then P95=.;
+MPRINT(EM_DIAGRAM):   if P90<=UPPERWHISKER then P90=.;
+MPRINT(EM_DIAGRAM):   if P85<=UPPERWHISKER then P85=.;
+MPRINT(EM_DIAGRAM):   if P80<=UPPERWHISKER then P80=.;
+MPRINT(EM_DIAGRAM):   if LOWERWHISKER<=P0 then do;
+MPRINT(EM_DIAGRAM):   LOWERWHISKER=P0;
+MPRINT(EM_DIAGRAM):   P0=.;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   if LOWERWHISKER<=P20 then P20=.;
+MPRINT(EM_DIAGRAM):   if LOWERWHISKER<=P15 then P15=.;
+MPRINT(EM_DIAGRAM):   if LOWERWHISKER<=P10 then P10=.;
+MPRINT(EM_DIAGRAM):   if LOWERWHISKER<=P5 then P5=.;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc transpose data=WORK.Reg2BOXDATA out=WORK.Reg2BOXDATA(rename=(COL1=VALUE _name_=_VARIABLE_)) NAME=XLABEL;
+MPRINT(EM_DIAGRAM):   by _NAME_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   length XLABEL $12;
+MPRINT(EM_DIAGRAM):   set WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   label _VARIABLE_=;
+MPRINT(EM_DIAGRAM):   label XLABEL=;
+MPRINT(EM_DIAGRAM):   where VALUE ne .;
+MPRINT(EM_DIAGRAM):   if XLABEL in('P100', 'P95', 'P90', 'P85', 'P80', 'P20', 'P15', 'P10', 'P5', 'P0') then XLABEL = 'OUTLIER';
+MPRINT(EM_DIAGRAM):   else if XLABEL='P50' then XLABEL='MEDIAN';
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.Reg2BOXDATA NOTHREADS;
+MPRINT(EM_DIAGRAM):   by VALUE;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   length TARGET $32 TARGETLABEL $200 DATAROLE $32;
+MPRINT(EM_DIAGRAM):   label target = "Target Variable";
+MPRINT(EM_DIAGRAM):   label targetlabel = "Target Label";
+MPRINT(EM_DIAGRAM):   label datarole = "Data Role";
+MPRINT(EM_DIAGRAM):   label VALUE = "Value";
+MPRINT(EM_DIAGRAM):   label XLABEL = "Box Plot Marker";
+MPRINT(EM_DIAGRAM):   label _VARIABLE_ = "Residual Variable";
+MPRINT(EM_DIAGRAM):   set WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   retain dataRole "VALIDATE";
+MPRINT(EM_DIAGRAM):   TARGET = substr(_VARIABLE_, 3);
+MPRINT(EM_DIAGRAM):   if upcase(TARGET) eq "SUM_LABOR_FORCE_POP" then TARGETLABEL = 'Industry_Population';
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data EMWS1.Reg2_EMRESIDUAL;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_EMRESIDUAL WORK.Reg2BOXDATA;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data ASSESS_REPORTMETA;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_VariableSet;
+MPRINT(EM_DIAGRAM):   where REPORT='Y';
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emassmt.em_assess.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   set EMWS1.Ids_Sum_Labor_Force__DM;
+MPRINT(EM_DIAGRAM):   where _TYPE_="TARGET";
+MPRINT(EM_DIAGRAM):   call symput('ASSMT_EVENT', strip(event));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):
+MPRINT(EM_ASSESS):   data _ea_tmpdata;
+MPRINT(EM_ASSESS):   set EM_temp_assessdata;
+MPRINT(EM_ASSESS):   _tmpfreqvar_=1;
+MPRINT(EM_ASSESS):   run;
+MPRINT(EM_CHECKEMSETINIT):   DATA _NULL_;
+MPRINT(EM_CHECKEMSETINIT):   EM_SETINIT = 'N';
+MPRINT(EM_CHECKEMSETINIT):   IF SYSPROD('PRODNUM50') THEN EM_SETINIT = 'Y';
+MPRINT(EM_CHECKEMSETINIT):   ELSE IF SYSPROD('PRODNUM448') THEN EM_SETINIT = 'Y';
+MPRINT(EM_CHECKEMSETINIT):   ELSE IF SYSPROD('PRODNUM102') THEN EM_SETINIT = 'Y';
+MPRINT(EM_CHECKEMSETINIT):   ELSE IF SYSPROD('PRODNUM103') THEN EM_SETINIT = 'Y';
+MPRINT(EM_CHECKEMSETINIT):   CALL SYMPUT('EM_SETINIT', EM_SETINIT);
+MPRINT(EM_CHECKEMSETINIT):   RUN;
+MPRINT(EM_ASSESS):  ;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ............ Reading in reporting data set;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   DATA _NULL_;
+MPRINT(EM_ASSESS):   SET ASSESS_REPORTMETA END = EOF;
+MPRINT(EM_ASSESS):   IF TYPE = "C" OR UPCASE (LEVEL) IN ("NOMINAL", "BINARY" , "ORDINAL") THEN DO;
+MPRINT(EM_ASSESS):   IF UPCASE (NAME) NE UPCASE ("Sum_Labor_Force_Pop") THEN DO;
+MPRINT(EM_ASSESS):   NUMCTOREPORT + 1;
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("REPORTC" || LEFT (PUT (NUMCTOREPORT, 5.)), NAME);
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   ELSE CALL SYMPUTX ("RPRT_TRGT", "C");
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   ELSE IF TYPE = "N" THEN DO;
+MPRINT(EM_ASSESS):   IF UPCASE(NAME) NE UPCASE ("Sum_Labor_Force_Pop") THEN DO;
+MPRINT(EM_ASSESS):   NUMNTOREPORT + 1;
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("REPORTN" || LEFT (PUT (NUMNTOREPORT, 5.)), NAME);
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   ELSE CALL SYMPUTX ("RPRT_TRGT", "N");
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   IF EOF THEN DO;
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("NUMNTOREPORT", NUMNTOREPORT);
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("NUMCTOREPORT", NUMCTOREPORT);
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("NUMTOREPORT", SUM (NUMNTOREPORT, NUMCTOREPORT));
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   PROC DMDB DATA = _ea_tmpdata VAROUT = VAROUT DMDBCAT = _D ;
+ 
+ 
+MPRINT(EM_ASSESS):   VAR P_Sum_Labor_Force_Pop _tmpfreqvar_ ;
+MPRINT(EM_ASSESS):   FREQ _tmpfreqvar_;
+MPRINT(EM_ASSESS):   RUN ;
+MPRINT(EM_ASSESS):   QUIT;
+MPRINT(EM_ASSESS):   DATA _NULL_ ;
+MPRINT(EM_ASSESS):   * ;
+MPRINT(EM_ASSESS):   * ...FLAG0_1 = ..... TARGET IS 0, 1 & EVENT = 1;
+ 
+MPRINT(EM_ASSESS):   ;
+MPRINT(EM_ASSESS):   length __event__ $ 32;
+MPRINT(EM_ASSESS):   RETAIN FLAG0_1 1 NUM1 . NUM0 . __event__ "_missing_" ;
+ 
+MPRINT(EM_ASSESS):   SET VAROUT END = EOF;
+ 
+MPRINT(EM_ASSESS):   RETAIN CUMFREQ 0;
+MPRINT(EM_ASSESS):   IF UPCASE(NAME) = UPCASE("P_Sum_Labor_Force_Pop") THEN CUMFREQ + N ;
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("D_TARGET", " " );
+MPRINT(EM_ASSESS):   IF EOF THEN DO;
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("NUMDECISIONS", 0 );
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("NUMOBS", CUMFREQ);
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("FLAG0_1", "INTERVAL");
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("TARGETTYPE", "N");
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   DATA _NULL_;
+MPRINT(EM_ASSESS):   SET VAROUT END = EOF;
+MPRINT(EM_ASSESS):   IF UPCASE (NAME) = UPCASE ("P_Sum_Labor_Force_Pop") THEN DO;
+MPRINT(EM_ASSESS):   IF N = 0 THEN DO;
+MPRINT(EM_ASSESS):   PUT //// "          Warning: All posterior probabilities are missing values ";
+MPRINT(EM_ASSESS):   PUT ///;
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("ALLMISS", 1);
+MPRINT(EM_ASSESS):   STOP;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   ELSE CALL SYMPUTX ("ALLMISS", 0);
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("MINPROB", MIN);
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("MAXPROB", MAX);
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("DIFF", MAX - MIN);
+MPRINT(EM_ASSESS):   CALL SYMPUTX ("NMISSPROB", NMISS);
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   ELSE IF UPCASE (NAME) = UPCASE ("_tmpfreqvar_") THEN DO;
+MPRINT(EM_ASSESS):   AUXMIN = MIN - INT (MIN);
+MPRINT(EM_ASSESS):   AUXMAX = MAX - INT (MAX);
+MPRINT(EM_ASSESS):   IF AUXMIN > 0 OR AUXMAX > 0 THEN CALL SYMPUTX ("USEWEIGHT", "Y");
+MPRINT(EM_ASSESS):   ELSE CALL SYMPUTX ("USEWEIGHT", "N");
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *... Start of Interval Depvar Case;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ............. IF THERE IS FREQ VARIABLE OUTDIST INTERVAL;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   PROC SUMMARY DATA = _ea_tmpdata (KEEP = P_Sum_Labor_Force_Pop Sum_Labor_Force_Pop _tmpfreqvar_ WHERE = (Sum_Labor_Force_Pop > .)) NWAY;
+MPRINT(EM_ASSESS):   CLASS P_Sum_Labor_Force_Pop ;
+MPRINT(EM_ASSESS):   VAR Sum_Labor_Force_Pop ;
+MPRINT(EM_ASSESS):   FREQ _tmpfreqvar_ ;
+MPRINT(EM_ASSESS):   OUTPUT OUT = ANYSUM (DROP = _TYPE_) MEAN = _MEANTARGET MIN = _MINTARGET MAX = _MAXTARGET ;
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ...... ADD BINS TO DATA ;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ..... INTERVAL TARGET CASE ;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   DATA WORK._TEMPSCOREDIST ( KEEP = TARGET P_LABEL LOWP UPP SCORE N _TARGETMEAN_ BIN _TARGETMIN_ _TARGETMAX_ _MEANP_ _MINP_ _MAXP_ ) WORK._TEMPRANK (KEEP = BIN TARGET DATAROLE DECILE N _TARGETMEAN_ _TARGETMIN_ _TARGETMAX_ _MEANP_ _MINP_
+_MAXP_ ) ;
+MPRINT(EM_ASSESS):   SET ANYSUM END = EOF;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ................... START OF RETAIN AREA. CONTINOUS DEP VAR ;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   RETAIN TARGET "Sum_Labor_Force_Pop" DATAROLE "VALIDATE" NUMOBS1 - NUMOBS20 0 MAXTGT1 - MAXTGT20 . MINTGT1 - MINTGT20 . MNTGT1 - MNTGT20 0 MAXPTGT1 - MAXPTGT20 . MINPTGT1 - MINPTGT20 . MNPTGT1 - MNPTGT20 0 RNUMOBS1 - RNUMOBS20 0
+RMAXTGT1 - RMAXTGT20 . RMINTGT1 - RMINTGT20 . RMNTGT1 - RMNTGT20 0 RMAXPTGT1 - RMAXPTGT20 . RMINPTGT1 - RMINPTGT20 . RMNPTGT1 - RMNPTGT20 0 ;
+MPRINT(EM_ASSESS):   DROP _FREQ_ N1 NUMOBS1 - NUMOBS20 MAXTGT1 - MAXTGT20 MINTGT1 - MINTGT20 MNTGT1 - MNTGT20 MAXPTGT1 - MAXPTGT20 MINPTGT1 - MINPTGT20 MNPTGT1 - MNPTGT20 RNUMOBS1 - RNUMOBS20 RMAXTGT1 - RMAXTGT20 RMINTGT1 - RMINTGT20 RMNTGT1 - RMNTGT20
+RMAXPTGT1 - RMAXPTGT20 RMINPTGT1 - RMINPTGT20 RMNPTGT1 - RMNPTGT20 ;
+MPRINT(EM_ASSESS):   ARRAY NUMOBSS (20) NUMOBS1 - NUMOBS20;
+MPRINT(EM_ASSESS):   ARRAY MAXTGTS (20) MAXTGT1 - MAXTGT20;
+MPRINT(EM_ASSESS):   ARRAY MINTGTS (20) MINTGT1 - MINTGT20;
+MPRINT(EM_ASSESS):   ARRAY MNTGTS (20) MNTGT1 - MNTGT20;
+MPRINT(EM_ASSESS):   ARRAY MAXPTGTS (20) MAXPTGT1 - MAXPTGT20;
+MPRINT(EM_ASSESS):   ARRAY MINPTGTS (20) MINPTGT1 - MINPTGT20;
+MPRINT(EM_ASSESS):   ARRAY MNPTGTS (20) MNPTGT1 - MNPTGT20;
+MPRINT(EM_ASSESS):   ARRAY RNUMOBSS (20) RNUMOBS1 - RNUMOBS20;
+MPRINT(EM_ASSESS):   ARRAY RMAXTGTS (20) RMAXTGT1 - RMAXTGT20;
+MPRINT(EM_ASSESS):   ARRAY RMINTGTS (20) RMINTGT1 - RMINTGT20;
+MPRINT(EM_ASSESS):   ARRAY RMNTGTS (20) RMNTGT1 - RMNTGT20;
+MPRINT(EM_ASSESS):   ARRAY RMAXPTGTS (20) RMAXPTGT1 - RMAXPTGT20;
+MPRINT(EM_ASSESS):   ARRAY RMINPTGTS (20) RMINPTGT1 - RMINPTGT20;
+MPRINT(EM_ASSESS):   ARRAY RMNPTGTS (20) RMNPTGT1 - RMNPTGT20;
+MPRINT(EM_ASSESS):   IF _MEANTARGET > . THEN Sum_Labor_Force_Pop = _MEANTARGET ;
+MPRINT(EM_ASSESS):   ;
+MPRINT(EM_ASSESS):   N1 + _FREQ_;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * .......... Outdist Processing For Interval Target;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   SCRBIN = MIN (CEIL (( P_Sum_Labor_Force_Pop - -69268.3223113189) / 1242666.56046556), 20);
+MPRINT(EM_ASSESS):   IF SCRBIN <= 0 THEN SCRBIN = 1;
+MPRINT(EM_ASSESS):   SCRBIN = 20 + 1 - SCRBIN;
+MPRINT(EM_ASSESS):   NUMOBSS ( SCRBIN) = SUM (NUMOBSS ( SCRBIN) , _FREQ_ );
+MPRINT(EM_ASSESS):   MNTGTS ( SCRBIN) = SUM (MNTGTS ( SCRBIN), Sum_Labor_Force_Pop * _FREQ_);
+MPRINT(EM_ASSESS):   MAXTGTS ( SCRBIN) = MAX (MAXTGTS (SCRBIN), _MAXTARGET);
+MPRINT(EM_ASSESS):   MINTGTS ( SCRBIN) = MIN (MINTGTS (SCRBIN), _MINTARGET);
+MPRINT(EM_ASSESS):   MAXPTGTS ( SCRBIN) = MAX (MAXPTGTS ( SCRBIN), P_Sum_Labor_Force_Pop);
+MPRINT(EM_ASSESS):   MINPTGTS ( SCRBIN) = MIN (MINPTGTS ( SCRBIN), P_Sum_Labor_Force_Pop);
+MPRINT(EM_ASSESS):   MNPTGTS ( SCRBIN) = SUM (MNPTGTS ( SCRBIN), P_Sum_Labor_Force_Pop * _FREQ_);
+MPRINT(EM_ASSESS):   BIN = CEIL (N1 * 20 / 84);
+MPRINT(EM_ASSESS):   IF BIN <= 0 THEN BIN = 1;
+MPRINT(EM_ASSESS):   IF BIN > 20 THEN BIN = 20;
+MPRINT(EM_ASSESS):   IF BIN < 1 THEN BIN = 1;
+MPRINT(EM_ASSESS):   BIN = 21 - BIN;
+MPRINT(EM_ASSESS):   RNUMOBSS ( BIN) = SUM (RNUMOBSS ( BIN) , _FREQ_ );
+MPRINT(EM_ASSESS):   RMNTGTS ( BIN) = SUM (RMNTGTS ( BIN), Sum_Labor_Force_Pop * _FREQ_);
+MPRINT(EM_ASSESS):   RMAXTGTS ( BIN) = MAX (RMAXTGTS (BIN), _MAXTARGET);
+MPRINT(EM_ASSESS):   RMINTGTS ( BIN) = MIN (RMINTGTS (BIN), _MINTARGET);
+MPRINT(EM_ASSESS):   RMAXPTGTS ( BIN) = MAX (RMAXPTGTS ( BIN), P_Sum_Labor_Force_Pop);
+MPRINT(EM_ASSESS):   RMINPTGTS ( BIN) = MIN (RMINPTGTS ( BIN), P_Sum_Labor_Force_Pop);
+MPRINT(EM_ASSESS):   RMNPTGTS ( BIN) = SUM (RMNPTGTS ( BIN), P_Sum_Labor_Force_Pop * _FREQ_);
+MPRINT(EM_ASSESS):   IF EOF THEN DO;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * Start of Outdist Area, Continuous Dep Var;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   UPP = 24784062.887;
+MPRINT(EM_ASSESS):   DO SCRBIN = 1 TO 20;
+MPRINT(EM_ASSESS):   LOWP = UPP - 1242666.56046556;
+MPRINT(EM_ASSESS):   N = NUMOBSS (SCRBIN);
+MPRINT(EM_ASSESS):   IF N > 0 THEN DO;
+MPRINT(EM_ASSESS):   _TARGETMEAN_ = MNTGTS (SCRBIN) / N ;
+MPRINT(EM_ASSESS):   _MEANP_ = MNPTGTS (SCRBIN) / N ;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   ELSE DO;
+MPRINT(EM_ASSESS):   _TARGETMEAN_ = .;
+MPRINT(EM_ASSESS):   _MEANP_ = .;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   _TARGETMIN_ = MINTGTS (SCRBIN);
+MPRINT(EM_ASSESS):   _TARGETMAX_ = MAXTGTS (SCRBIN);
+MPRINT(EM_ASSESS):   _MINP_ = MINPTGTS (SCRBIN);
+MPRINT(EM_ASSESS):   _MAXP_ = MAXPTGTS (SCRBIN);
+MPRINT(EM_ASSESS):   SCORE = MEAN (UPP, LOWP);
+MPRINT(EM_ASSESS):   P_LABEL = COMPBL (PUT (LOWP, 12.3)) || " - " || COMPBL (PUT (UPP, 12.3));
+MPRINT(EM_ASSESS):   BIN = SCRBIN;
+MPRINT(EM_ASSESS):   OUTPUT WORK._TEMPSCOREDIST;
+MPRINT(EM_ASSESS):   UPP = LOWP;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   * ..... DO SCRBIN = .... ;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ...... Output Outranks Continuous Case ;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   DO BIN = 1 TO 20;
+MPRINT(EM_ASSESS):   N = RNUMOBSS (BIN);
+MPRINT(EM_ASSESS):   DECILE = BIN * 100 / 20;
+MPRINT(EM_ASSESS):   IF N > 0 THEN DO;
+MPRINT(EM_ASSESS):   _TARGETMEAN_ = RMNTGTS (BIN) / N ;
+MPRINT(EM_ASSESS):   _MEANP_ = RMNPTGTS (BIN) / N ;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   ELSE DO;
+MPRINT(EM_ASSESS):   _TARGETMEAN_ = .;
+MPRINT(EM_ASSESS):   _MEANP_ = .;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   _TARGETMIN_ = RMINTGTS (BIN);
+MPRINT(EM_ASSESS):   _TARGETMAX_ = RMAXTGTS (BIN);
+MPRINT(EM_ASSESS):   _MINP_ = RMINPTGTS (BIN);
+MPRINT(EM_ASSESS):   _MAXP_ = RMAXPTGTS (BIN);
+MPRINT(EM_ASSESS):   P_LABEL = COMPBL (PUT (_MINP_, 12.3)) || " - " || COMPBL (PUT (_MAXP_, 12.3));
+MPRINT(EM_ASSESS):   OUTPUT WORK._TEMPRANK;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   * ..... DO _K = 1 TO DECILEBIN ;
+MPRINT(EM_ASSESS):   END;
+MPRINT(EM_ASSESS):   * ..... IF EOF ;
+MPRINT(EM_ASSESS):   LABEL BIN = "Bin" _MEANP_ = "Mean Predicted" _MINP_ = "Min Predicted" _MAXP_ = "Max Predicted" _TARGETMAX_ = "Max Target" _TARGETMEAN_= "Mean Target" _TARGETMIN_ = "Min Target" DATAROLE = "Data Role" N = "Number of Observations"
+TARGET = "Target Variable" LOWP = "Lower Bound" UPP = "Upper Bound" score = "Model Score" scrbin = "Bin" DECILE = "Depth" ;
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ...................... End Of Interval Processing;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ...........Start OF Outdist Modification;
+MPRINT(EM_ASSESS):   *;
+ 
+MPRINT(EM_ASSESS):   PROC DATASETS NOLIST LIB = WORK;
+MPRINT(EM_ASSESS):   MODIFY _TEMPSCOREDIST;
+MPRINT(EM_ASSESS):   ;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * .................... OUTDIST MODIFICATION LABEL AREA;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   LABEL BIN = "Bin" N = "Number of Observations" P_LABEL = "Range for Predicted" _MEANP_ = "Mean Predicted" _MINP_ = "Min Predicted" _MAXP_ = "Max Predicted" SCORE = "Model Score" ;
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   QUIT;
+MPRINT(EM_ASSESS):   DATA WORK._TEMPSCOREDIST;
+MPRINT(EM_ASSESS):   SET WORK._TEMPSCOREDIST (WHERE = (_MEANP_ > .));
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ........... END OF OUTDIST MODIFICATION;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   *;
+MPRINT(EM_ASSESS):   * ...........Start of OUTRANKS Modification;
+MPRINT(EM_ASSESS):   *;
+ 
+MPRINT(EM_ASSESS):   PROC DATASETS NOLIST LIB = WORK;
+MPRINT(EM_ASSESS):   MODIFY _TEMPRANK;
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   QUIT;
+MPRINT(EM_ASSESS):   DATA WORK._TEMPRANK;
+MPRINT(EM_ASSESS):   SET WORK._TEMPRANK (WHERE = (_MEANP_ > .));
+MPRINT(EM_ASSESS):   RUN;
+MPRINT(EM_ASSESS):   proc datasets lib=work nolist;
+MPRINT(EM_ASSESS):   delete _ea_tmpdata;
+MPRINT(EM_ASSESS):   run;
+MPRINT(EM_ASSESS):   quit;
+MPRINT(EM_ASSESS):  ;
+MPRINT(EM_ASSESS):   OPTION ERRORS = 20;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):    data WORK._TEMPRANK;
+MPRINT(EM_DIAGRAM):   length target $32 TARGETLABEL $200 dataRole $20;
+MPRINT(EM_DIAGRAM):   label TARGETLABEL = "Target Label";
+MPRINT(EM_DIAGRAM):   set WORK._TEMPRANK;
+MPRINT(EM_DIAGRAM):   retain target "Sum_Labor_Force_Pop";
+MPRINT(EM_DIAGRAM):   retain TARGETLABEL 'Industry_Population';
+MPRINT(EM_DIAGRAM):   retain dataRole "VALIDATE";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg2_EMRANK;
+MPRINT(EM_DIAGRAM):   length target $32;
+MPRINT(EM_DIAGRAM):   length TARGETLABEL $200;
+MPRINT(EM_DIAGRAM):   length dataRole $20;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_EMRANK WORK._TEMPRANK;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    data WORK._TEMPSCOREDIST;
+MPRINT(EM_DIAGRAM):   length target $32 TARGETLABEL $200 dataRole $20;
+MPRINT(EM_DIAGRAM):   label TARGETLABEL = "Target Label";
+MPRINT(EM_DIAGRAM):   set WORK._TEMPSCOREDIST;
+MPRINT(EM_DIAGRAM):   retain target "Sum_Labor_Force_Pop";
+MPRINT(EM_DIAGRAM):   retain TARGETLABEL 'Industry_Population';
+MPRINT(EM_DIAGRAM):   retain dataRole "VALIDATE";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data EMWS1.Reg2_EMSCOREDIST;
+MPRINT(EM_DIAGRAM):   length target $32;
+MPRINT(EM_DIAGRAM):   length TARGETLABEL $200;
+MPRINT(EM_DIAGRAM):   length dataRole $20;
+MPRINT(EM_DIAGRAM):   length P_LABEL $27;
+MPRINT(EM_DIAGRAM):   set EMWS1.Reg2_EMSCOREDIST WORK._TEMPSCOREDIST;
+MPRINT(EM_DIAGRAM):   run;
+32793      %let _cn = %sysfunc(getoption(CENTER));
+32794      options nocenter;
+MPRINT(EM_DIAGRAM):    options nocenter;
+32795      proc print data=EMWS1.Reg2_EMREPORTFIT noobs label;
+MPRINT(EM_DIAGRAM):   proc print data=EMWS1.Reg2_EMREPORTFIT noobs label;
+32796      var STAT LABEL TRAIN
+32797      VALIDATE
+32798      TEST
+32799      ;
+MPRINT(EM_DIAGRAM):   var STAT LABEL TRAIN VALIDATE TEST ;
+32800      by TARGET TARGETLABEL;
+MPRINT(EM_DIAGRAM):   by TARGET TARGETLABEL;
+32801      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+32802      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_fitstat_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Fit Statistics";
+MPRINT(EM_DIAGRAM):   run;
+32803      run;
+ 
+NOTE: There were 19 observations read from the data set EMWS1.REG2_EMREPORTFIT.
+NOTE: At least one W.D format was too small for the number to be printed. The decimal may be shifted by the "BEST" format.
+NOTE: The PROCEDURE PRINT printed page 4.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+32804      title10;
+MPRINT(EM_DIAGRAM):   title10;
+32805      options &_cn;
+MPRINT(EM_DIAGRAM):   options NOCENTER;
+32806      proc datasets library=EMWS1 nolist;
+MPRINT(EM_DIAGRAM):    proc datasets library=EMWS1 nolist;
+32807      modify Reg2_EMRANK;
+MPRINT(EM_DIAGRAM):   modify Reg2_EMRANK;
+MPRINT(EM_DIAGRAM):   label target = "Target Variable";
+32808      label target = "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel ,   NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label datarole = "Data Role";
+32809      label datarole = "%sysfunc(sasmsg(sashelp.dmine, rpt_datarole_vlabel ,    NOQUOTE))";
+MPRINT(EM_DIAGRAM):   run;
+32810      run;
+ 
+NOTE: MODIFY was successful for EMWS1.REG2_EMRANK.DATA.
+32811      quit;
+MPRINT(EM_DIAGRAM):   quit;
+ 
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.04 seconds
+ 
+ 
+32812      %let _cn = %sysfunc(getoption(CENTER));
+32813      options nocenter;
+MPRINT(EM_DIAGRAM):    options nocenter;
+32814      proc print data=EMWS1.Reg2_EMRANK label noobs;
+MPRINT(EM_DIAGRAM):   proc print data=EMWS1.Reg2_EMRANK label noobs;
+32815      var
+32816      decile N _targetMean_ _meanP_;
+MPRINT(EM_DIAGRAM):   var decile N _targetMean_ _meanP_;
+32817      by
+32818      notsorted DATAROLE
+32819      notsorted TARGET
+32820      notsorted TARGETLABEL
+32821      ;
+MPRINT(EM_DIAGRAM):   by notsorted DATAROLE notsorted TARGET notsorted TARGETLABEL ;
+32822      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+32823      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_scoreranking_title , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Assessment Score Rankings";
+MPRINT(EM_DIAGRAM):   run;
+32824      run;
+ 
+NOTE: There were 40 observations read from the data set EMWS1.REG2_EMRANK.
+NOTE: The PROCEDURE PRINT printed page 5.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+32825      title10;
+MPRINT(EM_DIAGRAM):   title10;
+32826      options &_cn;
+MPRINT(EM_DIAGRAM):   options NOCENTER;
+32827      proc datasets library=EMWS1 nolist;
+MPRINT(EM_DIAGRAM):    proc datasets library=EMWS1 nolist;
+32828      modify Reg2_EMSCOREDIST;
+MPRINT(EM_DIAGRAM):   modify Reg2_EMSCOREDIST;
+MPRINT(EM_DIAGRAM):   label target = "Target Variable";
+32829      label target = "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel ,      NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label datarole = "Data Role";
+32830      label datarole = "%sysfunc(sasmsg(sashelp.dmine, rpt_datarole_vlabel ,    NOQUOTE))";
+MPRINT(EM_DIAGRAM):   run;
+32831      run;
+ 
+NOTE: MODIFY was successful for EMWS1.REG2_EMSCOREDIST.DATA.
+32832      quit;
+MPRINT(EM_DIAGRAM):   quit;
+ 
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+ 
+ 
+MPRINT(EM_DIAGRAM):    options nocenter;
+MPRINT(EM_DIAGRAM):   proc print data=EMWS1.Reg2_EMSCOREDIST label noobs;
+MPRINT(EM_DIAGRAM):   var p_label _targetMean_ _meanp_ n score;
+MPRINT(EM_DIAGRAM):   by notsorted DATAROLE notsorted TARGET notsorted TARGETLABEL ;
+MPRINT(EM_DIAGRAM):   where TARGET in( "Sum_Labor_Force_Pop" );
+MPRINT(EM_DIAGRAM):   label target = "Target Variable";
+MPRINT(EM_DIAGRAM):   label TARGETLABEL = "Target Label";
+MPRINT(EM_DIAGRAM):   label datarole = "Data Role";
+MPRINT(EM_DIAGRAM):   title9 ' ';
+MPRINT(EM_DIAGRAM):   title10 "Assessment Score Distribution";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   title10;
+MPRINT(EM_DIAGRAM):   options NOCENTER;
+MPRINT(EM_DIAGRAM):   proc printto;
+MPRINT(EM_DIAGRAM):   run;

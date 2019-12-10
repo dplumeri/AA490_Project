@@ -7,7 +7,8 @@ Variable Summary
           Measurement    Frequency
  Role        Level         Count
 
-INPUT      NOMINAL           3    
+INPUT      INTERVAL          1    
+INPUT      NOMINAL           2    
 TARGET     INTERVAL          1    
  
                                                                                                                                                                                                                                                                 
@@ -15,9 +16,9 @@ TARGET     INTERVAL          1
  
 Predicted and decision variables
 
-Type               Variable                       Label
+Type               Variable           Label
 
-TARGET       Sum_Labor_Force_Pop                                    
+TARGET       Sum_Labor_Force_Pop      Industry_Population           
 PREDICTED    P_Sum_Labor_Force_Pop    Predicted: Sum_Labor_Force_Pop
 RESIDUAL     R_Sum_Labor_Force_Pop    Residual: Sum_Labor_Force_Pop 
  
@@ -27,24 +28,16 @@ RESIDUAL     R_Sum_Labor_Force_Pop    Residual: Sum_Labor_Force_Pop
 
 The DMREG Procedure
 
-                Model Information
+                           Model Information
 
-Training Data Set             WORK.EM_DMREG.VIEW 
-DMDB Catalog                  WORK.REG_DMDB      
-Target Variable               Sum_Labor_Force_Pop
-Target Measurement Level      Interval           
-Error                         Normal             
-Link Function                 Identity           
-Number of Model Parameters    19                 
-Number of Observations        588                
-
-
-
-
-Stepwise Selection Procedure
-
-
-Step 0: Intercept entered.
+Training Data Set             WORK.EM_DMREG.VIEW                       
+DMDB Catalog                  WORK.REG_DMDB                            
+Target Variable               Sum_Labor_Force_Pop (Industry_Population)
+Target Measurement Level      Interval                                 
+Error                         Normal                                   
+Link Function                 Identity                                 
+Number of Model Parameters    9                                        
+Number of Observations        196                                      
 
 
                              Analysis of Variance
@@ -52,114 +45,39 @@ Step 0: Intercept entered.
                                    Sum of
 Source                 DF         Squares     Mean Square    F Value    Pr > F
 
-Model                   0               0               .        .       .    
-Error                 587    2.4453975E16    4.1659243E13                     
-Corrected Total       587    2.4453975E16                                     
+Model                   8    5.7589494E15    7.1986867E14      84.31    <.0001
+Error                 187    1.5967096E15    8.5385539E12                     
+Corrected Total       195    7.3556589E15                                     
 
 
               Model Fit Statistics
 
-R-Square        0.0000     Adj R-Sq        0.0000
-AIC         18440.9992     BIC         18441.3808
-SBC         18445.3760     C(p)          662.8993
+R-Square        0.7829     Adj R-Sq        0.7736
+AIC          5844.8069     BIC          5847.6686
+SBC          5874.3100     C(p)            9.0000
 
 
-
-
-                                 Analysis of Maximum Likelihood Estimates
+             Type 3 Analysis of Effects
  
-                                                                            Standard
-Parameter                                                 DF    Estimate       Error    t Value    Pr > |t|
+                          Sum of
+Effect          DF       Squares    F Value    Pr > F
 
-Intercept                                                  1     6872728      266175      25.82      <.0001
+Age_group        3    2.79402E14      10.91    <.0001
+Industry         4    1.98367E15      58.08    <.0001
+Population       1    2.48587E13       2.91    0.0896
 
 
-Step 1: Effect Age_group entered.
-
-
-                             Analysis of Variance
+                            Analysis of Maximum Likelihood Estimates
  
-                                   Sum of
-Source                 DF         Squares     Mean Square    F Value    Pr > F
+                                                                 Standard
+Parameter                                      DF    Estimate       Error    t Value    Pr > |t|
 
-Model                   3    1.3128845E16    4.3762818E15     225.67    <.0001
-Error                 584     1.132513E16    1.9392346E13                     
-Corrected Total       587    2.4453975E16                                     
-
-
-              Model Fit Statistics
-
-R-Square        0.5369     Adj R-Sq        0.5345
-AIC         17994.3753     BIC         17996.5076
-SBC         18011.8822     C(p)           -1.6095
-
-
-                      Type 3 Analysis of Effects
- 
-                                           Sum of
-Effect                           DF       Squares    F Value    Pr > F
-
-Age_group                         3    1.31288E16     225.67    <.0001
-
-
-                                 Analysis of Maximum Likelihood Estimates
- 
-                                                                            Standard
-Parameter                                                 DF    Estimate       Error    t Value    Pr > |t|
-
-Intercept                                                  1     6841936      181832      37.63      <.0001
-Age_group                   16 to 24                       1    -3145299      323861      -9.71      <.0001
-Age_group                   25 to 44                       1     6109326      313269      19.50      <.0001
-Age_group                   45 to 64                       1     2777038      312576       8.88      <.0001
-
-
-NOTE: No (additional) effects met the 0.05 significance level for entry into the model.
-
-
-                Summary of Stepwise Selection
- 
-             Effect              Number
-    Step    Entered        DF        In    F Value    Pr > F
-
-       1    Age_group       3         1     225.67    <.0001
-
-
-The selected model is the model trained in the last step (Step 1). It consists of the following effects:
-
-Intercept  Age_group  
-
-
-                             Analysis of Variance
- 
-                                   Sum of
-Source                 DF         Squares     Mean Square    F Value    Pr > F
-
-Model                   3    1.3128845E16    4.3762818E15     225.67    <.0001
-Error                 584     1.132513E16    1.9392346E13                     
-Corrected Total       587    2.4453975E16                                     
-
-
-              Model Fit Statistics
-
-R-Square        0.5369     Adj R-Sq        0.5345
-AIC         17994.3753     BIC         17996.5076
-SBC         18011.8822     C(p)           -1.6095
-
-
-                      Type 3 Analysis of Effects
- 
-                                           Sum of
-Effect                           DF       Squares    F Value    Pr > F
-
-Age_group                         3    1.31288E16     225.67    <.0001
-
-
-                                 Analysis of Maximum Likelihood Estimates
- 
-                                                                            Standard
-Parameter                                                 DF    Estimate       Error    t Value    Pr > |t|
-
-Intercept                                                  1     6841936      181832      37.63      <.0001
-Age_group                   16 to 24                       1    -3145299      323861      -9.71      <.0001
-Age_group                   25 to 44                       1     6109326      313269      19.50      <.0001
-Age_group                   45 to 64                       1     2777038      312576       8.88      <.0001
+Intercept                                       1     1707724     2986787       0.57      0.5682
+Age_group  16 to 24                             1    -1280742     1101820      -1.16      0.2466
+Age_group  25 to 44                             1     3596880     1294175       2.78      0.0060
+Age_group  45 to 64                             1     1943390      893215       2.18      0.0308
+Industry   Management, professional, and re     1     5297263      433104      12.23      <.0001
+Industry   Natural resources, construction,     1    -3760551      428399      -8.78      <.0001
+Industry   Production, transportation, and      1    -2693102      433929      -6.21      <.0001
+Industry   Sales and office occupations         1     1999500      395139       5.06      <.0001
+Population                                      1      0.0867      0.0508       1.71      0.0896
