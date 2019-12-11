@@ -1,4 +1,4 @@
-Libname SS_Calc "C:\Users\student\Desktop\AA Capstone\Project\GitRepository\aa490_project\Data_Sets\_Final_Data_Package\Social Security\";
+Libname SS_Calc "C:\Users\student\OneDrive - Bryant University\College\Senior\Semester I\AA490\Final Project\Git_Repository\AA490_Project\Data_Sets\_Final_Data_Package\Social Security";
 options user = Work;
 DATA Wage_Limits;
     LENGTH
@@ -215,6 +215,20 @@ proc sql;
 create table socialsecurity_data_final as 
 select * from socialsecurity_data_step4 
 order by Year;
+data work.temp3 (drop = year);
+set socialsecurity_data_final;
+newyear = put (year, $4.);
+run;
+proc sql;
+create table work.temp4 as 
+	select a.*, b.employee_SS_rate, b.employer_SS_rate from work.temp2 a 
+		join work.temp3 b on a.year_char = b.newyear;
+quit;
+proc sql;
+create table SS_Pay_Past as
+	select a.*, b.SS_wage_limit from work.temp4 a
+		join ss_dat.wagelimit b on a.year_char = b.year;
+quit;
 
 /* Historic recode step 1*/
 /*Recoding Historical Data to Fit Buckets*/
@@ -504,7 +518,7 @@ run;
 proc sql;
 create table ss_join_3 as 
 	select a.*, b.employee_SS_rate, b.employer_SS_rate from ss_join_2 a 
-		join work.temp3 b on a.year_char = b.newyear;
+		join work.temp3 b on a.newyear = b.newyear;
 quit;
 data wage_limits(drop = year);
 set wage_limits;
@@ -867,7 +881,7 @@ ss_payout = (population * 1503 * 12);
 
 data projected_total_contributions_1(drop = date);
 set projected_total_contributions;
-char_date = put (date, $8.);
+char_date = put (date, $4.);
 run;
 
 proc sql;
