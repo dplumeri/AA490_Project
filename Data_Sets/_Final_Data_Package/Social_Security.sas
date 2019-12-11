@@ -1,4 +1,4 @@
-Libname SS_Calc "C:\Users\student\OneDrive - Bryant University\College\Senior\Semester I\AA490\Final Project\Git_Repository\AA490_Project\Data_Sets\_Final_Data_Package\Social Security";
+Libname SS_Calc "C:\Users\student\Desktop\AA Capstone\Project\GitRepository\aa490_project\Data_Sets\_Final_Data_Package\Social Security";
 options user = Work;
 DATA Wage_Limits;
     LENGTH
@@ -889,5 +889,48 @@ create table ss_calc.projected_ss_final as
 select a.char_date, a.total_contributions, b.ss_payout
 from projected_total_contributions_1 a join projected_ss_payout b on a.char_date = b.date;
 quit;
+
+/* SCENARIO ONE - lowering mean monthly benefit payment to $1,000 */
+
+data scenario_one_payout (drop = gender age_group population_in_thousands population);
+set projected_ss_step_3;
+Population = (population_in_thousands * 1000);
+ss_payout = (population * 1000 * 12);
+
+proc sql;
+create table ss_calc.scenario_one_final as
+select a.char_date, a.total_contributions, b.ss_payout
+from projected_total_contributions_1 a join scenario_one_payout b on a.char_date = b.date;
+quit;
+
+/* SCENARIO TWO - increasing employee/employer payroll tax by 0.5% */ 
+
+data scenario_two_contributions;
+set projected_ss_step_1;
+if (annual_mean_wage lt wage_cap) then
+combined_ss_contribution = (annual_mean_wage * 0.134);
+if (annual_mean_wage gt wage_cap) then 
+combined_ss_contribution = (wage_cap * 0.134);
+total_contributions = (combined_ss_contribution * active_contributors);
+run;
+
+proc sql;
+create table scenario_two_contributions_1 as
+select date, sum(total_contributions) as total_contributions
+from scenario_two_contributions
+group by date;
+quit;
+
+data scenario_two_contributions_2(drop = date);
+set scenario_two_contributions_1;
+char_date = put (date, $4.);
+run;
+
+proc sql;
+create table ss_calc.scenario_two_final as
+select a.char_date, a.total_contributions, b.ss_payout
+from scenario_two_contributions_2 a join projected_ss_payout b on a.char_date = b.date;
+quit;
+
 
 
