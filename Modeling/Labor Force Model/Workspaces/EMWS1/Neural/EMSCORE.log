@@ -3,8 +3,8 @@ MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
 MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
 MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   data _null_;
-MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 21, 2019" );
-MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:12:18" );
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "December 10, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:43:48" );
 MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
 MPRINT(EM_DIAGRAM):   put "* Score Log";
 MPRINT(EM_DIAGRAM):   put nldate;
@@ -13,1456 +13,1366 @@ MPRINT(EM_DIAGRAM):   put "*----------------------------------------------------
 MPRINT(EM_DIAGRAM):   run;
 *------------------------------------------------------------*
 * Score Log
-Date:                November 21, 2019
-Time:                15:12:18
+Date:                December 10, 2019
+Time:                15:43:48
 *------------------------------------------------------------*
-MPRINT(EM_DIAGRAM):    filename O2HTI35W "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Neural\EMSCORE.out" encoding="UTF-8" NOBOM;
-MPRINT(EM_DIAGRAM):   proc printto print=O2HTI35W new;
+MPRINT(EM_DIAGRAM):    filename O1WOSVO3 "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Neural\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O1WOSVO3 new;
 MPRINT(EM_DIAGRAM):   run;
-69889      data work.outkey;
+29418      data work.outkey;
 MPRINT(EM_DIAGRAM):    data work.outkey;
-69890      set EMWS1.Neural_OUTKEY;
+29419      set EMWS1.Neural_OUTKEY;
 MPRINT(EM_DIAGRAM):   set EMWS1.Neural_OUTKEY;
-69891      if upcase(ROLE) in('HIDDEN', 'STANDARD');
+29420      if upcase(ROLE) in('HIDDEN', 'STANDARD');
 MPRINT(EM_DIAGRAM):   if upcase(ROLE) in('HIDDEN', 'STANDARD');
-69892      run;
+29421      run;
 MPRINT(EM_DIAGRAM):   run;
 
-NOTE: There were 24 observations read from the data set EMWS1.NEURAL_OUTKEY.
-NOTE: The data set WORK.OUTKEY has 3 observations and 8 variables.
+NOTE: There were 15 observations read from the data set EMWS1.NEURAL_OUTKEY.
+NOTE: The data set WORK.OUTKEY has 4 observations and 8 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.00 seconds
+      real time           0.01 seconds
+      cpu time            0.01 seconds
       
 
-69893      filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas";
+29422      filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   * Neural: Scoring DATA data;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-69894      *------------------------------------------------------------*;
-69895      * Neural: Scoring DATA data;
-69896      *------------------------------------------------------------*;
-69897      data EMWS1.Neural_TRAIN
-69898      / view=EMWS1.Neural_TRAIN
-69899      ;
+29423      *------------------------------------------------------------*;
+29424      * Neural: Scoring DATA data;
+29425      *------------------------------------------------------------*;
+29426      data EMWS1.Neural_TRAIN
+29427      / view=EMWS1.Neural_TRAIN
+29428      ;
 MPRINT(EM_DIAGRAM):   data EMWS1.Neural_TRAIN / view=EMWS1.Neural_TRAIN ;
-69900      set EMWS1.Varsel_TRAIN
-69901      ;
+29429      set EMWS1.Varsel_TRAIN
+29430      ;
 MPRINT(EM_DIAGRAM):   set EMWS1.Varsel_TRAIN ;
-69902      %inc emflow;
+29431      %inc emflow;
 NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas.
-69903     +***********************************;
+29432     +***********************************;
 MPRINT(EM_DIAGRAM):   ***********************************;
-69904     +*** Begin Scoring Code for Neural;
+29433     +*** Begin Scoring Code for Neural;
 MPRINT(EM_DIAGRAM):   *** Begin Scoring Code for Neural;
-69905     +***********************************;
+29434     +***********************************;
 MPRINT(EM_DIAGRAM):   ***********************************;
-69906     +DROP _DM_BAD _EPS _NOCL_ _MAX_ _MAXP_ _SUM_ _NTRIALS;
+29435     +DROP _DM_BAD _EPS _NOCL_ _MAX_ _MAXP_ _SUM_ _NTRIALS;
 MPRINT(EM_DIAGRAM):   DROP _DM_BAD _EPS _NOCL_ _MAX_ _MAXP_ _SUM_ _NTRIALS;
-69907     + _DM_BAD = 0;
+29436     + _DM_BAD = 0;
 MPRINT(EM_DIAGRAM):   _DM_BAD = 0;
-69908     + _NOCL_ = .;
+29437     + _NOCL_ = .;
 MPRINT(EM_DIAGRAM):   _NOCL_ = .;
-69909     + _MAX_ = .;
+29438     + _MAX_ = .;
 MPRINT(EM_DIAGRAM):   _MAX_ = .;
-69910     + _MAXP_ = .;
+29439     + _MAXP_ = .;
 MPRINT(EM_DIAGRAM):   _MAXP_ = .;
-69911     + _SUM_ = .;
+29440     + _SUM_ = .;
 MPRINT(EM_DIAGRAM):   _SUM_ = .;
-69912     + _NTRIALS = .;
+29441     + _NTRIALS = .;
 MPRINT(EM_DIAGRAM):   _NTRIALS = .;
-69913     + _EPS =                1E-10;
+29442     + _EPS =                1E-10;
 MPRINT(EM_DIAGRAM):   _EPS = 1E-10;
-69914     +LENGTH _WARN_ $4
-69915     +;
+29443     +LENGTH _WARN_ $4
+29444     +;
 MPRINT(EM_DIAGRAM):   LENGTH _WARN_ $4 ;
-69916     +      label Age_group16_to_24 = 'Dummy: Age_group=16 to 24' ;
+29445     +      label S_Population = 'Standard: Population' ;
+MPRINT(EM_DIAGRAM):   label S_Population = 'Standard: Population' ;
+29446     +
+29447     +      label Age_group16_to_24 = 'Dummy: Age_group=16 to 24' ;
 MPRINT(EM_DIAGRAM):   label Age_group16_to_24 = 'Dummy: Age_group=16 to 24' ;
-69917     +
-69918     +      label Age_group25_to_44 = 'Dummy: Age_group=25 to 44' ;
+29448     +
+29449     +      label Age_group25_to_44 = 'Dummy: Age_group=25 to 44' ;
 MPRINT(EM_DIAGRAM):   label Age_group25_to_44 = 'Dummy: Age_group=25 to 44' ;
-69919     +
-69920     +      label Age_group45_to_64 = 'Dummy: Age_group=45 to 64' ;
+29450     +
+29451     +      label Age_group45_to_64 = 'Dummy: Age_group=45 to 64' ;
 MPRINT(EM_DIAGRAM):   label Age_group45_to_64 = 'Dummy: Age_group=45 to 64' ;
-69921     +
-69922     +      label G_Date0 = 'Dummy: G_Date=0' ;
-MPRINT(EM_DIAGRAM):   label G_Date0 = 'Dummy: G_Date=0' ;
-69923     +
-69924     +      label G_Date1 = 'Dummy: G_Date=1' ;
-MPRINT(EM_DIAGRAM):   label G_Date1 = 'Dummy: G_Date=1' ;
-69925     +
-69926     +      label G_Date2 = 'Dummy: G_Date=2' ;
-MPRINT(EM_DIAGRAM):   label G_Date2 = 'Dummy: G_Date=2' ;
-69927     +
-69928     +      label G_Date3 = 'Dummy: G_Date=3' ;
-MPRINT(EM_DIAGRAM):   label G_Date3 = 'Dummy: G_Date=3' ;
-69929     +
-69930     +      label G_Date4 = 'Dummy: G_Date=4' ;
-MPRINT(EM_DIAGRAM):   label G_Date4 = 'Dummy: G_Date=4' ;
-69931     +
-69932     +      label G_Date5 = 'Dummy: G_Date=5' ;
-MPRINT(EM_DIAGRAM):   label G_Date5 = 'Dummy: G_Date=5' ;
-69933     +
-69934     +      label G_Date6 = 'Dummy: G_Date=6' ;
-MPRINT(EM_DIAGRAM):   label G_Date6 = 'Dummy: G_Date=6' ;
-69935     +
-69936     +      label G_Date7 = 'Dummy: G_Date=7' ;
-MPRINT(EM_DIAGRAM):   label G_Date7 = 'Dummy: G_Date=7' ;
-69937     +
-69938     +      label G_Date8 = 'Dummy: G_Date=8' ;
-MPRINT(EM_DIAGRAM):   label G_Date8 = 'Dummy: G_Date=8' ;
-69939     +
-69940     +      label G_Date9 = 'Dummy: G_Date=9' ;
-MPRINT(EM_DIAGRAM):   label G_Date9 = 'Dummy: G_Date=9' ;
-69941     +
-69942     +      label G_Date10 = 'Dummy: G_Date=10' ;
-MPRINT(EM_DIAGRAM):   label G_Date10 = 'Dummy: G_Date=10' ;
-69943     +
-69944     +      label G_Date11 = 'Dummy: G_Date=11' ;
-MPRINT(EM_DIAGRAM):   label G_Date11 = 'Dummy: G_Date=11' ;
-69945     +
-69946     +      label OPT_Population_01_low_27749_91 =
-69947     +'Dummy: OPT_Population_in_thousands=01:low-27749.913' ;
-MPRINT(EM_DIAGRAM):   label OPT_Population_01_low_27749_91 = 'Dummy: OPT_Population_in_thousands=01:low-27749.913' ;
-69948     +
-69949     +      label OPT_Population_02_27749_913_40 =
-69950     +'Dummy: OPT_Population_in_thousands=02:27749.913-40523.919' ;
-MPRINT(EM_DIAGRAM):   label OPT_Population_02_27749_913_40 = 'Dummy: OPT_Population_in_thousands=02:27749.913-40523.919' ;
-69951     +
-69952     +      label H11 = 'Hidden: H1=1' ;
+29452     +
+29453     +      label IndustryManagement__profession =
+29454     +'Dummy: Industry=Management, professional, and related occupations' ;
+MPRINT(EM_DIAGRAM):   label IndustryManagement__profession = 'Dummy: Industry=Management, professional, and related occupations' ;
+29455     +
+29456     +      label IndustryNatural_resources__con = 'Dummy: Industry=Natural resourc
+29457     +es, construction, and maintenance occupations' ;
+MPRINT(EM_DIAGRAM):   label IndustryNatural_resources__con = 'Dummy: Industry=Natural resources, construction, and maintenance occupations' ;
+29458     +
+29459     +      label IndustryProduction__transporta = 'Dummy: Industry=Production, tra
+29460     +nsportation, and material moving occupations' ;
+MPRINT(EM_DIAGRAM):   label IndustryProduction__transporta = 'Dummy: Industry=Production, transportation, and material moving occupations' ;
+29461     +
+29462     +      label IndustrySales_and_office_occup =
+29463     +'Dummy: Industry=Sales and office occupations' ;
+MPRINT(EM_DIAGRAM):   label IndustrySales_and_office_occup = 'Dummy: Industry=Sales and office occupations' ;
+29464     +
+29465     +      label H11 = 'Hidden: H1=1' ;
 MPRINT(EM_DIAGRAM):   label H11 = 'Hidden: H1=1' ;
-69953     +
-69954     +      label H12 = 'Hidden: H1=2' ;
+29466     +
+29467     +      label H12 = 'Hidden: H1=2' ;
 MPRINT(EM_DIAGRAM):   label H12 = 'Hidden: H1=2' ;
-69955     +
-69956     +      label H13 = 'Hidden: H1=3' ;
+29468     +
+29469     +      label H13 = 'Hidden: H1=3' ;
 MPRINT(EM_DIAGRAM):   label H13 = 'Hidden: H1=3' ;
-69957     +
-69958     +      label P_Sum_Labor_Force_Pop = 'Predicted: Sum_Labor_Force_Pop' ;
+29470     +
+29471     +      label P_Sum_Labor_Force_Pop = 'Predicted: Sum_Labor_Force_Pop' ;
 MPRINT(EM_DIAGRAM):   label P_Sum_Labor_Force_Pop = 'Predicted: Sum_Labor_Force_Pop' ;
-69959     +
-69960     +      label R_Sum_Labor_Force_Pop = 'Residual: Sum_Labor_Force_Pop' ;
+29472     +
+29473     +      label R_Sum_Labor_Force_Pop = 'Residual: Sum_Labor_Force_Pop' ;
 MPRINT(EM_DIAGRAM):   label R_Sum_Labor_Force_Pop = 'Residual: Sum_Labor_Force_Pop' ;
-69961     +
-69962     +      label  _WARN_ = "Warnings";
+29474     +
+29475     +      label  _WARN_ = "Warnings";
 MPRINT(EM_DIAGRAM):   label _WARN_ = "Warnings";
-69963     +
-69964     +*** Generate dummy variables for Age_group ;
+29476     +
+29477     +*** Generate dummy variables for Age_group ;
 MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Age_group ;
-69965     +drop Age_group16_to_24 Age_group25_to_44 Age_group45_to_64 ;
+29478     +drop Age_group16_to_24 Age_group25_to_44 Age_group45_to_64 ;
 MPRINT(EM_DIAGRAM):   drop Age_group16_to_24 Age_group25_to_44 Age_group45_to_64 ;
-69966     +if missing( Age_group ) then do;
+29479     +if missing( Age_group ) then do;
 MPRINT(EM_DIAGRAM):   if missing( Age_group ) then do;
-69967     +   Age_group16_to_24 = .;
+29480     +   Age_group16_to_24 = .;
 MPRINT(EM_DIAGRAM):   Age_group16_to_24 = .;
-69968     +   Age_group25_to_44 = .;
+29481     +   Age_group25_to_44 = .;
 MPRINT(EM_DIAGRAM):   Age_group25_to_44 = .;
-69969     +   Age_group45_to_64 = .;
+29482     +   Age_group45_to_64 = .;
 MPRINT(EM_DIAGRAM):   Age_group45_to_64 = .;
-69970     +   substr(_warn_,1,1) = 'M';
+29483     +   substr(_warn_,1,1) = 'M';
 MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
-69971     +   _DM_BAD = 1;
+29484     +   _DM_BAD = 1;
 MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-69972     +end;
+29485     +end;
 MPRINT(EM_DIAGRAM):   end;
-69973     +else do;
+29486     +else do;
 MPRINT(EM_DIAGRAM):   else do;
-69974     +   length _dm19 $ 19; drop _dm19 ;
+29487     +   length _dm19 $ 19; drop _dm19 ;
 MPRINT(EM_DIAGRAM):   length _dm19 $ 19;
 MPRINT(EM_DIAGRAM):   drop _dm19 ;
-69975     +   %DMNORMCP( Age_group , _dm19 )
+29488     +   %DMNORMCP( Age_group , _dm19 )
 MPRINT(DMNORMCP):   _dm19=dmnorm(Age_group,
 MPRINT(DMNORLEN):  32
 MPRINT(DMNORMCP):  );
-69976     +   if _dm19 = '65+'  then do;
-MPRINT(EM_DIAGRAM):   if _dm19 = '65+' then do;
-69977     +      Age_group16_to_24 = -1;
-MPRINT(EM_DIAGRAM):   Age_group16_to_24 = -1;
-69978     +      Age_group25_to_44 = -1;
-MPRINT(EM_DIAGRAM):   Age_group25_to_44 = -1;
-69979     +      Age_group45_to_64 = -1;
-MPRINT(EM_DIAGRAM):   Age_group45_to_64 = -1;
-69980     +   end;
-MPRINT(EM_DIAGRAM):   end;
-69981     +   else if _dm19 = '45 TO 64'  then do;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '45 TO 64' then do;
-69982     +      Age_group16_to_24 = 0;
+MPRINT(EM_DIAGRAM):   if _dm19 = '45 TO 64' then do;
 MPRINT(EM_DIAGRAM):   Age_group16_to_24 = 0;
-69983     +      Age_group25_to_44 = 0;
 MPRINT(EM_DIAGRAM):   Age_group25_to_44 = 0;
-69984     +      Age_group45_to_64 = 1;
 MPRINT(EM_DIAGRAM):   Age_group45_to_64 = 1;
-69985     +   end;
 MPRINT(EM_DIAGRAM):   end;
-69986     +   else if _dm19 = '25 TO 44'  then do;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '25 TO 44' then do;
-69987     +      Age_group16_to_24 = 0;
-MPRINT(EM_DIAGRAM):   Age_group16_to_24 = 0;
-69988     +      Age_group25_to_44 = 1;
-MPRINT(EM_DIAGRAM):   Age_group25_to_44 = 1;
-69989     +      Age_group45_to_64 = 0;
-MPRINT(EM_DIAGRAM):   Age_group45_to_64 = 0;
-69990     +   end;
+29489     +   if _dm19 = '45 TO 64'  then do;
+29490     +      Age_group16_to_24 = 0;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '65+' then do;
+29491     +      Age_group25_to_44 = 0;
+MPRINT(EM_DIAGRAM):   Age_group16_to_24 = -1;
+29492     +      Age_group45_to_64 = 1;
+MPRINT(EM_DIAGRAM):   Age_group25_to_44 = -1;
+29493     +   end;
+MPRINT(EM_DIAGRAM):   Age_group45_to_64 = -1;
+29494     +   else if _dm19 = '65+'  then do;
 MPRINT(EM_DIAGRAM):   end;
-69991     +   else if _dm19 = '16 TO 24'  then do;
+29495     +      Age_group16_to_24 = -1;
 MPRINT(EM_DIAGRAM):   else if _dm19 = '16 TO 24' then do;
-69992     +      Age_group16_to_24 = 1;
+29496     +      Age_group25_to_44 = -1;
 MPRINT(EM_DIAGRAM):   Age_group16_to_24 = 1;
-69993     +      Age_group25_to_44 = 0;
+29497     +      Age_group45_to_64 = -1;
 MPRINT(EM_DIAGRAM):   Age_group25_to_44 = 0;
-69994     +      Age_group45_to_64 = 0;
+29498     +   end;
 MPRINT(EM_DIAGRAM):   Age_group45_to_64 = 0;
-69995     +   end;
+29499     +   else if _dm19 = '16 TO 24'  then do;
 MPRINT(EM_DIAGRAM):   end;
-69996     +   else do;
+29500     +      Age_group16_to_24 = 1;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '25 TO 44' then do;
+29501     +      Age_group25_to_44 = 0;
+MPRINT(EM_DIAGRAM):   Age_group16_to_24 = 0;
+29502     +      Age_group45_to_64 = 0;
+MPRINT(EM_DIAGRAM):   Age_group25_to_44 = 1;
+29503     +   end;
+MPRINT(EM_DIAGRAM):   Age_group45_to_64 = 0;
+29504     +   else if _dm19 = '25 TO 44'  then do;
+MPRINT(EM_DIAGRAM):   end;
+29505     +      Age_group16_to_24 = 0;
 MPRINT(EM_DIAGRAM):   else do;
-69997     +      Age_group16_to_24 = .;
+29506     +      Age_group25_to_44 = 1;
 MPRINT(EM_DIAGRAM):   Age_group16_to_24 = .;
-69998     +      Age_group25_to_44 = .;
+29507     +      Age_group45_to_64 = 0;
 MPRINT(EM_DIAGRAM):   Age_group25_to_44 = .;
-69999     +      Age_group45_to_64 = .;
+29508     +   end;
 MPRINT(EM_DIAGRAM):   Age_group45_to_64 = .;
-70000     +      substr(_warn_,2,1) = 'U';
+29509     +   else do;
 MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
-70001     +      _DM_BAD = 1;
 MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-70002     +   end;
+29510     +      Age_group16_to_24 = .;
 MPRINT(EM_DIAGRAM):   end;
-70003     +end;
+29511     +      Age_group25_to_44 = .;
 MPRINT(EM_DIAGRAM):   end;
-70004     +
-70005     +*** Generate dummy variables for G_Date ;
-MPRINT(EM_DIAGRAM):   *** Generate dummy variables for G_Date ;
-70006     +drop G_Date0 G_Date1 G_Date2 G_Date3 G_Date4 G_Date5 G_Date6 G_Date7 G_Date8
-70007     +        G_Date9 G_Date10 G_Date11 ;
-MPRINT(EM_DIAGRAM):   drop G_Date0 G_Date1 G_Date2 G_Date3 G_Date4 G_Date5 G_Date6 G_Date7 G_Date8 G_Date9 G_Date10 G_Date11 ;
-70008     +*** encoding is sparse, initialize to zero;
+29512     +      Age_group45_to_64 = .;
+29513     +      substr(_warn_,2,1) = 'U';
+MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Industry ;
+29514     +      _DM_BAD = 1;
+29515     +   end;
+MPRINT(EM_DIAGRAM):   drop IndustryManagement__profession IndustryNatural_resources__con IndustryProduction__transporta IndustrySales_and_office_occup ;
+29516     +end;
 MPRINT(EM_DIAGRAM):   *** encoding is sparse, initialize to zero;
-70009     +G_Date0 = 0;
-MPRINT(EM_DIAGRAM):   G_Date0 = 0;
-70010     +G_Date1 = 0;
-MPRINT(EM_DIAGRAM):   G_Date1 = 0;
-70011     +G_Date2 = 0;
-MPRINT(EM_DIAGRAM):   G_Date2 = 0;
-70012     +G_Date3 = 0;
-MPRINT(EM_DIAGRAM):   G_Date3 = 0;
-70013     +G_Date4 = 0;
-MPRINT(EM_DIAGRAM):   G_Date4 = 0;
-70014     +G_Date5 = 0;
-MPRINT(EM_DIAGRAM):   G_Date5 = 0;
-70015     +G_Date6 = 0;
-MPRINT(EM_DIAGRAM):   G_Date6 = 0;
-70016     +G_Date7 = 0;
-MPRINT(EM_DIAGRAM):   G_Date7 = 0;
-70017     +G_Date8 = 0;
-MPRINT(EM_DIAGRAM):   G_Date8 = 0;
-70018     +G_Date9 = 0;
-MPRINT(EM_DIAGRAM):   G_Date9 = 0;
-70019     +G_Date10 = 0;
-MPRINT(EM_DIAGRAM):   G_Date10 = 0;
-70020     +G_Date11 = 0;
-MPRINT(EM_DIAGRAM):   G_Date11 = 0;
-70021     +if missing( G_Date ) then do;
-MPRINT(EM_DIAGRAM):   if missing( G_Date ) then do;
-70022     +   G_Date0 = .;
-MPRINT(EM_DIAGRAM):   G_Date0 = .;
-70023     +   G_Date1 = .;
-MPRINT(EM_DIAGRAM):   G_Date1 = .;
-70024     +   G_Date2 = .;
-MPRINT(EM_DIAGRAM):   G_Date2 = .;
-70025     +   G_Date3 = .;
-MPRINT(EM_DIAGRAM):   G_Date3 = .;
-70026     +   G_Date4 = .;
-MPRINT(EM_DIAGRAM):   G_Date4 = .;
-70027     +   G_Date5 = .;
-MPRINT(EM_DIAGRAM):   G_Date5 = .;
-70028     +   G_Date6 = .;
-MPRINT(EM_DIAGRAM):   G_Date6 = .;
-70029     +   G_Date7 = .;
-MPRINT(EM_DIAGRAM):   G_Date7 = .;
-70030     +   G_Date8 = .;
-MPRINT(EM_DIAGRAM):   G_Date8 = .;
-70031     +   G_Date9 = .;
-MPRINT(EM_DIAGRAM):   G_Date9 = .;
-70032     +   G_Date10 = .;
-MPRINT(EM_DIAGRAM):   G_Date10 = .;
-70033     +   G_Date11 = .;
-MPRINT(EM_DIAGRAM):   G_Date11 = .;
-70034     +   substr(_warn_,1,1) = 'M';
+29517     +
+MPRINT(EM_DIAGRAM):   IndustryManagement__profession = 0;
+29518     +*** Generate dummy variables for Industry ;
+MPRINT(EM_DIAGRAM):   IndustryNatural_resources__con = 0;
+29519     +drop IndustryManagement__profession IndustryNatural_resources__con
+MPRINT(EM_DIAGRAM):   IndustryProduction__transporta = 0;
+29520     +        IndustryProduction__transporta IndustrySales_and_office_occup ;
+MPRINT(EM_DIAGRAM):   IndustrySales_and_office_occup = 0;
+29521     +*** encoding is sparse, initialize to zero;
+MPRINT(EM_DIAGRAM):   if missing( Industry ) then do;
+29522     +IndustryManagement__profession = 0;
+MPRINT(EM_DIAGRAM):   IndustryManagement__profession = .;
+29523     +IndustryNatural_resources__con = 0;
+MPRINT(EM_DIAGRAM):   IndustryNatural_resources__con = .;
+29524     +IndustryProduction__transporta = 0;
+MPRINT(EM_DIAGRAM):   IndustryProduction__transporta = .;
+29525     +IndustrySales_and_office_occup = 0;
+MPRINT(EM_DIAGRAM):   IndustrySales_and_office_occup = .;
+29526     +if missing( Industry ) then do;
 MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
-70035     +   _DM_BAD = 1;
+29527     +   IndustryManagement__profession = .;
 MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-70036     +end;
+29528     +   IndustryNatural_resources__con = .;
 MPRINT(EM_DIAGRAM):   end;
-70037     +else do;
+29529     +   IndustryProduction__transporta = .;
+29530     +   IndustrySales_and_office_occup = .;
 MPRINT(EM_DIAGRAM):   else do;
-70038     +   length _dm12 $ 12; drop _dm12 ;
-MPRINT(EM_DIAGRAM):   length _dm12 $ 12;
-MPRINT(EM_DIAGRAM):   drop _dm12 ;
-70039     +   _dm12 = put( G_Date , BEST12. );
-MPRINT(EM_DIAGRAM):   _dm12 = put( G_Date , BEST12. );
-70040     +   %DMNORMIP( _dm12 )
-MPRINT(DMNORMIP):   call dmnorm(_dm12,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMIP):  );
-70041     +   _dm_find = 0; drop _dm_find;
-MPRINT(EM_DIAGRAM):   _dm_find = 0;
-MPRINT(EM_DIAGRAM):   drop _dm_find;
-70042     +   if _dm12 <= '3'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 <= '3' then do;
-70043     +      if _dm12 <= '11'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 <= '11' then do;
-70044     +         if _dm12 <= '1'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 <= '1' then do;
-70045     +            if _dm12 = '0'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '0' then do;
-70046     +               G_Date0 = 1;
-MPRINT(EM_DIAGRAM):   G_Date0 = 1;
-70047     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70048     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70049     +            else do;
-MPRINT(EM_DIAGRAM):   else do;
-70050     +               if _dm12 = '1'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '1' then do;
-70051     +                  G_Date1 = 1;
-MPRINT(EM_DIAGRAM):   G_Date1 = 1;
-70052     +                  _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70053     +               end;
-MPRINT(EM_DIAGRAM):   end;
-70054     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70055     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70056     +         else do;
-MPRINT(EM_DIAGRAM):   else do;
-70057     +            if _dm12 = '10'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '10' then do;
-70058     +               G_Date10 = 1;
-MPRINT(EM_DIAGRAM):   G_Date10 = 1;
-70059     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70060     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70061     +            else do;
-MPRINT(EM_DIAGRAM):   else do;
-70062     +               if _dm12 = '11'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '11' then do;
-70063     +                  G_Date11 = 1;
-MPRINT(EM_DIAGRAM):   G_Date11 = 1;
-70064     +                  _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70065     +               end;
-MPRINT(EM_DIAGRAM):   end;
-70066     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70067     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70068     +      end;
-MPRINT(EM_DIAGRAM):   end;
-70069     +      else do;
-MPRINT(EM_DIAGRAM):   else do;
-70070     +         if _dm12 <= '2'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 <= '2' then do;
-70071     +            if _dm12 = '12'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '12' then do;
-70072     +               G_Date0 = -1;
-MPRINT(EM_DIAGRAM):   G_Date0 = -1;
-70073     +               G_Date1 = -1;
-MPRINT(EM_DIAGRAM):   G_Date1 = -1;
-70074     +               G_Date2 = -1;
-MPRINT(EM_DIAGRAM):   G_Date2 = -1;
-70075     +               G_Date3 = -1;
-MPRINT(EM_DIAGRAM):   G_Date3 = -1;
-70076     +               G_Date4 = -1;
-MPRINT(EM_DIAGRAM):   G_Date4 = -1;
-70077     +               G_Date5 = -1;
-MPRINT(EM_DIAGRAM):   G_Date5 = -1;
-70078     +               G_Date6 = -1;
-MPRINT(EM_DIAGRAM):   G_Date6 = -1;
-70079     +               G_Date7 = -1;
-MPRINT(EM_DIAGRAM):   G_Date7 = -1;
-70080     +               G_Date8 = -1;
-MPRINT(EM_DIAGRAM):   G_Date8 = -1;
-70081     +               G_Date9 = -1;
-MPRINT(EM_DIAGRAM):   G_Date9 = -1;
-70082     +               G_Date10 = -1;
-MPRINT(EM_DIAGRAM):   G_Date10 = -1;
-70083     +               G_Date11 = -1;
-MPRINT(EM_DIAGRAM):   G_Date11 = -1;
-70084     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70085     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70086     +            else do;
-MPRINT(EM_DIAGRAM):   else do;
-70087     +               if _dm12 = '2'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '2' then do;
-70088     +                  G_Date2 = 1;
-MPRINT(EM_DIAGRAM):   G_Date2 = 1;
-70089     +                  _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70090     +               end;
-MPRINT(EM_DIAGRAM):   end;
-70091     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70092     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70093     +         else do;
-MPRINT(EM_DIAGRAM):   else do;
-70094     +            if _dm12 = '3'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '3' then do;
-70095     +               G_Date3 = 1;
-MPRINT(EM_DIAGRAM):   G_Date3 = 1;
-70096     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70097     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70098     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70099     +      end;
-MPRINT(EM_DIAGRAM):   end;
-70100     +   end;
-MPRINT(EM_DIAGRAM):   end;
-70101     +   else do;
-MPRINT(EM_DIAGRAM):   else do;
-70102     +      if _dm12 <= '6'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 <= '6' then do;
-70103     +         if _dm12 <= '5'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 <= '5' then do;
-70104     +            if _dm12 = '4'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '4' then do;
-70105     +               G_Date4 = 1;
-MPRINT(EM_DIAGRAM):   G_Date4 = 1;
-70106     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70107     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70108     +            else do;
-MPRINT(EM_DIAGRAM):   else do;
-70109     +               if _dm12 = '5'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '5' then do;
-70110     +                  G_Date5 = 1;
-MPRINT(EM_DIAGRAM):   G_Date5 = 1;
-70111     +                  _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70112     +               end;
-MPRINT(EM_DIAGRAM):   end;
-70113     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70114     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70115     +         else do;
-MPRINT(EM_DIAGRAM):   else do;
-70116     +            if _dm12 = '6'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '6' then do;
-70117     +               G_Date6 = 1;
-MPRINT(EM_DIAGRAM):   G_Date6 = 1;
-70118     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70119     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70120     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70121     +      end;
-MPRINT(EM_DIAGRAM):   end;
-70122     +      else do;
-MPRINT(EM_DIAGRAM):   else do;
-70123     +         if _dm12 <= '8'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 <= '8' then do;
-70124     +            if _dm12 = '7'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '7' then do;
-70125     +               G_Date7 = 1;
-MPRINT(EM_DIAGRAM):   G_Date7 = 1;
-70126     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70127     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70128     +            else do;
-MPRINT(EM_DIAGRAM):   else do;
-70129     +               if _dm12 = '8'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '8' then do;
-70130     +                  G_Date8 = 1;
-MPRINT(EM_DIAGRAM):   G_Date8 = 1;
-70131     +                  _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70132     +               end;
-MPRINT(EM_DIAGRAM):   end;
-70133     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70134     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70135     +         else do;
-MPRINT(EM_DIAGRAM):   else do;
-70136     +            if _dm12 = '9'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '9' then do;
-70137     +               G_Date9 = 1;
-MPRINT(EM_DIAGRAM):   G_Date9 = 1;
-70138     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70139     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70140     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70141     +      end;
-MPRINT(EM_DIAGRAM):   end;
-70142     +   end;
-MPRINT(EM_DIAGRAM):   end;
-70143     +   if not _dm_find then do;
-MPRINT(EM_DIAGRAM):   if not _dm_find then do;
-70144     +      G_Date0 = .;
-MPRINT(EM_DIAGRAM):   G_Date0 = .;
-70145     +      G_Date1 = .;
-MPRINT(EM_DIAGRAM):   G_Date1 = .;
-70146     +      G_Date2 = .;
-MPRINT(EM_DIAGRAM):   G_Date2 = .;
-70147     +      G_Date3 = .;
-MPRINT(EM_DIAGRAM):   G_Date3 = .;
-70148     +      G_Date4 = .;
-MPRINT(EM_DIAGRAM):   G_Date4 = .;
-70149     +      G_Date5 = .;
-MPRINT(EM_DIAGRAM):   G_Date5 = .;
-70150     +      G_Date6 = .;
-MPRINT(EM_DIAGRAM):   G_Date6 = .;
-70151     +      G_Date7 = .;
-MPRINT(EM_DIAGRAM):   G_Date7 = .;
-70152     +      G_Date8 = .;
-MPRINT(EM_DIAGRAM):   G_Date8 = .;
-70153     +      G_Date9 = .;
-MPRINT(EM_DIAGRAM):   G_Date9 = .;
-70154     +      G_Date10 = .;
-MPRINT(EM_DIAGRAM):   G_Date10 = .;
-70155     +      G_Date11 = .;
-MPRINT(EM_DIAGRAM):   G_Date11 = .;
-70156     +      substr(_warn_,2,1) = 'U';
-MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
-70157     +      _DM_BAD = 1;
-MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-70158     +   end;
-MPRINT(EM_DIAGRAM):   end;
-70159     +end;
-MPRINT(EM_DIAGRAM):   end;
-70160     +
-70161     +*** Generate dummy variables for OPT_Population_in_thousands ;
-MPRINT(EM_DIAGRAM):   *** Generate dummy variables for OPT_Population_in_thousands ;
-70162     +drop OPT_Population_01_low_27749_91 OPT_Population_02_27749_913_40 ;
-MPRINT(EM_DIAGRAM):   drop OPT_Population_01_low_27749_91 OPT_Population_02_27749_913_40 ;
-70163     +if missing( OPT_Population_in_thousands ) then do;
-MPRINT(EM_DIAGRAM):   if missing( OPT_Population_in_thousands ) then do;
-70164     +   OPT_Population_01_low_27749_91 = .;
-MPRINT(EM_DIAGRAM):   OPT_Population_01_low_27749_91 = .;
-70165     +   OPT_Population_02_27749_913_40 = .;
-MPRINT(EM_DIAGRAM):   OPT_Population_02_27749_913_40 = .;
-70166     +   substr(_warn_,1,1) = 'M';
-MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
-70167     +   _DM_BAD = 1;
-MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-70168     +end;
-MPRINT(EM_DIAGRAM):   end;
-70169     +else do;
-MPRINT(EM_DIAGRAM):   else do;
-70170     +   length _dm32 $ 32; drop _dm32 ;
+29531     +   substr(_warn_,1,1) = 'M';
 MPRINT(EM_DIAGRAM):   length _dm32 $ 32;
+29532     +   _DM_BAD = 1;
 MPRINT(EM_DIAGRAM):   drop _dm32 ;
-70171     +   %DMNORMCP( OPT_Population_in_thousands , _dm32 )
-MPRINT(DMNORMCP):   _dm32=dmnorm(OPT_Population_in_thousands,
+29533     +end;
+MPRINT(EM_DIAGRAM):   length _dm111 $ 111;
+29534     +else do;
+MPRINT(EM_DIAGRAM):   drop _dm111;
+MPRINT(EM_DIAGRAM):   _dm111 = put( Industry , $CHAR111. );
+29535     +   length _dm32 $ 32; drop _dm32 ;
+29536     +   length _dm111 $ 111; drop _dm111;
+29537     +   _dm111 = put( Industry , $CHAR111. );
+MPRINT(DMNORMCP):   _dm32=dmnorm(_dm111,
+29538     +   %DMNORMCP( _dm111, _dm32 )
 MPRINT(DMNORLEN):  32
 MPRINT(DMNORMCP):  );
-70172     +   if _dm32 = '03:40523.919-HIGH, MISSING'  then do;
-MPRINT(EM_DIAGRAM):   if _dm32 = '03:40523.919-HIGH, MISSING' then do;
-70173     +      OPT_Population_01_low_27749_91 = -1;
-MPRINT(EM_DIAGRAM):   OPT_Population_01_low_27749_91 = -1;
-70174     +      OPT_Population_02_27749_913_40 = -1;
-MPRINT(EM_DIAGRAM):   OPT_Population_02_27749_913_40 = -1;
-70175     +   end;
+MPRINT(EM_DIAGRAM):   if _dm32 = 'SERVICE OCCUPATIONS' then do;
+MPRINT(EM_DIAGRAM):   IndustryManagement__profession = -1;
+MPRINT(EM_DIAGRAM):   IndustryNatural_resources__con = -1;
+MPRINT(EM_DIAGRAM):   IndustryProduction__transporta = -1;
+MPRINT(EM_DIAGRAM):   IndustrySales_and_office_occup = -1;
+29539     +   if _dm32 = 'SERVICE OCCUPATIONS'  then do;
 MPRINT(EM_DIAGRAM):   end;
-70176     +   else if _dm32 = '01:LOW-27749.913'  then do;
-MPRINT(EM_DIAGRAM):   else if _dm32 = '01:LOW-27749.913' then do;
-70177     +      OPT_Population_01_low_27749_91 = 1;
-MPRINT(EM_DIAGRAM):   OPT_Population_01_low_27749_91 = 1;
-70178     +      OPT_Population_02_27749_913_40 = 0;
-MPRINT(EM_DIAGRAM):   OPT_Population_02_27749_913_40 = 0;
-70179     +   end;
+29540     +      IndustryManagement__profession = -1;
+29541     +      IndustryNatural_resources__con = -1;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'SALES AND OFFICE OCCUPATIONS' then do;
+29542     +      IndustryProduction__transporta = -1;
+MPRINT(EM_DIAGRAM):   IndustrySales_and_office_occup = 1;
+29543     +      IndustrySales_and_office_occup = -1;
 MPRINT(EM_DIAGRAM):   end;
-70180     +   else if _dm32 = '02:27749.913-40523.919'  then do;
-MPRINT(EM_DIAGRAM):   else if _dm32 = '02:27749.913-40523.919' then do;
-70181     +      OPT_Population_01_low_27749_91 = 0;
-MPRINT(EM_DIAGRAM):   OPT_Population_01_low_27749_91 = 0;
-70182     +      OPT_Population_02_27749_913_40 = 1;
-MPRINT(EM_DIAGRAM):   OPT_Population_02_27749_913_40 = 1;
-70183     +   end;
+29544     +   end;
+29545     +   else if _dm32 = 'SALES AND OFFICE OCCUPATIONS'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'PRODUCTION, TRANSPORTATION, AND' then do;
+MPRINT(EM_DIAGRAM):   IndustryProduction__transporta = 1;
+29546     +      IndustrySales_and_office_occup = 1;
 MPRINT(EM_DIAGRAM):   end;
-70184     +   else do;
+29547     +   end;
+29548     +   else if _dm32 = 'PRODUCTION, TRANSPORTATION, AND'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'NATURAL RESOURCES, CONSTRUCTION,' then do;
+MPRINT(EM_DIAGRAM):   IndustryNatural_resources__con = 1;
+29549     +      IndustryProduction__transporta = 1;
+MPRINT(EM_DIAGRAM):   end;
+29550     +   end;
+29551     +   else if _dm32 = 'NATURAL RESOURCES, CONSTRUCTION,'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'MANAGEMENT, PROFESSIONAL, AND RE' then do;
+MPRINT(EM_DIAGRAM):   IndustryManagement__profession = 1;
+29552     +      IndustryNatural_resources__con = 1;
+MPRINT(EM_DIAGRAM):   end;
+29553     +   end;
+29554     +   else if _dm32 = 'MANAGEMENT, PROFESSIONAL, AND RE'  then do;
 MPRINT(EM_DIAGRAM):   else do;
-70185     +      OPT_Population_01_low_27749_91 = .;
-MPRINT(EM_DIAGRAM):   OPT_Population_01_low_27749_91 = .;
-70186     +      OPT_Population_02_27749_913_40 = .;
-MPRINT(EM_DIAGRAM):   OPT_Population_02_27749_913_40 = .;
-70187     +      substr(_warn_,2,1) = 'U';
+MPRINT(EM_DIAGRAM):   IndustryManagement__profession = .;
+29555     +      IndustryManagement__profession = 1;
+MPRINT(EM_DIAGRAM):   IndustryNatural_resources__con = .;
+29556     +   end;
+MPRINT(EM_DIAGRAM):   IndustryProduction__transporta = .;
+29557     +   else do;
+MPRINT(EM_DIAGRAM):   IndustrySales_and_office_occup = .;
 MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
-70188     +      _DM_BAD = 1;
+29558     +      IndustryManagement__profession = .;
 MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-70189     +   end;
+29559     +      IndustryNatural_resources__con = .;
 MPRINT(EM_DIAGRAM):   end;
-70190     +end;
+29560     +      IndustryProduction__transporta = .;
 MPRINT(EM_DIAGRAM):   end;
-70191     +*** *************************;
+29561     +      IndustrySales_and_office_occup = .;
+29562     +      substr(_warn_,2,1) = 'U';
 MPRINT(EM_DIAGRAM):   *** *************************;
-70192     +*** Writing the Node nom ;
+29563     +      _DM_BAD = 1;
+29564     +   end;
+MPRINT(EM_DIAGRAM):   *** Checking missing input Interval *** *************************;
+29565     +end;
+29566     +
+29567     +*** *************************;
+MPRINT(EM_DIAGRAM):   IF NMISS( Population ) THEN DO;
+29568     +*** Checking missing input Interval
+MPRINT(EM_DIAGRAM):   SUBSTR(_WARN_, 1, 1) = 'M';
+29569     +*** *************************;
+29570     +
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+29571     +IF NMISS(
+MPRINT(EM_DIAGRAM):   END;
+29572     +   Population   ) THEN DO;
+MPRINT(EM_DIAGRAM):   *** *************************;
+29573     +   SUBSTR(_WARN_, 1, 1) = 'M';
+MPRINT(EM_DIAGRAM):   *** Writing the Node intvl ;
+29574     +
+MPRINT(EM_DIAGRAM):   *** *************************;
+29575     +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 0 THEN DO;
+29576     +END;
+MPRINT(EM_DIAGRAM):   S_Population = -2.83964697481178 + 4.7992594103827E-8 * Population ;
+29577     +*** *************************;
+MPRINT(EM_DIAGRAM):   END;
+29578     +*** Writing the Node intvl ;
+29579     +*** *************************;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+29580     +IF _DM_BAD EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF MISSING( Population ) THEN S_Population = . ;
+29581     +   S_Population  =    -2.83964697481178 +   4.7992594103827E-8 * Population ;
+29582     +END;
+29583     +ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE S_Population = -2.83964697481178 + 4.7992594103827E-8 * Population ;
+MPRINT(EM_DIAGRAM):   END;
+29584     +   IF MISSING( Population ) THEN S_Population  = . ;
+MPRINT(EM_DIAGRAM):   *** *************************;
+29585     +   ELSE S_Population  =    -2.83964697481178 +   4.7992594103827E-8 *
 MPRINT(EM_DIAGRAM):   *** Writing the Node nom ;
-70193     +*** *************************;
 MPRINT(EM_DIAGRAM):   *** *************************;
-70194     +*** *************************;
+29586     +        Population ;
 MPRINT(EM_DIAGRAM):   *** *************************;
-70195     +*** Writing the Node H1 ;
+29587     +END;
 MPRINT(EM_DIAGRAM):   *** Writing the Node H1 ;
-70196     +*** *************************;
+29588     +*** *************************;
 MPRINT(EM_DIAGRAM):   *** *************************;
-70197     +IF _DM_BAD EQ 0 THEN DO;
+29589     +*** Writing the Node nom ;
 MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 0 THEN DO;
-70198     +   H11  =     97.4825147671137 * Age_group16_to_24  +    -54.0533453853029 *
-70199     +        Age_group25_to_44  +     64.4920176969353 * Age_group45_to_64
-70200     +          +      72.559960370367 * G_Date0  +    -102.561873008137 * G_Date1
-70201     +          +      57.450222707413 * G_Date2  +    -0.06961118350436 * G_Date3
-70202     +          +    -20.7155488923534 * G_Date4  +      83.779366030055 * G_Date5
-70203     +          +    -137.813372727696 * G_Date6  +    -49.3461512501977 * G_Date7
-70204     +          +     105.985648859758 * G_Date8  +    -82.2402484669472 * G_Date9
-70205     +          +     -284.67976511353 * G_Date10  +      265.00939569491 * G_Date11
-70206     +          +    -21.8603956931506 * OPT_Population_01_low_27749_91
-70207     +          +     19.4609962231357 * OPT_Population_02_27749_913_40 ;
-MPRINT(EM_DIAGRAM):   H11 = 97.4825147671137 * Age_group16_to_24 + -54.0533453853029 * Age_group25_to_44 + 64.4920176969353 * Age_group45_to_64 + 72.559960370367 * G_Date0 + -102.561873008137 * G_Date1 + 57.450222707413 * G_Date2 + -0.06961118350436 * 
-G_Date3 + -20.7155488923534 * G_Date4 + 83.779366030055 * G_Date5 + -137.813372727696 * G_Date6 + -49.3461512501977 * G_Date7 + 105.985648859758 * G_Date8 + -82.2402484669472 * G_Date9 + -284.67976511353 * G_Date10 + 265.00939569491 * G_Date11 + 
--21.8603956931506 * OPT_Population_01_low_27749_91 + 19.4609962231357 * OPT_Population_02_27749_913_40 ;
-70208     +   H12  =     82427714392341.5 * Age_group16_to_24  +     82427714392180.1 *
-70209     +        Age_group25_to_44  +     82427714391856.2 * Age_group45_to_64
-70210     +          +    -8.09084854960675 * G_Date0  +     0.01703164607637 * G_Date1
-70211     +          +    -186.531159399822 * G_Date2  +     2.74427239034311 * G_Date3
-70212     +          +     5.37631520021484 * G_Date4  +    -5.77967319782334 * G_Date5
-70213     +          +    -1.69905456184039 * G_Date6  +     -129415044330559 * G_Date7
-70214     +          +     138.272374638161 * G_Date8  +    -9.70216921877553 * G_Date9
-70215     +          +    -16.9592925352738 * G_Date10  +     46987329938354.4 * G_Date11
-70216     +          +    -82427714392534.8 * OPT_Population_01_low_27749_91
-70217     +          +    -313.419032271461 * OPT_Population_02_27749_913_40 ;
-MPRINT(EM_DIAGRAM):   H12 = 82427714392341.5 * Age_group16_to_24 + 82427714392180.1 * Age_group25_to_44 + 82427714391856.2 * Age_group45_to_64 + -8.09084854960675 * G_Date0 + 0.01703164607637 * G_Date1 + -186.531159399822 * G_Date2 + 2.74427239034311 * 
-G_Date3 + 5.37631520021484 * G_Date4 + -5.77967319782334 * G_Date5 + -1.69905456184039 * G_Date6 + -129415044330559 * G_Date7 + 138.272374638161 * G_Date8 + -9.70216921877553 * G_Date9 + -16.9592925352738 * G_Date10 + 46987329938354.4 * G_Date11 + 
--82427714392534.8 * OPT_Population_01_low_27749_91 + -313.419032271461 * OPT_Population_02_27749_913_40 ;
-70218     +   H13  =    -9617.22385559946 * Age_group16_to_24  +    -236523.348902238 *
-70219     +        Age_group25_to_44  +    -9618.36552345647 * Age_group45_to_64
-70220     +          +     0.50368458011756 * G_Date0  +     0.27673958870928 * G_Date1
-70221     +          +     0.21792698243068 * G_Date2  +     0.12287656450076 * G_Date3
-70222     +          +    -0.09567859273321 * G_Date4  +     0.14980836065414 * G_Date5
-70223     +          +    -0.02999302827684 * G_Date6  +    -0.23463906785714 * G_Date7
-70224     +          +    -0.03202899324402 * G_Date8  +    -0.30765412348637 * G_Date9
-70225     +          +    -0.22060400718538 * G_Date10  +    -0.10304573543441 * G_Date11
-70226     +          +     0.00092905422664 * OPT_Population_01_low_27749_91
-70227     +          +     0.12320282835843 * OPT_Population_02_27749_913_40 ;
-MPRINT(EM_DIAGRAM):   H13 = -9617.22385559946 * Age_group16_to_24 + -236523.348902238 * Age_group25_to_44 + -9618.36552345647 * Age_group45_to_64 + 0.50368458011756 * G_Date0 + 0.27673958870928 * G_Date1 + 0.21792698243068 * G_Date2 + 0.12287656450076 * 
-G_Date3 + -0.09567859273321 * G_Date4 + 0.14980836065414 * G_Date5 + -0.02999302827684 * G_Date6 + -0.23463906785714 * G_Date7 + -0.03202899324402 * G_Date8 + -0.30765412348637 * G_Date9 + -0.22060400718538 * G_Date10 + -0.10304573543441 * G_Date11 + 
-0.00092905422664 * OPT_Population_01_low_27749_91 + 0.12320282835843 * OPT_Population_02_27749_913_40 ;
-70228     +   H11  =    -21756.1066100815 + H11 ;
-MPRINT(EM_DIAGRAM):   H11 = -21756.1066100815 + H11 ;
-70229     +   H12  =    -82427714378273.8 + H12 ;
-MPRINT(EM_DIAGRAM):   H12 = -82427714378273.8 + H12 ;
-70230     +   H13  =     9617.91970044019 + H13 ;
-MPRINT(EM_DIAGRAM):   H13 = 9617.91970044019 + H13 ;
-70231     +   H11  = TANH(H11 );
+29590     +*** *************************;
+MPRINT(EM_DIAGRAM):   H11 = -1.07683938427355 * S_Population ;
+29591     +*** *************************;
+MPRINT(EM_DIAGRAM):   H12 = -0.42418815980383 * S_Population ;
+29592     +*** Writing the Node H1 ;
+MPRINT(EM_DIAGRAM):   H13 = 3.0458121085363 * S_Population ;
+29593     +*** *************************;
+29594     +IF _DM_BAD EQ 0 THEN DO;
+29595     +   H11  =    -1.07683938427355 * S_Population ;
+29596     +   H12  =    -0.42418815980383 * S_Population ;
+29597     +   H13  =      3.0458121085363 * S_Population ;
+29598     +   H11  = H11  +     8.13620736214956 * Age_group16_to_24
+29599     +          +    -5.69040629530111 * Age_group25_to_44
+MPRINT(EM_DIAGRAM):   H11 = H11 + 8.13620736214956 * Age_group16_to_24 + -5.69040629530111 * Age_group25_to_44 + -5.22627950724203 * Age_group45_to_64 + -8.20612991861404 * IndustryManagement__profession + 3.30962239961027 * IndustryNatural_resources__con 
++ 2.59408016791381 * IndustryProduction__transporta + 0.18418992149364 * IndustrySales_and_office_occup ;
+29600     +          +    -5.22627950724203 * Age_group45_to_64
+29601     +          +    -8.20612991861404 * IndustryManagement__profession
+29602     +          +     3.30962239961027 * IndustryNatural_resources__con
+29603     +          +     2.59408016791381 * IndustryProduction__transporta
+29604     +          +     0.18418992149364 * IndustrySales_and_office_occup ;
+29605     +   H12  = H12  +     1.36164859072813 * Age_group16_to_24
+29606     +          +     -4.9915715407152 * Age_group25_to_44
+MPRINT(EM_DIAGRAM):   H12 = H12 + 1.36164859072813 * Age_group16_to_24 + -4.9915715407152 * Age_group25_to_44 + 0.87612368059709 * Age_group45_to_64 + -0.19832109582943 * IndustryManagement__profession + 1.0202053535978 * IndustryNatural_resources__con + 
+-0.28879843563274 * IndustryProduction__transporta + -0.37557781715296 * IndustrySales_and_office_occup ;
+29607     +          +     0.87612368059709 * Age_group45_to_64
+29608     +          +    -0.19832109582943 * IndustryManagement__profession
+29609     +          +      1.0202053535978 * IndustryNatural_resources__con
+29610     +          +    -0.28879843563274 * IndustryProduction__transporta
+29611     +          +    -0.37557781715296 * IndustrySales_and_office_occup ;
+29612     +   H13  = H13  +     84.2151951296337 * Age_group16_to_24
+29613     +          +    -214.422271679173 * Age_group25_to_44
+MPRINT(EM_DIAGRAM):   H13 = H13 + 84.2151951296337 * Age_group16_to_24 + -214.422271679173 * Age_group25_to_44 + 47.6963303243508 * Age_group45_to_64 + 5.49661823542271 * IndustryManagement__profession + -7.94703019484785 * IndustryNatural_resources__con 
++ 22.7643905758641 * IndustryProduction__transporta + -11.6169698318882 * IndustrySales_and_office_occup ;
+29614     +          +     47.6963303243508 * Age_group45_to_64
+MPRINT(EM_DIAGRAM):   H11 = 4.76991388120461 + H11 ;
+29615     +          +     5.49661823542271 * IndustryManagement__profession
+MPRINT(EM_DIAGRAM):   H12 = -2.62037956892498 + H12 ;
+29616     +          +    -7.94703019484785 * IndustryNatural_resources__con
+MPRINT(EM_DIAGRAM):   H13 = -79.9842004687623 + H13 ;
+29617     +          +     22.7643905758641 * IndustryProduction__transporta
 MPRINT(EM_DIAGRAM):   H11 = TANH(H11 );
-70232     +   H12  = TANH(H12 );
+29618     +          +    -11.6169698318882 * IndustrySales_and_office_occup ;
 MPRINT(EM_DIAGRAM):   H12 = TANH(H12 );
-70233     +   H13  = TANH(H13 );
+29619     +   H11  =     4.76991388120461 + H11 ;
 MPRINT(EM_DIAGRAM):   H13 = TANH(H13 );
-70234     +END;
+29620     +   H12  =    -2.62037956892498 + H12 ;
 MPRINT(EM_DIAGRAM):   END;
-70235     +ELSE DO;
+29621     +   H13  =    -79.9842004687623 + H13 ;
+29622     +   H11  = TANH(H11 );
 MPRINT(EM_DIAGRAM):   ELSE DO;
-70236     +   H11  = .;
+29623     +   H12  = TANH(H12 );
 MPRINT(EM_DIAGRAM):   H11 = .;
-70237     +   H12  = .;
+29624     +   H13  = TANH(H13 );
 MPRINT(EM_DIAGRAM):   H12 = .;
-70238     +   H13  = .;
+29625     +END;
 MPRINT(EM_DIAGRAM):   H13 = .;
-70239     +END;
+29626     +ELSE DO;
 MPRINT(EM_DIAGRAM):   END;
-70240     +*** *************************;
 MPRINT(EM_DIAGRAM):   *** *************************;
-70241     +*** Writing the Node intervalTargets ;
+29627     +   H11  = .;
 MPRINT(EM_DIAGRAM):   *** Writing the Node intervalTargets ;
-70242     +*** *************************;
+29628     +   H12  = .;
 MPRINT(EM_DIAGRAM):   *** *************************;
-70243     +IF _DM_BAD EQ 0 THEN DO;
+29629     +   H13  = .;
 MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 0 THEN DO;
-70244     +   P_Sum_Labor_Force_Pop  =    -330177.766159279 * H11
-70245     +          +     156009.841380317 * H12  +    -5747220.41341706 * H13 ;
-MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = -330177.766159279 * H11 + 156009.841380317 * H12 + -5747220.41341706 * H13 ;
-70246     +   P_Sum_Labor_Force_Pop  =      6802663.5740012 + P_Sum_Labor_Force_Pop ;
-MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = 6802663.5740012 + P_Sum_Labor_Force_Pop ;
-70247     +END;
+29630     +END;
+29631     +*** *************************;
+MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = -3873412.99092811 * H11 + -3446294.2697551 * H12 + -706714.692803363 * H13 ;
+29632     +*** Writing the Node intervalTargets ;
+MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = 5563212.759221 + P_Sum_Labor_Force_Pop ;
+29633     +*** *************************;
 MPRINT(EM_DIAGRAM):   END;
-70248     +ELSE DO;
+29634     +IF _DM_BAD EQ 0 THEN DO;
+29635     +   P_Sum_Labor_Force_Pop  =    -3873412.99092811 * H11
 MPRINT(EM_DIAGRAM):   ELSE DO;
-70249     +   P_Sum_Labor_Force_Pop  = .;
+29636     +          +     -3446294.2697551 * H12  +    -706714.692803363 * H13 ;
 MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = .;
-70250     +END;
+29637     +   P_Sum_Labor_Force_Pop  =       5563212.759221 + P_Sum_Labor_Force_Pop ;
 MPRINT(EM_DIAGRAM):   END;
-70251     +IF _DM_BAD EQ 1 THEN DO;
+29638     +END;
 MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 1 THEN DO;
-70252     +   P_Sum_Labor_Force_Pop  =     6872727.89115646;
-MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = 6872727.89115646;
-70253     +END;
+29639     +ELSE DO;
+MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = 6470696.42857143;
 MPRINT(EM_DIAGRAM):   END;
-70254     +*** *****************************;
+29640     +   P_Sum_Labor_Force_Pop  = .;
 MPRINT(EM_DIAGRAM):   *** *****************************;
-70255     +*** Writing the Residuals  of the Node intervalTargets ;
+29641     +END;
 MPRINT(EM_DIAGRAM):   *** Writing the Residuals of the Node intervalTargets ;
-70256     +*** ******************************;
+29642     +IF _DM_BAD EQ 1 THEN DO;
 MPRINT(EM_DIAGRAM):   *** ******************************;
-70257     +IF MISSING( Sum_Labor_Force_Pop ) THEN R_Sum_Labor_Force_Pop  = . ;
+29643     +   P_Sum_Labor_Force_Pop  =     6470696.42857143;
 MPRINT(EM_DIAGRAM):   IF MISSING( Sum_Labor_Force_Pop ) THEN R_Sum_Labor_Force_Pop = . ;
-70258     +ELSE R_Sum_Labor_Force_Pop  = Sum_Labor_Force_Pop  - P_Sum_Labor_Force_Pop ;
+29644     +END;
+29645     +*** *****************************;
 MPRINT(EM_DIAGRAM):   ELSE R_Sum_Labor_Force_Pop = Sum_Labor_Force_Pop - P_Sum_Labor_Force_Pop ;
-70259     +********************************;
+29646     +*** Writing the Residuals  of the Node intervalTargets ;
 MPRINT(EM_DIAGRAM):   ********************************;
-70260     +*** End Scoring Code for Neural;
+29647     +*** ******************************;
 MPRINT(EM_DIAGRAM):   *** End Scoring Code for Neural;
-70261     +********************************;
+29648     +IF MISSING( Sum_Labor_Force_Pop ) THEN R_Sum_Labor_Force_Pop  = . ;
 MPRINT(EM_DIAGRAM):   ********************************;
-70262     +drop
-70263     +H11
-70264     +H12
-70265     +H13
-70266     +;
-MPRINT(EM_DIAGRAM):   drop H11 H12 H13 ;
+29649     +ELSE R_Sum_Labor_Force_Pop  = Sum_Labor_Force_Pop  - P_Sum_Labor_Force_Pop ;
+29650     +********************************;
+29651     +*** End Scoring Code for Neural;
+29652     +********************************;
+29653     +drop
+MPRINT(EM_DIAGRAM):   drop S_Population H11 H12 H13 ;
+29654     +S_Population
+29655     +H11
+29656     +H12
+29657     +H13
+29658     +;
 NOTE: %INCLUDE (level 1) ending.
 MPRINT(EM_DIAGRAM):   run;
-70267      run;
+29659      run;
 
 NOTE: DATA STEP view saved on file EMWS1.NEURAL_TRAIN.
 NOTE: A stored DATA STEP view cannot run under a different operating system.
 NOTE: View EMWS1.VARSEL_TRAIN.VIEW used (Total process time):
-      real time           0.06 seconds
-      cpu time            0.06 seconds
+      real time           0.12 seconds
+      cpu time            0.09 seconds
       
 NOTE: DATA statement used (Total process time):
-      real time           0.07 seconds
-      cpu time            0.06 seconds
+      real time           0.14 seconds
+      cpu time            0.14 seconds
       
 
 MPRINT(EM_DIAGRAM):   quit;
-70268      quit;
-70269      filename emflow;
+29660      quit;
+29661      filename emflow;
 MPRINT(EM_DIAGRAM):   filename emflow;
 NOTE: Fileref EMFLOW has been deassigned.
-70270      filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas";
+29662      filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas";
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   * Neural: Scoring VALIDATE data;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-70271      *------------------------------------------------------------*;
-70272      * Neural: Scoring VALIDATE data;
-70273      *------------------------------------------------------------*;
-70274      data EMWS1.Neural_VALIDATE
-70275      / view=EMWS1.Neural_VALIDATE
-70276      ;
+29663      *------------------------------------------------------------*;
+29664      * Neural: Scoring VALIDATE data;
+29665      *------------------------------------------------------------*;
+29666      data EMWS1.Neural_VALIDATE
+29667      / view=EMWS1.Neural_VALIDATE
+29668      ;
 MPRINT(EM_DIAGRAM):   data EMWS1.Neural_VALIDATE / view=EMWS1.Neural_VALIDATE ;
-70277      set EMWS1.Varsel_VALIDATE
-70278      ;
+29669      set EMWS1.Varsel_VALIDATE
+29670      ;
 MPRINT(EM_DIAGRAM):   set EMWS1.Varsel_VALIDATE ;
-70279      %inc emflow;
+29671      %inc emflow;
 NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas.
-70280     +***********************************;
+29672     +***********************************;
 MPRINT(EM_DIAGRAM):   ***********************************;
-70281     +*** Begin Scoring Code for Neural;
+29673     +*** Begin Scoring Code for Neural;
 MPRINT(EM_DIAGRAM):   *** Begin Scoring Code for Neural;
-70282     +***********************************;
+29674     +***********************************;
 MPRINT(EM_DIAGRAM):   ***********************************;
-70283     +DROP _DM_BAD _EPS _NOCL_ _MAX_ _MAXP_ _SUM_ _NTRIALS;
+29675     +DROP _DM_BAD _EPS _NOCL_ _MAX_ _MAXP_ _SUM_ _NTRIALS;
 MPRINT(EM_DIAGRAM):   DROP _DM_BAD _EPS _NOCL_ _MAX_ _MAXP_ _SUM_ _NTRIALS;
-70284     + _DM_BAD = 0;
+29676     + _DM_BAD = 0;
 MPRINT(EM_DIAGRAM):   _DM_BAD = 0;
-70285     + _NOCL_ = .;
+29677     + _NOCL_ = .;
 MPRINT(EM_DIAGRAM):   _NOCL_ = .;
-70286     + _MAX_ = .;
+29678     + _MAX_ = .;
 MPRINT(EM_DIAGRAM):   _MAX_ = .;
-70287     + _MAXP_ = .;
+29679     + _MAXP_ = .;
 MPRINT(EM_DIAGRAM):   _MAXP_ = .;
-70288     + _SUM_ = .;
+29680     + _SUM_ = .;
 MPRINT(EM_DIAGRAM):   _SUM_ = .;
-70289     + _NTRIALS = .;
+29681     + _NTRIALS = .;
 MPRINT(EM_DIAGRAM):   _NTRIALS = .;
-70290     + _EPS =                1E-10;
+29682     + _EPS =                1E-10;
 MPRINT(EM_DIAGRAM):   _EPS = 1E-10;
-70291     +LENGTH _WARN_ $4
-70292     +;
+29683     +LENGTH _WARN_ $4
+29684     +;
 MPRINT(EM_DIAGRAM):   LENGTH _WARN_ $4 ;
-70293     +      label Age_group16_to_24 = 'Dummy: Age_group=16 to 24' ;
+29685     +      label S_Population = 'Standard: Population' ;
+MPRINT(EM_DIAGRAM):   label S_Population = 'Standard: Population' ;
+29686     +
+29687     +      label Age_group16_to_24 = 'Dummy: Age_group=16 to 24' ;
 MPRINT(EM_DIAGRAM):   label Age_group16_to_24 = 'Dummy: Age_group=16 to 24' ;
-70294     +
-70295     +      label Age_group25_to_44 = 'Dummy: Age_group=25 to 44' ;
+29688     +
+29689     +      label Age_group25_to_44 = 'Dummy: Age_group=25 to 44' ;
 MPRINT(EM_DIAGRAM):   label Age_group25_to_44 = 'Dummy: Age_group=25 to 44' ;
-70296     +
-70297     +      label Age_group45_to_64 = 'Dummy: Age_group=45 to 64' ;
+29690     +
+29691     +      label Age_group45_to_64 = 'Dummy: Age_group=45 to 64' ;
 MPRINT(EM_DIAGRAM):   label Age_group45_to_64 = 'Dummy: Age_group=45 to 64' ;
-70298     +
-70299     +      label G_Date0 = 'Dummy: G_Date=0' ;
-MPRINT(EM_DIAGRAM):   label G_Date0 = 'Dummy: G_Date=0' ;
-70300     +
-70301     +      label G_Date1 = 'Dummy: G_Date=1' ;
-MPRINT(EM_DIAGRAM):   label G_Date1 = 'Dummy: G_Date=1' ;
-70302     +
-70303     +      label G_Date2 = 'Dummy: G_Date=2' ;
-MPRINT(EM_DIAGRAM):   label G_Date2 = 'Dummy: G_Date=2' ;
-70304     +
-70305     +      label G_Date3 = 'Dummy: G_Date=3' ;
-MPRINT(EM_DIAGRAM):   label G_Date3 = 'Dummy: G_Date=3' ;
-70306     +
-70307     +      label G_Date4 = 'Dummy: G_Date=4' ;
-MPRINT(EM_DIAGRAM):   label G_Date4 = 'Dummy: G_Date=4' ;
-70308     +
-70309     +      label G_Date5 = 'Dummy: G_Date=5' ;
-MPRINT(EM_DIAGRAM):   label G_Date5 = 'Dummy: G_Date=5' ;
-70310     +
-70311     +      label G_Date6 = 'Dummy: G_Date=6' ;
-MPRINT(EM_DIAGRAM):   label G_Date6 = 'Dummy: G_Date=6' ;
-70312     +
-70313     +      label G_Date7 = 'Dummy: G_Date=7' ;
-MPRINT(EM_DIAGRAM):   label G_Date7 = 'Dummy: G_Date=7' ;
-70314     +
-70315     +      label G_Date8 = 'Dummy: G_Date=8' ;
-MPRINT(EM_DIAGRAM):   label G_Date8 = 'Dummy: G_Date=8' ;
-70316     +
-70317     +      label G_Date9 = 'Dummy: G_Date=9' ;
-MPRINT(EM_DIAGRAM):   label G_Date9 = 'Dummy: G_Date=9' ;
-70318     +
-70319     +      label G_Date10 = 'Dummy: G_Date=10' ;
-MPRINT(EM_DIAGRAM):   label G_Date10 = 'Dummy: G_Date=10' ;
-70320     +
-70321     +      label G_Date11 = 'Dummy: G_Date=11' ;
-MPRINT(EM_DIAGRAM):   label G_Date11 = 'Dummy: G_Date=11' ;
-70322     +
-70323     +      label OPT_Population_01_low_27749_91 =
-70324     +'Dummy: OPT_Population_in_thousands=01:low-27749.913' ;
-MPRINT(EM_DIAGRAM):   label OPT_Population_01_low_27749_91 = 'Dummy: OPT_Population_in_thousands=01:low-27749.913' ;
-70325     +
-70326     +      label OPT_Population_02_27749_913_40 =
-70327     +'Dummy: OPT_Population_in_thousands=02:27749.913-40523.919' ;
-MPRINT(EM_DIAGRAM):   label OPT_Population_02_27749_913_40 = 'Dummy: OPT_Population_in_thousands=02:27749.913-40523.919' ;
-70328     +
-70329     +      label H11 = 'Hidden: H1=1' ;
+29692     +
+29693     +      label IndustryManagement__profession =
+29694     +'Dummy: Industry=Management, professional, and related occupations' ;
+MPRINT(EM_DIAGRAM):   label IndustryManagement__profession = 'Dummy: Industry=Management, professional, and related occupations' ;
+29695     +
+29696     +      label IndustryNatural_resources__con = 'Dummy: Industry=Natural resourc
+29697     +es, construction, and maintenance occupations' ;
+MPRINT(EM_DIAGRAM):   label IndustryNatural_resources__con = 'Dummy: Industry=Natural resources, construction, and maintenance occupations' ;
+29698     +
+29699     +      label IndustryProduction__transporta = 'Dummy: Industry=Production, tra
+29700     +nsportation, and material moving occupations' ;
+MPRINT(EM_DIAGRAM):   label IndustryProduction__transporta = 'Dummy: Industry=Production, transportation, and material moving occupations' ;
+29701     +
+29702     +      label IndustrySales_and_office_occup =
+29703     +'Dummy: Industry=Sales and office occupations' ;
+MPRINT(EM_DIAGRAM):   label IndustrySales_and_office_occup = 'Dummy: Industry=Sales and office occupations' ;
+29704     +
+29705     +      label H11 = 'Hidden: H1=1' ;
 MPRINT(EM_DIAGRAM):   label H11 = 'Hidden: H1=1' ;
-70330     +
-70331     +      label H12 = 'Hidden: H1=2' ;
+29706     +
+29707     +      label H12 = 'Hidden: H1=2' ;
 MPRINT(EM_DIAGRAM):   label H12 = 'Hidden: H1=2' ;
-70332     +
-70333     +      label H13 = 'Hidden: H1=3' ;
+29708     +
+29709     +      label H13 = 'Hidden: H1=3' ;
 MPRINT(EM_DIAGRAM):   label H13 = 'Hidden: H1=3' ;
-70334     +
-70335     +      label P_Sum_Labor_Force_Pop = 'Predicted: Sum_Labor_Force_Pop' ;
+29710     +
+29711     +      label P_Sum_Labor_Force_Pop = 'Predicted: Sum_Labor_Force_Pop' ;
 MPRINT(EM_DIAGRAM):   label P_Sum_Labor_Force_Pop = 'Predicted: Sum_Labor_Force_Pop' ;
-70336     +
-70337     +      label R_Sum_Labor_Force_Pop = 'Residual: Sum_Labor_Force_Pop' ;
+29712     +
+29713     +      label R_Sum_Labor_Force_Pop = 'Residual: Sum_Labor_Force_Pop' ;
 MPRINT(EM_DIAGRAM):   label R_Sum_Labor_Force_Pop = 'Residual: Sum_Labor_Force_Pop' ;
-70338     +
-70339     +      label  _WARN_ = "Warnings";
+29714     +
+29715     +      label  _WARN_ = "Warnings";
 MPRINT(EM_DIAGRAM):   label _WARN_ = "Warnings";
-70340     +
-70341     +*** Generate dummy variables for Age_group ;
+29716     +
+29717     +*** Generate dummy variables for Age_group ;
 MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Age_group ;
-70342     +drop Age_group16_to_24 Age_group25_to_44 Age_group45_to_64 ;
+29718     +drop Age_group16_to_24 Age_group25_to_44 Age_group45_to_64 ;
 MPRINT(EM_DIAGRAM):   drop Age_group16_to_24 Age_group25_to_44 Age_group45_to_64 ;
-70343     +if missing( Age_group ) then do;
+29719     +if missing( Age_group ) then do;
 MPRINT(EM_DIAGRAM):   if missing( Age_group ) then do;
-70344     +   Age_group16_to_24 = .;
+29720     +   Age_group16_to_24 = .;
 MPRINT(EM_DIAGRAM):   Age_group16_to_24 = .;
-70345     +   Age_group25_to_44 = .;
+29721     +   Age_group25_to_44 = .;
 MPRINT(EM_DIAGRAM):   Age_group25_to_44 = .;
-70346     +   Age_group45_to_64 = .;
+29722     +   Age_group45_to_64 = .;
 MPRINT(EM_DIAGRAM):   Age_group45_to_64 = .;
-70347     +   substr(_warn_,1,1) = 'M';
+29723     +   substr(_warn_,1,1) = 'M';
 MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
-70348     +   _DM_BAD = 1;
+29724     +   _DM_BAD = 1;
 MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-70349     +end;
+29725     +end;
 MPRINT(EM_DIAGRAM):   end;
-70350     +else do;
+29726     +else do;
 MPRINT(EM_DIAGRAM):   else do;
-70351     +   length _dm19 $ 19; drop _dm19 ;
+29727     +   length _dm19 $ 19; drop _dm19 ;
 MPRINT(EM_DIAGRAM):   length _dm19 $ 19;
 MPRINT(EM_DIAGRAM):   drop _dm19 ;
-70352     +   %DMNORMCP( Age_group , _dm19 )
+29728     +   %DMNORMCP( Age_group , _dm19 )
 MPRINT(DMNORMCP):   _dm19=dmnorm(Age_group,
 MPRINT(DMNORLEN):  32
 MPRINT(DMNORMCP):  );
-70353     +   if _dm19 = '65+'  then do;
-MPRINT(EM_DIAGRAM):   if _dm19 = '65+' then do;
-70354     +      Age_group16_to_24 = -1;
-MPRINT(EM_DIAGRAM):   Age_group16_to_24 = -1;
-70355     +      Age_group25_to_44 = -1;
-MPRINT(EM_DIAGRAM):   Age_group25_to_44 = -1;
-70356     +      Age_group45_to_64 = -1;
-MPRINT(EM_DIAGRAM):   Age_group45_to_64 = -1;
-70357     +   end;
-MPRINT(EM_DIAGRAM):   end;
-70358     +   else if _dm19 = '45 TO 64'  then do;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '45 TO 64' then do;
-70359     +      Age_group16_to_24 = 0;
+29729     +   if _dm19 = '45 TO 64'  then do;
+MPRINT(EM_DIAGRAM):   if _dm19 = '45 TO 64' then do;
+29730     +      Age_group16_to_24 = 0;
 MPRINT(EM_DIAGRAM):   Age_group16_to_24 = 0;
-70360     +      Age_group25_to_44 = 0;
+29731     +      Age_group25_to_44 = 0;
 MPRINT(EM_DIAGRAM):   Age_group25_to_44 = 0;
-70361     +      Age_group45_to_64 = 1;
+29732     +      Age_group45_to_64 = 1;
 MPRINT(EM_DIAGRAM):   Age_group45_to_64 = 1;
-70362     +   end;
+29733     +   end;
 MPRINT(EM_DIAGRAM):   end;
-70363     +   else if _dm19 = '25 TO 44'  then do;
-MPRINT(EM_DIAGRAM):   else if _dm19 = '25 TO 44' then do;
-70364     +      Age_group16_to_24 = 0;
-MPRINT(EM_DIAGRAM):   Age_group16_to_24 = 0;
-70365     +      Age_group25_to_44 = 1;
-MPRINT(EM_DIAGRAM):   Age_group25_to_44 = 1;
-70366     +      Age_group45_to_64 = 0;
-MPRINT(EM_DIAGRAM):   Age_group45_to_64 = 0;
-70367     +   end;
+29734     +   else if _dm19 = '65+'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '65+' then do;
+29735     +      Age_group16_to_24 = -1;
+MPRINT(EM_DIAGRAM):   Age_group16_to_24 = -1;
+29736     +      Age_group25_to_44 = -1;
+MPRINT(EM_DIAGRAM):   Age_group25_to_44 = -1;
+29737     +      Age_group45_to_64 = -1;
+MPRINT(EM_DIAGRAM):   Age_group45_to_64 = -1;
+29738     +   end;
 MPRINT(EM_DIAGRAM):   end;
-70368     +   else if _dm19 = '16 TO 24'  then do;
+29739     +   else if _dm19 = '16 TO 24'  then do;
 MPRINT(EM_DIAGRAM):   else if _dm19 = '16 TO 24' then do;
-70369     +      Age_group16_to_24 = 1;
+29740     +      Age_group16_to_24 = 1;
 MPRINT(EM_DIAGRAM):   Age_group16_to_24 = 1;
-70370     +      Age_group25_to_44 = 0;
+29741     +      Age_group25_to_44 = 0;
 MPRINT(EM_DIAGRAM):   Age_group25_to_44 = 0;
-70371     +      Age_group45_to_64 = 0;
+29742     +      Age_group45_to_64 = 0;
 MPRINT(EM_DIAGRAM):   Age_group45_to_64 = 0;
-70372     +   end;
+29743     +   end;
 MPRINT(EM_DIAGRAM):   end;
-70373     +   else do;
+29744     +   else if _dm19 = '25 TO 44'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '25 TO 44' then do;
+29745     +      Age_group16_to_24 = 0;
+MPRINT(EM_DIAGRAM):   Age_group16_to_24 = 0;
+29746     +      Age_group25_to_44 = 1;
+MPRINT(EM_DIAGRAM):   Age_group25_to_44 = 1;
+29747     +      Age_group45_to_64 = 0;
+MPRINT(EM_DIAGRAM):   Age_group45_to_64 = 0;
+29748     +   end;
+MPRINT(EM_DIAGRAM):   end;
+29749     +   else do;
 MPRINT(EM_DIAGRAM):   else do;
-70374     +      Age_group16_to_24 = .;
+29750     +      Age_group16_to_24 = .;
 MPRINT(EM_DIAGRAM):   Age_group16_to_24 = .;
-70375     +      Age_group25_to_44 = .;
+29751     +      Age_group25_to_44 = .;
 MPRINT(EM_DIAGRAM):   Age_group25_to_44 = .;
-70376     +      Age_group45_to_64 = .;
+29752     +      Age_group45_to_64 = .;
 MPRINT(EM_DIAGRAM):   Age_group45_to_64 = .;
-70377     +      substr(_warn_,2,1) = 'U';
+29753     +      substr(_warn_,2,1) = 'U';
 MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
-70378     +      _DM_BAD = 1;
+29754     +      _DM_BAD = 1;
 MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-70379     +   end;
+29755     +   end;
 MPRINT(EM_DIAGRAM):   end;
-70380     +end;
+29756     +end;
 MPRINT(EM_DIAGRAM):   end;
-70381     +
-70382     +*** Generate dummy variables for G_Date ;
-MPRINT(EM_DIAGRAM):   *** Generate dummy variables for G_Date ;
-70383     +drop G_Date0 G_Date1 G_Date2 G_Date3 G_Date4 G_Date5 G_Date6 G_Date7 G_Date8
-70384     +        G_Date9 G_Date10 G_Date11 ;
-MPRINT(EM_DIAGRAM):   drop G_Date0 G_Date1 G_Date2 G_Date3 G_Date4 G_Date5 G_Date6 G_Date7 G_Date8 G_Date9 G_Date10 G_Date11 ;
-70385     +*** encoding is sparse, initialize to zero;
+29757     +
+29758     +*** Generate dummy variables for Industry ;
+MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Industry ;
+29759     +drop IndustryManagement__profession IndustryNatural_resources__con
+29760     +        IndustryProduction__transporta IndustrySales_and_office_occup ;
+MPRINT(EM_DIAGRAM):   drop IndustryManagement__profession IndustryNatural_resources__con IndustryProduction__transporta IndustrySales_and_office_occup ;
+29761     +*** encoding is sparse, initialize to zero;
 MPRINT(EM_DIAGRAM):   *** encoding is sparse, initialize to zero;
-70386     +G_Date0 = 0;
-MPRINT(EM_DIAGRAM):   G_Date0 = 0;
-70387     +G_Date1 = 0;
-MPRINT(EM_DIAGRAM):   G_Date1 = 0;
-70388     +G_Date2 = 0;
-MPRINT(EM_DIAGRAM):   G_Date2 = 0;
-70389     +G_Date3 = 0;
-MPRINT(EM_DIAGRAM):   G_Date3 = 0;
-70390     +G_Date4 = 0;
-MPRINT(EM_DIAGRAM):   G_Date4 = 0;
-70391     +G_Date5 = 0;
-MPRINT(EM_DIAGRAM):   G_Date5 = 0;
-70392     +G_Date6 = 0;
-MPRINT(EM_DIAGRAM):   G_Date6 = 0;
-70393     +G_Date7 = 0;
-MPRINT(EM_DIAGRAM):   G_Date7 = 0;
-70394     +G_Date8 = 0;
-MPRINT(EM_DIAGRAM):   G_Date8 = 0;
-70395     +G_Date9 = 0;
-MPRINT(EM_DIAGRAM):   G_Date9 = 0;
-70396     +G_Date10 = 0;
-MPRINT(EM_DIAGRAM):   G_Date10 = 0;
-70397     +G_Date11 = 0;
-MPRINT(EM_DIAGRAM):   G_Date11 = 0;
-70398     +if missing( G_Date ) then do;
-MPRINT(EM_DIAGRAM):   if missing( G_Date ) then do;
-70399     +   G_Date0 = .;
-MPRINT(EM_DIAGRAM):   G_Date0 = .;
-70400     +   G_Date1 = .;
-MPRINT(EM_DIAGRAM):   G_Date1 = .;
-70401     +   G_Date2 = .;
-MPRINT(EM_DIAGRAM):   G_Date2 = .;
-70402     +   G_Date3 = .;
-MPRINT(EM_DIAGRAM):   G_Date3 = .;
-70403     +   G_Date4 = .;
-MPRINT(EM_DIAGRAM):   G_Date4 = .;
-70404     +   G_Date5 = .;
-MPRINT(EM_DIAGRAM):   G_Date5 = .;
-70405     +   G_Date6 = .;
-MPRINT(EM_DIAGRAM):   G_Date6 = .;
-70406     +   G_Date7 = .;
-MPRINT(EM_DIAGRAM):   G_Date7 = .;
-70407     +   G_Date8 = .;
-MPRINT(EM_DIAGRAM):   G_Date8 = .;
-70408     +   G_Date9 = .;
-MPRINT(EM_DIAGRAM):   G_Date9 = .;
-70409     +   G_Date10 = .;
-MPRINT(EM_DIAGRAM):   G_Date10 = .;
-70410     +   G_Date11 = .;
-MPRINT(EM_DIAGRAM):   G_Date11 = .;
-70411     +   substr(_warn_,1,1) = 'M';
+29762     +IndustryManagement__profession = 0;
+MPRINT(EM_DIAGRAM):   IndustryManagement__profession = 0;
+29763     +IndustryNatural_resources__con = 0;
+MPRINT(EM_DIAGRAM):   IndustryNatural_resources__con = 0;
+29764     +IndustryProduction__transporta = 0;
+MPRINT(EM_DIAGRAM):   IndustryProduction__transporta = 0;
+29765     +IndustrySales_and_office_occup = 0;
+MPRINT(EM_DIAGRAM):   IndustrySales_and_office_occup = 0;
+29766     +if missing( Industry ) then do;
+MPRINT(EM_DIAGRAM):   if missing( Industry ) then do;
+29767     +   IndustryManagement__profession = .;
+MPRINT(EM_DIAGRAM):   IndustryManagement__profession = .;
+29768     +   IndustryNatural_resources__con = .;
+MPRINT(EM_DIAGRAM):   IndustryNatural_resources__con = .;
+29769     +   IndustryProduction__transporta = .;
+MPRINT(EM_DIAGRAM):   IndustryProduction__transporta = .;
+29770     +   IndustrySales_and_office_occup = .;
+MPRINT(EM_DIAGRAM):   IndustrySales_and_office_occup = .;
+29771     +   substr(_warn_,1,1) = 'M';
 MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
-70412     +   _DM_BAD = 1;
+29772     +   _DM_BAD = 1;
 MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-70413     +end;
+29773     +end;
 MPRINT(EM_DIAGRAM):   end;
-70414     +else do;
+29774     +else do;
 MPRINT(EM_DIAGRAM):   else do;
-70415     +   length _dm12 $ 12; drop _dm12 ;
-MPRINT(EM_DIAGRAM):   length _dm12 $ 12;
-MPRINT(EM_DIAGRAM):   drop _dm12 ;
-70416     +   _dm12 = put( G_Date , BEST12. );
-MPRINT(EM_DIAGRAM):   _dm12 = put( G_Date , BEST12. );
-70417     +   %DMNORMIP( _dm12 )
-MPRINT(DMNORMIP):   call dmnorm(_dm12,
-MPRINT(DMNORLEN):  32
-MPRINT(DMNORMIP):  );
-70418     +   _dm_find = 0; drop _dm_find;
-MPRINT(EM_DIAGRAM):   _dm_find = 0;
-MPRINT(EM_DIAGRAM):   drop _dm_find;
-70419     +   if _dm12 <= '3'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 <= '3' then do;
-70420     +      if _dm12 <= '11'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 <= '11' then do;
-70421     +         if _dm12 <= '1'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 <= '1' then do;
-70422     +            if _dm12 = '0'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '0' then do;
-70423     +               G_Date0 = 1;
-MPRINT(EM_DIAGRAM):   G_Date0 = 1;
-70424     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70425     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70426     +            else do;
-MPRINT(EM_DIAGRAM):   else do;
-70427     +               if _dm12 = '1'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '1' then do;
-70428     +                  G_Date1 = 1;
-MPRINT(EM_DIAGRAM):   G_Date1 = 1;
-70429     +                  _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70430     +               end;
-MPRINT(EM_DIAGRAM):   end;
-70431     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70432     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70433     +         else do;
-MPRINT(EM_DIAGRAM):   else do;
-70434     +            if _dm12 = '10'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '10' then do;
-70435     +               G_Date10 = 1;
-MPRINT(EM_DIAGRAM):   G_Date10 = 1;
-70436     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70437     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70438     +            else do;
-MPRINT(EM_DIAGRAM):   else do;
-70439     +               if _dm12 = '11'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '11' then do;
-70440     +                  G_Date11 = 1;
-MPRINT(EM_DIAGRAM):   G_Date11 = 1;
-70441     +                  _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70442     +               end;
-MPRINT(EM_DIAGRAM):   end;
-70443     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70444     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70445     +      end;
-MPRINT(EM_DIAGRAM):   end;
-70446     +      else do;
-MPRINT(EM_DIAGRAM):   else do;
-70447     +         if _dm12 <= '2'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 <= '2' then do;
-70448     +            if _dm12 = '12'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '12' then do;
-70449     +               G_Date0 = -1;
-MPRINT(EM_DIAGRAM):   G_Date0 = -1;
-70450     +               G_Date1 = -1;
-MPRINT(EM_DIAGRAM):   G_Date1 = -1;
-70451     +               G_Date2 = -1;
-MPRINT(EM_DIAGRAM):   G_Date2 = -1;
-70452     +               G_Date3 = -1;
-MPRINT(EM_DIAGRAM):   G_Date3 = -1;
-70453     +               G_Date4 = -1;
-MPRINT(EM_DIAGRAM):   G_Date4 = -1;
-70454     +               G_Date5 = -1;
-MPRINT(EM_DIAGRAM):   G_Date5 = -1;
-70455     +               G_Date6 = -1;
-MPRINT(EM_DIAGRAM):   G_Date6 = -1;
-70456     +               G_Date7 = -1;
-MPRINT(EM_DIAGRAM):   G_Date7 = -1;
-70457     +               G_Date8 = -1;
-MPRINT(EM_DIAGRAM):   G_Date8 = -1;
-70458     +               G_Date9 = -1;
-MPRINT(EM_DIAGRAM):   G_Date9 = -1;
-70459     +               G_Date10 = -1;
-MPRINT(EM_DIAGRAM):   G_Date10 = -1;
-70460     +               G_Date11 = -1;
-MPRINT(EM_DIAGRAM):   G_Date11 = -1;
-70461     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70462     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70463     +            else do;
-MPRINT(EM_DIAGRAM):   else do;
-70464     +               if _dm12 = '2'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '2' then do;
-70465     +                  G_Date2 = 1;
-MPRINT(EM_DIAGRAM):   G_Date2 = 1;
-70466     +                  _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70467     +               end;
-MPRINT(EM_DIAGRAM):   end;
-70468     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70469     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70470     +         else do;
-MPRINT(EM_DIAGRAM):   else do;
-70471     +            if _dm12 = '3'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '3' then do;
-70472     +               G_Date3 = 1;
-MPRINT(EM_DIAGRAM):   G_Date3 = 1;
-70473     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70474     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70475     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70476     +      end;
-MPRINT(EM_DIAGRAM):   end;
-70477     +   end;
-MPRINT(EM_DIAGRAM):   end;
-70478     +   else do;
-MPRINT(EM_DIAGRAM):   else do;
-70479     +      if _dm12 <= '6'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 <= '6' then do;
-70480     +         if _dm12 <= '5'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 <= '5' then do;
-70481     +            if _dm12 = '4'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '4' then do;
-70482     +               G_Date4 = 1;
-MPRINT(EM_DIAGRAM):   G_Date4 = 1;
-70483     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70484     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70485     +            else do;
-MPRINT(EM_DIAGRAM):   else do;
-70486     +               if _dm12 = '5'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '5' then do;
-70487     +                  G_Date5 = 1;
-MPRINT(EM_DIAGRAM):   G_Date5 = 1;
-70488     +                  _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70489     +               end;
-MPRINT(EM_DIAGRAM):   end;
-70490     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70491     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70492     +         else do;
-MPRINT(EM_DIAGRAM):   else do;
-70493     +            if _dm12 = '6'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '6' then do;
-70494     +               G_Date6 = 1;
-MPRINT(EM_DIAGRAM):   G_Date6 = 1;
-70495     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70496     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70497     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70498     +      end;
-MPRINT(EM_DIAGRAM):   end;
-70499     +      else do;
-MPRINT(EM_DIAGRAM):   else do;
-70500     +         if _dm12 <= '8'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 <= '8' then do;
-70501     +            if _dm12 = '7'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '7' then do;
-70502     +               G_Date7 = 1;
-MPRINT(EM_DIAGRAM):   G_Date7 = 1;
-70503     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70504     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70505     +            else do;
-MPRINT(EM_DIAGRAM):   else do;
-70506     +               if _dm12 = '8'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '8' then do;
-70507     +                  G_Date8 = 1;
-MPRINT(EM_DIAGRAM):   G_Date8 = 1;
-70508     +                  _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70509     +               end;
-MPRINT(EM_DIAGRAM):   end;
-70510     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70511     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70512     +         else do;
-MPRINT(EM_DIAGRAM):   else do;
-70513     +            if _dm12 = '9'  then do;
-MPRINT(EM_DIAGRAM):   if _dm12 = '9' then do;
-70514     +               G_Date9 = 1;
-MPRINT(EM_DIAGRAM):   G_Date9 = 1;
-70515     +               _dm_find = 1;
-MPRINT(EM_DIAGRAM):   _dm_find = 1;
-70516     +            end;
-MPRINT(EM_DIAGRAM):   end;
-70517     +         end;
-MPRINT(EM_DIAGRAM):   end;
-70518     +      end;
-MPRINT(EM_DIAGRAM):   end;
-70519     +   end;
-MPRINT(EM_DIAGRAM):   end;
-70520     +   if not _dm_find then do;
-MPRINT(EM_DIAGRAM):   if not _dm_find then do;
-70521     +      G_Date0 = .;
-MPRINT(EM_DIAGRAM):   G_Date0 = .;
-70522     +      G_Date1 = .;
-MPRINT(EM_DIAGRAM):   G_Date1 = .;
-70523     +      G_Date2 = .;
-MPRINT(EM_DIAGRAM):   G_Date2 = .;
-70524     +      G_Date3 = .;
-MPRINT(EM_DIAGRAM):   G_Date3 = .;
-70525     +      G_Date4 = .;
-MPRINT(EM_DIAGRAM):   G_Date4 = .;
-70526     +      G_Date5 = .;
-MPRINT(EM_DIAGRAM):   G_Date5 = .;
-70527     +      G_Date6 = .;
-MPRINT(EM_DIAGRAM):   G_Date6 = .;
-70528     +      G_Date7 = .;
-MPRINT(EM_DIAGRAM):   G_Date7 = .;
-70529     +      G_Date8 = .;
-MPRINT(EM_DIAGRAM):   G_Date8 = .;
-70530     +      G_Date9 = .;
-MPRINT(EM_DIAGRAM):   G_Date9 = .;
-70531     +      G_Date10 = .;
-MPRINT(EM_DIAGRAM):   G_Date10 = .;
-70532     +      G_Date11 = .;
-MPRINT(EM_DIAGRAM):   G_Date11 = .;
-70533     +      substr(_warn_,2,1) = 'U';
-MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
-70534     +      _DM_BAD = 1;
-MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-70535     +   end;
-MPRINT(EM_DIAGRAM):   end;
-70536     +end;
-MPRINT(EM_DIAGRAM):   end;
-70537     +
-70538     +*** Generate dummy variables for OPT_Population_in_thousands ;
-MPRINT(EM_DIAGRAM):   *** Generate dummy variables for OPT_Population_in_thousands ;
-70539     +drop OPT_Population_01_low_27749_91 OPT_Population_02_27749_913_40 ;
-MPRINT(EM_DIAGRAM):   drop OPT_Population_01_low_27749_91 OPT_Population_02_27749_913_40 ;
-70540     +if missing( OPT_Population_in_thousands ) then do;
-MPRINT(EM_DIAGRAM):   if missing( OPT_Population_in_thousands ) then do;
-70541     +   OPT_Population_01_low_27749_91 = .;
-MPRINT(EM_DIAGRAM):   OPT_Population_01_low_27749_91 = .;
-70542     +   OPT_Population_02_27749_913_40 = .;
-MPRINT(EM_DIAGRAM):   OPT_Population_02_27749_913_40 = .;
-70543     +   substr(_warn_,1,1) = 'M';
-MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
-70544     +   _DM_BAD = 1;
-MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-70545     +end;
-MPRINT(EM_DIAGRAM):   end;
-70546     +else do;
-MPRINT(EM_DIAGRAM):   else do;
-70547     +   length _dm32 $ 32; drop _dm32 ;
+29775     +   length _dm32 $ 32; drop _dm32 ;
 MPRINT(EM_DIAGRAM):   length _dm32 $ 32;
 MPRINT(EM_DIAGRAM):   drop _dm32 ;
-70548     +   %DMNORMCP( OPT_Population_in_thousands , _dm32 )
-MPRINT(DMNORMCP):   _dm32=dmnorm(OPT_Population_in_thousands,
+29776     +   length _dm111 $ 111; drop _dm111;
+MPRINT(EM_DIAGRAM):   length _dm111 $ 111;
+MPRINT(EM_DIAGRAM):   drop _dm111;
+29777     +   _dm111 = put( Industry , $CHAR111. );
+MPRINT(EM_DIAGRAM):   _dm111 = put( Industry , $CHAR111. );
+29778     +   %DMNORMCP( _dm111, _dm32 )
+MPRINT(DMNORMCP):   _dm32=dmnorm(_dm111,
 MPRINT(DMNORLEN):  32
 MPRINT(DMNORMCP):  );
-70549     +   if _dm32 = '03:40523.919-HIGH, MISSING'  then do;
-MPRINT(EM_DIAGRAM):   if _dm32 = '03:40523.919-HIGH, MISSING' then do;
-70550     +      OPT_Population_01_low_27749_91 = -1;
-MPRINT(EM_DIAGRAM):   OPT_Population_01_low_27749_91 = -1;
-70551     +      OPT_Population_02_27749_913_40 = -1;
-MPRINT(EM_DIAGRAM):   OPT_Population_02_27749_913_40 = -1;
-70552     +   end;
+29779     +   if _dm32 = 'SERVICE OCCUPATIONS'  then do;
+MPRINT(EM_DIAGRAM):   if _dm32 = 'SERVICE OCCUPATIONS' then do;
+29780     +      IndustryManagement__profession = -1;
+MPRINT(EM_DIAGRAM):   IndustryManagement__profession = -1;
+29781     +      IndustryNatural_resources__con = -1;
+MPRINT(EM_DIAGRAM):   IndustryNatural_resources__con = -1;
+29782     +      IndustryProduction__transporta = -1;
+MPRINT(EM_DIAGRAM):   IndustryProduction__transporta = -1;
+29783     +      IndustrySales_and_office_occup = -1;
+MPRINT(EM_DIAGRAM):   IndustrySales_and_office_occup = -1;
+29784     +   end;
 MPRINT(EM_DIAGRAM):   end;
-70553     +   else if _dm32 = '01:LOW-27749.913'  then do;
-MPRINT(EM_DIAGRAM):   else if _dm32 = '01:LOW-27749.913' then do;
-70554     +      OPT_Population_01_low_27749_91 = 1;
-MPRINT(EM_DIAGRAM):   OPT_Population_01_low_27749_91 = 1;
-70555     +      OPT_Population_02_27749_913_40 = 0;
-MPRINT(EM_DIAGRAM):   OPT_Population_02_27749_913_40 = 0;
-70556     +   end;
+29785     +   else if _dm32 = 'SALES AND OFFICE OCCUPATIONS'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'SALES AND OFFICE OCCUPATIONS' then do;
+29786     +      IndustrySales_and_office_occup = 1;
+MPRINT(EM_DIAGRAM):   IndustrySales_and_office_occup = 1;
+29787     +   end;
 MPRINT(EM_DIAGRAM):   end;
-70557     +   else if _dm32 = '02:27749.913-40523.919'  then do;
-MPRINT(EM_DIAGRAM):   else if _dm32 = '02:27749.913-40523.919' then do;
-70558     +      OPT_Population_01_low_27749_91 = 0;
-MPRINT(EM_DIAGRAM):   OPT_Population_01_low_27749_91 = 0;
-70559     +      OPT_Population_02_27749_913_40 = 1;
-MPRINT(EM_DIAGRAM):   OPT_Population_02_27749_913_40 = 1;
-70560     +   end;
+29788     +   else if _dm32 = 'PRODUCTION, TRANSPORTATION, AND'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'PRODUCTION, TRANSPORTATION, AND' then do;
+29789     +      IndustryProduction__transporta = 1;
+MPRINT(EM_DIAGRAM):   IndustryProduction__transporta = 1;
+29790     +   end;
 MPRINT(EM_DIAGRAM):   end;
-70561     +   else do;
+29791     +   else if _dm32 = 'NATURAL RESOURCES, CONSTRUCTION,'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'NATURAL RESOURCES, CONSTRUCTION,' then do;
+29792     +      IndustryNatural_resources__con = 1;
+MPRINT(EM_DIAGRAM):   IndustryNatural_resources__con = 1;
+29793     +   end;
+MPRINT(EM_DIAGRAM):   end;
+29794     +   else if _dm32 = 'MANAGEMENT, PROFESSIONAL, AND RE'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'MANAGEMENT, PROFESSIONAL, AND RE' then do;
+29795     +      IndustryManagement__profession = 1;
+MPRINT(EM_DIAGRAM):   IndustryManagement__profession = 1;
+29796     +   end;
+MPRINT(EM_DIAGRAM):   end;
+29797     +   else do;
 MPRINT(EM_DIAGRAM):   else do;
-70562     +      OPT_Population_01_low_27749_91 = .;
-MPRINT(EM_DIAGRAM):   OPT_Population_01_low_27749_91 = .;
-70563     +      OPT_Population_02_27749_913_40 = .;
-MPRINT(EM_DIAGRAM):   OPT_Population_02_27749_913_40 = .;
-70564     +      substr(_warn_,2,1) = 'U';
+29798     +      IndustryManagement__profession = .;
+MPRINT(EM_DIAGRAM):   IndustryManagement__profession = .;
+29799     +      IndustryNatural_resources__con = .;
+MPRINT(EM_DIAGRAM):   IndustryNatural_resources__con = .;
+29800     +      IndustryProduction__transporta = .;
+MPRINT(EM_DIAGRAM):   IndustryProduction__transporta = .;
+29801     +      IndustrySales_and_office_occup = .;
+MPRINT(EM_DIAGRAM):   IndustrySales_and_office_occup = .;
+29802     +      substr(_warn_,2,1) = 'U';
 MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
-70565     +      _DM_BAD = 1;
+29803     +      _DM_BAD = 1;
 MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
-70566     +   end;
+29804     +   end;
 MPRINT(EM_DIAGRAM):   end;
-70567     +end;
+29805     +end;
 MPRINT(EM_DIAGRAM):   end;
-70568     +*** *************************;
+29806     +
+29807     +*** *************************;
 MPRINT(EM_DIAGRAM):   *** *************************;
-70569     +*** Writing the Node nom ;
+29808     +*** Checking missing input Interval
+29809     +*** *************************;
+MPRINT(EM_DIAGRAM):   *** Checking missing input Interval *** *************************;
+29810     +
+29811     +IF NMISS(
+29812     +   Population   ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF NMISS( Population ) THEN DO;
+29813     +   SUBSTR(_WARN_, 1, 1) = 'M';
+MPRINT(EM_DIAGRAM):   SUBSTR(_WARN_, 1, 1) = 'M';
+29814     +
+29815     +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+29816     +END;
+MPRINT(EM_DIAGRAM):   END;
+29817     +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+29818     +*** Writing the Node intvl ;
+MPRINT(EM_DIAGRAM):   *** Writing the Node intvl ;
+29819     +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+29820     +IF _DM_BAD EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 0 THEN DO;
+29821     +   S_Population  =    -2.83964697481178 +   4.7992594103827E-8 * Population ;
+MPRINT(EM_DIAGRAM):   S_Population = -2.83964697481178 + 4.7992594103827E-8 * Population ;
+29822     +END;
+MPRINT(EM_DIAGRAM):   END;
+29823     +ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+29824     +   IF MISSING( Population ) THEN S_Population  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( Population ) THEN S_Population = . ;
+29825     +   ELSE S_Population  =    -2.83964697481178 +   4.7992594103827E-8 *
+29826     +        Population ;
+MPRINT(EM_DIAGRAM):   ELSE S_Population = -2.83964697481178 + 4.7992594103827E-8 * Population ;
+29827     +END;
+MPRINT(EM_DIAGRAM):   END;
+29828     +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+29829     +*** Writing the Node nom ;
 MPRINT(EM_DIAGRAM):   *** Writing the Node nom ;
-70570     +*** *************************;
+29830     +*** *************************;
 MPRINT(EM_DIAGRAM):   *** *************************;
-70571     +*** *************************;
+29831     +*** *************************;
 MPRINT(EM_DIAGRAM):   *** *************************;
-70572     +*** Writing the Node H1 ;
+29832     +*** Writing the Node H1 ;
 MPRINT(EM_DIAGRAM):   *** Writing the Node H1 ;
-70573     +*** *************************;
+29833     +*** *************************;
 MPRINT(EM_DIAGRAM):   *** *************************;
-70574     +IF _DM_BAD EQ 0 THEN DO;
+29834     +IF _DM_BAD EQ 0 THEN DO;
 MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 0 THEN DO;
-70575     +   H11  =     97.4825147671137 * Age_group16_to_24  +    -54.0533453853029 *
-70576     +        Age_group25_to_44  +     64.4920176969353 * Age_group45_to_64
-70577     +          +      72.559960370367 * G_Date0  +    -102.561873008137 * G_Date1
-70578     +          +      57.450222707413 * G_Date2  +    -0.06961118350436 * G_Date3
-70579     +          +    -20.7155488923534 * G_Date4  +      83.779366030055 * G_Date5
-70580     +          +    -137.813372727696 * G_Date6  +    -49.3461512501977 * G_Date7
-70581     +          +     105.985648859758 * G_Date8  +    -82.2402484669472 * G_Date9
-70582     +          +     -284.67976511353 * G_Date10  +      265.00939569491 * G_Date11
-70583     +          +    -21.8603956931506 * OPT_Population_01_low_27749_91
-70584     +          +     19.4609962231357 * OPT_Population_02_27749_913_40 ;
-MPRINT(EM_DIAGRAM):   H11 = 97.4825147671137 * Age_group16_to_24 + -54.0533453853029 * Age_group25_to_44 + 64.4920176969353 * Age_group45_to_64 + 72.559960370367 * G_Date0 + -102.561873008137 * G_Date1 + 57.450222707413 * G_Date2 + -0.06961118350436 * 
-G_Date3 + -20.7155488923534 * G_Date4 + 83.779366030055 * G_Date5 + -137.813372727696 * G_Date6 + -49.3461512501977 * G_Date7 + 105.985648859758 * G_Date8 + -82.2402484669472 * G_Date9 + -284.67976511353 * G_Date10 + 265.00939569491 * G_Date11 + 
--21.8603956931506 * OPT_Population_01_low_27749_91 + 19.4609962231357 * OPT_Population_02_27749_913_40 ;
-70585     +   H12  =     82427714392341.5 * Age_group16_to_24  +     82427714392180.1 *
-70586     +        Age_group25_to_44  +     82427714391856.2 * Age_group45_to_64
-70587     +          +    -8.09084854960675 * G_Date0  +     0.01703164607637 * G_Date1
-70588     +          +    -186.531159399822 * G_Date2  +     2.74427239034311 * G_Date3
-70589     +          +     5.37631520021484 * G_Date4  +    -5.77967319782334 * G_Date5
-70590     +          +    -1.69905456184039 * G_Date6  +     -129415044330559 * G_Date7
-70591     +          +     138.272374638161 * G_Date8  +    -9.70216921877553 * G_Date9
-70592     +          +    -16.9592925352738 * G_Date10  +     46987329938354.4 * G_Date11
-70593     +          +    -82427714392534.8 * OPT_Population_01_low_27749_91
-70594     +          +    -313.419032271461 * OPT_Population_02_27749_913_40 ;
-MPRINT(EM_DIAGRAM):   H12 = 82427714392341.5 * Age_group16_to_24 + 82427714392180.1 * Age_group25_to_44 + 82427714391856.2 * Age_group45_to_64 + -8.09084854960675 * G_Date0 + 0.01703164607637 * G_Date1 + -186.531159399822 * G_Date2 + 2.74427239034311 * 
-G_Date3 + 5.37631520021484 * G_Date4 + -5.77967319782334 * G_Date5 + -1.69905456184039 * G_Date6 + -129415044330559 * G_Date7 + 138.272374638161 * G_Date8 + -9.70216921877553 * G_Date9 + -16.9592925352738 * G_Date10 + 46987329938354.4 * G_Date11 + 
--82427714392534.8 * OPT_Population_01_low_27749_91 + -313.419032271461 * OPT_Population_02_27749_913_40 ;
-70595     +   H13  =    -9617.22385559946 * Age_group16_to_24  +    -236523.348902238 *
-70596     +        Age_group25_to_44  +    -9618.36552345647 * Age_group45_to_64
-70597     +          +     0.50368458011756 * G_Date0  +     0.27673958870928 * G_Date1
-70598     +          +     0.21792698243068 * G_Date2  +     0.12287656450076 * G_Date3
-70599     +          +    -0.09567859273321 * G_Date4  +     0.14980836065414 * G_Date5
-70600     +          +    -0.02999302827684 * G_Date6  +    -0.23463906785714 * G_Date7
-70601     +          +    -0.03202899324402 * G_Date8  +    -0.30765412348637 * G_Date9
-70602     +          +    -0.22060400718538 * G_Date10  +    -0.10304573543441 * G_Date11
-70603     +          +     0.00092905422664 * OPT_Population_01_low_27749_91
-70604     +          +     0.12320282835843 * OPT_Population_02_27749_913_40 ;
-MPRINT(EM_DIAGRAM):   H13 = -9617.22385559946 * Age_group16_to_24 + -236523.348902238 * Age_group25_to_44 + -9618.36552345647 * Age_group45_to_64 + 0.50368458011756 * G_Date0 + 0.27673958870928 * G_Date1 + 0.21792698243068 * G_Date2 + 0.12287656450076 * 
-G_Date3 + -0.09567859273321 * G_Date4 + 0.14980836065414 * G_Date5 + -0.02999302827684 * G_Date6 + -0.23463906785714 * G_Date7 + -0.03202899324402 * G_Date8 + -0.30765412348637 * G_Date9 + -0.22060400718538 * G_Date10 + -0.10304573543441 * G_Date11 + 
-0.00092905422664 * OPT_Population_01_low_27749_91 + 0.12320282835843 * OPT_Population_02_27749_913_40 ;
-70605     +   H11  =    -21756.1066100815 + H11 ;
-MPRINT(EM_DIAGRAM):   H11 = -21756.1066100815 + H11 ;
-70606     +   H12  =    -82427714378273.8 + H12 ;
-MPRINT(EM_DIAGRAM):   H12 = -82427714378273.8 + H12 ;
-70607     +   H13  =     9617.91970044019 + H13 ;
-MPRINT(EM_DIAGRAM):   H13 = 9617.91970044019 + H13 ;
-70608     +   H11  = TANH(H11 );
+29835     +   H11  =    -1.07683938427355 * S_Population ;
+MPRINT(EM_DIAGRAM):   H11 = -1.07683938427355 * S_Population ;
+29836     +   H12  =    -0.42418815980383 * S_Population ;
+MPRINT(EM_DIAGRAM):   H12 = -0.42418815980383 * S_Population ;
+29837     +   H13  =      3.0458121085363 * S_Population ;
+MPRINT(EM_DIAGRAM):   H13 = 3.0458121085363 * S_Population ;
+29838     +   H11  = H11  +     8.13620736214956 * Age_group16_to_24
+29839     +          +    -5.69040629530111 * Age_group25_to_44
+29840     +          +    -5.22627950724203 * Age_group45_to_64
+29841     +          +    -8.20612991861404 * IndustryManagement__profession
+29842     +          +     3.30962239961027 * IndustryNatural_resources__con
+29843     +          +     2.59408016791381 * IndustryProduction__transporta
+29844     +          +     0.18418992149364 * IndustrySales_and_office_occup ;
+MPRINT(EM_DIAGRAM):   H11 = H11 + 8.13620736214956 * Age_group16_to_24 + -5.69040629530111 * Age_group25_to_44 + -5.22627950724203 * Age_group45_to_64 + -8.20612991861404 * IndustryManagement__profession + 3.30962239961027 * IndustryNatural_resources__con 
++ 2.59408016791381 * IndustryProduction__transporta + 0.18418992149364 * IndustrySales_and_office_occup ;
+29845     +   H12  = H12  +     1.36164859072813 * Age_group16_to_24
+29846     +          +     -4.9915715407152 * Age_group25_to_44
+29847     +          +     0.87612368059709 * Age_group45_to_64
+29848     +          +    -0.19832109582943 * IndustryManagement__profession
+29849     +          +      1.0202053535978 * IndustryNatural_resources__con
+29850     +          +    -0.28879843563274 * IndustryProduction__transporta
+29851     +          +    -0.37557781715296 * IndustrySales_and_office_occup ;
+MPRINT(EM_DIAGRAM):   H12 = H12 + 1.36164859072813 * Age_group16_to_24 + -4.9915715407152 * Age_group25_to_44 + 0.87612368059709 * Age_group45_to_64 + -0.19832109582943 * IndustryManagement__profession + 1.0202053535978 * IndustryNatural_resources__con + 
+-0.28879843563274 * IndustryProduction__transporta + -0.37557781715296 * IndustrySales_and_office_occup ;
+29852     +   H13  = H13  +     84.2151951296337 * Age_group16_to_24
+29853     +          +    -214.422271679173 * Age_group25_to_44
+29854     +          +     47.6963303243508 * Age_group45_to_64
+29855     +          +     5.49661823542271 * IndustryManagement__profession
+29856     +          +    -7.94703019484785 * IndustryNatural_resources__con
+29857     +          +     22.7643905758641 * IndustryProduction__transporta
+29858     +          +    -11.6169698318882 * IndustrySales_and_office_occup ;
+MPRINT(EM_DIAGRAM):   H13 = H13 + 84.2151951296337 * Age_group16_to_24 + -214.422271679173 * Age_group25_to_44 + 47.6963303243508 * Age_group45_to_64 + 5.49661823542271 * IndustryManagement__profession + -7.94703019484785 * IndustryNatural_resources__con 
++ 22.7643905758641 * IndustryProduction__transporta + -11.6169698318882 * IndustrySales_and_office_occup ;
+29859     +   H11  =     4.76991388120461 + H11 ;
+MPRINT(EM_DIAGRAM):   H11 = 4.76991388120461 + H11 ;
+29860     +   H12  =    -2.62037956892498 + H12 ;
+MPRINT(EM_DIAGRAM):   H12 = -2.62037956892498 + H12 ;
+29861     +   H13  =    -79.9842004687623 + H13 ;
+MPRINT(EM_DIAGRAM):   H13 = -79.9842004687623 + H13 ;
+29862     +   H11  = TANH(H11 );
 MPRINT(EM_DIAGRAM):   H11 = TANH(H11 );
-70609     +   H12  = TANH(H12 );
+29863     +   H12  = TANH(H12 );
 MPRINT(EM_DIAGRAM):   H12 = TANH(H12 );
-70610     +   H13  = TANH(H13 );
+29864     +   H13  = TANH(H13 );
 MPRINT(EM_DIAGRAM):   H13 = TANH(H13 );
-70611     +END;
+29865     +END;
 MPRINT(EM_DIAGRAM):   END;
-70612     +ELSE DO;
+29866     +ELSE DO;
 MPRINT(EM_DIAGRAM):   ELSE DO;
-70613     +   H11  = .;
+29867     +   H11  = .;
 MPRINT(EM_DIAGRAM):   H11 = .;
-70614     +   H12  = .;
+29868     +   H12  = .;
 MPRINT(EM_DIAGRAM):   H12 = .;
-70615     +   H13  = .;
+29869     +   H13  = .;
 MPRINT(EM_DIAGRAM):   H13 = .;
-70616     +END;
+29870     +END;
 MPRINT(EM_DIAGRAM):   END;
-70617     +*** *************************;
+29871     +*** *************************;
 MPRINT(EM_DIAGRAM):   *** *************************;
-70618     +*** Writing the Node intervalTargets ;
+29872     +*** Writing the Node intervalTargets ;
 MPRINT(EM_DIAGRAM):   *** Writing the Node intervalTargets ;
-70619     +*** *************************;
+29873     +*** *************************;
 MPRINT(EM_DIAGRAM):   *** *************************;
-70620     +IF _DM_BAD EQ 0 THEN DO;
+29874     +IF _DM_BAD EQ 0 THEN DO;
 MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 0 THEN DO;
-70621     +   P_Sum_Labor_Force_Pop  =    -330177.766159279 * H11
-70622     +          +     156009.841380317 * H12  +    -5747220.41341706 * H13 ;
-MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = -330177.766159279 * H11 + 156009.841380317 * H12 + -5747220.41341706 * H13 ;
-70623     +   P_Sum_Labor_Force_Pop  =      6802663.5740012 + P_Sum_Labor_Force_Pop ;
-MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = 6802663.5740012 + P_Sum_Labor_Force_Pop ;
-70624     +END;
+29875     +   P_Sum_Labor_Force_Pop  =    -3873412.99092811 * H11
+29876     +          +     -3446294.2697551 * H12  +    -706714.692803363 * H13 ;
+MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = -3873412.99092811 * H11 + -3446294.2697551 * H12 + -706714.692803363 * H13 ;
+29877     +   P_Sum_Labor_Force_Pop  =       5563212.759221 + P_Sum_Labor_Force_Pop ;
+MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = 5563212.759221 + P_Sum_Labor_Force_Pop ;
+29878     +END;
 MPRINT(EM_DIAGRAM):   END;
-70625     +ELSE DO;
+29879     +ELSE DO;
 MPRINT(EM_DIAGRAM):   ELSE DO;
-70626     +   P_Sum_Labor_Force_Pop  = .;
+29880     +   P_Sum_Labor_Force_Pop  = .;
 MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = .;
-70627     +END;
+29881     +END;
 MPRINT(EM_DIAGRAM):   END;
-70628     +IF _DM_BAD EQ 1 THEN DO;
+29882     +IF _DM_BAD EQ 1 THEN DO;
 MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 1 THEN DO;
-70629     +   P_Sum_Labor_Force_Pop  =     6872727.89115646;
-MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = 6872727.89115646;
-70630     +END;
+29883     +   P_Sum_Labor_Force_Pop  =     6470696.42857143;
+MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = 6470696.42857143;
+29884     +END;
 MPRINT(EM_DIAGRAM):   END;
-70631     +*** *****************************;
+29885     +*** *****************************;
 MPRINT(EM_DIAGRAM):   *** *****************************;
-70632     +*** Writing the Residuals  of the Node intervalTargets ;
+29886     +*** Writing the Residuals  of the Node intervalTargets ;
 MPRINT(EM_DIAGRAM):   *** Writing the Residuals of the Node intervalTargets ;
-70633     +*** ******************************;
+29887     +*** ******************************;
 MPRINT(EM_DIAGRAM):   *** ******************************;
-70634     +IF MISSING( Sum_Labor_Force_Pop ) THEN R_Sum_Labor_Force_Pop  = . ;
+29888     +IF MISSING( Sum_Labor_Force_Pop ) THEN R_Sum_Labor_Force_Pop  = . ;
 MPRINT(EM_DIAGRAM):   IF MISSING( Sum_Labor_Force_Pop ) THEN R_Sum_Labor_Force_Pop = . ;
-70635     +ELSE R_Sum_Labor_Force_Pop  = Sum_Labor_Force_Pop  - P_Sum_Labor_Force_Pop ;
+29889     +ELSE R_Sum_Labor_Force_Pop  = Sum_Labor_Force_Pop  - P_Sum_Labor_Force_Pop ;
 MPRINT(EM_DIAGRAM):   ELSE R_Sum_Labor_Force_Pop = Sum_Labor_Force_Pop - P_Sum_Labor_Force_Pop ;
-70636     +********************************;
+29890     +********************************;
 MPRINT(EM_DIAGRAM):   ********************************;
-70637     +*** End Scoring Code for Neural;
+29891     +*** End Scoring Code for Neural;
 MPRINT(EM_DIAGRAM):   *** End Scoring Code for Neural;
-70638     +********************************;
+29892     +********************************;
 MPRINT(EM_DIAGRAM):   ********************************;
-70639     +drop
-70640     +H11
-70641     +H12
-70642     +H13
-70643     +;
-MPRINT(EM_DIAGRAM):   drop H11 H12 H13 ;
+29893     +drop
+29894     +S_Population
+29895     +H11
+29896     +H12
+29897     +H13
+29898     +;
+MPRINT(EM_DIAGRAM):   drop S_Population H11 H12 H13 ;
 NOTE: %INCLUDE (level 1) ending.
 MPRINT(EM_DIAGRAM):   run;
-70644      run;
+29899      run;
 
 NOTE: DATA STEP view saved on file EMWS1.NEURAL_VALIDATE.
 NOTE: A stored DATA STEP view cannot run under a different operating system.
 NOTE: View EMWS1.VARSEL_VALIDATE.VIEW used (Total process time):
       real time           0.06 seconds
+      cpu time            0.07 seconds
+      
+NOTE: DATA statement used (Total process time):
+      real time           0.08 seconds
+      cpu time            0.09 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+29900      quit;
+29901      filename emflow;
+MPRINT(EM_DIAGRAM):   filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+29902      filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Neural: Scoring TEST data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+29903      *------------------------------------------------------------*;
+29904      * Neural: Scoring TEST data;
+29905      *------------------------------------------------------------*;
+29906      data EMWS1.Neural_TEST
+29907      / view=EMWS1.Neural_TEST
+29908      ;
+MPRINT(EM_DIAGRAM):   data EMWS1.Neural_TEST / view=EMWS1.Neural_TEST ;
+29909      set EMWS1.Varsel_TEST
+29910      ;
+MPRINT(EM_DIAGRAM):   set EMWS1.Varsel_TEST ;
+29911      %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas.
+29912     +***********************************;
+MPRINT(EM_DIAGRAM):   ***********************************;
+29913     +*** Begin Scoring Code for Neural;
+MPRINT(EM_DIAGRAM):   *** Begin Scoring Code for Neural;
+29914     +***********************************;
+MPRINT(EM_DIAGRAM):   ***********************************;
+29915     +DROP _DM_BAD _EPS _NOCL_ _MAX_ _MAXP_ _SUM_ _NTRIALS;
+MPRINT(EM_DIAGRAM):   DROP _DM_BAD _EPS _NOCL_ _MAX_ _MAXP_ _SUM_ _NTRIALS;
+29916     + _DM_BAD = 0;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 0;
+29917     + _NOCL_ = .;
+MPRINT(EM_DIAGRAM):   _NOCL_ = .;
+29918     + _MAX_ = .;
+MPRINT(EM_DIAGRAM):   _MAX_ = .;
+29919     + _MAXP_ = .;
+MPRINT(EM_DIAGRAM):   _MAXP_ = .;
+29920     + _SUM_ = .;
+MPRINT(EM_DIAGRAM):   _SUM_ = .;
+29921     + _NTRIALS = .;
+MPRINT(EM_DIAGRAM):   _NTRIALS = .;
+29922     + _EPS =                1E-10;
+MPRINT(EM_DIAGRAM):   _EPS = 1E-10;
+29923     +LENGTH _WARN_ $4
+29924     +;
+MPRINT(EM_DIAGRAM):   LENGTH _WARN_ $4 ;
+29925     +      label S_Population = 'Standard: Population' ;
+MPRINT(EM_DIAGRAM):   label S_Population = 'Standard: Population' ;
+29926     +
+29927     +      label Age_group16_to_24 = 'Dummy: Age_group=16 to 24' ;
+MPRINT(EM_DIAGRAM):   label Age_group16_to_24 = 'Dummy: Age_group=16 to 24' ;
+29928     +
+29929     +      label Age_group25_to_44 = 'Dummy: Age_group=25 to 44' ;
+MPRINT(EM_DIAGRAM):   label Age_group25_to_44 = 'Dummy: Age_group=25 to 44' ;
+29930     +
+29931     +      label Age_group45_to_64 = 'Dummy: Age_group=45 to 64' ;
+MPRINT(EM_DIAGRAM):   label Age_group45_to_64 = 'Dummy: Age_group=45 to 64' ;
+29932     +
+29933     +      label IndustryManagement__profession =
+29934     +'Dummy: Industry=Management, professional, and related occupations' ;
+MPRINT(EM_DIAGRAM):   label IndustryManagement__profession = 'Dummy: Industry=Management, professional, and related occupations' ;
+29935     +
+29936     +      label IndustryNatural_resources__con = 'Dummy: Industry=Natural resourc
+29937     +es, construction, and maintenance occupations' ;
+MPRINT(EM_DIAGRAM):   label IndustryNatural_resources__con = 'Dummy: Industry=Natural resources, construction, and maintenance occupations' ;
+29938     +
+29939     +      label IndustryProduction__transporta = 'Dummy: Industry=Production, tra
+29940     +nsportation, and material moving occupations' ;
+MPRINT(EM_DIAGRAM):   label IndustryProduction__transporta = 'Dummy: Industry=Production, transportation, and material moving occupations' ;
+29941     +
+29942     +      label IndustrySales_and_office_occup =
+29943     +'Dummy: Industry=Sales and office occupations' ;
+MPRINT(EM_DIAGRAM):   label IndustrySales_and_office_occup = 'Dummy: Industry=Sales and office occupations' ;
+29944     +
+29945     +      label H11 = 'Hidden: H1=1' ;
+MPRINT(EM_DIAGRAM):   label H11 = 'Hidden: H1=1' ;
+29946     +
+29947     +      label H12 = 'Hidden: H1=2' ;
+MPRINT(EM_DIAGRAM):   label H12 = 'Hidden: H1=2' ;
+29948     +
+29949     +      label H13 = 'Hidden: H1=3' ;
+MPRINT(EM_DIAGRAM):   label H13 = 'Hidden: H1=3' ;
+29950     +
+29951     +      label P_Sum_Labor_Force_Pop = 'Predicted: Sum_Labor_Force_Pop' ;
+MPRINT(EM_DIAGRAM):   label P_Sum_Labor_Force_Pop = 'Predicted: Sum_Labor_Force_Pop' ;
+29952     +
+29953     +      label R_Sum_Labor_Force_Pop = 'Residual: Sum_Labor_Force_Pop' ;
+MPRINT(EM_DIAGRAM):   label R_Sum_Labor_Force_Pop = 'Residual: Sum_Labor_Force_Pop' ;
+29954     +
+29955     +      label  _WARN_ = "Warnings";
+MPRINT(EM_DIAGRAM):   label _WARN_ = "Warnings";
+29956     +
+29957     +*** Generate dummy variables for Age_group ;
+MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Age_group ;
+29958     +drop Age_group16_to_24 Age_group25_to_44 Age_group45_to_64 ;
+MPRINT(EM_DIAGRAM):   drop Age_group16_to_24 Age_group25_to_44 Age_group45_to_64 ;
+29959     +if missing( Age_group ) then do;
+MPRINT(EM_DIAGRAM):   if missing( Age_group ) then do;
+29960     +   Age_group16_to_24 = .;
+MPRINT(EM_DIAGRAM):   Age_group16_to_24 = .;
+29961     +   Age_group25_to_44 = .;
+MPRINT(EM_DIAGRAM):   Age_group25_to_44 = .;
+29962     +   Age_group45_to_64 = .;
+MPRINT(EM_DIAGRAM):   Age_group45_to_64 = .;
+29963     +   substr(_warn_,1,1) = 'M';
+MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
+29964     +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+29965     +end;
+MPRINT(EM_DIAGRAM):   end;
+29966     +else do;
+MPRINT(EM_DIAGRAM):   else do;
+29967     +   length _dm19 $ 19; drop _dm19 ;
+MPRINT(EM_DIAGRAM):   length _dm19 $ 19;
+MPRINT(EM_DIAGRAM):   drop _dm19 ;
+29968     +   %DMNORMCP( Age_group , _dm19 )
+MPRINT(DMNORMCP):   _dm19=dmnorm(Age_group,
+MPRINT(DMNORLEN):  32
+MPRINT(DMNORMCP):  );
+29969     +   if _dm19 = '45 TO 64'  then do;
+MPRINT(EM_DIAGRAM):   if _dm19 = '45 TO 64' then do;
+29970     +      Age_group16_to_24 = 0;
+MPRINT(EM_DIAGRAM):   Age_group16_to_24 = 0;
+29971     +      Age_group25_to_44 = 0;
+MPRINT(EM_DIAGRAM):   Age_group25_to_44 = 0;
+29972     +      Age_group45_to_64 = 1;
+MPRINT(EM_DIAGRAM):   Age_group45_to_64 = 1;
+29973     +   end;
+MPRINT(EM_DIAGRAM):   end;
+29974     +   else if _dm19 = '65+'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '65+' then do;
+29975     +      Age_group16_to_24 = -1;
+MPRINT(EM_DIAGRAM):   Age_group16_to_24 = -1;
+29976     +      Age_group25_to_44 = -1;
+MPRINT(EM_DIAGRAM):   Age_group25_to_44 = -1;
+29977     +      Age_group45_to_64 = -1;
+MPRINT(EM_DIAGRAM):   Age_group45_to_64 = -1;
+29978     +   end;
+MPRINT(EM_DIAGRAM):   end;
+29979     +   else if _dm19 = '16 TO 24'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '16 TO 24' then do;
+29980     +      Age_group16_to_24 = 1;
+MPRINT(EM_DIAGRAM):   Age_group16_to_24 = 1;
+29981     +      Age_group25_to_44 = 0;
+MPRINT(EM_DIAGRAM):   Age_group25_to_44 = 0;
+29982     +      Age_group45_to_64 = 0;
+MPRINT(EM_DIAGRAM):   Age_group45_to_64 = 0;
+29983     +   end;
+MPRINT(EM_DIAGRAM):   end;
+29984     +   else if _dm19 = '25 TO 44'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm19 = '25 TO 44' then do;
+29985     +      Age_group16_to_24 = 0;
+MPRINT(EM_DIAGRAM):   Age_group16_to_24 = 0;
+29986     +      Age_group25_to_44 = 1;
+MPRINT(EM_DIAGRAM):   Age_group25_to_44 = 1;
+29987     +      Age_group45_to_64 = 0;
+MPRINT(EM_DIAGRAM):   Age_group45_to_64 = 0;
+29988     +   end;
+MPRINT(EM_DIAGRAM):   end;
+29989     +   else do;
+MPRINT(EM_DIAGRAM):   else do;
+29990     +      Age_group16_to_24 = .;
+MPRINT(EM_DIAGRAM):   Age_group16_to_24 = .;
+29991     +      Age_group25_to_44 = .;
+MPRINT(EM_DIAGRAM):   Age_group25_to_44 = .;
+29992     +      Age_group45_to_64 = .;
+MPRINT(EM_DIAGRAM):   Age_group45_to_64 = .;
+29993     +      substr(_warn_,2,1) = 'U';
+MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
+29994     +      _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+29995     +   end;
+MPRINT(EM_DIAGRAM):   end;
+29996     +end;
+MPRINT(EM_DIAGRAM):   end;
+29997     +
+29998     +*** Generate dummy variables for Industry ;
+MPRINT(EM_DIAGRAM):   *** Generate dummy variables for Industry ;
+29999     +drop IndustryManagement__profession IndustryNatural_resources__con
+30000     +        IndustryProduction__transporta IndustrySales_and_office_occup ;
+MPRINT(EM_DIAGRAM):   drop IndustryManagement__profession IndustryNatural_resources__con IndustryProduction__transporta IndustrySales_and_office_occup ;
+30001     +*** encoding is sparse, initialize to zero;
+MPRINT(EM_DIAGRAM):   *** encoding is sparse, initialize to zero;
+30002     +IndustryManagement__profession = 0;
+MPRINT(EM_DIAGRAM):   IndustryManagement__profession = 0;
+30003     +IndustryNatural_resources__con = 0;
+MPRINT(EM_DIAGRAM):   IndustryNatural_resources__con = 0;
+30004     +IndustryProduction__transporta = 0;
+MPRINT(EM_DIAGRAM):   IndustryProduction__transporta = 0;
+30005     +IndustrySales_and_office_occup = 0;
+MPRINT(EM_DIAGRAM):   IndustrySales_and_office_occup = 0;
+30006     +if missing( Industry ) then do;
+MPRINT(EM_DIAGRAM):   if missing( Industry ) then do;
+30007     +   IndustryManagement__profession = .;
+MPRINT(EM_DIAGRAM):   IndustryManagement__profession = .;
+30008     +   IndustryNatural_resources__con = .;
+MPRINT(EM_DIAGRAM):   IndustryNatural_resources__con = .;
+30009     +   IndustryProduction__transporta = .;
+MPRINT(EM_DIAGRAM):   IndustryProduction__transporta = .;
+30010     +   IndustrySales_and_office_occup = .;
+MPRINT(EM_DIAGRAM):   IndustrySales_and_office_occup = .;
+30011     +   substr(_warn_,1,1) = 'M';
+MPRINT(EM_DIAGRAM):   substr(_warn_,1,1) = 'M';
+30012     +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+30013     +end;
+MPRINT(EM_DIAGRAM):   end;
+30014     +else do;
+MPRINT(EM_DIAGRAM):   else do;
+30015     +   length _dm32 $ 32; drop _dm32 ;
+MPRINT(EM_DIAGRAM):   length _dm32 $ 32;
+MPRINT(EM_DIAGRAM):   drop _dm32 ;
+30016     +   length _dm111 $ 111; drop _dm111;
+MPRINT(EM_DIAGRAM):   length _dm111 $ 111;
+MPRINT(EM_DIAGRAM):   drop _dm111;
+30017     +   _dm111 = put( Industry , $CHAR111. );
+MPRINT(EM_DIAGRAM):   _dm111 = put( Industry , $CHAR111. );
+30018     +   %DMNORMCP( _dm111, _dm32 )
+MPRINT(DMNORMCP):   _dm32=dmnorm(_dm111,
+MPRINT(DMNORLEN):  32
+MPRINT(DMNORMCP):  );
+30019     +   if _dm32 = 'SERVICE OCCUPATIONS'  then do;
+MPRINT(EM_DIAGRAM):   if _dm32 = 'SERVICE OCCUPATIONS' then do;
+30020     +      IndustryManagement__profession = -1;
+MPRINT(EM_DIAGRAM):   IndustryManagement__profession = -1;
+30021     +      IndustryNatural_resources__con = -1;
+MPRINT(EM_DIAGRAM):   IndustryNatural_resources__con = -1;
+30022     +      IndustryProduction__transporta = -1;
+MPRINT(EM_DIAGRAM):   IndustryProduction__transporta = -1;
+30023     +      IndustrySales_and_office_occup = -1;
+MPRINT(EM_DIAGRAM):   IndustrySales_and_office_occup = -1;
+30024     +   end;
+MPRINT(EM_DIAGRAM):   end;
+30025     +   else if _dm32 = 'SALES AND OFFICE OCCUPATIONS'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'SALES AND OFFICE OCCUPATIONS' then do;
+30026     +      IndustrySales_and_office_occup = 1;
+MPRINT(EM_DIAGRAM):   IndustrySales_and_office_occup = 1;
+30027     +   end;
+MPRINT(EM_DIAGRAM):   end;
+30028     +   else if _dm32 = 'PRODUCTION, TRANSPORTATION, AND'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'PRODUCTION, TRANSPORTATION, AND' then do;
+30029     +      IndustryProduction__transporta = 1;
+MPRINT(EM_DIAGRAM):   IndustryProduction__transporta = 1;
+30030     +   end;
+MPRINT(EM_DIAGRAM):   end;
+30031     +   else if _dm32 = 'NATURAL RESOURCES, CONSTRUCTION,'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'NATURAL RESOURCES, CONSTRUCTION,' then do;
+30032     +      IndustryNatural_resources__con = 1;
+MPRINT(EM_DIAGRAM):   IndustryNatural_resources__con = 1;
+30033     +   end;
+MPRINT(EM_DIAGRAM):   end;
+30034     +   else if _dm32 = 'MANAGEMENT, PROFESSIONAL, AND RE'  then do;
+MPRINT(EM_DIAGRAM):   else if _dm32 = 'MANAGEMENT, PROFESSIONAL, AND RE' then do;
+30035     +      IndustryManagement__profession = 1;
+MPRINT(EM_DIAGRAM):   IndustryManagement__profession = 1;
+30036     +   end;
+MPRINT(EM_DIAGRAM):   end;
+30037     +   else do;
+MPRINT(EM_DIAGRAM):   else do;
+30038     +      IndustryManagement__profession = .;
+MPRINT(EM_DIAGRAM):   IndustryManagement__profession = .;
+30039     +      IndustryNatural_resources__con = .;
+MPRINT(EM_DIAGRAM):   IndustryNatural_resources__con = .;
+30040     +      IndustryProduction__transporta = .;
+MPRINT(EM_DIAGRAM):   IndustryProduction__transporta = .;
+30041     +      IndustrySales_and_office_occup = .;
+MPRINT(EM_DIAGRAM):   IndustrySales_and_office_occup = .;
+30042     +      substr(_warn_,2,1) = 'U';
+MPRINT(EM_DIAGRAM):   substr(_warn_,2,1) = 'U';
+30043     +      _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+30044     +   end;
+MPRINT(EM_DIAGRAM):   end;
+30045     +end;
+MPRINT(EM_DIAGRAM):   end;
+30046     +
+30047     +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+30048     +*** Checking missing input Interval
+30049     +*** *************************;
+MPRINT(EM_DIAGRAM):   *** Checking missing input Interval *** *************************;
+30050     +
+30051     +IF NMISS(
+30052     +   Population   ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF NMISS( Population ) THEN DO;
+30053     +   SUBSTR(_WARN_, 1, 1) = 'M';
+MPRINT(EM_DIAGRAM):   SUBSTR(_WARN_, 1, 1) = 'M';
+30054     +
+30055     +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+30056     +END;
+MPRINT(EM_DIAGRAM):   END;
+30057     +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+30058     +*** Writing the Node intvl ;
+MPRINT(EM_DIAGRAM):   *** Writing the Node intvl ;
+30059     +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+30060     +IF _DM_BAD EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 0 THEN DO;
+30061     +   S_Population  =    -2.83964697481178 +   4.7992594103827E-8 * Population ;
+MPRINT(EM_DIAGRAM):   S_Population = -2.83964697481178 + 4.7992594103827E-8 * Population ;
+30062     +END;
+MPRINT(EM_DIAGRAM):   END;
+30063     +ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+30064     +   IF MISSING( Population ) THEN S_Population  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( Population ) THEN S_Population = . ;
+30065     +   ELSE S_Population  =    -2.83964697481178 +   4.7992594103827E-8 *
+30066     +        Population ;
+MPRINT(EM_DIAGRAM):   ELSE S_Population = -2.83964697481178 + 4.7992594103827E-8 * Population ;
+30067     +END;
+MPRINT(EM_DIAGRAM):   END;
+30068     +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+30069     +*** Writing the Node nom ;
+MPRINT(EM_DIAGRAM):   *** Writing the Node nom ;
+30070     +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+30071     +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+30072     +*** Writing the Node H1 ;
+MPRINT(EM_DIAGRAM):   *** Writing the Node H1 ;
+30073     +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+30074     +IF _DM_BAD EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 0 THEN DO;
+30075     +   H11  =    -1.07683938427355 * S_Population ;
+MPRINT(EM_DIAGRAM):   H11 = -1.07683938427355 * S_Population ;
+30076     +   H12  =    -0.42418815980383 * S_Population ;
+MPRINT(EM_DIAGRAM):   H12 = -0.42418815980383 * S_Population ;
+30077     +   H13  =      3.0458121085363 * S_Population ;
+MPRINT(EM_DIAGRAM):   H13 = 3.0458121085363 * S_Population ;
+30078     +   H11  = H11  +     8.13620736214956 * Age_group16_to_24
+30079     +          +    -5.69040629530111 * Age_group25_to_44
+30080     +          +    -5.22627950724203 * Age_group45_to_64
+30081     +          +    -8.20612991861404 * IndustryManagement__profession
+30082     +          +     3.30962239961027 * IndustryNatural_resources__con
+30083     +          +     2.59408016791381 * IndustryProduction__transporta
+30084     +          +     0.18418992149364 * IndustrySales_and_office_occup ;
+MPRINT(EM_DIAGRAM):   H11 = H11 + 8.13620736214956 * Age_group16_to_24 + -5.69040629530111 * Age_group25_to_44 + -5.22627950724203 * Age_group45_to_64 + -8.20612991861404 * IndustryManagement__profession + 3.30962239961027 * IndustryNatural_resources__con 
++ 2.59408016791381 * IndustryProduction__transporta + 0.18418992149364 * IndustrySales_and_office_occup ;
+30085     +   H12  = H12  +     1.36164859072813 * Age_group16_to_24
+30086     +          +     -4.9915715407152 * Age_group25_to_44
+30087     +          +     0.87612368059709 * Age_group45_to_64
+30088     +          +    -0.19832109582943 * IndustryManagement__profession
+30089     +          +      1.0202053535978 * IndustryNatural_resources__con
+30090     +          +    -0.28879843563274 * IndustryProduction__transporta
+30091     +          +    -0.37557781715296 * IndustrySales_and_office_occup ;
+MPRINT(EM_DIAGRAM):   H12 = H12 + 1.36164859072813 * Age_group16_to_24 + -4.9915715407152 * Age_group25_to_44 + 0.87612368059709 * Age_group45_to_64 + -0.19832109582943 * IndustryManagement__profession + 1.0202053535978 * IndustryNatural_resources__con + 
+-0.28879843563274 * IndustryProduction__transporta + -0.37557781715296 * IndustrySales_and_office_occup ;
+30092     +   H13  = H13  +     84.2151951296337 * Age_group16_to_24
+30093     +          +    -214.422271679173 * Age_group25_to_44
+30094     +          +     47.6963303243508 * Age_group45_to_64
+30095     +          +     5.49661823542271 * IndustryManagement__profession
+30096     +          +    -7.94703019484785 * IndustryNatural_resources__con
+30097     +          +     22.7643905758641 * IndustryProduction__transporta
+30098     +          +    -11.6169698318882 * IndustrySales_and_office_occup ;
+MPRINT(EM_DIAGRAM):   H13 = H13 + 84.2151951296337 * Age_group16_to_24 + -214.422271679173 * Age_group25_to_44 + 47.6963303243508 * Age_group45_to_64 + 5.49661823542271 * IndustryManagement__profession + -7.94703019484785 * IndustryNatural_resources__con 
++ 22.7643905758641 * IndustryProduction__transporta + -11.6169698318882 * IndustrySales_and_office_occup ;
+30099     +   H11  =     4.76991388120461 + H11 ;
+MPRINT(EM_DIAGRAM):   H11 = 4.76991388120461 + H11 ;
+30100     +   H12  =    -2.62037956892498 + H12 ;
+MPRINT(EM_DIAGRAM):   H12 = -2.62037956892498 + H12 ;
+30101     +   H13  =    -79.9842004687623 + H13 ;
+MPRINT(EM_DIAGRAM):   H13 = -79.9842004687623 + H13 ;
+30102     +   H11  = TANH(H11 );
+MPRINT(EM_DIAGRAM):   H11 = TANH(H11 );
+30103     +   H12  = TANH(H12 );
+MPRINT(EM_DIAGRAM):   H12 = TANH(H12 );
+30104     +   H13  = TANH(H13 );
+MPRINT(EM_DIAGRAM):   H13 = TANH(H13 );
+30105     +END;
+MPRINT(EM_DIAGRAM):   END;
+30106     +ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+30107     +   H11  = .;
+MPRINT(EM_DIAGRAM):   H11 = .;
+30108     +   H12  = .;
+MPRINT(EM_DIAGRAM):   H12 = .;
+30109     +   H13  = .;
+MPRINT(EM_DIAGRAM):   H13 = .;
+30110     +END;
+MPRINT(EM_DIAGRAM):   END;
+30111     +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+30112     +*** Writing the Node intervalTargets ;
+MPRINT(EM_DIAGRAM):   *** Writing the Node intervalTargets ;
+30113     +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+30114     +IF _DM_BAD EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 0 THEN DO;
+30115     +   P_Sum_Labor_Force_Pop  =    -3873412.99092811 * H11
+30116     +          +     -3446294.2697551 * H12  +    -706714.692803363 * H13 ;
+MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = -3873412.99092811 * H11 + -3446294.2697551 * H12 + -706714.692803363 * H13 ;
+30117     +   P_Sum_Labor_Force_Pop  =       5563212.759221 + P_Sum_Labor_Force_Pop ;
+MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = 5563212.759221 + P_Sum_Labor_Force_Pop ;
+30118     +END;
+MPRINT(EM_DIAGRAM):   END;
+30119     +ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+30120     +   P_Sum_Labor_Force_Pop  = .;
+MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = .;
+30121     +END;
+MPRINT(EM_DIAGRAM):   END;
+30122     +IF _DM_BAD EQ 1 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 1 THEN DO;
+30123     +   P_Sum_Labor_Force_Pop  =     6470696.42857143;
+MPRINT(EM_DIAGRAM):   P_Sum_Labor_Force_Pop = 6470696.42857143;
+30124     +END;
+MPRINT(EM_DIAGRAM):   END;
+30125     +*** *****************************;
+MPRINT(EM_DIAGRAM):   *** *****************************;
+30126     +*** Writing the Residuals  of the Node intervalTargets ;
+MPRINT(EM_DIAGRAM):   *** Writing the Residuals of the Node intervalTargets ;
+30127     +*** ******************************;
+MPRINT(EM_DIAGRAM):   *** ******************************;
+30128     +IF MISSING( Sum_Labor_Force_Pop ) THEN R_Sum_Labor_Force_Pop  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( Sum_Labor_Force_Pop ) THEN R_Sum_Labor_Force_Pop = . ;
+30129     +ELSE R_Sum_Labor_Force_Pop  = Sum_Labor_Force_Pop  - P_Sum_Labor_Force_Pop ;
+MPRINT(EM_DIAGRAM):   ELSE R_Sum_Labor_Force_Pop = Sum_Labor_Force_Pop - P_Sum_Labor_Force_Pop ;
+30130     +********************************;
+MPRINT(EM_DIAGRAM):   ********************************;
+30131     +*** End Scoring Code for Neural;
+MPRINT(EM_DIAGRAM):   *** End Scoring Code for Neural;
+30132     +********************************;
+MPRINT(EM_DIAGRAM):   ********************************;
+30133     +drop
+30134     +S_Population
+30135     +H11
+30136     +H12
+30137     +H13
+30138     +;
+MPRINT(EM_DIAGRAM):   drop S_Population H11 H12 H13 ;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+30139      run;
+
+NOTE: DATA STEP view saved on file EMWS1.NEURAL_TEST.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: View EMWS1.VARSEL_TEST.VIEW used (Total process time):
+      real time           0.05 seconds
       cpu time            0.06 seconds
       
 NOTE: DATA statement used (Total process time):
@@ -1471,20 +1381,20 @@ NOTE: DATA statement used (Total process time):
       
 
 MPRINT(EM_DIAGRAM):   quit;
-70645      quit;
-70646      filename emflow;
+30140      quit;
+30141      filename emflow;
 MPRINT(EM_DIAGRAM):   filename emflow;
 NOTE: Fileref EMFLOW has been deassigned.
-70647      *------------------------------------------------------------*;
+30142      *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
-70648      * Neural: Computing metadata for TRAIN data;
+30143      * Neural: Computing metadata for TRAIN data;
 MPRINT(EM_DIAGRAM):   * Neural: Computing metadata for TRAIN data;
-70649      *------------------------------------------------------------*;
+30144      *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
 
 NOTE: View EMWS1.NEURAL_TRAIN.VIEW used (Total process time):
-      real time           0.07 seconds
-      cpu time            0.06 seconds
+      real time           0.09 seconds
+      cpu time            0.09 seconds
       
 MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   * &nodeid: Computing Metadata for TRAIN data;
@@ -1504,12 +1414,12 @@ MPRINT(EMADVISECOLUMNS):   call symput('_engineTable', attrc(dsid, 'ENGINE'));
 MPRINT(EMADVISECOLUMNS):   dsid = close(dsid);
 MPRINT(EMADVISECOLUMNS):   end;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    proc contents data=EMWS1.Neural_TRAIN out=WORK.M335PB1D noprint;
+MPRINT(EMADVISECOLUMNS):    proc contents data=EMWS1.Neural_TRAIN out=WORK.M3JFB4I9 noprint;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M335PB1D;
+MPRINT(EMADVISECOLUMNS):    data WORK.M3JFB4I9;
 MPRINT(EMADVISECOLUMNS):   length NAME $ 64 TYPE $ 1 LABEL $ 200 FORMAT $ 36 INFORMAT $36 INDEX $ 1 INDEXTYPE $ 9;
 MPRINT(EMADVISECOLUMNS):   label NAME =;
-MPRINT(EMADVISECOLUMNS):   set WORK.M335PB1D(keep=name type length label format formatl formatd informat informl informd idxusage rename=(type=itype));
+MPRINT(EMADVISECOLUMNS):   set WORK.M3JFB4I9(keep=name type length label format formatl formatd informat informl informd idxusage rename=(type=itype));
 MPRINT(EMADVISECOLUMNS):   if itype = 1 then type = 'N';
 MPRINT(EMADVISECOLUMNS):   else type = 'C';
 MPRINT(EMADVISECOLUMNS):   if formatl > 0 then do;
@@ -1533,21 +1443,21 @@ MPRINT(EMADVISECOLUMNS):   else index = "Y";
 MPRINT(EMADVISECOLUMNS):   indextype = idxusage;
 MPRINT(EMADVISECOLUMNS):   drop idxusage itype formatl formatd informl informd;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M335PB1D;
+MPRINT(EMADVISECOLUMNS):    data WORK.M3JFB4I9;
 MPRINT(EMADVISECOLUMNS):   length UNAME $64;
-MPRINT(EMADVISECOLUMNS):   set WORK.M335PB1D;
+MPRINT(EMADVISECOLUMNS):   set WORK.M3JFB4I9;
 MPRINT(EMADVISECOLUMNS):   UNAME = upcase(NAME);
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    proc sort data=WORK.M285H7GC NOTHREADS;
+MPRINT(EMADVISECOLUMNS):    proc sort data=WORK.M2LDSD0R NOTHREADS;
 MPRINT(EMADVISECOLUMNS):   by UNAME;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M285H7GC;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2LDSD0R;
 MPRINT(EMADVISECOLUMNS):   drop UNAME;
-MPRINT(EMADVISECOLUMNS):   set WORK.M285H7GC;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2LDSD0R;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M237F8RT(keep=NAME ATTR);
+MPRINT(EMADVISECOLUMNS):    data WORK.M1WFK0OR(keep=NAME ATTR);
 MPRINT(EMADVISECOLUMNS):   length ATTR $ 20;
-MPRINT(EMADVISECOLUMNS):   set WORK.M285H7GC;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2LDSD0R;
 MPRINT(EMADVISECOLUMNS):   if level ne "INTERVAL" then do;
 MPRINT(EMADVISECOLUMNS):   if order = ' ' then do;
 MPRINT(EMADVISECOLUMNS):   attr = 'ORDER';
@@ -1582,10 +1492,10 @@ MPRINT(EMADVISECOLUMNS):   run;
 MPRINT(EMADVISECOLUMNS):   proc sort NOTHREADS;
 MPRINT(EMADVISECOLUMNS):   by attr;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M285H7GC;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2LDSD0R;
 MPRINT(EMADVISECOLUMNS):   length NAME $64 ROLE $ 32 LEVEL $ 10 ORDER $ 8 CREATOR $32 FORMATTYPE $ 10 FAMILY $ 10 LOWERLIMIT 8 UPPERLIMIT 8 REPORT $1 DISTRIBUTION $ 20 COMMENT $64;
 MPRINT(EMADVISECOLUMNS):   length levelAssigned 8 roleAssigned 8 PRICE 8;
-MPRINT(EMADVISECOLUMNS):   set WORK.M285H7GC;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2LDSD0R;
 MPRINT(EMADVISECOLUMNS):   if formattype = ' ' then do;
 MPRINT(EMADVISECOLUMNS):   if format ne ' ' then do;
 MPRINT(EMADVISECOLUMNS):   if type = 'N' then do;
@@ -1746,8 +1656,8 @@ MPRINT(EMADVISECOLUMNS):   if ROLE ^in('INPUT', 'TARGET', 'REJECTED', 'SEGMENT',
 MPRINT(EMADVISECOLUMNS):   end;
 MPRINT(EMADVISECOLUMNS):   end;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M285H7GC;
-MPRINT(EMADVISECOLUMNS):   set WORK.M285H7GC;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2LDSD0R;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2LDSD0R;
 MPRINT(EMADVISECOLUMNS):   label NAME = "Variable Name" TYPE = "Type" ROLE = "Role" LEVEL= "Measurement Level" ORDER= "Order" CREATOR= "Creator" FORMATTYPE= "Format Type" FAMILY= "Family" DISTRIBUTION= "Distribution" PRICE= "Price" LOWERLIMIT= "Lower 
 limit" UPPERLIMIT= "Upper Limit" REPORT= "Report" COMMENT= "Comment" INDEX= "Index" INDEXTYPE= "IndexType" LABEL= "Label" LENGTH= "Length";
 MPRINT(EMADVISECOLUMNS):   drop levelAssigned roleAssigned;
@@ -1776,6 +1686,9 @@ MPRINT(EM_DIAGRAM):   if ^_b then CREATOR = "Neural";
 MPRINT(EM_DIAGRAM):   length model $200;
 MPRINT(EM_DIAGRAM):   label MODEL = "Model Node";
 MPRINT(EM_DIAGRAM):   select(upcase(name));
+MPRINT(EM_DIAGRAM):   when("P_SUM_LABOR_FORCE_POP") creator = "Neural";
+MPRINT(EM_DIAGRAM):   when("R_SUM_LABOR_FORCE_POP") creator = "Neural";
+MPRINT(EM_DIAGRAM):   when("_WARN_") creator = "Neural";
 MPRINT(EM_DIAGRAM):   when("SUM_LABOR_FORCE_POP") model = "Neural";
 MPRINT(EM_DIAGRAM):   when('');
 MPRINT(EM_DIAGRAM):   otherwise;
@@ -1785,28 +1698,60 @@ MPRINT(EM_DIAGRAM):   * Neural: Apply Delta Code;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   filename _delta;
-70994      data EMWS1.Neural_EMINFO;
-MPRINT(EM_DIAGRAM):    data EMWS1.Neural_EMINFO;
-70995      length TARGET KEY $32 DATA $43;
-MPRINT(EM_DIAGRAM):   length TARGET KEY $32 DATA $43;
-70996      input TARGET KEY DATA $;
-MPRINT(EM_DIAGRAM):   input TARGET KEY DATA $;
-70997      cards;
-MPRINT(EM_DIAGRAM):   cards;
+30492      data WORK.MODELTEMP_INFO;
+MPRINT(EM_DIAGRAM):    data WORK.MODELTEMP_INFO;
+30493      set EMWS1.Neural_EMINFO;
+MPRINT(EM_DIAGRAM):   set EMWS1.Neural_EMINFO;
+30494      where DATA='Neural' and KEY ^in('DECDATA', 'DECMETA', 'IMPORTANCE', 'MODEL');
+MPRINT(EM_DIAGRAM):   where DATA='Neural' and KEY ^in('DECDATA', 'DECMETA', 'IMPORTANCE', 'MODEL');
+30495      run;
+MPRINT(EM_DIAGRAM):   run;
 
-NOTE: The data set EMWS1.NEURAL_EMINFO has 3 observations and 3 variables.
+NOTE: There were 0 observations read from the data set EMWS1.NEURAL_EMINFO.
+      WHERE (DATA='Neural') and KEY not in ('DECDATA', 'DECMETA', 'IMPORTANCE', 'MODEL');
+NOTE: The data set WORK.MODELTEMP_INFO has 0 observations and 3 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.00 seconds
       cpu time            0.00 seconds
       
 
+30496      data EMWS1.Neural_EMINFO;
+MPRINT(EM_DIAGRAM):    data EMWS1.Neural_EMINFO;
+30497      length TARGET KEY $32 DATA $43;
+MPRINT(EM_DIAGRAM):   length TARGET KEY $32 DATA $43;
+30498      input TARGET KEY DATA $;
+MPRINT(EM_DIAGRAM):   input TARGET KEY DATA $;
+30499      cards;
+MPRINT(EM_DIAGRAM):   cards;
+
+NOTE: The data set EMWS1.NEURAL_EMINFO has 3 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
 MPRINT(EM_DIAGRAM):   run;
-71001      run;
-71002      proc sort data = EMWS1.Neural_EMINFO NOTHREADS;
-MPRINT(EM_DIAGRAM):   proc sort data = EMWS1.Neural_EMINFO NOTHREADS;
-71003      by TARGET KEY;
+30503      run;
+30504      data EMWS1.Neural_EMINFO;
+MPRINT(EM_DIAGRAM):   data EMWS1.Neural_EMINFO;
+30505      set EMWS1.Neural_EMINFO WORK.MODELTEMP_INFO;
+MPRINT(EM_DIAGRAM):   set EMWS1.Neural_EMINFO WORK.MODELTEMP_INFO;
+30506      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 3 observations read from the data set EMWS1.NEURAL_EMINFO.
+NOTE: There were 0 observations read from the data set WORK.MODELTEMP_INFO.
+NOTE: The data set EMWS1.NEURAL_EMINFO has 3 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+30507      proc sort data = EMWS1.Neural_EMINFO NOTHREADS;
+MPRINT(EM_DIAGRAM):    proc sort data = EMWS1.Neural_EMINFO NOTHREADS;
+30508      by TARGET KEY;
 MPRINT(EM_DIAGRAM):   by TARGET KEY;
-71004      run;
+30509      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 3 observations read from the data set EMWS1.NEURAL_EMINFO.
@@ -1816,11 +1761,11 @@ NOTE: PROCEDURE SORT used (Total process time):
       cpu time            0.01 seconds
       
 
-71005      proc sort data = EMWS1.Ids_EMINFO OUT=WORK.SORTEDEMINFO NOTHREADS;
+30510      proc sort data = EMWS1.Ids_EMINFO OUT=WORK.SORTEDEMINFO NOTHREADS;
 MPRINT(EM_DIAGRAM):    proc sort data = EMWS1.Ids_EMINFO OUT=WORK.SORTEDEMINFO NOTHREADS;
-71006      by TARGET KEY;
+30511      by TARGET KEY;
 MPRINT(EM_DIAGRAM):   by TARGET KEY;
-71007      run;
+30512      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 3 observations read from the data set EMWS1.IDS_EMINFO.
@@ -1830,28 +1775,28 @@ NOTE: PROCEDURE SORT used (Total process time):
       cpu time            0.01 seconds
       
 
-71008      proc sort data = EMWS1.Neural_EMINFO OUT=WORK.TEMP_INFO NOTHREADS;
+30513      proc sort data = EMWS1.Neural_EMINFO OUT=WORK.TEMP_INFO NOTHREADS;
 MPRINT(EM_DIAGRAM):   proc sort data = EMWS1.Neural_EMINFO OUT=WORK.TEMP_INFO NOTHREADS;
-71009      by TARGET KEY;
+30514      by TARGET KEY;
 MPRINT(EM_DIAGRAM):   by TARGET KEY;
-71010      run;
+30515      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: Input data set is already sorted; it has been copied to the output data set.
 NOTE: There were 3 observations read from the data set EMWS1.NEURAL_EMINFO.
 NOTE: The data set WORK.TEMP_INFO has 3 observations and 3 variables.
 NOTE: PROCEDURE SORT used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.00 seconds
+      real time           0.01 seconds
+      cpu time            0.01 seconds
       
 
-71011      data EMWS1.Neural_EMINFO;
+30516      data EMWS1.Neural_EMINFO;
 MPRINT(EM_DIAGRAM):   data EMWS1.Neural_EMINFO;
-71012      merge WORK.SORTEDEMINFO WORK.TEMP_INFO;
+30517      merge WORK.SORTEDEMINFO WORK.TEMP_INFO;
 MPRINT(EM_DIAGRAM):   merge WORK.SORTEDEMINFO WORK.TEMP_INFO;
-71013      by TARGET KEY;
+30518      by TARGET KEY;
 MPRINT(EM_DIAGRAM):   by TARGET KEY;
-71014      run;
+30519      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: There were 3 observations read from the data set WORK.SORTEDEMINFO.
@@ -1862,16 +1807,16 @@ NOTE: DATA statement used (Total process time):
       cpu time            0.00 seconds
       
 
-71015      proc datasets lib=work nolist;
+30520      proc datasets lib=work nolist;
 MPRINT(EM_DIAGRAM):   proc datasets lib=work nolist;
-71016      delete TEMP_INFO SORTEDEMINFO;
+30521      delete TEMP_INFO SORTEDEMINFO;
 MPRINT(EM_DIAGRAM):   delete TEMP_INFO SORTEDEMINFO;
-71017      run;
+30522      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: Deleting WORK.TEMP_INFO (memtype=DATA).
 NOTE: Deleting WORK.SORTEDEMINFO (memtype=DATA).
-71018      quit;
+30523      quit;
 MPRINT(EM_DIAGRAM):   quit;
 
 NOTE: PROCEDURE DATASETS used (Total process time):
@@ -1880,12 +1825,16 @@ NOTE: PROCEDURE DATASETS used (Total process time):
       
 
 NOTE: View EMWS1.NEURAL_TRAIN.VIEW used (Total process time):
-      real time           0.15 seconds
-      cpu time            0.14 seconds
+      real time           0.11 seconds
+      cpu time            0.12 seconds
       
 NOTE: View EMWS1.NEURAL_VALIDATE.VIEW used (Total process time):
       real time           0.11 seconds
       cpu time            0.10 seconds
+      
+NOTE: View EMWS1.NEURAL_TEST.VIEW used (Total process time):
+      real time           0.08 seconds
+      cpu time            0.09 seconds
       
 MPRINT(EM_DIAGRAM):    proc printto;
 MPRINT(EM_DIAGRAM):   run;

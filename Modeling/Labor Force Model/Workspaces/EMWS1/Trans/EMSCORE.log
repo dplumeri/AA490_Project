@@ -3,8 +3,8 @@ MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
 MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
 MPRINT(EM_DIAGRAM):   run;
 MPRINT(EM_DIAGRAM):   data _null_;
-MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "November 19, 2019" );
-MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "20:56:38" );
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "December 10, 2019" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "15:15:43" );
 MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
 MPRINT(EM_DIAGRAM):   put "* Score Log";
 MPRINT(EM_DIAGRAM):   put nldate;
@@ -13,149 +13,22 @@ MPRINT(EM_DIAGRAM):   put "*----------------------------------------------------
 MPRINT(EM_DIAGRAM):   run;
 *------------------------------------------------------------*
 * Score Log
-Date:                November 19, 2019
-Time:                20:56:38
+Date:                December 10, 2019
+Time:                15:15:43
 *------------------------------------------------------------*
-MPRINT(EM_DIAGRAM):    filename O07QKX37 "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Trans\EMSCORE.out" encoding="UTF-8" NOBOM;
-MPRINT(EM_DIAGRAM):   proc printto print=O07QKX37 new;
+MPRINT(EM_DIAGRAM):    filename O19_X3VI "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Trans\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O19_X3VI new;
 MPRINT(EM_DIAGRAM):   run;
-22542      proc sort data=EMWS1.Trans_RESULT out=WORK.TransRESULT NOTHREADS;
-MPRINT(EM_DIAGRAM):    proc sort data=EMWS1.Trans_RESULT out=WORK.TransRESULT NOTHREADS;
-22543      by INPUTNAME;
-MPRINT(EM_DIAGRAM):   by INPUTNAME;
-22544      run;
-MPRINT(EM_DIAGRAM):   run;
-
-NOTE: There were 1 observations read from the data set EMWS1.TRANS_RESULT.
-NOTE: The data set WORK.TRANSRESULT has 1 observations and 11 variables.
-NOTE: PROCEDURE SORT used (Total process time):
-      real time           0.01 seconds
-      cpu time            0.00 seconds
-      
-
-22545      proc sort data=EMWS1.Trans_VariableSet(KEEP= NAME FAMILY REPORT rename=(NAME=INPUTNAME)) out=WORK.TransVARSET NOTHREADS;
-MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Trans_VariableSet(KEEP= NAME FAMILY REPORT rename=(NAME=INPUTNAME)) out=WORK.TransVARSET NOTHREADS;
-22546      by INPUTNAME;
-MPRINT(EM_DIAGRAM):   by INPUTNAME;
-22547      run;
-MPRINT(EM_DIAGRAM):   run;
-
-NOTE: There were 4 observations read from the data set EMWS1.TRANS_VARIABLESET.
-NOTE: The data set WORK.TRANSVARSET has 4 observations and 3 variables.
-NOTE: PROCEDURE SORT used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.00 seconds
-      
-
-22548      data WORK.TransRESULT;
-MPRINT(EM_DIAGRAM):   data WORK.TransRESULT;
-22549      merge WORK.TransRESULT WORK.TransVARSET;
-MPRINT(EM_DIAGRAM):   merge WORK.TransRESULT WORK.TransVARSET;
-22550      by INPUTNAME;
-MPRINT(EM_DIAGRAM):   by INPUTNAME;
-22551      if NAME ne '' then output;
-MPRINT(EM_DIAGRAM):   if NAME ne '' then output;
-22552      run;
-MPRINT(EM_DIAGRAM):   run;
-
-WARNING: Multiple lengths were specified for the BY variable INPUTNAME by input data sets. This might cause unexpected results.
-NOTE: There were 1 observations read from the data set WORK.TRANSRESULT.
-NOTE: There were 4 observations read from the data set WORK.TRANSVARSET.
-NOTE: The data set WORK.TRANSRESULT has 1 observations and 13 variables.
-NOTE: DATA statement used (Total process time):
-      real time           0.01 seconds
-      cpu time            0.01 seconds
-      
-
-22553      filename _code "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Trans\TRAINDELTACODE.sas";
-MPRINT(EM_DIAGRAM):   filename _code "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Trans\TRAINDELTACODE.sas";
-22554      data _null_;
-MPRINT(EM_DIAGRAM):   data _null_;
-22555      set WORK.TransRESULT;
-MPRINT(EM_DIAGRAM):   set WORK.TransRESULT;
-22556      length String $200;
-MPRINT(EM_DIAGRAM):   length String $200;
-22557      file _code;
-MPRINT(EM_DIAGRAM):   file _code;
-22558      String = 'if NAME="'!!strip(name)!!'" then do;';
-MPRINT(EM_DIAGRAM):   String = 'if NAME="'!!strip(name)!!'" then do;';
-22559      put / String;
-MPRINT(EM_DIAGRAM):   put / String;
-22560      if family ne '' then do;
-MPRINT(EM_DIAGRAM):   if family ne '' then do;
-22561      String = '   FAMILY ="'!!strip(family)!!'";';
-MPRINT(EM_DIAGRAM):   String = '   FAMILY ="'!!strip(family)!!'";';
-22562      put String;
-MPRINT(EM_DIAGRAM):   put String;
-22563      end;
-MPRINT(EM_DIAGRAM):   end;
-22564      select(formula);
-MPRINT(EM_DIAGRAM):   select(formula);
-22565      when('Interaction') put '   FAMILY  ="INTERACTION";';
-MPRINT(EM_DIAGRAM):   when('Interaction') put '   FAMILY  ="INTERACTION";';
-22566      when('') put '   COMMENT = "' method 'transformation of ' INPUTVAR '";';
-MPRINT(EM_DIAGRAM):   when('') put '   COMMENT = "' method 'transformation of ' INPUTVAR '";';
-22567      otherwise put '   COMMENT = "' formula '";';
-MPRINT(EM_DIAGRAM):   otherwise put '   COMMENT = "' formula '";';
-22568      end;
-MPRINT(EM_DIAGRAM):   end;
-22569      String = '   ROLE ="'!!strip(role)!!'";';
-MPRINT(EM_DIAGRAM):   String = '   ROLE ="'!!strip(role)!!'";';
-22570      put String;
-MPRINT(EM_DIAGRAM):   put String;
-22571      if REPORT="" then REPORT = "N";
-MPRINT(EM_DIAGRAM):   if REPORT="" then REPORT = "N";
-22572      String = '   REPORT ="'!!strip(report)!!'";';
-MPRINT(EM_DIAGRAM):   String = '   REPORT ="'!!strip(report)!!'";';
-22573      put String;
-MPRINT(EM_DIAGRAM):   put String;
-22574      String = '   LEVEL  ="'!!strip(level)!!'";';
-MPRINT(EM_DIAGRAM):   String = '   LEVEL  ="'!!strip(level)!!'";';
-22575      put String;
-MPRINT(EM_DIAGRAM):   put String;
-22576      put 'end;';
-MPRINT(EM_DIAGRAM):   put 'end;';
-22577      if formula ne 'Interaction' and INPUTNAME ne '' then do;
-MPRINT(EM_DIAGRAM):   if formula ne 'Interaction' and INPUTNAME ne '' then do;
-22578      String = 'if NAME="'!!strip(INPUTNAME)!!'" then delete;';
-MPRINT(EM_DIAGRAM):   String = 'if NAME="'!!strip(INPUTNAME)!!'" then delete;';
-22579      put String;
-MPRINT(EM_DIAGRAM):   put String;
-22580      end;
-MPRINT(EM_DIAGRAM):   end;
-22581      run;
-MPRINT(EM_DIAGRAM):   run;
-
-NOTE: Variable method is uninitialized.
-NOTE: Variable INPUTVAR is uninitialized.
-NOTE: The file _CODE is:
-      Filename=C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Trans\TRAINDELTACODE.sas,
-      RECFM=V,LRECL=32767,File Size (bytes)=0,
-      Last Modified=19Nov2019:20:56:37,
-      Create Time=19Nov2019:20:56:37
-
-NOTE: 8 records were written to the file _CODE.
-      The minimum record length was 0.
-      The maximum record length was 46.
-NOTE: There were 1 observations read from the data set WORK.TRANSRESULT.
-NOTE: DATA statement used (Total process time):
-      real time           0.00 seconds
-      cpu time            0.00 seconds
-      
-
-22582      filename _code;
-MPRINT(EM_DIAGRAM):   filename _code;
-NOTE: Fileref _CODE has been deassigned.
-22583      proc print data = EMWS1.Trans_FORMULA(obs=500) noobs label;
+22434      proc print data = EMWS1.Trans_FORMULA(obs=500) noobs label;
 MPRINT(EM_DIAGRAM):    proc print data = EMWS1.Trans_FORMULA(obs=500) noobs label;
-22584      title9 "%sysfunc(sasmsg(sashelp.dmine, rpt_formulatransformations_title, NOQUOTE))";
+22435      title9 "%sysfunc(sasmsg(sashelp.dmine, rpt_formulatransformations_title, NOQUOTE))";
 MPRINT(EM_DIAGRAM):   title9 "Formula Transformations";
-22585      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_maxObsPrinted_title, NOQUOTE))";
+22436      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_maxObsPrinted_title, NOQUOTE))";
 MPRINT(EM_DIAGRAM):   title10 "(maximum 500 observations printed)";
 MPRINT(EM_DIAGRAM):   var Name ROLE LEVEL FORMULA;
 MPRINT(EM_DIAGRAM):   run;
-22586      var Name ROLE LEVEL FORMULA;
-22587      run;
+22437      var Name ROLE LEVEL FORMULA;
+22438      run;
 
 NOTE: No observations in data set EMWS1.TRANS_FORMULA.
 NOTE: PROCEDURE PRINT used (Total process time):
@@ -163,82 +36,50 @@ NOTE: PROCEDURE PRINT used (Total process time):
       cpu time            0.00 seconds
       
 
-22588      title9;
+22439      title9;
 MPRINT(EM_DIAGRAM):   title9;
-22589      title10;
+22440      title10;
 MPRINT(EM_DIAGRAM):   title10;
-22590      filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Trans\EMFLOWSCORE.sas";
-MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Trans\EMFLOWSCORE.sas";
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+22441      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+22442      * Trans: Scoring DATA data;
 MPRINT(EM_DIAGRAM):   * Trans: Scoring DATA data;
+22443      *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-22591      *------------------------------------------------------------*;
-22592      * Trans: Scoring DATA data;
-22593      *------------------------------------------------------------*;
-22594      data EMWS1.Trans_TRAIN
-22595      / view=EMWS1.Trans_TRAIN
-22596      ;
+22444      data EMWS1.Trans_TRAIN
+22445      / view=EMWS1.Trans_TRAIN
+22446      ;
 MPRINT(EM_DIAGRAM):   data EMWS1.Trans_TRAIN / view=EMWS1.Trans_TRAIN ;
-22597      set EMWS1.Part_TRAIN
-22598      ;
+22447      set EMWS1.Part_TRAIN
+22448      ;
 MPRINT(EM_DIAGRAM):   set EMWS1.Part_TRAIN ;
-22599      %inc emflow;
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   * Computed Code;
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   * TRANSFORM: Population_in_thousands , Optimal Binning(4);
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   label OPT_Population_in_thousands = 'Transformed Population_in_thousands';
-MPRINT(EM_DIAGRAM):   length OPT_Population_in_thousands $36;
-MPRINT(EM_DIAGRAM):   if (Population_in_thousands eq .) then OPT_Population_in_thousands="03:40523.919-high, MISSING";
-MPRINT(EM_DIAGRAM):   else if (Population_in_thousands < 27749.9125) then OPT_Population_in_thousands = "01:low-27749.913";
-MPRINT(EM_DIAGRAM):   else if (Population_in_thousands >= 27749.9125 and Population_in_thousands < 40523.9185) then OPT_Population_in_thousands = "02:27749.913-40523.919";
-MPRINT(EM_DIAGRAM):   else if (Population_in_thousands >= 40523.9185) then OPT_Population_in_thousands = "03:40523.919-high, MISSING";
-22618      run;
+22449      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: DATA STEP view saved on file EMWS1.TRANS_TRAIN.
 NOTE: A stored DATA STEP view cannot run under a different operating system.
 NOTE: DATA statement used (Total process time):
-      real time           0.00 seconds
+      real time           0.01 seconds
       cpu time            0.00 seconds
       
 
 MPRINT(EM_DIAGRAM):   quit;
-22619      quit;
-22620      filename emflow;
-MPRINT(EM_DIAGRAM):   filename emflow;
-NOTE: Fileref EMFLOW has been deassigned.
-22621      filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Trans\EMFLOWSCORE.sas";
-MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Trans\EMFLOWSCORE.sas";
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+22450      quit;
+
+22451      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+22452      * Trans: Scoring VALIDATE data;
 MPRINT(EM_DIAGRAM):   * Trans: Scoring VALIDATE data;
+22453      *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-22622      *------------------------------------------------------------*;
-22623      * Trans: Scoring VALIDATE data;
-22624      *------------------------------------------------------------*;
-22625      data EMWS1.Trans_VALIDATE
-22626      / view=EMWS1.Trans_VALIDATE
-22627      ;
+22454      data EMWS1.Trans_VALIDATE
+22455      / view=EMWS1.Trans_VALIDATE
+22456      ;
 MPRINT(EM_DIAGRAM):   data EMWS1.Trans_VALIDATE / view=EMWS1.Trans_VALIDATE ;
-22628      set EMWS1.Part_VALIDATE
-22629      ;
+22457      set EMWS1.Part_VALIDATE
+22458      ;
 MPRINT(EM_DIAGRAM):   set EMWS1.Part_VALIDATE ;
-22630      %inc emflow;
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   * Computed Code;
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   * TRANSFORM: Population_in_thousands , Optimal Binning(4);
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   label OPT_Population_in_thousands = 'Transformed Population_in_thousands';
-MPRINT(EM_DIAGRAM):   length OPT_Population_in_thousands $36;
-MPRINT(EM_DIAGRAM):   if (Population_in_thousands eq .) then OPT_Population_in_thousands="03:40523.919-high, MISSING";
-MPRINT(EM_DIAGRAM):   else if (Population_in_thousands < 27749.9125) then OPT_Population_in_thousands = "01:low-27749.913";
-MPRINT(EM_DIAGRAM):   else if (Population_in_thousands >= 27749.9125 and Population_in_thousands < 40523.9185) then OPT_Population_in_thousands = "02:27749.913-40523.919";
-MPRINT(EM_DIAGRAM):   else if (Population_in_thousands >= 40523.9185) then OPT_Population_in_thousands = "03:40523.919-high, MISSING";
-22649      run;
+22459      run;
 MPRINT(EM_DIAGRAM):   run;
 
 NOTE: DATA STEP view saved on file EMWS1.TRANS_VALIDATE.
@@ -249,25 +90,48 @@ NOTE: DATA statement used (Total process time):
       
 
 MPRINT(EM_DIAGRAM):   quit;
-22650      quit;
-22651      filename emflow;
-MPRINT(EM_DIAGRAM):   filename emflow;
-NOTE: Fileref EMFLOW has been deassigned.
-22652      *------------------------------------------------------------*;
+22460      quit;
+
+22461      *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
-22653      * Trans: Computing metadata for TRAIN data;
+22462      * Trans: Scoring TEST data;
+MPRINT(EM_DIAGRAM):   * Trans: Scoring TEST data;
+22463      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+22464      data EMWS1.Trans_TEST
+22465      / view=EMWS1.Trans_TEST
+22466      ;
+MPRINT(EM_DIAGRAM):   data EMWS1.Trans_TEST / view=EMWS1.Trans_TEST ;
+22467      set EMWS1.Part_TEST
+22468      ;
+MPRINT(EM_DIAGRAM):   set EMWS1.Part_TEST ;
+22469      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: DATA STEP view saved on file EMWS1.TRANS_TEST.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+22470      quit;
+
+22471      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+22472      * Trans: Computing metadata for TRAIN data;
 MPRINT(EM_DIAGRAM):   * Trans: Computing metadata for TRAIN data;
-22654      *------------------------------------------------------------*;
+22473      *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
 
 NOTE: View EMWS1.TRANS_TRAIN.VIEW used (Total process time):
-      real time           0.03 seconds
+      real time           0.04 seconds
       cpu time            0.03 seconds
       
 MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
 MPRINT(EM_DIAGRAM):   * &nodeid: Computing Metadata for TRAIN data;
 MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   filename _delta "C:\Users\student\Desktop\AA490\Project\AA490_Project\Modeling\Labor Force Model\Workspaces\EMWS1\Trans\CDELTA_TRAIN.sas";
 MPRINT(EMADVISECOLUMNS):   proc display c=sashelp.emmeta.advisecolumns.scl;
 MPRINT(EMADVISECOLUMNS):   run;
 MPRINT(EMADVISECOLUMNS):    options validvarname=any;
@@ -282,12 +146,12 @@ MPRINT(EMADVISECOLUMNS):   call symput('_engineTable', attrc(dsid, 'ENGINE'));
 MPRINT(EMADVISECOLUMNS):   dsid = close(dsid);
 MPRINT(EMADVISECOLUMNS):   end;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    proc contents data=EMWS1.Trans_TRAIN out=WORK.M01R0ZIH noprint;
+MPRINT(EMADVISECOLUMNS):    proc contents data=EMWS1.Trans_TRAIN out=WORK.M3D302UW noprint;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M01R0ZIH;
+MPRINT(EMADVISECOLUMNS):    data WORK.M3D302UW;
 MPRINT(EMADVISECOLUMNS):   length NAME $ 64 TYPE $ 1 LABEL $ 200 FORMAT $ 36 INFORMAT $36 INDEX $ 1 INDEXTYPE $ 9;
 MPRINT(EMADVISECOLUMNS):   label NAME =;
-MPRINT(EMADVISECOLUMNS):   set WORK.M01R0ZIH(keep=name type length label format formatl formatd informat informl informd idxusage rename=(type=itype));
+MPRINT(EMADVISECOLUMNS):   set WORK.M3D302UW(keep=name type length label format formatl formatd informat informl informd idxusage rename=(type=itype));
 MPRINT(EMADVISECOLUMNS):   if itype = 1 then type = 'N';
 MPRINT(EMADVISECOLUMNS):   else type = 'C';
 MPRINT(EMADVISECOLUMNS):   if formatl > 0 then do;
@@ -311,21 +175,21 @@ MPRINT(EMADVISECOLUMNS):   else index = "Y";
 MPRINT(EMADVISECOLUMNS):   indextype = idxusage;
 MPRINT(EMADVISECOLUMNS):   drop idxusage itype formatl formatd informl informd;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M01R0ZIH;
+MPRINT(EMADVISECOLUMNS):    data WORK.M3D302UW;
 MPRINT(EMADVISECOLUMNS):   length UNAME $64;
-MPRINT(EMADVISECOLUMNS):   set WORK.M01R0ZIH;
+MPRINT(EMADVISECOLUMNS):   set WORK.M3D302UW;
 MPRINT(EMADVISECOLUMNS):   UNAME = upcase(NAME);
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    proc sort data=WORK.M3R21H3_ NOTHREADS;
+MPRINT(EMADVISECOLUMNS):    proc sort data=WORK.M3340VCD NOTHREADS;
 MPRINT(EMADVISECOLUMNS):   by UNAME;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M3R21H3_;
+MPRINT(EMADVISECOLUMNS):    data WORK.M3340VCD;
 MPRINT(EMADVISECOLUMNS):   drop UNAME;
-MPRINT(EMADVISECOLUMNS):   set WORK.M3R21H3_;
+MPRINT(EMADVISECOLUMNS):   set WORK.M3340VCD;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M2HZ9E_G(keep=NAME ATTR);
+MPRINT(EMADVISECOLUMNS):    data WORK.M15AK8_Y(keep=NAME ATTR);
 MPRINT(EMADVISECOLUMNS):   length ATTR $ 20;
-MPRINT(EMADVISECOLUMNS):   set WORK.M3R21H3_;
+MPRINT(EMADVISECOLUMNS):   set WORK.M3340VCD;
 MPRINT(EMADVISECOLUMNS):   if level ne "INTERVAL" then do;
 MPRINT(EMADVISECOLUMNS):   if order = ' ' then do;
 MPRINT(EMADVISECOLUMNS):   attr = 'ORDER';
@@ -360,10 +224,10 @@ MPRINT(EMADVISECOLUMNS):   run;
 MPRINT(EMADVISECOLUMNS):   proc sort NOTHREADS;
 MPRINT(EMADVISECOLUMNS):   by attr;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M3R21H3_;
+MPRINT(EMADVISECOLUMNS):    data WORK.M3340VCD;
 MPRINT(EMADVISECOLUMNS):   length NAME $64 ROLE $ 32 LEVEL $ 10 ORDER $ 8 CREATOR $32 FORMATTYPE $ 10 FAMILY $ 10 LOWERLIMIT 8 UPPERLIMIT 8 REPORT $1 DISTRIBUTION $ 20 COMMENT $64;
 MPRINT(EMADVISECOLUMNS):   length levelAssigned 8 roleAssigned 8 PRICE 8;
-MPRINT(EMADVISECOLUMNS):   set WORK.M3R21H3_;
+MPRINT(EMADVISECOLUMNS):   set WORK.M3340VCD;
 MPRINT(EMADVISECOLUMNS):   if formattype = ' ' then do;
 MPRINT(EMADVISECOLUMNS):   if format ne ' ' then do;
 MPRINT(EMADVISECOLUMNS):   if type = 'N' then do;
@@ -524,8 +388,8 @@ MPRINT(EMADVISECOLUMNS):   if ROLE ^in('INPUT', 'TARGET', 'REJECTED', 'SEGMENT',
 MPRINT(EMADVISECOLUMNS):   end;
 MPRINT(EMADVISECOLUMNS):   end;
 MPRINT(EMADVISECOLUMNS):   run;
-MPRINT(EMADVISECOLUMNS):    data WORK.M3R21H3_;
-MPRINT(EMADVISECOLUMNS):   set WORK.M3R21H3_;
+MPRINT(EMADVISECOLUMNS):    data WORK.M3340VCD;
+MPRINT(EMADVISECOLUMNS):   set WORK.M3340VCD;
 MPRINT(EMADVISECOLUMNS):   label NAME = "Variable Name" TYPE = "Type" ROLE = "Role" LEVEL= "Measurement Level" ORDER= "Order" CREATOR= "Creator" FORMATTYPE= "Format Type" FAMILY= "Family" DISTRIBUTION= "Distribution" PRICE= "Price" LOWERLIMIT= "Lower 
 limit" UPPERLIMIT= "Upper Limit" REPORT= "Report" COMMENT= "Comment" INDEX= "Index" INDEXTYPE= "IndexType" LABEL= "Label" LENGTH= "Length";
 MPRINT(EMADVISECOLUMNS):   drop levelAssigned roleAssigned;
@@ -551,27 +415,17 @@ MPRINT(EM_DIAGRAM):   merge WORK.COLUMNMETA(in=_a) _temp2(in=_b) _temp(drop=FORM
 MPRINT(EM_DIAGRAM):   by NAME;
 MPRINT(EM_DIAGRAM):   if (^_a and _b) or (^_c and _a and _b) then delete;
 MPRINT(EM_DIAGRAM):   if ^_b then CREATOR = "Trans";
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   * Trans: Apply Delta Code;
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   * Computed Code;
-MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
-MPRINT(EM_DIAGRAM):   if NAME="OPT_Population_in_thousands" then do;
-MPRINT(EM_DIAGRAM):   COMMENT = "Optimal Binning(4) ";
-MPRINT(EM_DIAGRAM):   ROLE ="INPUT";
-MPRINT(EM_DIAGRAM):   REPORT ="N";
-MPRINT(EM_DIAGRAM):   LEVEL ="NOMINAL";
-MPRINT(EM_DIAGRAM):   end;
-MPRINT(EM_DIAGRAM):   if NAME="Population_in_thousands" then delete;
 MPRINT(EM_DIAGRAM):   run;
-MPRINT(EM_DIAGRAM):   filename _delta;
 NOTE: View EMWS1.TRANS_TRAIN.VIEW used (Total process time):
-      real time           0.03 seconds
-      cpu time            0.03 seconds
+      real time           0.04 seconds
+      cpu time            0.04 seconds
       
 NOTE: View EMWS1.TRANS_VALIDATE.VIEW used (Total process time):
-      real time           0.03 seconds
+      real time           0.02 seconds
+      cpu time            0.03 seconds
+      
+NOTE: View EMWS1.TRANS_TEST.VIEW used (Total process time):
+      real time           0.02 seconds
       cpu time            0.03 seconds
       
 MPRINT(EM_DIAGRAM):    proc printto;

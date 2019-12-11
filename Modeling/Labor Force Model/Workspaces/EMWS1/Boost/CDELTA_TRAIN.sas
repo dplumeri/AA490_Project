@@ -2,11 +2,11 @@ if upcase(NAME) = "AGE_GROUP" then do;
 ROLE = "INPUT";
 end;
 else 
-if upcase(NAME) = "DATE" then do;
+if upcase(NAME) = "INDUSTRY" then do;
 ROLE = "INPUT";
 end;
 else 
-if upcase(NAME) = "POPULATION_IN_THOUSANDS" then do;
+if upcase(NAME) = "POPULATION" then do;
 ROLE = "INPUT";
 end;
 else 

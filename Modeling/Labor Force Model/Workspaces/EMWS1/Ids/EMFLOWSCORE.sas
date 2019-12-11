@@ -1,0 +1,2 @@
+drop Date;
+drop Gender;

@@ -2,18 +2,18 @@
 * EM: DMDBClass Macro ;
 *------------------------------------------------------------* ;
 %macro DMDBClass;
-    Age_group(ASC) Date(ASC) OPT_Population_in_thousands(ASC)
+    Age_group(ASC) Industry(ASC)
 %mend DMDBClass;
 *------------------------------------------------------------* ;
 * EM: DMDBVar Macro ;
 *------------------------------------------------------------* ;
 %macro DMDBVar;
-    Sum_Labor_Force_Pop
+    Population Sum_Labor_Force_Pop
 %mend DMDBVar;
 *------------------------------------------------------------*;
 * EM: Create DMDB;
 *------------------------------------------------------------*;
-libname _spdslib SPDE "C:\Users\student\AppData\Local\Temp\SAS Temporary Files\_TD12928_WINDOWS-MLD7D7P_\Prc2";
+libname _spdslib SPDE "C:\Users\student\AppData\Local\Temp\SAS Temporary Files\_TD27084_WINDOWS-MLD7D7P_\Prc2";
 proc dmdb batch data=EMWS1.Trans_TRAIN
 dmdbcat=WORK.EM_DMDB
 maxlevel = 101
@@ -30,7 +30,7 @@ quit;
 * Varsel: Input Variables Macro ;
 *------------------------------------------------------------* ;
 %macro INPUTS;
-    AGE_GROUP DATE OPT_POPULATION_IN_THOUSANDS
+    AGE_GROUP INDUSTRY POPULATION
 %mend INPUTS;
 proc dmine data=_spdslib.EM_DMDB dmdbcat=WORK.EM_DMDB
 minr2=0.005 maxrows=3000 stopr2=0.0005 NOAOV16 NOINTER USEGROUPS OUTGROUP=EMWS1.Varsel_OUTGROUP outest=EMWS1.Varsel_OUTESTDMINE outeffect=EMWS1.Varsel_OUTEFFECT outrsquare =EMWS1.Varsel_OUTRSQUARE
