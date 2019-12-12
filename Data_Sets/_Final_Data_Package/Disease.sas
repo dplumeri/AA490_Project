@@ -1,7 +1,7 @@
 Libname Step_2 "C:\Users\student\OneDrive - Bryant University\College\Senior\Semester I\AA490\Final Project\Git_Repository\AA490_Project\Data_Sets\_Final_Data_Package\Disease";
 options user = Work;
 
-/*Recoding Historic Data*/
+/*Recoding Historic Data - Austin*/
 
 data PopRecodeFINAL;
 	set Step_2.Census_population;
@@ -48,7 +48,7 @@ data PopRecodeFINAL;
 		delete;
 		run;
 
-/*Recoding Future Population*/ 
+/*Recoding Future Population - Austin*/ 
 
 data ProjPropRecodeFINAL;
 	set Step_2.projected_population;
@@ -94,7 +94,7 @@ proc sql;
 create table projected_drop_step_3 as
 select * from projected_drop_step_2
 order by Date, Gender, Age_group desc;
-/*Creating 65-84 for Future Pop*/
+/*Creating 65-84 for Future Pop - Dan*/
 data projected_drop_step_4;
 set projected_drop_step_3;
 Lag_Population = lag(Population_in_thousands);
@@ -123,7 +123,7 @@ order by Date, Age_Group, Gender;
 proc freq data = poprecfinal;
 tables age_group /nocum nopercent;
 run;
-/*Recoding Disease Cases*/
+/*Recoding Disease Cases- Dan*/
 data disease_cases_formated;
 set Step_2.disease_cases;
 if Age = "65-74" then Age = "65-84";
@@ -138,7 +138,7 @@ order by Year, Age;
 data disease_projected_final;
 set proj_pop_final_no_dupe_2;
 run;
-/*Final Cleaning*/
+/*Final Cleaning - Dan*/
 data disease_historic_final;
 set disease_historic_final;
 if Age_group = "65-74" then Age_group = "65-84";
@@ -178,7 +178,7 @@ create table OG_Disease_and_projected as
 	from Disease_cases_grouped a join Disease_projected_final b on a.Age = b.Age_Group
 	group by Year, Disease, Age_Group, a.Gender
 	order by Year, Disease, Age_Group, a.Gender;
-/*Transposing Disease to Find Missing*/
+/*Transposing Disease to Find Missing - Dan*/
 
 proc sort data=disease_cases_grouped out=diseaseCasesSorted;
 
@@ -370,7 +370,7 @@ order by Date, Age_Group, Gender;
 proc freq data = poprecfinal;
 tables age_group /nocum nopercent;
 run;
-/*Creating Scoring File*/
+/*Creating Scoring File - Dan/Scott*/
 proc sql;
 create table Disease_List as 
 	select distinct Disease from Disease_Case_final;
@@ -387,7 +387,7 @@ create table Step_2.Disease_Future_Join_1 as
 quit; 
 
 options user = disease;
-/*Joining Disease and Historic*/
+/*Joining Disease and Historic - This Code was Extracted from SAS Guide*/
 PROC SQL;
    CREATE TABLE Disease_Historic_Join_1 AS 
    SELECT t1.Date, 
