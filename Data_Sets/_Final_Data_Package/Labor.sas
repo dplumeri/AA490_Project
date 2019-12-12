@@ -2,7 +2,7 @@ Libname Step_1 "C:\Users\student\OneDrive - Bryant University\College\Senior\Sem
 options user = Work;
 
 /* Historic recode step 1*/
-/*Recoding Historical Data to Fit Buckets*/
+/*Recoding Historical Data to Fit Buckets - Scott*/
 data PopRecode;
 set Step_1.census_population;
 
@@ -51,7 +51,7 @@ data PopAgeRecode_Both_Gender;
 		if Gender = "both sexes" then output;
 run;
 
-/*Recoding future data to fit buckets*/
+/*Recoding future data to fit buckets - Scott*/
 data LaborForceProjectedRecode;
 set Step_1.Projected_Population;
 	if age_group = "18 to 24 years" then
@@ -63,7 +63,7 @@ set Step_1.Projected_Population;
 					 delete; 
 					 run;
 
-/* Creating table with age_group (16-17 records) for Historic Labor Force Population */ 
+/* Creating table with age_group (16-17 records) for Historic Labor Force Population - Dan*/ 
 
 data His_16_to_17_Step_one;
 set Step_1.census_population;
@@ -91,7 +91,7 @@ if Age_group not in("16 to 17") then delete;
 drop Lag_population _16_17_;
 run;
 
-/* Now doing the same for projected labor force popuation */
+/* Now doing the same for projected labor force popuation - Dan*/
 
 data Proj_16_to_17_Step_one;
 set Step_1.projected_population;
@@ -120,7 +120,7 @@ drop Lag_population _16_17_;
 run;
 	
 /* Appending 16-17 bucket back into historic/projected tables, followed by
-	sorting to aggregate population totals */
+	sorting to aggregate population totals - Dan*/
 
 data laborforcehistoricrecode_2;
 set laborforcehistoricrecode;
@@ -146,23 +146,20 @@ if Age_group = "45 to 64 years" then Age_group = "45 to 64";
 if Age_group = "25 to 44 years" then Age_group = "25 to 44";
 run;
 
-/*projected*/
+/*projected - Scott*/
 data laborforceprojectedrecode_2;
 set laborforceprojectedrecode;
 if Age_Group = '16 to 17' then Age_Group = '16 to 24';
 if Age_group = '25 to 44 years' then Age_group = "25 to 44";
 if Age_group = '45 to 64 years' then Age_group = '45 to 64'; 
 run;
-/*proc freq data = laborforceprojectedrecode_2;
-table Age_Group /nocum nofreq;
-run;*/
 proc sql;
 create table labor_projected_FINAL as 
 select Date, gender, Age_Group, sum(population_in_thousands) as Population_in_thousands from laborforceprojectedrecode_2
 group by Date, Age_Group, Gender
 order by Date, Age_Group, Gender;
 
-/* Recoding Labor_Force_Population age buckets to match his/proj population */
+/* Recoding Labor_Force_Population age buckets to match his/proj population - Scott*/
 	
 data labor_force_population_recode_1;
 set Step_1.labor_force_population;
@@ -177,7 +174,7 @@ set Step_1.labor_force_population;
 	output;
 	run;
 	
-/* Using proc sql to aggregate population by year and age_group */
+/* Using proc sql to aggregate population by year and age_group - Dan*/
 proc sql;
 create table labor_force_population_FINAL as 
 select Industry, Year, Age_Group, sum(Labor_force_pop) as labor_force_pop
@@ -206,6 +203,7 @@ set labor_force_grouped;
 Year_char = put(Year, $4.);
 drop Year;
 run;
+/* Code from SAS Guide*/
 PROC SQL;
    CREATE TABLE QUERY_FOR_LABOR_PROJECTED_FINAL AS 
    SELECT t1.Date, 
@@ -216,7 +214,8 @@ PROC SQL;
       FROM labor_force_final t2
            RIGHT JOIN labor_projected_final t1 ON (t2.Age_Group = t1.Age_group) AND (t1.Date = t2.Year_char);
 QUIT;
-/* Joining Census Date and Labor Data */
+/* Joining Census Date and Labor Data - All*/
+/*Code from SAS Guide*/
 PROC SQL;
    CREATE TABLE OG_Labor_Join AS 
    SELECT t1.Date, 
@@ -245,7 +244,7 @@ set og_labor_join_2;
 label 	Population = "Overal_Population"
 		Sum_Labor_Force_Pop = "Industry_Population";
 run;
-/* Creating the Scoring File */
+/* Creating the Scoring File - Dan/Scott*/
 proc sql;
 create table Industry_List as 
 	select distinct Industry from Labor_force_final;
