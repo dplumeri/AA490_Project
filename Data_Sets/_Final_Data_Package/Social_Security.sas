@@ -1101,7 +1101,60 @@ select a.date, a.ss_payout_70_plus, b.total_ss_contribution, b.ss_payout
 from scenario_six_4 a join ss_calc.historic_ss_final b on a.date = b.date;
 quit;
 
+/* Adjusting wage_cap for projected SS issue */
 
+proc sql;
+create table projected_labor_FINAL_1 as
+select a.*, b.*
+from scored_labor_data_1 a join occupation_and_pay_2 b on a.industry = b.industry;
+quit;
+
+data wage_cap_adjustment_1 (drop = warnings b_Sum_Labor_Force_ Segment Prediction_for_Sum_Labor_Force_P);
+set projected_labor_final_1;
+ss_employee_rate = (0.062);
+ss_employer_rate = (0.062);
+combined_ss_rate = (0.124);
+wage_cap = (200000);
+active_contributors = (percent_employment * predicted_sum_labor_force_pop);
+run;
+
+
+data wage_cap_adjustment_2;
+set wage_cap_adjustment_1;
+if (annual_mean_wage lt wage_cap) then
+combined_ss_contribution = (annual_mean_wage * combined_ss_rate);
+if (annual_mean_wage gt wage_cap) then 
+combined_ss_contribution = (wage_cap * combined_ss_rate);
+total_contributions = (combined_ss_contribution * active_contributors);
+run;
+
+proc sql;
+create table projected_total_contributions_1 as
+select date, sum(total_contributions) as total_contributions
+from wage_cap_adjustment_2
+group by date;
+quit;
+
+data wage_cap_adjustment_3;
+set ss_calc.projected_population;
+if age_group = "65 years and over" and gender = "both sexes" then
+output;
+
+data projected_ss_payout_1 (drop = gender age_group population_in_thousands population);
+set wage_cap_adjustment_3;
+Population = (population_in_thousands * 1000);
+ss_payout = (population * 1503 * 12);
+
+data projected_total_contributions_2(drop = date);
+set projected_total_contributions_1;
+char_date = put (date, $4.);
+run;
+
+proc sql;
+create table ss_calc.wage_cap_adjustment_final as
+select a.char_date, a.total_contributions, b.ss_payout
+from projected_total_contributions_2 a join projected_ss_payout_1 b on a.char_date = b.date;
+quit;
 
 
 
