@@ -13,6 +13,8 @@ Dan Plumeri
 Instructions for Genrating Code
 ================================
 
+Preliminary - If any code does not work, refer to the Final Tables folder to see the finished tables. 
+
 Step 1. Labor Recoding/Cleaning
 	a. In the _Final_Data_Package, open the Labor.sas File.
 	b. Adjust the Libname line so that it reflects a directory native to your machine.
