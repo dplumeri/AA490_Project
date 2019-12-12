@@ -17,13 +17,13 @@ Preliminary - If any code does not work, refer to the Final Tables folder to see
 
 Step 1. Labor Recoding/Cleaning
 	a. In the _Final_Data_Package, open the Labor.sas File.
-	b. Adjust the Libname line so that it reflects a directory native to your machine.
+	b. Adjust the Libname line so that it reflects a directory native to your machine 	which directs the Library to the Labor Folder within _Final_Data_Package.
 	c. Run the code.
 	d. In the Step_1 Library, you should now have a file caled Og_labor_and_join and
-	Cross_join_labor_2. These are your input and scoring files respectively.
+	Cross_join_labor_2. These are your input and scoring files respectively. 
 Step 2. Disease Recoding/Cleaning
 	a. In the _Final_Data_Package folder, open the Disease.sas File.
-	b. Adjust the Libname line so that it reflects a directory native to your machine.
+	b. Adjust the Libname line so that it reflects a directory native to your machine. 	which directs the Library to the Disease Folder within _Final_Data_Package.
 	c. Run the code.
 	d. In the Step_2 Library, you should now have a file called Disease_historic_join_1
 	and Disease_future_join_1. These are your input and scoring files respectively.
@@ -41,7 +41,7 @@ Step 4. Disease Modeling
 	c. Run the model
 Step 5. Social Security
 	a. In the _Final_Data_Package, open the Social_Security.sas File.
-	b. Adjust the Libname line so that it reflects a directory native to your machine.
+	b. Adjust the Libname line so that it reflects a directory native to your machine. 	which directs the Library to the Social Security Folder within _Final_Data_Package.
 	c. Run the code. 
 	***YOU MAY HAVE TO RUN THIS CODE TWICE***
 	d. Results for each scenario can be found in the SS_Calc Library. A more detailed 		description of each can table be found in the report. 
