@@ -31,9 +31,15 @@ Step 3. Labor Modeling
 	b. In the model, disconnect all of the links of each modeling node to the model
 	comparrison node with the exception of the "Champion Model" Node
 	c. Run the model
-Step 4. 
+Step 4. Disease Modeling
 	In the _Final_Data_Package, under the Model Packages folder, open 
 	the Labor_Foce_Model_Package.spk. This is the model for Labor.
 	b. In the model, disconnect all of the links of each modeling node to the model
 	comparrison node with the exception of the "Champion Model" Node
 	c. Run the model
+Step 5. Social Security
+	a. In the _Final_Data_Package, open the Social_Security.sas File.
+	b. Adjust the Libname line so that it reflects a directory native to your machine.
+	c. Run the code. 
+	***YOU MAY HAVE TO RUN THIS CODE TWICE***
+	d. Results for each scenario can be found in the SS_Calc Library. A more detailed 		description of each can table be found in the report. 
