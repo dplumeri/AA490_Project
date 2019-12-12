@@ -215,6 +215,20 @@ proc sql;
 create table socialsecurity_data_final as 
 select * from socialsecurity_data_step4 
 order by Year;
+PROC SQL;
+   CREATE TABLE occupation_and_pay_2 AS 
+   SELECT Industry, 
+          'Occupation title'n AS Occupation_title, 
+          'Percent Employment'n AS Percent_Employment, 
+          'Annual mean wage'n AS Annual_mean_wage
+      FROM ss_calc.occupation_and_pay;
+QUIT;
+
+proc sql;
+create table work.temp2 as
+ select a.*, b.* from occupation_and_pay_2 a 
+	join labor_force_final b on a.industry = b.industry;
+quit;
 data work.temp3 (drop = year);
 set socialsecurity_data_final;
 newyear = put (year, $4.);
@@ -226,8 +240,8 @@ create table work.temp4 as
 quit;
 proc sql;
 create table SS_Pay_Past as
-	select a.*, b.SS_wage_limit from work.temp4 a
-		join ss_dat.wagelimit b on a.year_char = b.year;
+	select a.*, b.SS_Wage_Limit from work.temp4 a
+		join wage_limits b on a.Year_char = b.year_char;
 quit;
 
 /* Historic recode step 1*/
@@ -1086,6 +1100,12 @@ create table ss_calc.adjusted_age_payout_final as
 select a.date, a.ss_payout_70_plus, b.total_ss_contribution, b.ss_payout
 from scenario_six_4 a join ss_calc.historic_ss_final b on a.date = b.date;
 quit;
+
+
+
+
+
+
 
 
 
