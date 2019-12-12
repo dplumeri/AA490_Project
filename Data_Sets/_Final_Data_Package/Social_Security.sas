@@ -1,4 +1,4 @@
-Libname SS_Calc "C:\Users\student\OneDrive - Bryant University\College\Senior\Semester I\AA490\Final Project\Git_Repository\AA490_Project\Data_Sets\_Final_Data_Package\Social Security";
+Libname SS_Calc "C:\Users\student\Desktop\AA Capstone\Project\GitRepository\aa490_project\Data_Sets\_Final_Data_Package\Social Security";
 options user = Work;
 DATA Wage_Limits;
     LENGTH
@@ -889,5 +889,204 @@ create table ss_calc.projected_ss_final as
 select a.char_date, a.total_contributions, b.ss_payout
 from projected_total_contributions_1 a join projected_ss_payout b on a.char_date = b.date;
 quit;
+
+/* SCENARIO ONE - lowering mean monthly benefit payment to $1,000 */
+
+data scenario_one_payout (drop = gender age_group population_in_thousands population);
+set projected_ss_step_3;
+Population = (population_in_thousands * 1000);
+ss_payout = (population * 1000 * 12);
+
+proc sql;
+create table ss_calc.scenario_one_final as
+select a.char_date, a.total_contributions, b.ss_payout
+from projected_total_contributions_1 a join scenario_one_payout b on a.char_date = b.date;
+quit;
+
+/* SCENARIO TWO - increasing employee/employer payroll tax by 1.0% */ 
+
+data scenario_two_contributions;
+set projected_ss_step_1;
+if (annual_mean_wage lt wage_cap) then
+combined_ss_contribution = (annual_mean_wage * 0.144);
+if (annual_mean_wage gt wage_cap) then 
+combined_ss_contribution = (wage_cap * 0.144);
+total_contributions = (combined_ss_contribution * active_contributors);
+run;
+
+proc sql;
+create table scenario_two_contributions_1 as
+select date, sum(total_contributions) as total_contributions
+from scenario_two_contributions
+group by date;
+quit;
+
+data scenario_two_contributions_2(drop = date);
+set scenario_two_contributions_1;
+char_date = put (date, $4.);
+run;
+
+proc sql;
+create table ss_calc.scenario_two_final as
+select a.char_date, a.total_contributions, b.ss_payout
+from scenario_two_contributions_2 a join projected_ss_payout b on a.char_date = b.date;
+quit;
+
+/* SCENARIO 3 - increasing employee/employer payroll tax 2% */
+
+data scenario_three_contributions;
+set projected_ss_step_1;
+if (annual_mean_wage lt wage_cap) then
+combined_ss_contribution = (annual_mean_wage * 0.164);
+if (annual_mean_wage gt wage_cap) then 
+combined_ss_contribution = (wage_cap * 0.164);
+total_contributions = (combined_ss_contribution * active_contributors);
+run;
+
+proc sql;
+create table scenario_three_contributions_1 as
+select date, sum(total_contributions) as total_contributions
+from scenario_three_contributions
+group by date;
+quit;
+
+data scenario_three_contributions_2(drop = date);
+set scenario_three_contributions_1;
+char_date = put (date, $4.);
+run;
+
+proc sql;
+create table ss_calc.scenario_three_final as
+select a.char_date, a.total_contributions, b.ss_payout
+from scenario_three_contributions_2 a join projected_ss_payout b on a.char_date = b.date;
+quit;
+
+/* SCENARIO 4 - increasing employee/employer payroll tax 3% */
+
+data scenario_four_contributions; 
+set projected_ss_step_1;
+if (annual_mean_wage lt wage_cap) then
+combined_ss_contribution = (annual_mean_wage * 0.184);
+if (annual_mean_wage gt wage_cap) then 
+combined_ss_contribution = (wage_cap * 0.184);
+total_contributions = (combined_ss_contribution * active_contributors);
+run;
+
+proc sql;
+create table scenario_four_contributions_1 as
+select date, sum(total_contributions) as total_contributions
+from scenario_four_contributions
+group by date;
+quit;
+
+data scenario_four_contributions_2(drop = date);
+set scenario_four_contributions_1;
+char_date = put (date, $4.);
+run;
+
+proc sql;
+create table ss_calc.scenario_four_final as
+select a.char_date, a.total_contributions, b.ss_payout
+from scenario_four_contributions_2 a join projected_ss_payout b on a.char_date = b.date;
+quit;
+
+/* SCENARIO FIVE - combination of increasing payroll tax 2% a decreasing mean benefit payout to $1250*/
+
+
+data scenario_five_payout (drop = gender age_group population_in_thousands population);
+set projected_ss_step_3;
+Population = (population_in_thousands * 1000);
+ss_payout = (population * 1250 * 12);
+
+
+data scenario_five_contributions; 
+set projected_ss_step_1;
+if (annual_mean_wage lt wage_cap) then
+combined_ss_contribution = (annual_mean_wage * 0.164);
+if (annual_mean_wage gt wage_cap) then 
+combined_ss_contribution = (wage_cap * 0.164);
+total_contributions = (combined_ss_contribution * active_contributors);
+run;
+
+proc sql;
+create table scenario_five_contributions_1 as
+select date, sum(total_contributions) as total_contributions
+from scenario_five_contributions
+group by date;
+quit;
+
+data scenario_five_contributions_2(drop = date);
+set scenario_five_contributions_1;
+char_date = put (date, $4.);
+run;
+
+proc sql;
+create table ss_calc.scenario_five_final as
+select a.char_date, a.total_contributions, b.ss_payout
+from scenario_five_contributions_2 a join scenario_five_payout b on a.char_date = b.date;
+quit;
+
+/* Joining scenerio 2, 3, and 4 for comparison chart */ 
+
+proc sql;
+create table ss_calc.scenario_comparison as
+select a.char_date as year, a.total_contributions as scenario_two, a.ss_payout, b.total_contributions as 
+scenario_three, c.total_contributions as scenario_four
+from ss_calc.scenario_two_final a 
+	join ss_calc.scenario_three_final b on a.char_date = b.char_date
+	join ss_calc.scenario_four_final c on b.char_date = c.char_date;
+	run;
+
+/* adjusting payout retirement age for historic SS data */
+
+data scenario_six;
+set ss_calc.census_population;
+if age_group = "70_to_74_years" then
+age_group = "70+";
+if age_group = "75_to_79_years" then
+age_group = "70+";
+if age_group = "80_to_84_years" then
+age_group = "70+";
+if age_group = "85_to_89_years" then
+age_group = "70+";
+if age_group = "90_to_94_years" then
+age_group = "70+";
+if age_group = "95_to_99_years" then
+age_group = "70+";
+if age_group = "Over_99_years" then
+age_group = "70+";
+
+proc sql;
+create table scenario_six_1 as
+select date, gender, age_group, population_in_thousands as Population
+from scenario_six
+where age_group = "70+";
+quit;
+
+data scenario_six_2 (drop = gender age_group);
+set scenario_six_1;
+if gender = "both sexes" then 
+output; 
+
+proc sql;
+create table scenario_six_3 as
+select date, sum(population) as population
+from scenario_six_2
+group by date;
+quit;
+
+data scenario_six_4;
+set scenario_six_3;
+if date in ("1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999") then
+delete;
+ss_payout_70_plus = (population * 1503 * 12 * 1000);
+
+proc sql;
+create table ss_calc.adjusted_age_payout_final as
+select a.date, a.ss_payout_70_plus, b.total_ss_contribution, b.ss_payout
+from scenario_six_4 a join ss_calc.historic_ss_final b on a.date = b.date;
+quit;
+
+
 
 
